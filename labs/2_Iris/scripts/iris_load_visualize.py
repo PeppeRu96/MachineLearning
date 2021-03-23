@@ -65,28 +65,28 @@ def visualizeScatters(D, L):
                 plt.scatter(Dix, Diy, label=labelName)
             plt.legend()
 
+if (__name__ == "__main__"):
+    # Start code
+    attributes, labels = loadDataset(dsPath)
+    # print("Attributes shape: ", attributes.shape, "\tLabels shape: ", labels.shape)
 
-# Start code
-attributes, labels = loadDataset(dsPath)
-# print("Attributes shape: ", attributes.shape, "\tLabels shape: ", labels.shape)
+    # Visualize code
+    # Histograms
+    visualizeHistograms(attributes, labels)
+    # Scatters
+    visualizeScatters(attributes, labels)
 
-# Visualize code
-# Histograms
-visualizeHistograms(attributes, labels)
-# Scatters
-visualizeScatters(attributes, labels)
+    # Computing statistics on dataset
+    # Mean
+    mu = attributes.mean(1)
+    print("Mean: ", mu)
 
-# Computing statistics on dataset
-# Mean
-mu = attributes.mean(1)
-print("Mean: ", mu)
+    # Center the dataset (subtract the mean of each attribute to each corresponding attribute's value)
+    mu = mu.reshape(mu.shape[0], 1)  # Make it a column vector
+    # Broadcast
+    attrsCentered = attributes - mu
 
-# Center the dataset (subtract the mean of each attribute to each corresponding attribute's value)
-mu = mu.reshape(mu.shape[0], 1)  # Make it a column vector
-# Broadcast
-attrsCentered = attributes - mu
-
-# Histograms
-visualizeHistograms(attrsCentered, labels)
-plt.show()
-pass
+    # Histograms
+    visualizeHistograms(attrsCentered, labels)
+    plt.show()
+    pass
