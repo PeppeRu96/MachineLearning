@@ -1,5 +1,6 @@
 import sys
 import numpy as np
+from matplotlib import pyplot as plt
 
 sys.path.append('../../2_Iris/scripts/')
 
@@ -29,7 +30,9 @@ def pca(D, m):
 
 if (__name__ == "__main__"):
     attributes, labels = ilv.loadDataset(ilv.dsPath)
-    P, DP = pca(attributes, 4)
+    P, DP = pca(attributes, 2)
+
+    print("DP shape: ", DP.shape)
 
     print("Eigenvectors calculated:")
     print(P)
@@ -37,3 +40,15 @@ if (__name__ == "__main__"):
     Pld = np.load("../Solution/IRIS_PCA_matrix_m4.npy")
     print("\nEigenvectors from the solution:")
     print(Pld)
+
+    plt.figure()
+    plt.title("PCA")
+    plt.xlabel("First direction")
+    plt.ylabel("Second direction")
+    for i, labelName in enumerate(ilv.VAL_TO_LABELS):
+        Mi = (labels == i)
+        Dx = DP[0, Mi]
+        Dy = DP[1, Mi]
+        plt.scatter(Dx, Dy, label=labelName)
+    plt.legend()
+    plt.show()
