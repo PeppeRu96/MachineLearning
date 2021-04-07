@@ -4,20 +4,22 @@ import matplotlib.pyplot as plt
 def GAU_pdf(x, mu, var):
 
     y = np.exp( -((x-mu)**2) / (2*var) ) / np.sqrt(2*np.pi*var)
-    print("GAU pdf shape: ", y.shape)
     return y
 
 def GAU_logpdf(x, mu, var):
     y = -0.5*np.log(2*np.pi) - 0.5 * np.log(var) - ((x - mu)**2)/(2*var)
-    print("GAU logpdf shape: ", y.shape)
     return y
 
 def logpdf_GAU_ND(x, mu, C):
-    M = x.shape(0)
-    print("M: ", M)
-    for i in range(x.shape(1)):
-        ycol = - 0.5 * M * np.log(2*np.pi) - 0.5 * np.linalg.slogdet(C) - 0.5 * (x[:, i] - mu).T * np.linalg.i
-    return 0
+    M = x.shape[0]
+    y = []
+    for i in range(x.shape[1]):
+        col = x[:, i].reshape(M, 1)
+        ycol = - 0.5 * M * np.log(2*np.pi) - 0.5 * np.linalg.slogdet(C)[1] - 0.5 * np.dot( (col-mu).T, np.dot(np.linalg.inv(C), (col-mu)))
+        y.append(ycol)
+    y = np.array(y)
+    y = y.reshape(y.shape[0])
+    return y
 
 if (__name__ == "__main__"):
     XGAU = np.load('../Data/XGau.npy')
@@ -66,13 +68,18 @@ if (__name__ == "__main__"):
 
     # Multivariate Gaussian
     XND = np.load("../Solution/XND.npy")
-    print("XND shape: ", XND.shape)
+    #print("XND shape: ", XND.shape)
+    #print(XND)
     mu = np.load("../Solution/muND.npy")
-    print("mu shape: ", mu.shape)
+    #print("mu shape: ", mu.shape)
     C = np.load("../Solution/CND.npy")
-    print("C shape: ", C.shape)
+    #print("C shape: ", C.shape)
     pdfSol = np.load("../Solution/llND.npy")
     pdfGau = logpdf_GAU_ND(XND, mu, C)
-    print (np.abs(pdfSol - pdfGau).mean())
+    #print("pdf GAU ND shape: ", pdfGau.shape)
+    #print(pdfGau)
+    #print(pdfSol)
+
+    print ("Difference from computation and solution: ", np.abs(pdfSol - pdfGau).mean())
 
 
