@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import enum
+from typing import List
 
 DEBUG = 0
 
@@ -16,7 +17,8 @@ class VISUALIZE(enum.Enum):
 # LABELS ARE STORED AS A SINGLE ROW VECTOR (NDARRAY WITH SHAPE (#SAMPLES,) PAY ATTENTION AT THE SHAPE!)
 class Dataset:
 
-    def __init__(self, name, label_names, feature_names, samples, labels):
+    def __init__(self, name: str, label_names: List[str], feature_names: List[str], samples: np.ndarray,
+                 labels: np.ndarray) -> None:
         self.name = name
         self.label_names = label_names
         self.label_to_val = {l: idx for idx, l in enumerate(label_names)}
@@ -35,14 +37,14 @@ class Dataset:
             print("Features: ", feature_names)
             print("Number of samples: %d" % (samples.shape[1]))
 
-    def visualize_histogram(self, show=VISUALIZE.All, features_to_show = []):
+    def visualize_histogram(self, show: VISUALIZE = VISUALIZE.All, features_to_show: List[str] = None) -> None:
         visualize_histogram(self.samples, self.labels, self.feature_names, self.label_names, show, features_to_show)
 
-    def visualize_scatter(self, show=VISUALIZE.All, features_to_show = []):
+    def visualize_scatter(self, show: VISUALIZE = VISUALIZE.All, features_to_show: List[str] = None) -> None:
         visualize_scatter(self.samples, self.labels, self.feature_names, self.label_names, show, features_to_show)
 
 
-def load_iris_from_csv(file_path):
+def load_iris_from_csv(file_path: str) -> Dataset:
     label_names = ["Iris-setosa", "Iris-versicolor", "Iris-virginica"]
     labels_to_val = {"Iris-setosa": 0, "Iris-versicolor": 1, "Iris-virginica": 2}
     feature_names = ["Sepal length (cm)", "Sepal width (cm)", "Petal length (cm)", "Petal width (cm)"]
@@ -72,7 +74,10 @@ def load_iris_from_csv(file_path):
 # ds: Dataset wrapper object
 # hist_show: should pass an HISTOGRAM_SHOW type
 # features_to_show: should pass a list of valid feature indices
-def visualize_histogram(D, L, feature_names, label_names, show=VISUALIZE.All, features_to_show=[]):
+def visualize_histogram(D: np.ndarray, L: np.ndarray, feature_names: List[str], label_names: List[str],
+                        show: VISUALIZE = VISUALIZE.All, features_to_show: List[str] = None) -> None:
+    if features_to_show is None:
+        features_to_show = []
     if show == VISUALIZE.Hidden:
         return None
     if show == VISUALIZE.All:
@@ -105,8 +110,10 @@ def visualize_histogram(D, L, feature_names, label_names, show=VISUALIZE.All, fe
             plt.hist(Di, density=True, label=label_name, alpha=0.5)
         plt.legend()
 
+
 # Visualize, for the given features, all the pairs in scatter plots
-def visualize_scatter(D, L, feature_names, label_names, show=VISUALIZE.All, features_to_show=[]):
+def visualize_scatter(D: np.ndarray, L: np.ndarray, feature_names: List[str], label_names: List[str],
+                      show: VISUALIZE = VISUALIZE.All, features_to_show: List[str] = None) -> None:
     if show == VISUALIZE.Hidden:
         return None
     if show == VISUALIZE.All:
@@ -128,7 +135,8 @@ def visualize_scatter(D, L, feature_names, label_names, show=VISUALIZE.All, feat
                 continue
 
             if DEBUG:
-                print("Showing scatter plot for the pair (%s(%d), %s(%d)).." % (name_feat_x, idx_feat_x, name_feat_y, idx_feat_y))
+                print("Showing scatter plot for the pair (%s(%d), %s(%d)).." % (
+                    name_feat_x, idx_feat_x, name_feat_y, idx_feat_y))
             plt.figure()
             plt.title("Scatter plot comparing %s to %s" % (name_feat_x, name_feat_y))
             plt.xlabel(name_feat_x)
