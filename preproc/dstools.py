@@ -5,7 +5,6 @@ from typing import List
 
 DEBUG = 0
 
-
 class VISUALIZE(enum.Enum):
     All = 1
     Specified = 2
@@ -75,7 +74,7 @@ def load_iris_from_csv(file_path: str) -> Dataset:
 # hist_show: should pass an HISTOGRAM_SHOW type
 # features_to_show: should pass a list of valid feature indices
 def visualize_histogram(D: np.ndarray, L: np.ndarray, feature_names: List[str], label_names: List[str],
-                        show: VISUALIZE = VISUALIZE.All, features_to_show: List[str] = None) -> None:
+                        show: VISUALIZE = VISUALIZE.All, features_to_show: List[str] = None, bins = None) -> None:
     if features_to_show is None:
         features_to_show = []
     if show == VISUALIZE.Hidden:
@@ -107,7 +106,7 @@ def visualize_histogram(D: np.ndarray, L: np.ndarray, feature_names: List[str], 
             # Filter columns (selects only the cols, that are the samples which belong to the current label)
             # and select the row of the curr attribute.
             Di = D[idx_feat, Mi]
-            plt.hist(Di, density=True, label=label_name, alpha=0.5)
+            plt.hist(Di, density=True, label=label_name, alpha=0.5, bins=bins)
         plt.legend()
 
 

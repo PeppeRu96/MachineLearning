@@ -16,7 +16,7 @@ if (__name__ == "__main__"):
     # Histograms
     ds.visualize_histogram(dst.VISUALIZE.Specified, [0])
     # Scatters
-    ds.visualize_scatter(dst.VISUALIZE.Specified, [0, 1])
+    ds.visualize_scatter(dst.VISUALIZE.All, [0, 1])
 
     # Computing statistics on dataset
     # Mean
@@ -31,5 +31,5 @@ if (__name__ == "__main__"):
     ds.samples_centered = ds.samples - ds.mu
 
     # Histograms
-    dst.visualize_histogram(ds.samples_centered, ds.labels, ds.feature_names, ds.label_names, dst.VISUALIZE.Specified, [0])
+    dst.visualize_histogram(ds.samples_centered, ds.labels, ds.feature_names, ds.label_names, dst.VISUALIZE.All, [0])
     plt.show()
