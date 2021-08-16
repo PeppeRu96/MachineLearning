@@ -10,7 +10,7 @@ sys.path.append('../../4_Probability_Density/scripts/')
 
 import gauss_density as gd
 
-# Prior probability
+# Prior distributions
 Pc = np.array([1 / 3, 1 / 3, 1 / 3]).reshape(3, 1)
 
 
@@ -91,7 +91,7 @@ def gaussian_classifier(D, mu, C, Pc, use_log=True):
         else:
             # Likelihood
             Si = np.exp(gd.logpdf_GAU_ND(D, mu[i], C[i]))
-            # Joint probability
+            # Joint distributions
             Si = Si * Pc[i]
             S.append(Si)
     SJoint = np.array(S)
