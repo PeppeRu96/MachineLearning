@@ -42,6 +42,9 @@ class Dataset:
     def visualize_scatter(self, show: VISUALIZE = VISUALIZE.All, features_to_show: List[str] = None) -> None:
         visualize_scatter(self.samples, self.labels, self.feature_names, self.label_names, show, features_to_show)
 
+    def split_db_2to1(self, train_fraction, seed=0):
+        split_db_2to1(self.samples, self.labels, train_fraction, seed)
+
 
 def load_iris_from_csv(file_path: str) -> Dataset:
     label_names = ["Iris-setosa", "Iris-versicolor", "Iris-virginica"]
@@ -146,3 +149,101 @@ def visualize_scatter(D: np.ndarray, L: np.ndarray, feature_names: List[str], la
                 Diy = D[idx_feat_y, Mi]
                 plt.scatter(Dix, Diy, label=label_name)
             plt.legend()
+
+# Splits a dataset into a train dataset and test dataset according to the train_fraction with random extracted samples
+def split_db_2to1(D, L, train_fraction, seed=0):
+    print("Splitting dataset in %f train data and %f test data" % (train_fraction, (1-train_fraction)))
+    nTrain = int(D.shape[1] * train_fraction)
+    print("Train samples: %d; Test samples: %d" % (nTrain, D.shape[1]-nTrain))
+    np.random.seed(seed)
+    idx = np.random.permutation(D.shape[1])
+    idxTrain = idx[0:nTrain]
+    idxTest = idx[nTrain:]
+    DTR = D[:, idxTrain]
+    DTE = D[:, idxTest]
+    LTR = L[idxTrain]
+    LTE = L[idxTest]
+    return (DTR, LTR), (DTE, LTE)
+
+# Split a dataset (D, L) in K folds equally distributed for each class
+# It's based on the assumption that the dataset has a number of samples equal for each class
+# Otherwise, it should be required some addition logic to build more robust folds
+# Returns two numpy arrays:
+# folds_data (K, #dimensions, #SAMPLES/K)
+# folds_labels (K, #SAMPLES/K)
+def kfold_split(D, L, K):
+    if DEBUG:
+        print("K FOLDS SPLIT WITH K=%d" % K)
+    Dcopy = np.array(D)
+    samples_cnt = D.shape[1]
+    fold_size = samples_cnt // K
+    classes = len(set(L))
+    #fold_size_class = fold_size / classes
+
+    Dclass = []
+    indexes = []
+    for i in range(classes):
+        Di = Dcopy[:, (L==i)]
+        Dclass.append(Di)
+
+        idx = list(np.random.permutation(Di.shape[1]))
+        indexes.append(idx)
+
+    Dclass = np.array(Dclass)
+
+    if DEBUG:
+        print("Dataset suvdivided for each class: ", Dclass.shape)
+
+    folds_data = []
+    folds_labels = []
+    for i in range(K):
+        c = 0
+        fold_data = []
+        fold_labels = []
+        for j in range(fold_size):
+            while len(indexes[c]) <= 0:
+                c = (c + 1) % classes
+            id = indexes[c].pop(0)
+            sample = Dclass[c, :, id]
+            fold_data.append(sample)
+            fold_labels.append(c)
+            c = (c + 1) % classes
+
+        fold_data = np.array(fold_data).T
+        fold_labels = np.array(fold_labels)
+
+        # Permutate randomly samples inside the fold
+        fold_idx = np.random.permutation(fold_data.shape[1])
+        fold_data = fold_data[:, fold_idx]
+        fold_labels = fold_labels[fold_idx]
+
+        folds_data.append(fold_data)
+        folds_labels.append(fold_labels)
+
+    folds_data = np.array(folds_data)
+    folds_labels = np.array(folds_labels)
+    if DEBUG:
+        print("Folds data np array shape: ", folds_data.shape)
+        print("Folds labels np array shape: ", folds_labels.shape)
+
+    return folds_data, folds_labels
+
+# Requires folds (K, #dimensions, #samples), folds_labels (#folds, #samples)
+# Returns a generator that can be looped with DTR, LTR, DTE, LTE up to K times
+def kfold_generate(folds, folds_labels):
+    for i in range(folds.shape[0]):
+        folds_copy = list(folds)
+        folds_labels_copy = list(folds_labels)
+
+        DTE = np.array(folds_copy.pop(i))
+        LTE = np.array(folds_labels_copy.pop(i))
+
+        folds_copy = np.array(folds_copy)
+        folds_labels_copy = np.array(folds_labels_copy)
+        DTR = folds_copy[0]
+        for j in range(1, folds_copy.shape[0]):
+            DTR = np.concatenate((DTR, folds_copy[j]), axis=1)
+
+        LTR = folds_labels_copy.flatten()
+
+        yield DTR, LTR, DTE, LTE
