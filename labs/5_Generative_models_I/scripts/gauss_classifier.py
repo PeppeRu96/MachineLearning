@@ -24,49 +24,36 @@ if (__name__ == "__main__"):
 
     mvg.train(DTR, LTR)
 
-
     # Perform gaussian classification on test set
     # Likelihood standard
     print("Evaluating MVG classifier against test dataset (Test samples: %d) with standard MVG densities.." % DTE.shape[1])
-    pred_labels1 = mvg.inference(DTE, Pc, False)
-    cnt = (pred_labels1 == LTE).sum()
-    acc = cnt / LTE.shape[0]
-    err = 1 - acc
-    print("Accuracy: ", acc)
-    print("Error: ", err)
-    print(" ")
+    mvg.evaluate(DTE, LTE, Pc, use_log=False)
 
     # Log-likelihood
     print("Evaluating MVG classifier against test dataset (Test samples: %d) with logarithm MVG densities.." % DTE.shape[1])
-    pred_labels2 = mvg.inference(DTE, Pc, True)
-    cnt = (pred_labels2 == LTE).sum()
-    acc = cnt / LTE.shape[0]
-    err = 1 - acc
-    print("Accuracy: ", acc)
-    print("Error: ", err)
-    print(" ")
+    mvg.evaluate(DTE, LTE, Pc)
+
+    # Naive Bayes Gaussian
+    print("Evaluating Naive Bayes Gaussian classifier against test dataset (Test samples: %d) with logarithm densities.." % DTE.shape[1])
+    naive_gauss = MVG_Classifier()
+    naive_gauss.train(DTR, LTR, naive=True, verbose=True)
+    naive_gauss.evaluate(DTE, LTE, Pc)
+
+    # Tied Gaussian
+    print("Evaluating Tied Gaussian classifier against test dataset (Test samples: %d) with logarithm densities.." %DTE.shape[1])
+    tied_gauss = MVG_Classifier()
+    tied_gauss.train(DTR, LTR, naive=False, tied=True, verbose=True)
+    tied_gauss.evaluate(DTE, LTE, Pc)
+
+    # Naive Tied Gaussian
+    print("Evaluating Naive Tied Gaussian classifier against test dataset (Test samples: %d) with logarithm densities.." % DTE.shape[1])
+    naive_tied_gauss = MVG_Classifier()
+    naive_tied_gauss.train(DTR, LTR, naive=True, tied=True, verbose=True)
+    naive_tied_gauss.evaluate(DTE, LTE, Pc)
 
     # Cross-validation test
     K = D.shape[1]
-    print("Evaluating MVG with K FOLD cross-validation with K=%d" % K)
-    folds, folds_labels = dst.kfold_split(D, L, K)
-    samples = folds.shape[2]*folds.shape[0]
-    print("Total samples: ", samples)
-    correct = 0
-
-    for DTR, LTR, DTE, LTE in dst.kfold_generate(folds, folds_labels):
-        mvg = MVG_Classifier()
-        mvg.train(DTR, LTR)
-        pred_labels = mvg.inference(DTE, Pc, True)
-        cnt = (pred_labels == LTE).sum()
-        correct = correct + cnt
-        #acc = cnt / LTE.shape[0]
-        #err = 1 - acc
-        #print("%d: Accuracy: " % (i), acc)
-        #print("%d: Error: " % (i), err)
-
-    acc = correct / samples
-    err = 1 - acc
-    print(" ")
-    print("Total Accuracy: ", acc)
-    print("Total Error: ", err)
+    mvg.evaluate(D, L, Pc, Kfold=True, K=K)
+    naive_gauss.evaluate(D, L, Pc, Kfold=True, K=K)
+    tied_gauss.evaluate(D, L, Pc, Kfold=True, K=K)
+    naive_tied_gauss.evaluate(D, L, Pc, Kfold=True, K=K)

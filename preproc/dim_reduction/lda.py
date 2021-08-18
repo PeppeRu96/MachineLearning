@@ -25,11 +25,11 @@ def sb_sw_compute(D, L):
             Sb = Sb + bc
         # Within-class covariance processing
         DCi = Di - mu_i
-        Ci = (np.dot(DCi, DCi.T)) / DCi.shape[1]
+        Ci = np.dot(DCi, DCi.T)
         if (i == 0):
-            Sw = Ci * Di.shape[1]
+            Sw = Ci
         else:
-            Sw = Sw + Ci * Di.shape[1]
+            Sw = Sw + Ci
     Sb = Sb / D.shape[1]
     Sw = Sw / D.shape[1]
 
