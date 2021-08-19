@@ -109,12 +109,12 @@ def preproc_dataset(D, word_to_index):
 
 def discrete_linear_classifier_train(Dinf, Dpur, Dpar, voc_inf_train, voc_pur_train, voc_par_train, eps):
     Dinf_tot = Dinf.sum(axis=1)
-    print("Dinf tot shape: ", Dinf_tot.shape)
+    #print("Dinf tot shape: ", Dinf_tot.shape)
     Dinf_tot = Dinf_tot + eps
     Nc_inf = voc_inf_train.sum()
 
-    print(Dinf_tot[0:30])
-    print(voc_inf_train[0:30])
+    #print(Dinf_tot[0:30])
+    #print(voc_inf_train[0:30])
     pi_inf = Dinf_tot / Nc_inf
 
     Dpur_tot = Dpur.sum(axis=1)
@@ -136,11 +136,11 @@ def discrete_linear_classifier_train(Dinf, Dpur, Dpar, voc_inf_train, voc_pur_tr
     return np.array(pi)
 
 def discrete_lienar_classifier_inference(D, pi, Pc):
-    log_likelihoods = pi @ D
-    print("Log likelihoods shape: ", log_likelihoods.shape)
+    log_likelihoods = np.log(pi) @ D
+    #print("Log likelihoods shape: ", log_likelihoods.shape)
     Pc = np.array(Pc).reshape(3, 1)
     S_joint = log_likelihoods * Pc
-    print("Joint S matrix shape: ", S_joint.shape)
+    #print("Joint S matrix shape: ", S_joint.shape)
     marginal = scipy.special.logsumexp(S_joint, axis=0)
     S_posterior = S_joint - marginal
     pred_labels = np.argmax(S_posterior, 0)
@@ -183,11 +183,11 @@ if __name__ == '__main__':
     print("Purgatorio DS Train vocabulary  shape: ", vocPur_train.shape, "; Test shape: ", vocPur_evaluation.shape)
     print("Paradiso DS Train  vocabulary shape: ", vocPar_train.shape, "; Test shape: ", vocPar_evaluation.shape)
 
-    print("Vocabulary: ", voc[0:10])
-    print("Word to index: ", ["%s: %d" % (key, word_to_index[key]) for key in word_to_index.keys()][0:10])
+    #print("Vocabulary: ", voc[0:10])
+    #print("Word to index: ", ["%s: %d" % (key, word_to_index[key]) for key in word_to_index.keys()][0:10])
 
     pi = discrete_linear_classifier_train(lInf_train, lPur_train, lPar_train, vocInf_train, vocPur_train, vocPar_train, 0.001)
-    print("Pi shape: ", pi.shape)
+    #print("Pi shape: ", pi.shape)
 
     Pc = [1/3, 1/3, 1/3]
     inf_preds = discrete_lienar_classifier_inference(lInf_evaluation, pi, Pc)
@@ -196,12 +196,16 @@ if __name__ == '__main__':
     print("Inferno accuracy: ", inf_acc)
 
     pur_preds = discrete_lienar_classifier_inference(lPur_evaluation, pi, Pc)
-    pur_correct = (pur_preds == 0).sum()
+    pur_correct = (pur_preds == 1).sum()
     pur_acc = pur_correct / pur_preds.shape[0]
     print("Purgatorio accuracy: ", pur_acc)
 
     par_preds = discrete_lienar_classifier_inference(lPar_evaluation, pi, Pc)
-    par_correct = (par_preds == 0).sum()
+    par_correct = (par_preds == 2).sum()
     par_acc = par_correct / par_preds.shape[0]
     print("Paradiso accuracy: ", par_acc)
+
+    tot_correct = inf_correct + pur_correct + par_correct
+    overall_acc = tot_correct / (inf_preds.shape[0] + pur_preds.shape[0] + par_preds.shape[0])
+    print("Overall accuracy: ", overall_acc)
 
