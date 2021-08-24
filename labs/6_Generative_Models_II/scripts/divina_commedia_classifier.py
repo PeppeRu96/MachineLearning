@@ -208,4 +208,13 @@ if __name__ == '__main__':
     tot_correct = inf_correct + pur_correct + par_correct
     overall_acc = tot_correct / (inf_preds.shape[0] + pur_preds.shape[0] + par_preds.shape[0])
     print("Overall accuracy: ", overall_acc)
+    # labels = np.hstack((np.zeros(lInf_evaluation.shape[1]), np.ones(lPur_evaluation.shape[1]), np.array([2 for i in range(lPar_evaluation.shape[1])])))
+    # commedia_eval = np.concatenate((lInf_evaluation, lPur_evaluation, lPar_evaluation), axis=1)
+    # commedia_preds = discrete_lienar_classifier_inference(commedia_eval, pi, Pc)
+    # print("commedia preds shape: ", commedia_preds.shape)
+    # print("labels shape: ", labels.shape)
+    # correct = (commedia_preds == labels).sum()
+    # print((commedia_preds == 1).sum())
+    # acc = correct / commedia_preds.shape[0]
+    # print("acc: ", acc)
 

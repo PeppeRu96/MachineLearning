@@ -153,7 +153,6 @@ def MVG_classifier_inference(D, mu, C, Pc, naive=False, tied=False, use_log=True
             Si = Si * Pc[i]
             S.append(Si)
     SJoint = np.array(S)
-    print("Sjoint shape: ", SJoint.shape)
     marginal = None
     SPost = None
     if (use_log):
