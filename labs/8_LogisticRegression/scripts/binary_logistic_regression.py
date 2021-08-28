@@ -1,4 +1,3 @@
-import numpy as np
 import sklearn.datasets
 
 import preproc.dstools as dst
