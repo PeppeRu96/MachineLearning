@@ -57,6 +57,8 @@ def bayes_binary_optimal_classifier(llr, pi_1, Cfn, Cfp, threshold=None):
     :param Cfp: Cost for a false positive prediction
     :return: A np array with the predictions (0 or 1)
     """
+    if (llr.ndim > 1):
+        llr = llr.flatten()
     if threshold is None:
         threshold = -np.log((pi_1 * Cfn) / ((1 - pi_1) * Cfp))
     predictions = [1 if l > threshold else 0 for l in llr]
@@ -112,14 +114,16 @@ def bayes_min_dcf(llr, labels, pi_1, Cfn, Cfp, min_threshold, max_threshold, poi
     """
 
     minDCF = np.inf
+    best_threshold = 1
     for t in np.linspace(min_threshold, max_threshold, points):
-        predictions = bayes_binary_optimal_classifier(llr, 0.5, 1, 1, threshold=t)
+        predictions = bayes_binary_optimal_classifier(llr, pi_1, Cfn, Cfp, threshold=t)
         conf_matr = get_confusion_matrix(predictions, labels)
         dcf = bayes_binary_dcf(conf_matr, pi_1, Cfn, Cfp)
         if dcf < minDCF:
             minDCF = dcf
+            best_threshold = t
 
-    return minDCF
+    return minDCF, best_threshold
 
 def draw_ROC(llr, labels, min_threshold, max_threshold, points):
     """
@@ -172,7 +176,7 @@ def draw_NormalizedBayesErrorPlot(llr, labels, p_min, p_max, p_points, t_min, t_
         predictions = bayes_binary_optimal_classifier(llr, effPrior, 1, 1)
         conf_matr = get_confusion_matrix(predictions, labels)
         DCF = bayes_binary_dcf(conf_matr, effPrior, 1, 1)
-        minDCF = bayes_min_dcf(llr, labels, effPrior, 1, 1, t_min, t_max, t_points)
+        minDCF, _ = bayes_min_dcf(llr, labels, effPrior, 1, 1, t_min, t_max, t_points)
         DCFs.append(DCF)
         minDCFs.append(minDCF)
 

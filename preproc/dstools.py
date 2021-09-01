@@ -3,6 +3,8 @@ import matplotlib.pyplot as plt
 import enum
 from typing import List
 
+from scipy.stats import norm
+
 DEBUG = 0
 
 class VISUALIZE(enum.Enum):
@@ -68,14 +70,19 @@ class Dataset:
             print("{:>20}{:>10.1f}{:>10.1f}{:>10.1f}".format(self.feature_names[f], mins[f], maxs[f], means[f]))
 
 
-    def visualize_histogram(self, show: VISUALIZE = VISUALIZE.All, features_to_show: List[int] = None) -> None:
-        visualize_histogram(self.samples, self.labels, self.feature_names, self.label_names, show, features_to_show)
+    def visualize_histogram(self, show: VISUALIZE = VISUALIZE.All, features_to_show: List[int] = None, bins=None, save_path=None) -> None:
+        visualize_histogram(self.samples, self.labels, self.feature_names, self.label_names, show, features_to_show, bins, save_path)
 
     def visualize_scatter(self, show: VISUALIZE = VISUALIZE.All, features_to_show: List[int] = None) -> None:
         visualize_scatter(self.samples, self.labels, self.feature_names, self.label_names, show, features_to_show)
 
     def split_db_2to1(self, train_fraction, seed=0):
         split_db_2to1(self.samples, self.labels, train_fraction, seed)
+
+    def gaussianize_features(self, DRAW):
+        Y = gaussianize_features(self.samples, DRAW)
+        Yds = Dataset(self.name + " Gaussianized", self.label_names, self.feature_names, Y, self.labels)
+        return Yds
 
 
 def load_iris_from_csv(file_path: str) -> Dataset:
@@ -109,7 +116,7 @@ def load_iris_from_csv(file_path: str) -> Dataset:
 # hist_show: should pass an HISTOGRAM_SHOW type
 # features_to_show: should pass a list of valid feature indices
 def visualize_histogram(D: np.ndarray, L: np.ndarray, feature_names: List[str], label_names: List[str],
-                        show: VISUALIZE = VISUALIZE.All, features_to_show: List[int] = None, bins = None) -> None:
+                        show: VISUALIZE = VISUALIZE.All, features_to_show: List[int] = None, bins = None, save_path=None) -> None:
     if features_to_show is None:
         features_to_show = []
     if show == VISUALIZE.Hidden:
@@ -141,8 +148,10 @@ def visualize_histogram(D: np.ndarray, L: np.ndarray, feature_names: List[str], 
             # Filter columns (selects only the cols, that are the samples which belong to the current label)
             # and select the row of the curr attribute.
             Di = D[idx_feat, Mi]
-            plt.hist(Di, density=True, label=label_name, alpha=0.5, bins=bins)
+            plt.hist(Di, density=True, label=label_name, alpha=0.5, bins=bins, histtype='bar', ec='black')
         plt.legend()
+        if save_path is not None:
+            plt.savefig("%s_hist_%d_%s" % (save_path, idx_feat, name_feat))
 
 
 # Visualize, for the given features, all the pairs in scatter plots
@@ -188,7 +197,7 @@ def split_db_2to1(D, L, train_fraction, seed=0):
     nTrain = int(D.shape[1] * train_fraction)
     print("Train samples: %d; Test samples: %d" % (nTrain, D.shape[1]-nTrain))
     np.random.seed(seed)
-    idx = np.random.permutation(D.shape[1])
+    idx = np.random.RandomState(seed=seed).permutation(D.shape[1])
     idxTrain = idx[0:nTrain]
     idxTest = idx[nTrain:]
     DTR = D[:, idxTrain]
@@ -198,8 +207,6 @@ def split_db_2to1(D, L, train_fraction, seed=0):
     return (DTR, LTR), (DTE, LTE)
 
 # Split a dataset (D, L) in K folds equally distributed for each class
-# It's based on the assumption that the dataset has a number of samples equal for each class
-# Otherwise, it should be required some addition logic to build more robust folds
 # Returns two numpy arrays:
 # folds_data (K, #dimensions, #SAMPLES/K)
 # folds_labels (K, #SAMPLES/K)
@@ -210,7 +217,13 @@ def kfold_split(D, L, K):
     samples_cnt = D.shape[1]
     fold_size = samples_cnt // K
     classes = len(set(L))
-    #fold_size_class = fold_size / classes
+
+    # Obtaining classses ratios to build folds with equal number of samples for each class as the original dataset
+    classsesRatios = np.zeros(classes)
+    for i in range(classes):
+        ratio = D[:, (L==i)].shape[1] / D.shape[1]
+        classsesRatios[i] = ratio
+
 
     Dclass = []
     indexes = []
@@ -221,33 +234,31 @@ def kfold_split(D, L, K):
         idx = list(np.random.permutation(Di.shape[1]))
         indexes.append(idx)
 
-    Dclass = np.array(Dclass)
-
-    if DEBUG:
-        print("Dataset suvdivided for each class: ", Dclass.shape)
-
     folds_data = []
     folds_labels = []
     for i in range(K):
         c = 0
         fold_data = []
         fold_labels = []
+        count_per_class = np.zeros(classes)
         for j in range(fold_size):
             while len(indexes[c]) <= 0:
                 c = (c + 1) % classes
             id = indexes[c].pop(0)
-            sample = Dclass[c, :, id]
+            sample = Dclass[c][:, id]
             fold_data.append(sample)
             fold_labels.append(c)
-            c = (c + 1) % classes
+            count_per_class[c] += 1
+            # Switch to pick a sample for the class whose fold ratio is the most different than the requested one
+            ratios = count_per_class / len(fold_data)
+            nextC = np.argmax(classsesRatios - ratios)
+            c = nextC
 
         fold_data = np.array(fold_data).T
         fold_labels = np.array(fold_labels)
 
         # Permutate randomly samples inside the fold
-        fold_idx = np.random.permutation(fold_data.shape[1])
-        fold_data = fold_data[:, fold_idx]
-        fold_labels = fold_labels[fold_idx]
+        fold_data, fold_labels = shuffle_labeled_samples(fold_data, fold_labels)
 
         folds_data.append(fold_data)
         folds_labels.append(fold_labels)
@@ -279,3 +290,43 @@ def kfold_generate(folds, folds_labels):
         LTR = folds_labels_copy.flatten()
 
         yield DTR, LTR, DTE, LTE
+
+def gaussianize_features(DTR, DRAW):
+    Y = np.zeros((DRAW.shape[0], DRAW.shape[1]))
+    for f in range(DTR.shape[0]):
+        DTRf = DTR[f, :]
+        DRAWf = DRAW[f, :]
+        # For each raw point
+        for i in range(DRAWf.shape[0]):
+            x = DRAWf[i]
+            rank = ((DTRf > x).sum() + 1) / (DTR.shape[1] + 2)
+            y = norm.ppf(rank)
+            Y[f, i] = y
+
+    return Y
+
+def covariance_matrix(D):
+    mu = D.mean(axis=1)
+    mu = mu.reshape(mu.shape[0], 1)
+    tmp = D - mu
+    cov = (tmp @ tmp.T) / D.shape[1]
+
+    return cov
+
+def correlation_matrix(D):
+    cov = covariance_matrix(D)
+    corr = np.array(cov)
+    for i in range(cov.shape[0]):
+        for j in range(cov.shape[0]):
+            std_x = cov[i, i] ** 0.5
+            std_y = cov[j, j] ** 0.5
+            corr[i, j] = corr[i, j] / (std_x * std_y)
+
+    return corr
+
+def shuffle_labeled_samples(D, L):
+    idx = np.random.permutation(D.shape[1])
+    Dshuffled = D[:, idx]
+    Lshuffled = L[idx]
+
+    return Dshuffled, Lshuffled
