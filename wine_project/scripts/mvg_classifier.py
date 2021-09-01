@@ -33,6 +33,10 @@ if __name__ == "__main__":
         for DTR, LTR, DTE, LTE in dst.kfold_generate(folds_data, folds_labels):
             # Preprocess data
             # TODO: Before PCA or Gaussianization?
+            if gaussianize_features:
+                DTRoriginal = np.array(DTR)
+                DTR = dst.gaussianize_features(DTRoriginal, DTR)
+                DTE = dst.gaussianize_features(DTRoriginal, DTE)
             if PCA is not None:
                 mu = DTR.mean(1)
                 mu = mu.reshape(mu.size, 1)
@@ -40,9 +44,7 @@ if __name__ == "__main__":
                 # Centering validation data
                 DTE = DTE - mu
                 DTE = P.T @ DTE
-            if gaussianize_features:
-                DTR = dst.gaussianize_features(DTR, DTR)
-                DTE = dst.gaussianize_features(DTR, DTE)
+
 
             # Train
             mvg = MVG_Classifier()
@@ -81,11 +83,11 @@ if __name__ == "__main__":
         for pi, p in enumerate(PCA_grid):
             for ni, n in enumerate(naive_grid):
                 for ti, t in enumerate(tied_grid):
-                    print("Training iteration ", iterations)
+                    print("Grid search iteration ", iterations)
                     scores, labels = cross_validate_MVG(g, p, n, t)
                     iterations += 1
                     for app_i, (pi1, Cfn, Cfp) in enumerate(applications):
-                        minDCF, _ = eval.bayes_min_dcf(scores, labels, pi1, Cfn, Cfp, -20, 20, 1000)
+                        minDCF, _ = eval.bayes_min_dcf(scores, labels, pi1, Cfn, Cfp)
                         print("Min DCF: ", minDCF)
                         minDCFs[gi, pi, ni, ti, app_i] = minDCF
 

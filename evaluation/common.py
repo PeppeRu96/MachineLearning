@@ -102,7 +102,7 @@ def bayes_binary_dcf(conf_matr, pi_1, Cfn, Cfp):
 
     return DCF
 
-def bayes_min_dcf(llr, labels, pi_1, Cfn, Cfp, min_threshold, max_threshold, points):
+def bayes_min_dcf(llr, labels, pi_1, Cfn, Cfp):
     """
     Computes the minimum normalized DCF trying different thresholds in the given range
     :param llr: log-likelihood ratios to classify
@@ -113,9 +113,13 @@ def bayes_min_dcf(llr, labels, pi_1, Cfn, Cfp, min_threshold, max_threshold, poi
     :return: the minimum normalized dcf
     """
 
+    if llr.ndim > 1:
+        llr = llr.flatten()
+
+    llr_sorted = np.sort(llr)
     minDCF = np.inf
     best_threshold = 1
-    for t in np.linspace(min_threshold, max_threshold, points):
+    for t in llr_sorted:
         predictions = bayes_binary_optimal_classifier(llr, pi_1, Cfn, Cfp, threshold=t)
         conf_matr = get_confusion_matrix(predictions, labels)
         dcf = bayes_binary_dcf(conf_matr, pi_1, Cfn, Cfp)
@@ -125,7 +129,7 @@ def bayes_min_dcf(llr, labels, pi_1, Cfn, Cfp, min_threshold, max_threshold, poi
 
     return minDCF, best_threshold
 
-def draw_ROC(llr, labels, min_threshold, max_threshold, points):
+def draw_ROC(llr, labels):
     """
     Draw the ROC
     :param llr: log-likelihood ratios for comparing against thresholds
@@ -135,9 +139,13 @@ def draw_ROC(llr, labels, min_threshold, max_threshold, points):
     :param points: number of points in the range of the thresholds to calculate TPR/FPR on
     :return: None
     """
+    if llr.ndim > 1:
+        llr = llr.flatten()
+
+    llr_sorted = np.sort(llr)
     FPRs = []
     TPRs = []
-    for t in np.linspace(min_threshold, max_threshold, points):
+    for t in llr_sorted:
         predictions = bayes_binary_optimal_classifier(llr, 0.5, 1, 1, threshold=t)
         conf_matr = get_confusion_matrix(predictions, labels)
         FNR = conf_matr[0, 1] / (conf_matr[0, 1] + conf_matr[1, 1])
@@ -153,7 +161,7 @@ def draw_ROC(llr, labels, min_threshold, max_threshold, points):
     plt.ylim([0, 1])
     plt.plot(FPRs, TPRs)
 
-def draw_NormalizedBayesErrorPlot(llr, labels, p_min, p_max, p_points, t_min, t_max, t_points, recognizer_name=""):
+def draw_NormalizedBayesErrorPlot(llr, labels, p_min, p_max, p_points, recognizer_name=""):
     """
     Draw the Normalized Bayes Error Plots to assess the performance of the classifier as we vary the application
     :param llr: log-likelihood ratios to compare with the different thresholds
@@ -176,7 +184,7 @@ def draw_NormalizedBayesErrorPlot(llr, labels, p_min, p_max, p_points, t_min, t_
         predictions = bayes_binary_optimal_classifier(llr, effPrior, 1, 1)
         conf_matr = get_confusion_matrix(predictions, labels)
         DCF = bayes_binary_dcf(conf_matr, effPrior, 1, 1)
-        minDCF, _ = bayes_min_dcf(llr, labels, effPrior, 1, 1, t_min, t_max, t_points)
+        minDCF, _ = bayes_min_dcf(llr, labels, effPrior, 1, 1)
         DCFs.append(DCF)
         minDCFs.append(minDCF)
 

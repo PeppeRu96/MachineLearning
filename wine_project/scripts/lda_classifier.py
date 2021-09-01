@@ -21,10 +21,11 @@ if __name__ == "__main__":
     labels = []
     for DTR, LTR, DTE, LTE in dst.kfold_generate(folds_data, folds_labels):
         print("5-Fold Iteration ", iterations)
-        DTR = dst.gaussianize_features(DTR, DTR)
+        DTRoriginal = np.array(DTR)
+        DTR = dst.gaussianize_features(DTRoriginal, DTR)
         U, _ = lda(DTR, LTR, 1, False)
 
-        DTE = dst.gaussianize_features(DTR, DTE)
+        DTE = dst.gaussianize_features(DTRoriginal, DTE)
         DTE_p = U.T @ DTE
         scores.append(DTE_p)
         labels.append(LTE)
@@ -34,6 +35,9 @@ if __name__ == "__main__":
     scores = scores.reshape((1, scores.shape[0]*scores.shape[2]))
     labels = np.array(labels)
     labels = labels.reshape((labels.shape[0]*labels.shape[1]))
+    plt.figure()
+    plt.hist(scores.flatten()[labels == 0], label="Hf", density=True, alpha=0.5, bins=40, histtype='bar', ec='black')
+    plt.hist(scores.flatten()[labels == 1], label="Ht", density=True, alpha=0.5, bins=40, histtype='bar', ec='black')
 
     # Threshold estimation
     # Shuffle the scores
@@ -43,12 +47,12 @@ if __name__ == "__main__":
     (score_train, label_train), (score_eval, label_eval) = dst.split_db_2to1(scores, labels, 0.8)
 
     # Estimating threshold over the first partition
-    estimated_minDCF, estimated_threshold = eval.bayes_min_dcf(score_train, label_train, dsc.applications[0][0], dsc.applications[0][1], dsc.applications[0][2], -10, 10, 1000)
+    estimated_minDCF, estimated_threshold = eval.bayes_min_dcf(score_train, label_train, dsc.applications[0][0], dsc.applications[0][1], dsc.applications[0][2])
     print("Estimated minDCF: ", estimated_minDCF)
     print("Estimated threshold: ", estimated_threshold)
 
     # Evaluating the goodness over the other partition
-    evaluated_minDCF, _ = eval.bayes_min_dcf(score_eval, label_eval, dsc.applications[0][0], dsc.applications[0][1], dsc.applications[0][2], -10, 10, 1000)
+    evaluated_minDCF, _ = eval.bayes_min_dcf(score_eval, label_eval, dsc.applications[0][0], dsc.applications[0][1], dsc.applications[0][2])
     print("Min DCF on the validation partition: ", evaluated_minDCF)
     # Make the predictions using the estimated threshold
     predictions = eval.bayes_binary_optimal_classifier(score_eval, dsc.applications[0][0], dsc.applications[0][1], dsc.applications[0][2], estimated_threshold)
@@ -58,8 +62,8 @@ if __name__ == "__main__":
 
     # Draw ROC for the validation subset
     plt.figure()
-    eval.draw_ROC(score_eval, label_eval, -10, 10, 1000)
+    eval.draw_ROC(score_eval, label_eval)
 
     plt.figure()
-    eval.draw_NormalizedBayesErrorPlot(score_eval, label_eval, -10, 10, 50, -10, 10, 1000, "LDA after Gaussianization")
+    eval.draw_NormalizedBayesErrorPlot(score_eval, label_eval, -3, 3, 50, "LDA after Gaussianization")
     plt.show()

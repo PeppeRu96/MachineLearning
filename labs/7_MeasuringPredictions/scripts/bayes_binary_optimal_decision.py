@@ -64,7 +64,7 @@ if __name__ == "__main__":
 
     # Bayes binary minimum DCF
     def test_bayes_min_dcf(pi_1, Cfn, Cfp):
-        minDCF, _ = eval.bayes_min_dcf(llr_infpar, labels_infpar, pi_1, Cfn, Cfp, -20, 20, 1000)
+        minDCF, _ = eval.bayes_min_dcf(llr_infpar, labels_infpar, pi_1, Cfn, Cfp)
 
         print("Minimum DCF with an application (pi_1: %.2f, Cfn: %.2f, Cfp: %.2f):\t%.3f" % (pi_1, Cfn, Cfp, minDCF))
 
@@ -75,11 +75,11 @@ if __name__ == "__main__":
 
     print("")
 
-    #plt.figure()
-    #eval.draw_ROC(llr_infpar, labels_infpar, -100, 100, 30000)
+    plt.figure()
+    eval.draw_ROC(llr_infpar, labels_infpar)
 
-    #plt.figure()
-    #eval.draw_NormalizedBayesErrorPlot(llr_infpar, labels_infpar, -3, 3, 21, -20, 20, 500)
+    plt.figure()
+    eval.draw_NormalizedBayesErrorPlot(llr_infpar, labels_infpar, -3, 3, 21, recognizer_name="eps: 0.001")
 
     # Comparing recognizers
     def test_comparing_recognizers(pi_1, Cfn, Cfp):
@@ -93,8 +93,8 @@ if __name__ == "__main__":
         dcf_eps1 = eval.bayes_binary_dcf(conf_matr_eps1, pi_1, Cfn, Cfp)
 
         # MIN DCF
-        minDCF, _ = eval.bayes_min_dcf(llr_infpar, labels_infpar, pi_1, Cfn, Cfp, -20, 20, 1000)
-        minDCF_eps1, _ = eval.bayes_min_dcf(llr_infpar_eps1, labels_infpar_eps1, pi_1, Cfn, Cfp, -20, 20, 1000)
+        minDCF, _ = eval.bayes_min_dcf(llr_infpar, labels_infpar, pi_1, Cfn, Cfp)
+        minDCF_eps1, _ = eval.bayes_min_dcf(llr_infpar_eps1, labels_infpar_eps1, pi_1, Cfn, Cfp)
 
         print("(pi_1: %.1f, Cfn: %.1f, Cfp: %.1f) -\tDCF (eps: 0.001): %.3f\tMin DCF (eps: 0.001): %.3f\tDCF (eps: 1): %.3f\tMin DCF (eps: 1): %.3f" %
               (pi_1, Cfn, Cfp, dcf, minDCF, dcf_eps1, minDCF_eps1))
@@ -104,7 +104,7 @@ if __name__ == "__main__":
         test_comparing_recognizers(pi_1, Cfn, Cfp)
 
     plt.figure()
-    eval.draw_NormalizedBayesErrorPlot(llr_infpar, labels_infpar, -3, 3, 21, -20, 20, 500, recognizer_name="eps: 0.001")
-    eval.draw_NormalizedBayesErrorPlot(llr_infpar_eps1, labels_infpar_eps1, -3, 3, 21, -20, 20, 500, recognizer_name="eps: 1")
+    eval.draw_NormalizedBayesErrorPlot(llr_infpar, labels_infpar, -3, 3, 21, recognizer_name="eps: 0.001")
+    eval.draw_NormalizedBayesErrorPlot(llr_infpar_eps1, labels_infpar_eps1, -3, 3, 21, recognizer_name="eps: 1")
 
     plt.show()
