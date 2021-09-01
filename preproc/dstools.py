@@ -36,10 +36,42 @@ class Dataset:
             print("Features: ", feature_names)
             print("Number of samples: %d" % (samples.shape[1]))
 
-    def visualize_histogram(self, show: VISUALIZE = VISUALIZE.All, features_to_show: List[str] = None) -> None:
+    def visualize_statistics(self):
+        print("Dataset: %s" % self.name)
+        print("Number of different features: %d" % len(self.feature_names))
+        print("Feature names: ", self.feature_names)
+        print("Labels:")
+        for i, l in enumerate(self.label_names):
+            print("\t(%d) %s" % (i, l))
+        print("")
+        print("Number of samples: %d" % self.samples.shape[1])
+        print("Number of samples for each label:")
+        for i, l in enumerate(self.label_names):
+            L = self.labels
+            Di = self.samples[:, (L==i)]
+            print("%s: %d" %(l, Di.shape[1]))
+
+        if len(self.label_names) == 2:
+            D = self.samples
+            L = self.labels
+            Ht_empirical_ratio = (D[:, (L==1)].shape[1]) / (D.shape[1])
+            print("Ht (True class) empirical dataset prior probability: %.2f" % Ht_empirical_ratio)
+        print("")
+        # Statistics on features
+        print("Statistics on features:")
+        mins = self.samples.min(axis=1)
+        maxs = self.samples.max(axis=1)
+        means = self.samples.mean(axis=1)
+        print("{:>20}{:>10}{:>10}{:>10}".format("Feature", "Min", "Max", "Mean"))
+        print("----------------------------------------------------")
+        for f in range(len(self.feature_names)):
+            print("{:>20}{:>10.1f}{:>10.1f}{:>10.1f}".format(self.feature_names[f], mins[f], maxs[f], means[f]))
+
+
+    def visualize_histogram(self, show: VISUALIZE = VISUALIZE.All, features_to_show: List[int] = None) -> None:
         visualize_histogram(self.samples, self.labels, self.feature_names, self.label_names, show, features_to_show)
 
-    def visualize_scatter(self, show: VISUALIZE = VISUALIZE.All, features_to_show: List[str] = None) -> None:
+    def visualize_scatter(self, show: VISUALIZE = VISUALIZE.All, features_to_show: List[int] = None) -> None:
         visualize_scatter(self.samples, self.labels, self.feature_names, self.label_names, show, features_to_show)
 
     def split_db_2to1(self, train_fraction, seed=0):
@@ -77,7 +109,7 @@ def load_iris_from_csv(file_path: str) -> Dataset:
 # hist_show: should pass an HISTOGRAM_SHOW type
 # features_to_show: should pass a list of valid feature indices
 def visualize_histogram(D: np.ndarray, L: np.ndarray, feature_names: List[str], label_names: List[str],
-                        show: VISUALIZE = VISUALIZE.All, features_to_show: List[str] = None, bins = None) -> None:
+                        show: VISUALIZE = VISUALIZE.All, features_to_show: List[int] = None, bins = None) -> None:
     if features_to_show is None:
         features_to_show = []
     if show == VISUALIZE.Hidden:
@@ -115,7 +147,7 @@ def visualize_histogram(D: np.ndarray, L: np.ndarray, feature_names: List[str], 
 
 # Visualize, for the given features, all the pairs in scatter plots
 def visualize_scatter(D: np.ndarray, L: np.ndarray, feature_names: List[str], label_names: List[str],
-                      show: VISUALIZE = VISUALIZE.All, features_to_show: List[str] = None) -> None:
+                      show: VISUALIZE = VISUALIZE.All, features_to_show: List[int] = None) -> None:
     if show == VISUALIZE.Hidden:
         return None
     if show == VISUALIZE.All:
