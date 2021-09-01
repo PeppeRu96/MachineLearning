@@ -30,6 +30,9 @@ class MVG_Classifier:
     def inference(self, D, Pc, use_log=True):
         return MVG_classifier_inference(D, self.mu, self.C, Pc, self.naive, self.tied, use_log)
 
+    def compute_binary_classifier_llr(self, D):
+        return MVG_binary_classifier_llr(D, self.mu, self.C, self.tied)
+
     def evaluate(self, D, L, Pc, Kfold=False, K=None, use_log=True):
         if (Kfold == False):
             pred_labels = self.inference(D, Pc, use_log)
@@ -165,3 +168,24 @@ def MVG_classifier_inference(D, mu, C, Pc, naive=False, tied=False, use_log=True
     pred_labels = np.argmax(SPost, 0)
 
     return pred_labels
+
+# Computes the scores for a binary task and thus is application-agnostic
+# The scores need to be compared with an appropriate threshold t in order to make the prediction
+# Returns a np.array of scores
+def MVG_binary_classifier_llr(D, mu, C, tied=False):
+    mu0 = mu[0]
+    mu1 = mu[1]
+    if tied:
+        C0 = C
+        C1 = C
+    else:
+        C0 = C[0]
+        C1 = C[1]
+
+    # Compute log-likelihood ratio (score with probabilistic interpretation)
+    ll0 = gd.logpdf_GAU_ND(D, mu0, C0)
+    ll1 = gd.logpdf_GAU_ND(D, mu1, C1)
+
+    llr_scores = ll1 - ll0
+
+    return llr_scores

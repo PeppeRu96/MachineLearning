@@ -9,6 +9,8 @@ DATASET_TEST_PATH = os.path.join(SCRIPT_PATH, "..", "data", "Test.txt")
 FIVE_FOLDS_TRAIN_PATH = os.path.join(SCRIPT_PATH, "..", "data", "5-folds_train.npy")
 FIVE_FOLDS_TRAIN_LABELS_PATH = os.path.join(SCRIPT_PATH, "..", "data", "5-folds_train_labels.npy")
 
+# Here we discuss different applications where Priors = effective priors
+# We don't care about priors and costs distinctly
 applications = [
     (0.5, 1, 1),
     (0.1, 1, 1),

@@ -38,6 +38,10 @@ class Dataset:
             print("Features: ", feature_names)
             print("Number of samples: %d" % (samples.shape[1]))
 
+    def deep_copy(self):
+        ds = Dataset(self.name, self.label_names, self.feature_names, np.array(self.samples), np.array(self.labels))
+        return ds
+
     def visualize_statistics(self):
         print("Dataset: %s" % self.name)
         print("Number of different features: %d" % len(self.feature_names))
