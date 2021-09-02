@@ -8,6 +8,8 @@ import preproc.dstools as dst
 import wine_project.utility.ds_common as dsc
 import evaluation.common as eval
 
+import time
+
 from classifiers.logistic_regression import LogisticRegressionClassifier
 
 SCRIPT_PATH = os.path.dirname(__file__)
@@ -156,19 +158,21 @@ if __name__ == "__main__":
 
     minDCFs = np.zeros((len(configurations), len(lambdas), len(applications)))
 
-    print("Total Linear LR cross-validation required ", len(configurations) * len(lambdas) * len(applications))
-    print("Expected total time required: ", len(configurations) * len(lambdas) * len(applications) * 13, " minutes")
+    print("Total Linear LR cross-validation required ", len(configurations) * len(lambdas))
+    print("Expected total time required: ", len(configurations) * len(lambdas) * 13, " minutes")
     grid_search_iterations = 1
     for conf_i, conf in enumerate(configurations):
         print("Grid search iteration ", grid_search_iterations)
         for i, l in enumerate(lambdas):
             print("\tLambda iteration ", i+1)
+            time_start = time.perf_counter()
             scores, labels = cross_validate_LR(conf, l)
             for app_i, (pi1, Cfn, Cfp) in enumerate(applications):
                 minDCF, _ = eval.bayes_min_dcf(scores, labels, pi1, Cfn, Cfp)
                 print("\t\tmin DCF (π=%.1f) : %.3f" % (pi1, minDCF))
                 minDCFs[conf_i, i, app_i] = minDCF
-
+            time_end = time.perf_counter()
+            print("\t\ttime passed: %d seconds" % (time_end-time_start))
         plt.figure()
         plt.title("Linear LR - " + conf.to_string())
         plt.xlabel("λ")
@@ -176,23 +180,12 @@ if __name__ == "__main__":
         x = lambdas
         for app_i, (pi1, Cfn, Cfp) in enumerate(applications):
             y = minDCFs[conf_i, :, app_i].flatten()
-            f = interp1d(x, y)
-            xnew = np.logspace(lambdas.min(), lambdas.max(), len(lambdas) * 4)
-            plt.plot(x, y, 'o', xnew, f(xnew), '-')
+            #f = interp1d(x, y)
+            #xnew = np.logspace(lambdas.min(), lambdas.max(), len(lambdas) * 4)
+            #plt.plot(x, y, 'o', xnew, f(xnew), '-')
+            plt.plot(x, y)
         plt.savefig("%s%s" % (LINEAR_LR_GRAPH_PATH, conf.to_string()))
 
         grid_search_iterations += 1
-
-    for conf_i, conf in enumerate(configurations):
-        plt.figure()
-        plt.title("Linear LR - " + conf.to_string())
-        plt.xlabel("λ")
-        plt.ylabel("minDCF")
-        x = lambdas
-        for app_i, (pi1, Cfn, Cfp) in enumerate(applications):
-            y = minDCFs[conf_i, :, app_i].flatten()
-            f = interp1d(x, y)
-            xnew = np.linspace(lambdas.min(), lambdas.max(), len(lambdas) * 4)
-            plt.plot(x, y, 'o', xnew, f(xnew), '-')
 
     plt.show()
