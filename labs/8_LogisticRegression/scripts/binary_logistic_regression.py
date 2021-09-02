@@ -14,7 +14,6 @@ def load_iris_binary():
 if __name__ == "__main__":
     D, L = load_iris_binary()
     (DTR, LTR), (DTE, LTE) = dst.split_db_2to1(D, L, 2.0/3.0)
-
     lambdas = [0, 1e-6, 1e-3, 1.0]
 
     for l in lambdas:

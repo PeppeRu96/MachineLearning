@@ -5,6 +5,8 @@ from typing import List
 
 from scipy.stats import norm
 
+from preproc.dim_reduction.lda import sb_sw_compute
+
 DEBUG = 0
 
 class VISUALIZE(enum.Enum):
@@ -308,6 +310,38 @@ def gaussianize_features(DTR, DRAW):
             Y[f, i] = y
 
     return Y
+
+def z_normalize(DTR, DRAW):
+    # Compute the means for all dimensions
+    mu = DTR.mean(axis=1)
+    mu = mu.reshape(mu.shape[0], 1)
+
+    # Compute all standard deviations
+    std = np.diag(covariance_matrix(DTR)) ** 0.5
+    std = std.reshape(std.shape[0], 1)
+
+    return (DRAW - mu) / std
+
+def L2_normalize(D):
+    norm = np.linalg.norm(D, ord=2, axis=0)
+
+    return D / norm
+
+def whiten_covariance_matrix(DTR, DRAW):
+    cov = covariance_matrix(DTR)
+    U, s, _ = np.linalg.svd(cov)
+    A = np.dot(np.dot(U, np.diag(1.0 / (s ** 0.5))), U.T)
+
+    return A @ DRAW
+
+def whiten_within_covariance_matrix(DTR, LTR, DRAW):
+    _, Sw = sb_sw_compute(DTR, LTR)
+
+    U, s, _ = np.linalg.svd(Sw)
+    A = np.dot(np.dot(U, np.diag(1.0 / (s ** 0.5))), U.T)
+
+    return A @ DRAW
+
 
 def covariance_matrix(D):
     mu = D.mean(axis=1)

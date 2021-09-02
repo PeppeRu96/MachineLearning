@@ -1,7 +1,5 @@
 import numpy as np
-import matplotlib.pyplot as plt
 
-from preproc.dim_reduction.lda import lda
 from preproc.dim_reduction.pca import pca
 import preproc.dstools as dst
 import wine_project.utility.ds_common as dsc
@@ -32,7 +30,6 @@ if __name__ == "__main__":
         labels = []
         for DTR, LTR, DTE, LTE in dst.kfold_generate(folds_data, folds_labels):
             # Preprocess data
-            # TODO: Before PCA or Gaussianization?
             if gaussianize_features:
                 DTRoriginal = np.array(DTR)
                 DTR = dst.gaussianize_features(DTRoriginal, DTR)

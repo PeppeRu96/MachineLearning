@@ -1,8 +1,6 @@
 import numpy as np
 import scipy.linalg
 
-from preproc.dstools import DEBUG
-
 def sb_sw_compute(D, L):
     mu = D.mean(1)
     mu = mu.reshape(mu.size, 1)
@@ -37,10 +35,6 @@ def sb_sw_compute(D, L):
 
 def lda(D, L, m, use_gen_eig):
     Sb, Sw = sb_sw_compute(D, L)
-
-    if DEBUG:
-        print("Sb calculated: ", Sb)
-        print("\nSw calculated: ", Sw)
 
     # Generalized Eigenvalue problem
     U = None
