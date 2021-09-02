@@ -183,6 +183,7 @@ if __name__ == "__main__":
             plt.title(title)
             plt.xlabel("λ")
             plt.ylabel("minDCF")
+            plt.xscale('log')
             x = lambdas
             for app_i, (pi1, Cfn, Cfp) in enumerate(applications):
                 y = minDCFs[conf_i, :, app_i].flatten()
