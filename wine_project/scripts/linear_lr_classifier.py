@@ -183,7 +183,7 @@ if __name__ == "__main__":
             #f = interp1d(x, y)
             #xnew = np.logspace(lambdas.min(), lambdas.max(), len(lambdas) * 4)
             #plt.plot(x, y, 'o', xnew, f(xnew), '-')
-            plt.plot(x, y)
+            plt.plot(x, y, label="minDCF (π=%.1f)" % pi1)
         plt.savefig("%s%s" % (LINEAR_LR_GRAPH_PATH, conf.to_string()))
 
         grid_search_iterations += 1
