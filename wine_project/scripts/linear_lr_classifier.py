@@ -172,7 +172,7 @@ if __name__ == "__main__":
                           True,  # L2-Normalization
                           False,  # Whiten Covariance Matrix
                           True,  # Whiten Within Covariance Matrix
-                          None)  # PCA
+                          None),  # PCA
             configuration(False,  # Gaussianize
                           False,  # Z-Normalization
                           False,  # L2-Normalization
@@ -188,7 +188,6 @@ if __name__ == "__main__":
         minDCFs = np.zeros((len(configurations), len(lambdas), len(applications)))
 
         print("Total LR cross-validation required ", len(configurations) * len(lambdas))
-        print("Expected total time required: ", len(configurations) * len(lambdas) * 13, " minutes")
         grid_search_iterations = 1
         for conf_i, conf in enumerate(configurations):
             print("Grid search iteration ", grid_search_iterations)
