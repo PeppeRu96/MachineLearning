@@ -200,11 +200,15 @@ if __name__ == "__main__":
             grid_search_iterations += 1
 
     print("Linear Logistic Regression analysis started")
+    total_time_start = time.perf_counter()
     LR_analysis(quadratic=False)
-    print("Linear Logistic Regression analysis ended")
+    total_time_end = time.perf_counter()
+    print("Linear Logistic Regression analysis ended in %d seconds" % (total_time_end-total_time_start))
     print("")
     print("Quadratic Logistic Regression analysis started")
+    total_time_start = time.perf_counter()
     LR_analysis(quadratic=True)
-    print("Quadratic Logistic Regression analysis started")
+    total_time_end = time.perf_counter()
+    print("Quadratic Logistic Regression analysis started in %d seconds" % (total_time_end-total_time_start))
 
     plt.show()
