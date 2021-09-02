@@ -201,7 +201,7 @@ if __name__ == "__main__":
                     minDCFs[conf_i, i, app_i] = minDCF
                 time_end = time.perf_counter()
                 print("\t\ttime passed: %d seconds" % (time_end-time_start))
-            plt.figure()
+            plt.figure(figsize=[13, 9.7])
             title = "%s LR - %s" % ("Quadratic" if quadratic else "Linear", conf.to_string())
             plt.title(title)
             plt.xlabel("λ")
