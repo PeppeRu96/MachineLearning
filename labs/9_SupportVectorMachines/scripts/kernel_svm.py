@@ -41,7 +41,7 @@ if __name__ == "__main__":
         for K in Ks:
             for C in Cs:
                 svm = SVM_Classifier()
-                svm.train(DTR, LTR, C, K, kernel=kernel, factr=1.0, verbose=0)
+                svm.train(DTR, LTR, C, K, pi1=0.5, kernel=kernel, factr=1.0, verbose=0)
                 pred_labels = svm.inference(DTE)
                 correct_predictions = (pred_labels == LTE).sum()
                 accuracy = correct_predictions / pred_labels.shape[0]
