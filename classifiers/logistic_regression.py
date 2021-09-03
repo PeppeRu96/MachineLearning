@@ -58,7 +58,8 @@ def logreg_obj_wrapper(DTR, LTR, l, pi1=None, expand_feature_space_func=None):
             zi = 2 * ci - 1
             tmp = ((w.T @ xi) + b).flatten()
             if pi1 is None:
-                J = J + np.log1p(np.exp(-zi*tmp))
+                #J = J + np.log1p(np.exp(-zi*tmp))
+                J = J + np.logaddexp(np.array([0]), (-zi*tmp))
             else:
                 Jv[ci] = Jv[ci] + np.log1p(np.exp(-zi*tmp))
 
@@ -136,12 +137,12 @@ def LR_Classifier_inference(D, w, b, expand_feature_space_func=None):
             Dexpanded[:, i:i + 1] = xi
         D = Dexpanded
 
-    S = (w.T @ D + b).flatten()
+    S = (w.T @ D + b)
 
     if w.shape[1] > 1:
         pred_labels = np.argmax(S, 0)
     else:
-        pred_labels = np.array([1 if score > 0 else 0 for score in S])
+        pred_labels = np.array([1 if score > 0 else 0 for score in S.flatten()])
     return pred_labels
 
 # MULTICLASS LR
