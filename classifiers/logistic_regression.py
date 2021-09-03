@@ -136,12 +136,12 @@ def LR_Classifier_inference(D, w, b, expand_feature_space_func=None):
             Dexpanded[:, i:i + 1] = xi
         D = Dexpanded
 
-    S = (w.T @ D + b).flatten()
+    S = (w.T @ D + b)
 
     if w.shape[1] > 1:
         pred_labels = np.argmax(S, 0)
     else:
-        pred_labels = np.array([1 if score > 0 else 0 for score in S])
+        pred_labels = np.array([1 if score > 0 else 0 for score in S.flatten()])
     return pred_labels
 
 # MULTICLASS LR
