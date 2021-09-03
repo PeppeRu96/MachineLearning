@@ -132,12 +132,6 @@ if __name__ == "__main__":
                       False,  # Whiten Covariance Matrix
                       False,  # Whiten Within Covariance Matrix
                       10),  # PCA
-        configuration(False,  # Gaussianize
-                      False,  # Z-Normalization
-                      False,  # L2-Normalization
-                      False,  # Whiten Covariance Matrix
-                      False,  # Whiten Within Covariance Matrix
-                      9),  # PCA
         configuration(True,  # Gaussianize
                       False,  # Z-Normalization
                       False,  # L2-Normalization
@@ -150,12 +144,6 @@ if __name__ == "__main__":
                       False,  # Whiten Covariance Matrix
                       False,  # Whiten Within Covariance Matrix
                       10),  # PCA
-        configuration(True,  # Gaussianize
-                      False,  # Z-Normalization
-                      False,  # L2-Normalization
-                      False,  # Whiten Covariance Matrix
-                      False,  # Whiten Within Covariance Matrix
-                      9),  # PCA
         configuration(False,  # Gaussianize
                       True,  # Z-Normalization
                       False,  # L2-Normalization
@@ -174,18 +162,6 @@ if __name__ == "__main__":
                       False,  # Whiten Covariance Matrix
                       True,  # Whiten Within Covariance Matrix
                       None),  # PCA
-        configuration(False,  # Gaussianize
-                      False,  # Z-Normalization
-                      False,  # L2-Normalization
-                      True,  # Whiten Covariance Matrix
-                      False,  # Whiten Within Covariance Matrix
-                      None),  # PCA
-        configuration(False,  # Gaussianize
-                      False,  # Z-Normalization
-                      False,  # L2-Normalization
-                      False,  # Whiten Covariance Matrix
-                      True,  # Whiten Within Covariance Matrix
-                      None)  # PCA
     ]
 
     def LR_analysis(quadratic=False):
