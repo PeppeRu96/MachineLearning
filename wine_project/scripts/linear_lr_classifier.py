@@ -34,7 +34,7 @@ if __name__ == "__main__":
             l2_str = "L2-Normalization" if self.l2_normalize else ""
             wc_str = "Whiten-Covariance" if self.whiten_covariance else ""
             wwc_str = "Whiten-Within-Covariance" if self.whiten_within_covariance else ""
-            pca_str = "Pca: %d" % (self.pca) if self.pca is not None else ""
+            pca_str = "Pca-%d" % (self.pca) if self.pca is not None else ""
 
 
             return "%s %s %s %s %s %s" % (g_str, z_str, l2_str, wc_str, wwc_str, pca_str)
@@ -177,6 +177,12 @@ if __name__ == "__main__":
         configuration(False,  # Gaussianize
                       False,  # Z-Normalization
                       False,  # L2-Normalization
+                      True,  # Whiten Covariance Matrix
+                      False,  # Whiten Within Covariance Matrix
+                      None),  # PCA
+        configuration(False,  # Gaussianize
+                      False,  # Z-Normalization
+                      False,  # L2-Normalization
                       False,  # Whiten Covariance Matrix
                       True,  # Whiten Within Covariance Matrix
                       None)  # PCA
@@ -225,16 +231,17 @@ if __name__ == "__main__":
 
             grid_search_iterations += 1
 
+
     print("Linear Logistic Regression analysis started")
     total_time_start = time.perf_counter()
-    #LR_analysis(quadratic=False)
+    LR_analysis(quadratic=False)
     total_time_end = time.perf_counter()
     print("Linear Logistic Regression analysis ended in %d seconds" % (total_time_end-total_time_start))
     print("")
     print("Quadratic Logistic Regression analysis started")
     total_time_start = time.perf_counter()
-    LR_analysis(quadratic=True)
-    #cross_validate_LR(configurations[3], 0, quadratic=True)
+    #LR_analysis(quadratic=True)
+    #cross_validate_LR(configurations[-2], 0, quadratic=True)
     total_time_end = time.perf_counter()
     print("Quadratic Logistic Regression analysis started in %d seconds" % (total_time_end-total_time_start))
 

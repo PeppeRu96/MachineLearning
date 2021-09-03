@@ -329,10 +329,12 @@ def L2_normalize(D):
 
 def whiten_covariance_matrix(DTR, DRAW):
     cov = covariance_matrix(DTR)
-    U, s, _ = np.linalg.svd(cov)
-    A = np.dot(np.dot(U, np.diag(1.0 / (s ** 0.5))), U.T)
+    s, U = np.linalg.eigh(cov)
+    A = U @ np.diag(1.0 / (s ** 0.5)) @ U.T
+    #A = np.dot(np.dot(U, np.diag(1.0 / (s ** 0.5))), U.T)
 
-    return A @ DRAW
+    D_whiten = A @ DRAW
+    return D_whiten
 
 def whiten_within_covariance_matrix(DTR, LTR, DRAW):
     _, Sw = sb_sw_compute(DTR, LTR)
@@ -340,7 +342,8 @@ def whiten_within_covariance_matrix(DTR, LTR, DRAW):
     U, s, _ = np.linalg.svd(Sw)
     A = np.dot(np.dot(U, np.diag(1.0 / (s ** 0.5))), U.T)
 
-    return A @ DRAW
+    D_whiten = A @ DRAW
+    return D_whiten
 
 
 def covariance_matrix(D):
