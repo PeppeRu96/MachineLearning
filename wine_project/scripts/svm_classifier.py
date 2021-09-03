@@ -1,39 +1,107 @@
-import os
-import numpy as np
 import matplotlib.pyplot as plt
+import time
 
-from preproc.dim_reduction.pca import pca
-import preproc.dstools as dst
 from wine_project.utility.ds_common import *
 import evaluation.common as eval
 
-import time
+from classifiers.svm import SVM_Classifier
+
+TRAINLOGS_BASEPATH = os.path.join(SCRIPT_PATH, "..", "train_logs")
+LINEAR_SVM_TRAINLOG_FNAME = "linear_svm_trainlog_1.txt"
+
+LINEAR_SVM_GRAPH_PATH = os.path.join(SCRIPT_PATH, "..", "graphs", "linear_svm_graph_")
 
 if __name__ == "__main__":
     # Load 5-Folds already splitted dataset
     folds_data, folds_labels = load_train_dataset_5_folds()
 
-    # Define preprocessing configurations (to be cross-validated as different models)
-    preproc_conf = PreprocessConf([
-        PreprocStage(Preproc.Gaussianization),
-        PreprocStage(Preproc.Centering),
-        PreprocStage(Preproc.Z_Normalization),
-        PreprocStage(Preproc.L2_Normalization),
-        PreprocStage(Preproc.Whitening_Covariance),
-        PreprocStage(Preproc.Whitening_Within_Covariance),
-        DimReductionStage(DimRed.Pca, 10),
-        DimReductionStage(DimRed.Lda, 10)
-    ])
+    def cross_validate_svm(preproc_conf, C, K, pi1=None, kernel=None, maxfun=15000, maxiter=15000, factr=1.0):
+        iterations = 1
+        scores = []
+        labels = []
+        for DTR, LTR, DTE, LTE in dst.kfold_generate(folds_data, folds_labels):
+            # Preprocess data
+            DTR, DTE = preproc_conf.apply_preproc_pipeline(DTR, LTR, DTE)
 
+            # Train
+            svm = SVM_Classifier()
+            svm.train(DTR, LTR, C, K, pi1, kernel, maxfun, maxiter, factr)
 
-    iterations = 1
-    scores = []
-    labels = []
-    for DTR, LTR, DTE, LTE in dst.kfold_generate(folds_data, folds_labels):
-        print("5-Fold Iteration ", iterations)
-        print(preproc_conf.to_compact_string())
-        #DTR, DTE = preproc_conf.apply_preproc_pipeline(DTR, LTR, DTE)
+            # Validate
+            s = svm.compute_scores(DTE)
 
-        iterations +=1
+            # Collect scores and associated labels
+            scores.append(s)
+            labels.append(LTE)
 
+            iterations += 1
 
+        scores = np.array(scores).flatten()
+        labels = np.array(labels).flatten()
+
+        return scores, labels
+
+    def linear_svm_gridsearch():
+        preproc_configurations = [
+            PreprocessConf([])
+        ]
+
+        # Grid
+        Ks = [1, 10]
+        Cs = np.logspace(-2, 1, 3)
+
+        def plot_against_C(conf, K, Cs, pi1=None):
+            pi1_str = "with prior weight specific training (π=%.1f)" % (pi1) if pi1 is not None else ""
+            minDCFs = np.zeros((len(Cs), len(applications)))
+            for Ci, C in enumerate(Cs):
+                print("\t(Ci: {}) - 5-Fold Cross-Validation Linear SVM {} (C={:.0e} - K={:.1f}) - Preprocessing: {}".format(Ci, pi1_str, C, K, conf))
+                time_start = time.perf_counter()
+                scores, labels = cross_validate_svm(conf, C, K, pi1=pi1)
+                for app_i, (pi1, Cfn, Cfp) in enumerate(applications):
+                    minDCF, _ = eval.bayes_min_dcf(scores, labels, pi1, Cfn, Cfp)
+                    print("\t\tmin DCF (π=%.1f) : %.3f" % (pi1, minDCF))
+                    minDCFs[Ci, app_i] = minDCF
+                time_end = time.perf_counter()
+                print("\t\ttime passed: %d seconds" % (time_end - time_start))
+
+            # Create a plot
+            plt.figure(figsize=[13, 9.7])
+            title = "Linear SVM (K: {:.1f}) - {}".format(K, conf.to_compact_string())
+            plt.title(title)
+            plt.xlabel("C")
+            plt.ylabel("minDCF")
+            plt.xscale('log')
+            x = Cs
+            for app_i, (pi1, Cfn, Cfp) in enumerate(applications):
+                y = minDCFs[:, app_i].flatten()
+                plt.plot(x, y, label="minDCF (π=%.1f)" % pi1)
+            plt.legend()
+            pi1_str = "_train-pi1-%.1f" % (pi1) if pi1 is not None else ""
+            plt.savefig("%s%s%s" % (LINEAR_SVM_GRAPH_PATH, conf.to_compact_string(), pi1_str))
+
+        # Grid search without class-balacing
+        tot_time_start = time.perf_counter()
+        print("Grid search on Linear SVM without class balancing started.")
+        tot_iterations_required = len(preproc_configurations) * len(Ks) * len(Cs)
+        tot_gs_iterations_required = len(preproc_configurations) * len(Ks)
+        print("Total Linear SVM cross-validation required ", tot_iterations_required)
+        print("Total grid search iterations required ", tot_gs_iterations_required)
+        grid_search_iterations = 1
+        for conf_i, conf in enumerate(preproc_configurations):
+            for Ki, K in enumerate(Ks):
+                print("Grid search iteration %d / %d" % (grid_search_iterations, tot_gs_iterations_required))
+                time_start = time.perf_counter()
+                plot_against_C(conf, K, Cs)
+                time_end = time.perf_counter()
+                grid_search_iterations += 1
+                print("Grid search iteration ended in %d seconds" % (time_end - time_start))
+        tot_time_end = time.perf_counter()
+        print("Grid search on Linear SVM without class balancing ended in %d seconds" % (tot_time_end - tot_time_start))
+
+    args = sys.argv[1:]
+
+    if "linear" in args:
+        with LoggingPrinter(incremental_path(TRAINLOGS_BASEPATH, LINEAR_SVM_TRAINLOG_FNAME)):
+            linear_svm_gridsearch()
+
+    plt.show()

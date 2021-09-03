@@ -1,5 +1,0 @@
-Linear Logistic Regression  analysis started
-Total LR cross-validation required  63
-Grid search iteration  1
-	Lambda iteration  1
-		5-Fold Cross-Validation Linear LR  (λ=0.00001) - Preprocessing: [  ]
