@@ -39,148 +39,150 @@ if __name__ == "__main__":
 
             return "%s %s %s %s %s %s" % (g_str, z_str, l2_str, wc_str, wwc_str, pca_str)
 
-    def LR_analysis(quadratic=False):
-        def cross_validate_LR(configuration, lambda_regularizer, pi1=None):
-            gauss_str = ""
-            z_normalize_str = ""
-            l2_normalize_str = ""
-            whiten_covariance_str = ""
-            whiten_within_covariance_str = ""
-            pca_str = ""
+
+    def cross_validate_LR(configuration, lambda_regularizer, pi1=None, quadratic=False):
+        gauss_str = ""
+        z_normalize_str = ""
+        l2_normalize_str = ""
+        whiten_covariance_str = ""
+        whiten_within_covariance_str = ""
+        pca_str = ""
+        if configuration.gaussianize:
+            gauss_str = "Gaussianization"
+        if configuration.z_normalize:
+            z_normalize_str = "Z-Normalization"
+        if configuration.whiten_covariance:
+            whiten_covariance_str = "Whitening-Covariance"
+        if configuration.whiten_within_covariance:
+            whiten_within_covariance_str = "Whitening-Within-Class-Covariance"
+        if configuration.l2_normalize:
+            l2_normalize_str = "L2-Normalization"
+        if configuration.pca is not None:
+            pca_str = "PCA=%d" % configuration.pca
+        preproc_str = "%s %s %s %s %s %s" % (
+        gauss_str, z_normalize_str, l2_normalize_str, whiten_covariance_str, whiten_within_covariance_str, pca_str)
+
+        print("\t\t5-Fold Cross-Validation Linear LR (λ=%.5f) - Preprocessing: %s" % (lambda_regularizer, preproc_str))
+        iterations = 1
+        scores = []
+        labels = []
+        for DTR, LTR, DTE, LTE in dst.kfold_generate(folds_data, folds_labels):
+            # Preprocess data
             if configuration.gaussianize:
-                gauss_str = "Gaussianization"
+                DTRoriginal = np.array(DTR)
+                DTR = dst.gaussianize_features(DTRoriginal, DTR)
+                DTE = dst.gaussianize_features(DTRoriginal, DTE)
             if configuration.z_normalize:
-                z_normalize_str = "Z-Normalization"
-            if configuration.whiten_covariance:
-                whiten_covariance_str = "Whitening-Covariance"
-            if configuration.whiten_within_covariance:
-                whiten_within_covariance_str = "Whitening-Within-Class-Covariance"
+                DTRoriginal = np.array(DTR)
+                DTR = dst.z_normalize(DTRoriginal, DTR)
+                DTE = dst.z_normalize(DTRoriginal, DTE)
             if configuration.l2_normalize:
-                l2_normalize_str = "L2-Normalization"
+                DTR = dst.L2_normalize(DTR)
+                DTE = dst.L2_normalize(DTE)
+            if configuration.whiten_covariance:
+                DTRoriginal = np.array(DTR)
+                DTR = dst.whiten_covariance_matrix(DTRoriginal, DTR)
+                DTE = dst.whiten_covariance_matrix(DTRoriginal, DTE)
+            if configuration.whiten_within_covariance:
+                DTRoriginal = np.array(DTR)
+                DTR = dst.whiten_within_covariance_matrix(DTRoriginal, LTR, DTR)
+                DTE = dst.whiten_within_covariance_matrix(DTRoriginal, LTR, DTE)
             if configuration.pca is not None:
-                pca_str = "PCA=%d" % configuration.pca
-            preproc_str = "%s %s %s %s %s %s" % (gauss_str, z_normalize_str, l2_normalize_str, whiten_covariance_str, whiten_within_covariance_str, pca_str)
+                mu = DTR.mean(1)
+                mu = mu.reshape(mu.size, 1)
+                P, DTR, _ = pca(DTR, configuration.pca)
+                # Centering validation data
+                DTE = DTE - mu
+                DTE = P.T @ DTE
 
-            print("\t\t5-Fold Cross-Validation Linear LR (λ=%.5f) - Preprocessing: %s" % (lambda_regularizer, preproc_str))
-            iterations = 1
-            scores = []
-            labels = []
-            for DTR, LTR, DTE, LTE in dst.kfold_generate(folds_data, folds_labels):
-                # Preprocess data
-                if configuration.gaussianize:
-                    DTRoriginal = np.array(DTR)
-                    DTR = dst.gaussianize_features(DTRoriginal, DTR)
-                    DTE = dst.gaussianize_features(DTRoriginal, DTE)
-                if configuration.z_normalize:
-                    DTRoriginal = np.array(DTR)
-                    DTR = dst.z_normalize(DTRoriginal, DTR)
-                    DTE = dst.z_normalize(DTRoriginal, DTE)
-                if configuration.l2_normalize:
-                    DTR = dst.L2_normalize(DTR)
-                    DTE = dst.L2_normalize(DTE)
-                if configuration.whiten_covariance:
-                    DTRoriginal = np.array(DTR)
-                    DTR = dst.whiten_covariance_matrix(DTRoriginal, DTR)
-                    DTE = dst.whiten_covariance_matrix(DTRoriginal, DTE)
-                if configuration.whiten_within_covariance:
-                    DTRoriginal = np.array(DTR)
-                    DTR = dst.whiten_within_covariance_matrix(DTRoriginal, LTR, DTR)
-                    DTE = dst.whiten_within_covariance_matrix(DTRoriginal, LTR, DTE)
-                if configuration.pca is not None:
-                    mu = DTR.mean(1)
-                    mu = mu.reshape(mu.size, 1)
-                    P, DTR, _ = pca(DTR, configuration.pca)
-                    # Centering validation data
-                    DTE = DTE - mu
-                    DTE = P.T @ DTE
+            # Train
+            linear_lr = LogisticRegressionClassifier()
+            if quadratic:
+                linear_lr.train(DTR, LTR, lambda_regularizer, pi1=pi1,
+                                expand_feature_space_func=LogisticRegressionClassifier.quadratic_feature_expansion)
+            else:
+                linear_lr.train(DTR, LTR, lambda_regularizer, pi1=pi1)
 
+            # Validate
+            s = linear_lr.compute_binary_classifier_llr(DTE)
 
-                # Train
-                linear_lr = LogisticRegressionClassifier()
-                if quadratic:
-                    linear_lr.train(DTR, LTR, lambda_regularizer, pi1=pi1, expand_feature_space_func=LogisticRegressionClassifier.quadratic_feature_expansion)
-                else:
-                    linear_lr.train(DTR, LTR, lambda_regularizer, pi1=pi1)
+            # Collect scores and associated labels
+            scores.append(s)
+            labels.append(LTE)
 
-                # Validate
-                s = linear_lr.compute_binary_classifier_llr(DTE)
+            iterations += 1
 
-                # Collect scores and associated labels
-                scores.append(s)
-                labels.append(LTE)
+        scores = np.array(scores)
+        scores = scores.flatten()
+        labels = np.array(labels)
+        labels = labels.flatten()
 
-                iterations += 1
+        return scores, labels
 
-            scores = np.array(scores)
-            scores = scores.flatten()
-            labels = np.array(labels)
-            labels = labels.flatten()
+    configurations = [
+        configuration(False,  # Gaussianize
+                      False,  # Z-Normalization
+                      False,  # L2-Normalization
+                      False,  # Whiten Covariance Matrix
+                      False,  # Whiten Within Covariance Matrix
+                      None),  # PCA
+        configuration(False,  # Gaussianize
+                      False,  # Z-Normalization
+                      False,  # L2-Normalization
+                      False,  # Whiten Covariance Matrix
+                      False,  # Whiten Within Covariance Matrix
+                      10),  # PCA
+        configuration(False,  # Gaussianize
+                      False,  # Z-Normalization
+                      False,  # L2-Normalization
+                      False,  # Whiten Covariance Matrix
+                      False,  # Whiten Within Covariance Matrix
+                      9),  # PCA
+        configuration(True,  # Gaussianize
+                      False,  # Z-Normalization
+                      False,  # L2-Normalization
+                      False,  # Whiten Covariance Matrix
+                      False,  # Whiten Within Covariance Matrix
+                      None),  # PCA
+        configuration(True,  # Gaussianize
+                      False,  # Z-Normalization
+                      False,  # L2-Normalization
+                      False,  # Whiten Covariance Matrix
+                      False,  # Whiten Within Covariance Matrix
+                      10),  # PCA
+        configuration(True,  # Gaussianize
+                      False,  # Z-Normalization
+                      False,  # L2-Normalization
+                      False,  # Whiten Covariance Matrix
+                      False,  # Whiten Within Covariance Matrix
+                      9),  # PCA
+        configuration(False,  # Gaussianize
+                      True,  # Z-Normalization
+                      False,  # L2-Normalization
+                      False,  # Whiten Covariance Matrix
+                      False,  # Whiten Within Covariance Matrix
+                      None),  # PCA
+        configuration(False,  # Gaussianize
+                      True,  # Z-Normalization
+                      True,  # L2-Normalization
+                      True,  # Whiten Covariance Matrix
+                      False,  # Whiten Within Covariance Matrix
+                      None),  # PCA
+        configuration(False,  # Gaussianize
+                      True,  # Z-Normalization
+                      True,  # L2-Normalization
+                      False,  # Whiten Covariance Matrix
+                      True,  # Whiten Within Covariance Matrix
+                      None),  # PCA
+        configuration(False,  # Gaussianize
+                      False,  # Z-Normalization
+                      False,  # L2-Normalization
+                      False,  # Whiten Covariance Matrix
+                      True,  # Whiten Within Covariance Matrix
+                      None)  # PCA
+    ]
 
-            return scores, labels
-
-        configurations = [
-            configuration(False, # Gaussianize
-                          False, # Z-Normalization
-                          False, # L2-Normalization
-                          False, # Whiten Covariance Matrix
-                          False, # Whiten Within Covariance Matrix
-                          None), # PCA
-            configuration(False,  # Gaussianize
-                          False,  # Z-Normalization
-                          False,  # L2-Normalization
-                          False,  # Whiten Covariance Matrix
-                          False,  # Whiten Within Covariance Matrix
-                          10),  # PCA
-            configuration(False,  # Gaussianize
-                          False,  # Z-Normalization
-                          False,  # L2-Normalization
-                          False,  # Whiten Covariance Matrix
-                          False,  # Whiten Within Covariance Matrix
-                          9),  # PCA
-            configuration(True,  # Gaussianize
-                          False,  # Z-Normalization
-                          False,  # L2-Normalization
-                          False,  # Whiten Covariance Matrix
-                          False,  # Whiten Within Covariance Matrix
-                          None),  # PCA
-            configuration(True,  # Gaussianize
-                          False,  # Z-Normalization
-                          False,  # L2-Normalization
-                          False,  # Whiten Covariance Matrix
-                          False,  # Whiten Within Covariance Matrix
-                          10),  # PCA
-            configuration(True,  # Gaussianize
-                          False,  # Z-Normalization
-                          False,  # L2-Normalization
-                          False,  # Whiten Covariance Matrix
-                          False,  # Whiten Within Covariance Matrix
-                          9),  # PCA
-            configuration(False,  # Gaussianize
-                          True,  # Z-Normalization
-                          False,  # L2-Normalization
-                          False,  # Whiten Covariance Matrix
-                          False,  # Whiten Within Covariance Matrix
-                          None),  # PCA
-            configuration(False,  # Gaussianize
-                          True,  # Z-Normalization
-                          True,  # L2-Normalization
-                          True,  # Whiten Covariance Matrix
-                          False,  # Whiten Within Covariance Matrix
-                          None),  # PCA
-            configuration(False,  # Gaussianize
-                          True,  # Z-Normalization
-                          True,  # L2-Normalization
-                          False,  # Whiten Covariance Matrix
-                          True,  # Whiten Within Covariance Matrix
-                          None),  # PCA
-            configuration(False,  # Gaussianize
-                          False,  # Z-Normalization
-                          False,  # L2-Normalization
-                          False,  # Whiten Covariance Matrix
-                          True,  # Whiten Within Covariance Matrix
-                          None)  # PCA
-        ]
-
+    def LR_analysis(quadratic=False):
         lambdas = np.logspace(-5, 3, 9)
 
         applications = dsc.applications
@@ -194,7 +196,7 @@ if __name__ == "__main__":
             for i, l in enumerate(lambdas):
                 print("\tLambda iteration ", i+1)
                 time_start = time.perf_counter()
-                scores, labels = cross_validate_LR(conf, l)
+                scores, labels = cross_validate_LR(conf, l, quadratic=quadratic)
                 for app_i, (pi1, Cfn, Cfp) in enumerate(applications):
                     minDCF, _ = eval.bayes_min_dcf(scores, labels, pi1, Cfn, Cfp)
                     print("\t\tmin DCF (π=%.1f) : %.3f" % (pi1, minDCF))
@@ -225,13 +227,14 @@ if __name__ == "__main__":
 
     print("Linear Logistic Regression analysis started")
     total_time_start = time.perf_counter()
-    LR_analysis(quadratic=False)
+    #LR_analysis(quadratic=False)
     total_time_end = time.perf_counter()
     print("Linear Logistic Regression analysis ended in %d seconds" % (total_time_end-total_time_start))
     print("")
     print("Quadratic Logistic Regression analysis started")
     total_time_start = time.perf_counter()
     LR_analysis(quadratic=True)
+    #cross_validate_LR(configurations[3], 0, quadratic=True)
     total_time_end = time.perf_counter()
     print("Quadratic Logistic Regression analysis started in %d seconds" % (total_time_end-total_time_start))
 

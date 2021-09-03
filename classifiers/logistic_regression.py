@@ -11,13 +11,14 @@ class LogisticRegressionClassifier:
         self.w = None
         self.b = None
 
-    def train(self, DTR, LTR, l, pi1=None, expand_feature_space_func=None, maxfun=15000, maxiter=15000, verbose=0):
+    def train(self, DTR, LTR, l, pi1=None, expand_feature_space_func=None, maxfun=15000, maxiter=15000, factr=1e7, verbose=0):
         self.DTR = DTR
         self.LTR = LTR
         self.l = l
+        self.pi1 = pi1
         self.expand_feature_space_func = expand_feature_space_func
 
-        self.w, self.b = LR_Classifier_train(DTR, LTR, l, pi1, self.expand_feature_space_func, maxfun, maxiter, verbose)
+        self.w, self.b = LR_Classifier_train(DTR, LTR, l, pi1, expand_feature_space_func, maxfun, maxiter, factr, verbose)
 
     def inference(self, D):
         pred_labels = LR_Classifier_inference(D, self.w, self.b, self.expand_feature_space_func)
@@ -73,7 +74,7 @@ def logreg_obj_wrapper(DTR, LTR, l, pi1=None, expand_feature_space_func=None):
 
     return logreg_obj
 
-def LR_Classifier_train(DTR, LTR, l, pi1=None, expand_feature_space_func=None, maxfun=15000, maxiter=15000, verbose=0):
+def LR_Classifier_train(DTR, LTR, l, pi1=None, expand_feature_space_func=None, maxfun=15000, maxiter=15000, factr=1e7, verbose=0):
     if verbose:
         print("Training Logistic Regression classifier using Average Risk Minimizer method..")
         print("Lambda regularizer: ", l)
@@ -88,14 +89,19 @@ def LR_Classifier_train(DTR, LTR, l, pi1=None, expand_feature_space_func=None, m
         x0 = np.zeros(D*K + K)
     else:
         logreg_obj = logreg_obj_wrapper(DTR, LTR, l, pi1=pi1, expand_feature_space_func=expand_feature_space_func)
-        x0 = np.zeros(D + 1)
+        if expand_feature_space_func is None:
+            x0 = np.zeros(D + 1)
+        else:
+            x0 = np.zeros(D*(D+1) + 1)
 
-    xMin, fMin, d = scipy.optimize.fmin_l_bfgs_b(logreg_obj, x0, maxfun=maxfun, maxiter=maxiter, approx_grad=True)
+    xMin, fMin, d = scipy.optimize.fmin_l_bfgs_b(logreg_obj, x0, maxfun=maxfun, maxiter=maxiter, factr=factr, approx_grad=True)
 
     if K > 2:
         w, b = xMin[0:D*K].reshape((D, K)), xMin[D*K:].reshape((K, 1))
     else:
         w, b = xMin[0:-1].T, xMin[-1]
+        w = w.reshape((w.shape[0], 1))
+
     if verbose:
         #print("Logistic Regression W direction and bias b:")
         #print("w*: ", w)
@@ -106,27 +112,33 @@ def LR_Classifier_train(DTR, LTR, l, pi1=None, expand_feature_space_func=None, m
 
 def LR_Classifier_compute_llr(D, w, b, expand_feature_space_func=None):
     if expand_feature_space_func is not None:
+        dim = D.shape[0]
+        Dexpanded = np.zeros((dim*(dim+1), D.shape[1]))
         for i in range(D.shape[1]):
             xi = D[:, i]
             xi = xi.reshape((xi.shape[0], 1))
             xi = expand_feature_space_func(xi)
-            D[:, i:i+1] = xi
+            Dexpanded[:, i:i+1] = xi
+        D = Dexpanded
 
-    S = w.T @ D + b
+    S = (w.T @ D + b).flatten()
 
     return S
 
 def LR_Classifier_inference(D, w, b, expand_feature_space_func=None):
     if expand_feature_space_func is not None:
+        dim = D.shape[0]
+        Dexpanded = np.zeros((dim * (dim + 1), D.shape[1]))
         for i in range(D.shape[1]):
             xi = D[:, i]
             xi = xi.reshape((xi.shape[0], 1))
             xi = expand_feature_space_func(xi)
-            D[:, i:i+1] = xi
+            Dexpanded[:, i:i + 1] = xi
+        D = Dexpanded
 
-    S = w.T @ D + b
+    S = (w.T @ D + b).flatten()
 
-    if w.ndim > 1:
+    if w.shape[1] > 1:
         pred_labels = np.argmax(S, 0)
     else:
         pred_labels = np.array([1 if score > 0 else 0 for score in S])
