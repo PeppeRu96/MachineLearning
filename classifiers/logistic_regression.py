@@ -58,7 +58,8 @@ def logreg_obj_wrapper(DTR, LTR, l, pi1=None, expand_feature_space_func=None):
             zi = 2 * ci - 1
             tmp = ((w.T @ xi) + b).flatten()
             if pi1 is None:
-                J = J + np.log1p(np.exp(-zi*tmp))
+                #J = J + np.log1p(np.exp(-zi*tmp))
+                J = J + np.logaddexp(np.array([0]), (-zi*tmp))
             else:
                 Jv[ci] = Jv[ci] + np.log1p(np.exp(-zi*tmp))
 
