@@ -2,6 +2,7 @@ import numpy as np
 import scipy.optimize
 import scipy.special
 
+import preproc.dstools as dst
 
 class LogisticRegressionClassifier:
     def __init__(self):
@@ -64,7 +65,8 @@ def logreg_obj_wrapper(DTR, LTR, l, pi1=None, expand_feature_space_func=None):
                 # J = J + np.log1p(np.exp(-zi*tmp))
                 J = J + np.logaddexp(np.array([0]), (-zi * tmp))
             else:
-                Jv[ci] = Jv[ci] + np.log1p(np.exp(-zi * tmp))
+                # Jv[ci] = Jv[ci] + np.log1p(np.exp(-zi * tmp))
+                Jv[ci] = Jv[ci] + np.logaddexp(np.array([0]), (-zi * tmp))
 
         if pi1 is None:
             J = J / DTR.shape[1]
