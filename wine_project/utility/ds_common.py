@@ -212,7 +212,7 @@ class PreprocessConf:
         return string
 
     def to_compact_string(self):
-        string = ""
+        string = "%s" % self.preproc_stages[0].to_compact_string() if len(self.preproc_stages) == 1 else ""
         for s in self.preproc_stages[:-1]:
             string = string + "%s_" % s.to_compact_string()
         string = string + "%s" % (self.preproc_stages[-1].to_compact_string() if len(self.preproc_stages) > 1 else "")

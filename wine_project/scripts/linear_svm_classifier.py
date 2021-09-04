@@ -97,7 +97,7 @@ if __name__ == "__main__":
     def linear_svm_class_balancing():
         # We select the best preproc configuration and the best K
         preproc_conf = PreprocessConf([])
-        K = None
+        K = 1
         Cs = np.logspace(-2, 1, 4)
 
         # Then, we try the best hyperparameters but now class-balancing with respect to the target application
