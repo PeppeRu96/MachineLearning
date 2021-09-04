@@ -43,12 +43,23 @@ if __name__ == "__main__":
 
     def linear_svm_gridsearch():
         preproc_configurations = [
-            PreprocessConf([])
+            PreprocessConf([]),
+            PreprocessConf([PreprocStage(Preproc.Gaussianization)]),
+            PreprocessConf([
+                PreprocStage(Preproc.Centering),
+                PreprocStage(Preproc.Whitening_Covariance),
+                PreprocStage(Preproc.L2_Normalization)
+            ]),
+            PreprocessConf([
+                PreprocStage(Preproc.Centering),
+                PreprocStage(Preproc.Whitening_Within_Covariance),
+                PreprocStage(Preproc.L2_Normalization)
+            ]),
         ]
 
         # Grid
         Ks = [1, 10]
-        Cs = np.logspace(-2, 1, 3)
+        Cs = np.logspace(-2, 1, 4)
 
         def plot_against_C(conf, K, Cs, pi1=None):
             pi1_str = "with prior weight specific training (π=%.1f)" % (pi1) if pi1 is not None else ""
@@ -66,7 +77,8 @@ if __name__ == "__main__":
 
             # Create a plot
             plt.figure(figsize=[13, 9.7])
-            title = "Linear SVM (K: {:.1f}) - {}".format(K, conf.to_compact_string())
+            pi1_str = " - pi1: %.1f" % (pi1) if pi1 is not None else ""
+            title = "Linear SVM (K: {:.1f}{}) - {}".format(K, pi1_str, conf.to_compact_string())
             plt.title(title)
             plt.xlabel("C")
             plt.ylabel("minDCF")
@@ -76,8 +88,14 @@ if __name__ == "__main__":
                 y = minDCFs[:, app_i].flatten()
                 plt.plot(x, y, label="minDCF (π=%.1f)" % pi1)
             plt.legend()
-            pi1_str = "_train-pi1-%.1f" % (pi1) if pi1 is not None else ""
-            plt.savefig("%s%s%s" % (LINEAR_SVM_GRAPH_PATH, conf.to_compact_string(), pi1_str))
+            if pi1 is not None:
+                pi1_without_points = "%.1f" % pi1
+                pi1_without_points = pi1_without_points.replace(".", "")
+            pi1_str = "_train-pi1-%s" % (pi1_without_points) if pi1 is not None else ""
+            Kstr = "%.1f" % K
+            Kstr = Kstr.replace(".", "-")
+            Kstr = "K-" + Kstr
+            plt.savefig("%s%s_%s%s" % (LINEAR_SVM_GRAPH_PATH, Kstr, conf.to_compact_string(), pi1_str))
 
         # Grid search without class-balacing
         tot_time_start = time.perf_counter()

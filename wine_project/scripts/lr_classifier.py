@@ -96,7 +96,8 @@ if __name__ == "__main__":
             print("\t\ttime passed: %d seconds" % (time_end - time_start))
         # Create a plot
         plt.figure(figsize=[13, 9.7])
-        title = "%s LR - %s" % ("Quadratic" if quadratic else "Linear", conf.to_compact_string())
+        pi1_str = " - pi1: %.1f -" % (specific_pi1) if specific_pi1 is not None else ""
+        title = "%s LR%s %s" % ("Quadratic" if quadratic else "Linear", pi1_str, conf.to_compact_string())
         plt.title(title)
         plt.xlabel("λ")
         plt.ylabel("minDCF")
@@ -110,7 +111,11 @@ if __name__ == "__main__":
             path = QUADRATIC_LR_GRAPH_PATH
         else:
             path = LINEAR_LR_GRAPH_PATH
-        pi1_str = "_train-pi1-%.1f" % (specific_pi1) if specific_pi1 is not None else ""
+        if specific_pi1 is not None:
+            pi1_without_points = "%.1f" % specific_pi1
+            pi1_without_points = pi1_without_points.replace(".", "")
+
+        pi1_str = "_train-pi1-%s" % (pi1_without_points) if specific_pi1 is not None else ""
         plt.savefig("%s%s%s" % (path, conf.to_compact_string(), pi1_str))
 
         return minDCFs
