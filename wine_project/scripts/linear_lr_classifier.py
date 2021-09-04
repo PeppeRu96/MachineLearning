@@ -210,14 +210,13 @@ if __name__ == "__main__":
 
     print("Linear Logistic Regression analysis started")
     total_time_start = time.perf_counter()
-    #LR_analysis(quadratic=False)
+    LR_analysis(quadratic=False)
     total_time_end = time.perf_counter()
     print("Linear Logistic Regression analysis ended in %d seconds" % (total_time_end-total_time_start))
     print("")
     print("Quadratic Logistic Regression analysis started")
     total_time_start = time.perf_counter()
     LR_analysis(quadratic=True)
-    #cross_validate_LR(configurations[-2], 0, quadratic=True)
     total_time_end = time.perf_counter()
     print("Quadratic Logistic Regression analysis started in %d seconds" % (total_time_end-total_time_start))
 
