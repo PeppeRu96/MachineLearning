@@ -205,7 +205,7 @@ class PreprocessConf:
         self.preproc_stages = preproc_stages
 
     def __str__(self):
-        string = "[ "
+        string = "[ %s" % self.preproc_stages[0] if len(self.preproc_stages) == 1 else "[ "
         for s in self.preproc_stages[:-1]:
             string = string + "%s, " % s
         string = string + "%s ]" % (self.preproc_stages[-1] if len(self.preproc_stages) > 1 else "")

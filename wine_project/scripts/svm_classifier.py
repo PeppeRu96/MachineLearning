@@ -15,7 +15,7 @@ if __name__ == "__main__":
     # Load 5-Folds already splitted dataset
     folds_data, folds_labels = load_train_dataset_5_folds()
 
-    def cross_validate_svm(preproc_conf, C, K, pi1=None, kernel=None, maxfun=15000, maxiter=15000, factr=1.0):
+    def cross_validate_svm(preproc_conf, C, K, specific_pi1=None, kernel=None, maxfun=15000, maxiter=15000, factr=1.0):
         iterations = 1
         scores = []
         labels = []
@@ -25,7 +25,7 @@ if __name__ == "__main__":
 
             # Train
             svm = SVM_Classifier()
-            svm.train(DTR, LTR, C, K, pi1, kernel, maxfun, maxiter, factr)
+            svm.train(DTR, LTR, C, K, specific_pi1, kernel, maxfun, maxiter, factr)
 
             # Validate
             s = svm.compute_scores(DTE)
@@ -42,32 +42,37 @@ if __name__ == "__main__":
         return scores, labels
 
     def linear_svm_gridsearch():
+        # preproc_configurations = [
+        #     PreprocessConf([]),
+        #     PreprocessConf([PreprocStage(Preproc.Gaussianization)]),
+        #     PreprocessConf([
+        #         PreprocStage(Preproc.Centering),
+        #         PreprocStage(Preproc.Whitening_Covariance),
+        #         PreprocStage(Preproc.L2_Normalization)
+        #     ]),
+        #     PreprocessConf([
+        #         PreprocStage(Preproc.Centering),
+        #         PreprocStage(Preproc.Whitening_Within_Covariance),
+        #         PreprocStage(Preproc.L2_Normalization)
+        #     ]),
+        # ]
+
         preproc_configurations = [
             PreprocessConf([]),
-            PreprocessConf([PreprocStage(Preproc.Gaussianization)]),
-            PreprocessConf([
-                PreprocStage(Preproc.Centering),
-                PreprocStage(Preproc.Whitening_Covariance),
-                PreprocStage(Preproc.L2_Normalization)
-            ]),
-            PreprocessConf([
-                PreprocStage(Preproc.Centering),
-                PreprocStage(Preproc.Whitening_Within_Covariance),
-                PreprocStage(Preproc.L2_Normalization)
-            ]),
+            PreprocessConf([PreprocStage(Preproc.Gaussianization)])
         ]
 
         # Grid
         Ks = [1, 10]
         Cs = np.logspace(-2, 1, 4)
 
-        def plot_against_C(conf, K, Cs, pi1=None):
-            pi1_str = "with prior weight specific training (π=%.1f)" % (pi1) if pi1 is not None else ""
+        def plot_against_C(conf, K, Cs, specific_pi1=None):
+            pi1_str = "with prior weight specific training (π=%.1f)" % (specific_pi1) if specific_pi1 is not None else ""
             minDCFs = np.zeros((len(Cs), len(applications)))
             for Ci, C in enumerate(Cs):
                 print("\t(Ci: {}) - 5-Fold Cross-Validation Linear SVM {} (C={:.0e} - K={:.1f}) - Preprocessing: {}".format(Ci, pi1_str, C, K, conf))
                 time_start = time.perf_counter()
-                scores, labels = cross_validate_svm(conf, C, K, pi1=pi1)
+                scores, labels = cross_validate_svm(conf, C, K, specific_pi1=specific_pi1)
                 for app_i, (pi1, Cfn, Cfp) in enumerate(applications):
                     minDCF, _ = eval.bayes_min_dcf(scores, labels, pi1, Cfn, Cfp)
                     print("\t\tmin DCF (π=%.1f) : %.3f" % (pi1, minDCF))
@@ -77,7 +82,7 @@ if __name__ == "__main__":
 
             # Create a plot
             plt.figure(figsize=[13, 9.7])
-            pi1_str = " - pi1: %.1f" % (pi1) if pi1 is not None else ""
+            pi1_str = " - pi1: %.1f" % (specific_pi1) if specific_pi1 is not None else ""
             title = "Linear SVM (K: {:.1f}{}) - {}".format(K, pi1_str, conf.to_compact_string())
             plt.title(title)
             plt.xlabel("C")
@@ -88,10 +93,10 @@ if __name__ == "__main__":
                 y = minDCFs[:, app_i].flatten()
                 plt.plot(x, y, label="minDCF (π=%.1f)" % pi1)
             plt.legend()
-            if pi1 is not None:
-                pi1_without_points = "%.1f" % pi1
+            if specific_pi1 is not None:
+                pi1_without_points = "%.1f" % specific_pi1
                 pi1_without_points = pi1_without_points.replace(".", "")
-            pi1_str = "_train-pi1-%s" % (pi1_without_points) if pi1 is not None else ""
+            pi1_str = "_train-pi1-%s" % (pi1_without_points) if specific_pi1 is not None else ""
             Kstr = "%.1f" % K
             Kstr = Kstr.replace(".", "-")
             Kstr = "K-" + Kstr
