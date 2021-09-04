@@ -2,6 +2,8 @@ import numpy as np
 import scipy.optimize
 import scipy.special
 
+import preproc.dstools as dst
+
 class SVM_Classifier:
     def __init__(self):
         self.DTR = None
@@ -181,3 +183,29 @@ def svm_duality_gap(DTR, LTR, C, K, w_hat, alfas):
     duality_gap = primal_loss - dual_loss
 
     return duality_gap, primal_loss, dual_loss
+
+def cross_validate_svm(folds_data, folds_labels, preproc_conf, C, K, specific_pi1=None, kernel=None, maxfun=15000, maxiter=15000, factr=1.0):
+    iterations = 1
+    scores = []
+    labels = []
+    for DTR, LTR, DTE, LTE in dst.kfold_generate(folds_data, folds_labels):
+        # Preprocess data
+        DTR, DTE = preproc_conf.apply_preproc_pipeline(DTR, LTR, DTE)
+
+        # Train
+        svm = SVM_Classifier()
+        svm.train(DTR, LTR, C, K, specific_pi1, kernel, maxfun, maxiter, factr)
+
+        # Validate
+        s = svm.compute_scores(DTE)
+
+        # Collect scores and associated labels
+        scores.append(s)
+        labels.append(LTE)
+
+        iterations += 1
+
+    scores = np.array(scores).flatten()
+    labels = np.array(labels).flatten()
+
+    return scores, labels

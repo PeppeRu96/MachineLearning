@@ -249,17 +249,28 @@ def incremental_path(basepath, filename):
     if not os.path.exists(complete_path):
         return complete_path
 
+    target_f = filename.split(".")
+    target_fname = target_f[-2]
+    target_fext = target_f[-1]
+    target_f = target_fname.split("_")
+    target_fbasename = target_f[:-1]
+    target_fbasename = "_".join(target_fbasename)
+    target_fid = int(target_f[-1])
+
     onlyfiles = [f for f in os.listdir(basepath) if os.path.isfile(os.path.join(basepath, f))]
     for f in onlyfiles:
-        if f == filename:
-            f = f.split(".")
-            fname = f[-2]
-            fext = f[-1]
-            f = fname.split("_")
-            fbasename = f[:-1]
-            fbasename = "_".join(fbasename)
+        f = f.split(".")
+        fname = f[-2]
+        fext = f[-1]
+        f = fname.split("_")
+        fbasename = f[:-1]
+        fbasename = "_".join(fbasename)
+        if fbasename == target_fbasename:
             fid = int(f[-1])
-            newfname = "%s_%d.%s" % (fbasename, fid + 1, fext)
+            if fid >= target_fid:
+                target_fid = fid + 1
+
+    newfname = "%s_%d.%s" % (target_fbasename, target_fid, target_fext)
 
     return os.path.join(basepath, newfname)
 
