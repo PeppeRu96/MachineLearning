@@ -4,7 +4,7 @@ import time
 from wine_project.utility.ds_common import *
 import evaluation.common as eval
 
-from classifiers.logistic_regression import LogisticRegressionClassifier
+from classifiers.logistic_regression import cross_validate_lr
 
 SCRIPT_PATH = os.path.dirname(__file__)
 TRAINLOGS_BASEPATH = os.path.join(SCRIPT_PATH, "..", "train_logs")
@@ -48,37 +48,7 @@ if __name__ == "__main__":
         ]),
     ]
 
-    def cross_validate_LR(preproc_conf, lambda_regularizer, pi1=None, quadratic=False):
-        pi1_str = "with prior weight specific training (π=%.1f)" % (pi1) if pi1 is not None else ""
-        print("\t\t5-Fold Cross-Validation %s LR %s (λ=%.5f) - Preprocessing: %s" %
-              ("Quadratic" if quadratic else "Linear", pi1_str, lambda_regularizer, preproc_conf))
-        iterations = 1
-        scores = []
-        labels = []
-        for DTR, LTR, DTE, LTE in dst.kfold_generate(folds_data, folds_labels):
-            # Preprocess data
-            DTR, DTE = preproc_conf.apply_preproc_pipeline(DTR, LTR, DTE)
-
-            # Train
-            linear_lr = LogisticRegressionClassifier()
-            efs = LogisticRegressionClassifier.quadratic_feature_expansion if quadratic else None
-            linear_lr.train(DTR, LTR, lambda_regularizer, pi1=pi1, expand_feature_space_func=efs)
-
-            # Validate
-            s = linear_lr.compute_binary_classifier_llr(DTE)
-
-            # Collect scores and associated labels
-            scores.append(s)
-            labels.append(LTE)
-
-            iterations += 1
-
-        scores = np.array(scores).flatten()
-        labels = np.array(labels).flatten()
-
-        return scores, labels
-
-    def LR_analysis_plots(conf, lambdas, specific_pi1=None, quadratic=False):
+    def lr_plot_against_lambda(conf, lambdas, specific_pi1=None, quadratic=False):
         """
         Given a specific preproc configuration, train n models for the different lambdas and compute minDCF for the apps.
         Then, display a plot for the different target applications.
@@ -87,7 +57,7 @@ if __name__ == "__main__":
         for i, l in enumerate(lambdas):
             print("\tLambda iteration ", i + 1)
             time_start = time.perf_counter()
-            scores, labels = cross_validate_LR(conf, l, pi1=specific_pi1, quadratic=quadratic)
+            scores, labels = cross_validate_lr(folds_data, folds_labels, conf, l, pi1=specific_pi1, quadratic=quadratic)
             for app_i, (pi1, Cfn, Cfp) in enumerate(applications):
                 minDCF, _ = eval.bayes_min_dcf(scores, labels, pi1, Cfn, Cfp)
                 print("\t\tmin DCF (π=%.1f) : %.3f" % (pi1, minDCF))
@@ -96,7 +66,7 @@ if __name__ == "__main__":
             print("\t\ttime passed: %d seconds" % (time_end - time_start))
         # Create a plot
         plt.figure(figsize=[13, 9.7])
-        pi1_str = " - pi1: %.1f -" % (specific_pi1) if specific_pi1 is not None else ""
+        pi1_str = " - pi1: %.1f -" % specific_pi1 if specific_pi1 is not None else ""
         title = "%s LR%s %s" % ("Quadratic" if quadratic else "Linear", pi1_str, conf.to_compact_string())
         plt.title(title)
         plt.xlabel("λ")
@@ -115,12 +85,12 @@ if __name__ == "__main__":
             pi1_without_points = "%.1f" % specific_pi1
             pi1_without_points = pi1_without_points.replace(".", "")
 
-        pi1_str = "_train-pi1-%s" % (pi1_without_points) if specific_pi1 is not None else ""
+        pi1_str = "_train-pi1-%s" % pi1_without_points if specific_pi1 is not None else ""
         plt.savefig("%s%s%s" % (path, conf.to_compact_string(), pi1_str))
 
         return minDCFs
 
-    def LR_gridsearch_analysis(specific_pi1=None, quadratic=False):
+    def lr_gridsearch(specific_pi1=None, quadratic=False):
         pi1_str = "with prior weight specific training (π=%.1f)" % (specific_pi1) if specific_pi1 is not None else ""
         print("%s Logistic Regression %s analysis started" % ("Quadratic" if quadratic else "Linear", pi1_str))
         total_time_start = time.perf_counter()
@@ -132,7 +102,7 @@ if __name__ == "__main__":
         grid_search_iterations = 1
         for conf_i, conf in enumerate(preproc_configurations):
             print("Grid search iteration ", grid_search_iterations)
-            LR_analysis_plots(conf, lambdas, specific_pi1, quadratic)
+            lr_plot_against_lambda(conf, lambdas, specific_pi1, quadratic)
             grid_search_iterations += 1
 
         total_time_end = time.perf_counter()
@@ -143,10 +113,10 @@ if __name__ == "__main__":
 
     if "linear" in args:
         with LoggingPrinter(incremental_path(TRAINLOGS_BASEPATH, LINEAR_LR_TRAINLOG_FNAME)):
-            LR_gridsearch_analysis(quadratic=False)
+            lr_gridsearch(quadratic=False)
     if "quadratic" in args:
         with LoggingPrinter(incremental_path(TRAINLOGS_BASEPATH, QUADRATIC_LR_TRAINLOG_FNAME)):
-            LR_gridsearch_analysis(quadratic=True)
+            lr_gridsearch(quadratic=True)
 
     # Best hyperparameters
     linear_preproc_conf = preproc_configurations[0] # TODO
@@ -162,12 +132,12 @@ if __name__ == "__main__":
     if "linear_best" in args:
         with LoggingPrinter(incremental_path(TRAINLOGS_BASEPATH, LINEAR_LR_BEST_TRAINLOG_FNAME)):
             for (pi1, Cfn, Cfp) in applications:
-                LR_analysis_plots(linear_preproc_conf, lambdas, pi1, False)
+                lr_plot_against_lambda(linear_preproc_conf, lambdas, pi1, False)
 
     # QUADRATIC LR
     if "quadratic_best" in args:
         with LoggingPrinter(incremental_path(TRAINLOGS_BASEPATH, QUADRATIC_LR_BEST_TRAINLOG_FNAME)):
             for (pi1, Cfn, Cfp) in applications:
-                LR_analysis_plots(linear_preproc_conf, lambdas, pi1, True)
+                lr_plot_against_lambda(linear_preproc_conf, lambdas, pi1, True)
 
     plt.show()
