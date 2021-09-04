@@ -12,17 +12,22 @@ class SVM_Classifier:
         self.w_hat = None
         self.alfas = None
 
-    def train(self, DTR, LTR, C, K, kernel=None, maxfun=15000, maxiter=15000, factr=10000000.0, verbose=0):
+    def train(self, DTR, LTR, C, K, pi1=None, kernel=None, maxfun=15000, maxiter=15000, factr=10000000.0, verbose=0):
         self.DTR = DTR
         self.LTR = LTR
         self.C = C
         self.K = K
+        self.pi1 = pi1
         self.kernel = kernel
 
         if kernel is None:
-            self.w_hat, self.alfas = svm_train(DTR, LTR, C, K, kernel, maxfun, maxiter, factr, verbose)
+            self.w_hat, self.alfas = svm_train(DTR, LTR, C, K, pi1, kernel, maxfun, maxiter, factr, verbose)
         else:
-            self.alfas = svm_train(DTR, LTR, C, K, kernel, maxfun, maxiter, factr, verbose)
+            self.alfas = svm_train(DTR, LTR, C, K, pi1, kernel, maxfun, maxiter, factr, verbose)
+
+    def compute_scores(self, D):
+        S = svm_compute_scores(D, self.K, self.kernel, self.w_hat, self.alfas, self.DTR, self.LTR)
+        return S
 
     def inference(self, D):
         pred_labels = svm_inference(D, self.K, self.kernel, self.w_hat, self.alfas, self.DTR, self.LTR)
@@ -99,7 +104,7 @@ def svm_dual_obj_wrapper(DTR, LTR, K, kernel):
 
     return svm_dual_obj
 
-def svm_train(DTR, LTR, C, K, kernel=None, maxfun=15000, maxiter=15000, factr=10000000.0, verbose=0):
+def svm_train(DTR, LTR, C, K, pi1=None, kernel=None, maxfun=15000, maxiter=15000, factr=10000000.0, verbose=0):
     if verbose:
         print("Training SVM classifier..")
         print("C: ", C)
@@ -115,23 +120,31 @@ def svm_train(DTR, LTR, C, K, kernel=None, maxfun=15000, maxiter=15000, factr=10
         dual_obj = svm_dual_obj_wrapper(DTR, LTRz, K, kernel)
 
     x0 = np.zeros(DTR.shape[1])
-    constraints = [(0, C) for i in range(DTR.shape[1])]
+
+    if pi1 is not None:
+        pi1_emp = DTR[:, (LTR==1)].shape[1] / DTR.shape[1]
+        C1 = C * pi1 / pi1_emp
+        C0 = C * (1 - pi1) / (1 - pi1_emp)
+        constraints = [(0, C0) if LTR[i] == 0 else (0, C1) for i in range(DTR.shape[1])]
+    else:
+        constraints = [(0, C) for i in range(DTR.shape[1])]
 
     xMin, fMin, d = scipy.optimize.fmin_l_bfgs_b(dual_obj, x0, bounds=constraints, maxfun=maxfun, maxiter=maxiter, factr=factr)
     alfas = xMin
-    print("Dual loss: ", -fMin)
+    if verbose:
+        print("Dual loss: ", -fMin)
     if kernel is None:
         w_hat = (alfas * LTRz * DTRhat).sum(axis=1)
         return w_hat, alfas
 
     return alfas
 
-def svm_inference(D, K, kernel=None, w_hat=None, alfas=None, DTR=None, LTR=None):
+def svm_compute_scores(D, K, kernel=None, w_hat=None, alfas=None, DTR=None, LTR=None):
     if kernel is None:
         w_hat = w_hat.reshape(w_hat.shape[0], 1)
         Dhat = np.vstack((D, np.ones(D.shape[1]).reshape(1, D.shape[1]) * K))
         S = w_hat.T @ Dhat
-        pred_labels = np.array([1 if score > 0 else 0 for score in S[0]])
+        S = S.flatten()
     else:
         LTRz = np.array([1 if (label == 1) else -1 for label in LTR])
 
@@ -146,9 +159,12 @@ def svm_inference(D, K, kernel=None, w_hat=None, alfas=None, DTR=None, LTR=None)
                 xi = DTR[:, j].reshape((DTR.shape[0], 1))
                 score = score + alfas[j] * LTRz[j] * (kernel(xi, xt) + K**2)
             S.append(score)
-        pred_labels = np.array([1 if score > 0 else 0 for score in S])
 
+    return S
 
+def svm_inference(D, K, kernel=None, w_hat=None, alfas=None, DTR=None, LTR=None):
+    S = svm_compute_scores(D, K, kernel, w_hat, alfas, DTR, LTR)
+    pred_labels = np.array([1 if score > 0 else 0 for score in S])
 
     return pred_labels
 
