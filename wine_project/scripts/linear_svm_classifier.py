@@ -116,7 +116,7 @@ if __name__ == "__main__":
         linear_svm_gridsearch()
 
     # Using the best hyperparameters, try class-balancing w.r.t target applications
-    with LoggingPrinter(incremental_path(TRAINLOGS_BASEPATH, LINEAR_SVM_CLASS_BALANCING_TRAINLOG_FNAME)):
-        linear_svm_class_balancing()
+    # with LoggingPrinter(incremental_path(TRAINLOGS_BASEPATH, LINEAR_SVM_CLASS_BALANCING_TRAINLOG_FNAME)):
+    #     linear_svm_class_balancing()
 
     plt.show()

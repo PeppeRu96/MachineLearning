@@ -1,0 +1,180 @@
+Grid search on Linear SVM without class balancing started.
+Total Linear SVM cross-validation required  32
+Total grid search iterations required  8
+Grid search iteration 1 / 8
+	(Ci: 0) - 5-Fold Cross-Validation Linear SVM  (C=1e-02 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.452
+		min DCF (π=0.1) : 0.890
+		min DCF (π=0.9) : 1.012
+		time passed: 926 seconds
+	(Ci: 1) - 5-Fold Cross-Validation Linear SVM  (C=1e-01 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.406
+		min DCF (π=0.1) : 0.868
+		min DCF (π=0.9) : 0.898
+		time passed: 1834 seconds
+	(Ci: 2) - 5-Fold Cross-Validation Linear SVM  (C=1e+00 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.554
+		min DCF (π=0.1) : 0.891
+		min DCF (π=0.9) : 0.992
+		time passed: 2307 seconds
+	(Ci: 3) - 5-Fold Cross-Validation Linear SVM  (C=1e+01 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.897
+		min DCF (π=0.1) : 1.000
+		min DCF (π=0.9) : 0.982
+		time passed: 1333 seconds
+Grid search iteration ended in 6402 seconds
+Grid search iteration 2 / 8
+	(Ci: 0) - 5-Fold Cross-Validation Linear SVM  (C=1e-02 - K=10.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.420
+		min DCF (π=0.1) : 0.858
+		min DCF (π=0.9) : 0.986
+		time passed: 788 seconds
+	(Ci: 1) - 5-Fold Cross-Validation Linear SVM  (C=1e-01 - K=10.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.371
+		min DCF (π=0.1) : 0.840
+		min DCF (π=0.9) : 0.824
+		time passed: 1963 seconds
+	(Ci: 2) - 5-Fold Cross-Validation Linear SVM  (C=1e+00 - K=10.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.519
+		min DCF (π=0.1) : 0.996
+		min DCF (π=0.9) : 0.929
+		time passed: 1968 seconds
+	(Ci: 3) - 5-Fold Cross-Validation Linear SVM  (C=1e+01 - K=10.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.790
+		min DCF (π=0.1) : 0.998
+		min DCF (π=0.9) : 0.990
+		time passed: 2293 seconds
+Grid search iteration ended in 7014 seconds
+Grid search iteration 3 / 8
+	(Ci: 0) - 5-Fold Cross-Validation Linear SVM  (C=1e-02 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.353
+		min DCF (π=0.1) : 0.794
+		min DCF (π=0.9) : 0.926
+		time passed: 80 seconds
+	(Ci: 1) - 5-Fold Cross-Validation Linear SVM  (C=1e-01 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.338
+		min DCF (π=0.1) : 0.786
+		min DCF (π=0.9) : 0.880
+		time passed: 192 seconds
+	(Ci: 2) - 5-Fold Cross-Validation Linear SVM  (C=1e+00 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.341
+		min DCF (π=0.1) : 0.771
+		min DCF (π=0.9) : 0.896
+		time passed: 370 seconds
+	(Ci: 3) - 5-Fold Cross-Validation Linear SVM  (C=1e+01 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.342
+		min DCF (π=0.1) : 0.778
+		min DCF (π=0.9) : 0.901
+		time passed: 1032 seconds
+Grid search iteration ended in 1676 seconds
+Grid search iteration 4 / 8
+	(Ci: 0) - 5-Fold Cross-Validation Linear SVM  (C=1e-02 - K=10.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.343
+		min DCF (π=0.1) : 0.779
+		min DCF (π=0.9) : 0.925
+		time passed: 145 seconds
+	(Ci: 1) - 5-Fold Cross-Validation Linear SVM  (C=1e-01 - K=10.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.337
+		min DCF (π=0.1) : 0.785
+		min DCF (π=0.9) : 0.887
+		time passed: 341 seconds
+	(Ci: 2) - 5-Fold Cross-Validation Linear SVM  (C=1e+00 - K=10.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.341
+		min DCF (π=0.1) : 0.772
+		min DCF (π=0.9) : 0.901
+		time passed: 851 seconds
+	(Ci: 3) - 5-Fold Cross-Validation Linear SVM  (C=1e+01 - K=10.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.342
+		min DCF (π=0.1) : 0.775
+		min DCF (π=0.9) : 0.901
+		time passed: 2343 seconds
+Grid search iteration ended in 3681 seconds
+Grid search iteration 5 / 8
+	(Ci: 0) - 5-Fold Cross-Validation Linear SVM  (C=1e-02 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.350
+		min DCF (π=0.1) : 0.798
+		min DCF (π=0.9) : 0.874
+		time passed: 39 seconds
+	(Ci: 1) - 5-Fold Cross-Validation Linear SVM  (C=1e-01 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.344
+		min DCF (π=0.1) : 0.803
+		min DCF (π=0.9) : 0.792
+		time passed: 83 seconds
+	(Ci: 2) - 5-Fold Cross-Validation Linear SVM  (C=1e+00 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.344
+		min DCF (π=0.1) : 0.809
+		min DCF (π=0.9) : 0.791
+		time passed: 220 seconds
+	(Ci: 3) - 5-Fold Cross-Validation Linear SVM  (C=1e+01 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.346
+		min DCF (π=0.1) : 0.815
+		min DCF (π=0.9) : 0.789
+		time passed: 494 seconds
+Grid search iteration ended in 838 seconds
+Grid search iteration 6 / 8
+	(Ci: 0) - 5-Fold Cross-Validation Linear SVM  (C=1e-02 - K=10.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.347
+		min DCF (π=0.1) : 0.806
+		min DCF (π=0.9) : 0.870
+		time passed: 83 seconds
+	(Ci: 1) - 5-Fold Cross-Validation Linear SVM  (C=1e-01 - K=10.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.344
+		min DCF (π=0.1) : 0.807
+		min DCF (π=0.9) : 0.794
+		time passed: 225 seconds
+	(Ci: 2) - 5-Fold Cross-Validation Linear SVM  (C=1e+00 - K=10.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.343
+		min DCF (π=0.1) : 0.815
+		min DCF (π=0.9) : 0.793
+		time passed: 526 seconds
+	(Ci: 3) - 5-Fold Cross-Validation Linear SVM  (C=1e+01 - K=10.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.342
+		min DCF (π=0.1) : 0.806
+		min DCF (π=0.9) : 0.796
+		time passed: 1408 seconds
+Grid search iteration ended in 2245 seconds
+Grid search iteration 7 / 8
+	(Ci: 0) - 5-Fold Cross-Validation Linear SVM  (C=1e-02 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.349
+		min DCF (π=0.1) : 0.801
+		min DCF (π=0.9) : 0.839
+		time passed: 31 seconds
+	(Ci: 1) - 5-Fold Cross-Validation Linear SVM  (C=1e-01 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.345
+		min DCF (π=0.1) : 0.802
+		min DCF (π=0.9) : 0.795
+		time passed: 83 seconds
+	(Ci: 2) - 5-Fold Cross-Validation Linear SVM  (C=1e+00 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.343
+		min DCF (π=0.1) : 0.812
+		min DCF (π=0.9) : 0.799
+		time passed: 191 seconds
+	(Ci: 3) - 5-Fold Cross-Validation Linear SVM  (C=1e+01 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.346
+		min DCF (π=0.1) : 0.818
+		min DCF (π=0.9) : 0.790
+		time passed: 398 seconds
+Grid search iteration ended in 704 seconds
+Grid search iteration 8 / 8
+	(Ci: 0) - 5-Fold Cross-Validation Linear SVM  (C=1e-02 - K=10.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.344
+		min DCF (π=0.1) : 0.803
+		min DCF (π=0.9) : 0.830
+		time passed: 72 seconds
+	(Ci: 1) - 5-Fold Cross-Validation Linear SVM  (C=1e-01 - K=10.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.343
+		min DCF (π=0.1) : 0.807
+		min DCF (π=0.9) : 0.791
+		time passed: 219 seconds
+	(Ci: 2) - 5-Fold Cross-Validation Linear SVM  (C=1e+00 - K=10.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.343
+		min DCF (π=0.1) : 0.813
+		min DCF (π=0.9) : 0.801
+		time passed: 622 seconds
+	(Ci: 3) - 5-Fold Cross-Validation Linear SVM  (C=1e+01 - K=10.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.341
+		min DCF (π=0.1) : 0.823
+		min DCF (π=0.9) : 0.817
+		time passed: 1185 seconds
+Grid search iteration ended in 2100 seconds
+Grid search on Linear SVM without class balancing ended in 24665 seconds
