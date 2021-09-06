@@ -60,20 +60,31 @@ if __name__ == "__main__":
     def rbf_svm_gridsearch():
         # Preprocessing configurations to try
         preproc_configurations = [
-            PreprocessConf([PreprocStage(Preproc.Gaussianization)])
+            PreprocessConf([]),
+            PreprocessConf([PreprocStage(Preproc.Gaussianization)]),
+            PreprocessConf([
+                PreprocStage(Preproc.Centering),
+                PreprocStage(Preproc.Whitening_Covariance),
+                PreprocStage(Preproc.L2_Normalization)
+            ]),
+            PreprocessConf([
+                PreprocStage(Preproc.Centering),
+                PreprocStage(Preproc.Whitening_Within_Covariance),
+                PreprocStage(Preproc.L2_Normalization)
+            ]),
         ]
 
         # Grid polynomial svm hyperparameters
         Ks = [1]
-        Cs = np.logspace(-2, 0, 3)
-        gamma = np.logspace(-3, 0, 4)
+        Cs = np.logspace(-2, 1, 4)
+        gamma = np.logspace(-3, 1, 5)
 
         # Grid search without class-balacing
         tot_time_start = time.perf_counter()
         print("Grid search on RBF SVM without class balancing started.")
         tot_iterations_required = len(preproc_configurations) * len(Ks) * len(gamma) * len(Cs)
         tot_gs_iterations_required = len(preproc_configurations) * len(Ks) * len(gamma)
-        print("Total Polynomial SVM cross-validation required ", tot_iterations_required)
+        print("Total RBF SVM cross-validation required ", tot_iterations_required)
         print("Total grid search iterations required ", tot_gs_iterations_required)
         grid_search_iterations = 1
         for conf_i, conf in enumerate(preproc_configurations):

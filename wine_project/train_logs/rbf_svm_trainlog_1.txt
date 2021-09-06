@@ -1,0 +1,444 @@
+Grid search on RBF SVM without class balancing started.
+Total RBF SVM cross-validation required  80
+Total grid search iterations required  20
+Grid search iteration 1 / 20
+	(Ci: 0) - 5-Fold Cross-Validation RBF SVM (gamma=1e-03)  (C=1e-02 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.675
+		min DCF (π=0.1) : 1.000
+		min DCF (π=0.9) : 0.976
+		time passed: 14 seconds
+	(Ci: 1) - 5-Fold Cross-Validation RBF SVM (gamma=1e-03)  (C=1e-01 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.579
+		min DCF (π=0.1) : 0.995
+		min DCF (π=0.9) : 0.977
+		time passed: 18 seconds
+	(Ci: 2) - 5-Fold Cross-Validation RBF SVM (gamma=1e-03)  (C=1e+00 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.500
+		min DCF (π=0.1) : 0.876
+		min DCF (π=0.9) : 0.877
+		time passed: 25 seconds
+	(Ci: 3) - 5-Fold Cross-Validation RBF SVM (gamma=1e-03)  (C=1e+01 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.376
+		min DCF (π=0.1) : 0.773
+		min DCF (π=0.9) : 0.875
+		time passed: 51 seconds
+Grid search iteration ended in 110 seconds
+Grid search iteration 2 / 20
+	(Ci: 0) - 5-Fold Cross-Validation RBF SVM (gamma=1e-02)  (C=1e-02 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.551
+		min DCF (π=0.1) : 0.992
+		min DCF (π=0.9) : 0.883
+		time passed: 10 seconds
+	(Ci: 1) - 5-Fold Cross-Validation RBF SVM (gamma=1e-02)  (C=1e-01 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.512
+		min DCF (π=0.1) : 0.963
+		min DCF (π=0.9) : 0.854
+		time passed: 13 seconds
+	(Ci: 2) - 5-Fold Cross-Validation RBF SVM (gamma=1e-02)  (C=1e+00 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.421
+		min DCF (π=0.1) : 0.869
+		min DCF (π=0.9) : 0.838
+		time passed: 15 seconds
+	(Ci: 3) - 5-Fold Cross-Validation RBF SVM (gamma=1e-02)  (C=1e+01 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.340
+		min DCF (π=0.1) : 0.786
+		min DCF (π=0.9) : 0.812
+		time passed: 19 seconds
+Grid search iteration ended in 58 seconds
+Grid search iteration 3 / 20
+	(Ci: 0) - 5-Fold Cross-Validation RBF SVM (gamma=1e-01)  (C=1e-02 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.438
+		min DCF (π=0.1) : 0.862
+		min DCF (π=0.9) : 0.746
+		time passed: 10 seconds
+	(Ci: 1) - 5-Fold Cross-Validation RBF SVM (gamma=1e-01)  (C=1e-01 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.425
+		min DCF (π=0.1) : 0.862
+		min DCF (π=0.9) : 0.751
+		time passed: 11 seconds
+	(Ci: 2) - 5-Fold Cross-Validation RBF SVM (gamma=1e-01)  (C=1e+00 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.419
+		min DCF (π=0.1) : 0.769
+		min DCF (π=0.9) : 0.757
+		time passed: 13 seconds
+	(Ci: 3) - 5-Fold Cross-Validation RBF SVM (gamma=1e-01)  (C=1e+01 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.412
+		min DCF (π=0.1) : 0.673
+		min DCF (π=0.9) : 0.854
+		time passed: 15 seconds
+Grid search iteration ended in 52 seconds
+Grid search iteration 4 / 20
+	(Ci: 0) - 5-Fold Cross-Validation RBF SVM (gamma=1e+00)  (C=1e-02 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.537
+		min DCF (π=0.1) : 0.648
+		min DCF (π=0.9) : 0.729
+		time passed: 9 seconds
+	(Ci: 1) - 5-Fold Cross-Validation RBF SVM (gamma=1e+00)  (C=1e-01 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.537
+		min DCF (π=0.1) : 0.648
+		min DCF (π=0.9) : 0.727
+		time passed: 9 seconds
+	(Ci: 2) - 5-Fold Cross-Validation RBF SVM (gamma=1e+00)  (C=1e+00 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.537
+		min DCF (π=0.1) : 0.649
+		min DCF (π=0.9) : 0.729
+		time passed: 10 seconds
+	(Ci: 3) - 5-Fold Cross-Validation RBF SVM (gamma=1e+00)  (C=1e+01 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.526
+		min DCF (π=0.1) : 0.653
+		min DCF (π=0.9) : 0.728
+		time passed: 10 seconds
+Grid search iteration ended in 40 seconds
+Grid search iteration 5 / 20
+	(Ci: 0) - 5-Fold Cross-Validation RBF SVM (gamma=1e+01)  (C=1e-02 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.648
+		min DCF (π=0.1) : 0.666
+		min DCF (π=0.9) : 0.741
+		time passed: 8 seconds
+	(Ci: 1) - 5-Fold Cross-Validation RBF SVM (gamma=1e+01)  (C=1e-01 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.648
+		min DCF (π=0.1) : 0.666
+		min DCF (π=0.9) : 0.740
+		time passed: 8 seconds
+	(Ci: 2) - 5-Fold Cross-Validation RBF SVM (gamma=1e+01)  (C=1e+00 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.648
+		min DCF (π=0.1) : 0.666
+		min DCF (π=0.9) : 0.741
+		time passed: 8 seconds
+	(Ci: 3) - 5-Fold Cross-Validation RBF SVM (gamma=1e+01)  (C=1e+01 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.650
+		min DCF (π=0.1) : 0.654
+		min DCF (π=0.9) : 0.740
+		time passed: 8 seconds
+Grid search iteration ended in 35 seconds
+Grid search iteration 6 / 20
+	(Ci: 0) - 5-Fold Cross-Validation RBF SVM (gamma=1e-03)  (C=1e-02 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.394
+		min DCF (π=0.1) : 0.885
+		min DCF (π=0.9) : 0.936
+		time passed: 19 seconds
+	(Ci: 1) - 5-Fold Cross-Validation RBF SVM (gamma=1e-03)  (C=1e-01 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.384
+		min DCF (π=0.1) : 0.806
+		min DCF (π=0.9) : 0.950
+		time passed: 19 seconds
+	(Ci: 2) - 5-Fold Cross-Validation RBF SVM (gamma=1e-03)  (C=1e+00 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.371
+		min DCF (π=0.1) : 0.804
+		min DCF (π=0.9) : 0.943
+		time passed: 20 seconds
+	(Ci: 3) - 5-Fold Cross-Validation RBF SVM (gamma=1e-03)  (C=1e+01 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.331
+		min DCF (π=0.1) : 0.776
+		min DCF (π=0.9) : 0.893
+		time passed: 30 seconds
+Grid search iteration ended in 90 seconds
+Grid search iteration 7 / 20
+	(Ci: 0) - 5-Fold Cross-Validation RBF SVM (gamma=1e-02)  (C=1e-02 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.385
+		min DCF (π=0.1) : 0.857
+		min DCF (π=0.9) : 0.928
+		time passed: 21 seconds
+	(Ci: 1) - 5-Fold Cross-Validation RBF SVM (gamma=1e-02)  (C=1e-01 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.375
+		min DCF (π=0.1) : 0.792
+		min DCF (π=0.9) : 0.936
+		time passed: 19 seconds
+	(Ci: 2) - 5-Fold Cross-Validation RBF SVM (gamma=1e-02)  (C=1e+00 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.336
+		min DCF (π=0.1) : 0.751
+		min DCF (π=0.9) : 0.752
+		time passed: 24 seconds
+	(Ci: 3) - 5-Fold Cross-Validation RBF SVM (gamma=1e-02)  (C=1e+01 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.280
+		min DCF (π=0.1) : 0.716
+		min DCF (π=0.9) : 0.681
+		time passed: 41 seconds
+Grid search iteration ended in 105 seconds
+Grid search iteration 8 / 20
+	(Ci: 0) - 5-Fold Cross-Validation RBF SVM (gamma=1e-01)  (C=1e-02 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.378
+		min DCF (π=0.1) : 0.782
+		min DCF (π=0.9) : 0.887
+		time passed: 18 seconds
+	(Ci: 1) - 5-Fold Cross-Validation RBF SVM (gamma=1e-01)  (C=1e-01 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.296
+		min DCF (π=0.1) : 0.706
+		min DCF (π=0.9) : 0.722
+		time passed: 19 seconds
+	(Ci: 2) - 5-Fold Cross-Validation RBF SVM (gamma=1e-01)  (C=1e+00 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.271
+		min DCF (π=0.1) : 0.595
+		min DCF (π=0.9) : 0.668
+		time passed: 21 seconds
+	(Ci: 3) - 5-Fold Cross-Validation RBF SVM (gamma=1e-01)  (C=1e+01 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.256
+		min DCF (π=0.1) : 0.591
+		min DCF (π=0.9) : 0.696
+		time passed: 24 seconds
+Grid search iteration ended in 84 seconds
+Grid search iteration 9 / 20
+	(Ci: 0) - 5-Fold Cross-Validation RBF SVM (gamma=1e+00)  (C=1e-02 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.234
+		min DCF (π=0.1) : 0.614
+		min DCF (π=0.9) : 0.555
+		time passed: 19 seconds
+	(Ci: 1) - 5-Fold Cross-Validation RBF SVM (gamma=1e+00)  (C=1e-01 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.225
+		min DCF (π=0.1) : 0.623
+		min DCF (π=0.9) : 0.542
+		time passed: 19 seconds
+	(Ci: 2) - 5-Fold Cross-Validation RBF SVM (gamma=1e+00)  (C=1e+00 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.222
+		min DCF (π=0.1) : 0.529
+		min DCF (π=0.9) : 0.536
+		time passed: 23 seconds
+	(Ci: 3) - 5-Fold Cross-Validation RBF SVM (gamma=1e+00)  (C=1e+01 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.225
+		min DCF (π=0.1) : 0.523
+		min DCF (π=0.9) : 0.520
+		time passed: 24 seconds
+Grid search iteration ended in 87 seconds
+Grid search iteration 10 / 20
+	(Ci: 0) - 5-Fold Cross-Validation RBF SVM (gamma=1e+01)  (C=1e-02 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.554
+		min DCF (π=0.1) : 0.624
+		min DCF (π=0.9) : 0.621
+		time passed: 19 seconds
+	(Ci: 1) - 5-Fold Cross-Validation RBF SVM (gamma=1e+01)  (C=1e-01 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.554
+		min DCF (π=0.1) : 0.617
+		min DCF (π=0.9) : 0.620
+		time passed: 17 seconds
+	(Ci: 2) - 5-Fold Cross-Validation RBF SVM (gamma=1e+01)  (C=1e+00 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.567
+		min DCF (π=0.1) : 0.629
+		min DCF (π=0.9) : 0.645
+		time passed: 18 seconds
+	(Ci: 3) - 5-Fold Cross-Validation RBF SVM (gamma=1e+01)  (C=1e+01 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.571
+		min DCF (π=0.1) : 0.621
+		min DCF (π=0.9) : 0.635
+		time passed: 18 seconds
+Grid search iteration ended in 72 seconds
+Grid search iteration 11 / 20
+	(Ci: 0) - 5-Fold Cross-Validation RBF SVM (gamma=1e-03)  (C=1e-02 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.383
+		min DCF (π=0.1) : 0.839
+		min DCF (π=0.9) : 0.983
+		time passed: 10 seconds
+	(Ci: 1) - 5-Fold Cross-Validation RBF SVM (gamma=1e-03)  (C=1e-01 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.490
+		min DCF (π=0.1) : 0.932
+		min DCF (π=0.9) : 0.922
+		time passed: 12 seconds
+	(Ci: 2) - 5-Fold Cross-Validation RBF SVM (gamma=1e-03)  (C=1e+00 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.395
+		min DCF (π=0.1) : 0.825
+		min DCF (π=0.9) : 0.987
+		time passed: 13 seconds
+	(Ci: 3) - 5-Fold Cross-Validation RBF SVM (gamma=1e-03)  (C=1e+01 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.347
+		min DCF (π=0.1) : 0.807
+		min DCF (π=0.9) : 0.845
+		time passed: 20 seconds
+Grid search iteration ended in 57 seconds
+Grid search iteration 12 / 20
+	(Ci: 0) - 5-Fold Cross-Validation RBF SVM (gamma=1e-02)  (C=1e-02 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.350
+		min DCF (π=0.1) : 0.802
+		min DCF (π=0.9) : 0.866
+		time passed: 11 seconds
+	(Ci: 1) - 5-Fold Cross-Validation RBF SVM (gamma=1e-02)  (C=1e-01 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.345
+		min DCF (π=0.1) : 0.804
+		min DCF (π=0.9) : 0.859
+		time passed: 11 seconds
+	(Ci: 2) - 5-Fold Cross-Validation RBF SVM (gamma=1e-02)  (C=1e+00 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.348
+		min DCF (π=0.1) : 0.808
+		min DCF (π=0.9) : 0.849
+		time passed: 12 seconds
+	(Ci: 3) - 5-Fold Cross-Validation RBF SVM (gamma=1e-02)  (C=1e+01 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.342
+		min DCF (π=0.1) : 0.802
+		min DCF (π=0.9) : 0.788
+		time passed: 23 seconds
+Grid search iteration ended in 59 seconds
+Grid search iteration 13 / 20
+	(Ci: 0) - 5-Fold Cross-Validation RBF SVM (gamma=1e-01)  (C=1e-02 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.348
+		min DCF (π=0.1) : 0.802
+		min DCF (π=0.9) : 0.860
+		time passed: 10 seconds
+	(Ci: 1) - 5-Fold Cross-Validation RBF SVM (gamma=1e-01)  (C=1e-01 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.347
+		min DCF (π=0.1) : 0.801
+		min DCF (π=0.9) : 0.833
+		time passed: 10 seconds
+	(Ci: 2) - 5-Fold Cross-Validation RBF SVM (gamma=1e-01)  (C=1e+00 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.334
+		min DCF (π=0.1) : 0.775
+		min DCF (π=0.9) : 0.753
+		time passed: 14 seconds
+	(Ci: 3) - 5-Fold Cross-Validation RBF SVM (gamma=1e-01)  (C=1e+01 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.271
+		min DCF (π=0.1) : 0.722
+		min DCF (π=0.9) : 0.671
+		time passed: 25 seconds
+Grid search iteration ended in 61 seconds
+Grid search iteration 14 / 20
+	(Ci: 0) - 5-Fold Cross-Validation RBF SVM (gamma=1e+00)  (C=1e-02 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.343
+		min DCF (π=0.1) : 0.779
+		min DCF (π=0.9) : 0.765
+		time passed: 11 seconds
+	(Ci: 1) - 5-Fold Cross-Validation RBF SVM (gamma=1e+00)  (C=1e-01 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.285
+		min DCF (π=0.1) : 0.728
+		min DCF (π=0.9) : 0.700
+		time passed: 10 seconds
+	(Ci: 2) - 5-Fold Cross-Validation RBF SVM (gamma=1e+00)  (C=1e+00 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.244
+		min DCF (π=0.1) : 0.620
+		min DCF (π=0.9) : 0.715
+		time passed: 11 seconds
+	(Ci: 3) - 5-Fold Cross-Validation RBF SVM (gamma=1e+00)  (C=1e+01 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.225
+		min DCF (π=0.1) : 0.640
+		min DCF (π=0.9) : 0.689
+		time passed: 14 seconds
+Grid search iteration ended in 48 seconds
+Grid search iteration 15 / 20
+	(Ci: 0) - 5-Fold Cross-Validation RBF SVM (gamma=1e+01)  (C=1e-02 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.226
+		min DCF (π=0.1) : 0.521
+		min DCF (π=0.9) : 0.583
+		time passed: 11 seconds
+	(Ci: 1) - 5-Fold Cross-Validation RBF SVM (gamma=1e+01)  (C=1e-01 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.227
+		min DCF (π=0.1) : 0.519
+		min DCF (π=0.9) : 0.573
+		time passed: 11 seconds
+	(Ci: 2) - 5-Fold Cross-Validation RBF SVM (gamma=1e+01)  (C=1e+00 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.219
+		min DCF (π=0.1) : 0.525
+		min DCF (π=0.9) : 0.561
+		time passed: 12 seconds
+	(Ci: 3) - 5-Fold Cross-Validation RBF SVM (gamma=1e+01)  (C=1e+01 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.227
+		min DCF (π=0.1) : 0.547
+		min DCF (π=0.9) : 0.564
+		time passed: 13 seconds
+Grid search iteration ended in 48 seconds
+Grid search iteration 16 / 20
+	(Ci: 0) - 5-Fold Cross-Validation RBF SVM (gamma=1e-03)  (C=1e-02 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.347
+		min DCF (π=0.1) : 0.808
+		min DCF (π=0.9) : 0.860
+		time passed: 11 seconds
+	(Ci: 1) - 5-Fold Cross-Validation RBF SVM (gamma=1e-03)  (C=1e-01 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.344
+		min DCF (π=0.1) : 0.817
+		min DCF (π=0.9) : 0.838
+		time passed: 12 seconds
+	(Ci: 2) - 5-Fold Cross-Validation RBF SVM (gamma=1e-03)  (C=1e+00 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.473
+		min DCF (π=0.1) : 0.855
+		min DCF (π=0.9) : 0.964
+		time passed: 12 seconds
+	(Ci: 3) - 5-Fold Cross-Validation RBF SVM (gamma=1e-03)  (C=1e+01 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.347
+		min DCF (π=0.1) : 0.805
+		min DCF (π=0.9) : 0.808
+		time passed: 18 seconds
+Grid search iteration ended in 54 seconds
+Grid search iteration 17 / 20
+	(Ci: 0) - 5-Fold Cross-Validation RBF SVM (gamma=1e-02)  (C=1e-02 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.348
+		min DCF (π=0.1) : 0.814
+		min DCF (π=0.9) : 0.834
+		time passed: 10 seconds
+	(Ci: 1) - 5-Fold Cross-Validation RBF SVM (gamma=1e-02)  (C=1e-01 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.349
+		min DCF (π=0.1) : 0.817
+		min DCF (π=0.9) : 0.829
+		time passed: 10 seconds
+	(Ci: 2) - 5-Fold Cross-Validation RBF SVM (gamma=1e-02)  (C=1e+00 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.343
+		min DCF (π=0.1) : 0.798
+		min DCF (π=0.9) : 0.811
+		time passed: 12 seconds
+	(Ci: 3) - 5-Fold Cross-Validation RBF SVM (gamma=1e-02)  (C=1e+01 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.343
+		min DCF (π=0.1) : 0.804
+		min DCF (π=0.9) : 0.781
+		time passed: 21 seconds
+Grid search iteration ended in 55 seconds
+Grid search iteration 18 / 20
+	(Ci: 0) - 5-Fold Cross-Validation RBF SVM (gamma=1e-01)  (C=1e-02 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.348
+		min DCF (π=0.1) : 0.805
+		min DCF (π=0.9) : 0.834
+		time passed: 11 seconds
+	(Ci: 1) - 5-Fold Cross-Validation RBF SVM (gamma=1e-01)  (C=1e-01 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.343
+		min DCF (π=0.1) : 0.802
+		min DCF (π=0.9) : 0.816
+		time passed: 10 seconds
+	(Ci: 2) - 5-Fold Cross-Validation RBF SVM (gamma=1e-01)  (C=1e+00 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.335
+		min DCF (π=0.1) : 0.786
+		min DCF (π=0.9) : 0.753
+		time passed: 14 seconds
+	(Ci: 3) - 5-Fold Cross-Validation RBF SVM (gamma=1e-01)  (C=1e+01 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.268
+		min DCF (π=0.1) : 0.729
+		min DCF (π=0.9) : 0.664
+		time passed: 26 seconds
+Grid search iteration ended in 63 seconds
+Grid search iteration 19 / 20
+	(Ci: 0) - 5-Fold Cross-Validation RBF SVM (gamma=1e+00)  (C=1e-02 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.339
+		min DCF (π=0.1) : 0.796
+		min DCF (π=0.9) : 0.763
+		time passed: 10 seconds
+	(Ci: 1) - 5-Fold Cross-Validation RBF SVM (gamma=1e+00)  (C=1e-01 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.289
+		min DCF (π=0.1) : 0.738
+		min DCF (π=0.9) : 0.664
+		time passed: 10 seconds
+	(Ci: 2) - 5-Fold Cross-Validation RBF SVM (gamma=1e+00)  (C=1e+00 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.245
+		min DCF (π=0.1) : 0.617
+		min DCF (π=0.9) : 0.717
+		time passed: 11 seconds
+	(Ci: 3) - 5-Fold Cross-Validation RBF SVM (gamma=1e+00)  (C=1e+01 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.220
+		min DCF (π=0.1) : 0.646
+		min DCF (π=0.9) : 0.716
+		time passed: 15 seconds
+Grid search iteration ended in 48 seconds
+Grid search iteration 20 / 20
+	(Ci: 0) - 5-Fold Cross-Validation RBF SVM (gamma=1e+01)  (C=1e-02 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.210
+		min DCF (π=0.1) : 0.483
+		min DCF (π=0.9) : 0.550
+		time passed: 10 seconds
+	(Ci: 1) - 5-Fold Cross-Validation RBF SVM (gamma=1e+01)  (C=1e-01 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.211
+		min DCF (π=0.1) : 0.481
+		min DCF (π=0.9) : 0.549
+		time passed: 11 seconds
+	(Ci: 2) - 5-Fold Cross-Validation RBF SVM (gamma=1e+01)  (C=1e+00 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.201
+		min DCF (π=0.1) : 0.520
+		min DCF (π=0.9) : 0.525
+		time passed: 12 seconds
+	(Ci: 3) - 5-Fold Cross-Validation RBF SVM (gamma=1e+01)  (C=1e+01 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.205
+		min DCF (π=0.1) : 0.530
+		min DCF (π=0.9) : 0.532
+		time passed: 12 seconds
+Grid search iteration ended in 47 seconds
+Grid search on RBF SVM without class balancing ended in 1281 seconds
