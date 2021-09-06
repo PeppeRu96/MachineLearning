@@ -1,6 +1,7 @@
 import numpy as np
 import scipy.optimize
 import scipy.special
+from scipy.spatial import distance_matrix
 
 import preproc.dstools as dst
 
@@ -27,6 +28,7 @@ class SVM_Classifier:
         else:
             self.alfas = svm_train(DTR, LTR, C, K, pi1, kernel, maxfun, maxiter, factr, verbose)
 
+
     def compute_scores(self, D):
         S = svm_compute_scores(D, self.K, self.kernel, self.w_hat, self.alfas, self.DTR, self.LTR)
         return S
@@ -40,33 +42,40 @@ class SVM_Classifier:
 
     @staticmethod
     def Kernel_Polynomial(d, c):
-        def kernel(x1, x2):
-            return (x1.T @ x2 + c)**d
+        def kernel(D1, D2):
+            return (D1.T @ D2 + c) ** d
         return kernel
 
     @staticmethod
     def Kernel_RadialBasisFunction(gamma):
-        def kernel(x1, x2):
-            return np.exp(-gamma * ((x1-x2) * (x1-x2)).sum())
+        def kernel(D1, D2):
+            return np.exp(-gamma * (distance_matrix(D1.T, D2.T) ** 2))
         return kernel
 
+def svm_dual_obj_wrapper(DTR, LTR, K=None, kernel=None):
+    Z = 2 * LTR - 1
+    Z = Z.reshape((1, Z.shape[0]))
+    Z = Z.T @ Z
+    if kernel is None:
+        G = DTR.T @ DTR
+    else:
+        G1 = kernel(DTR, DTR)
+        if K is not None:
+             G = G1 + K**2
 
-def linear_svm_dual_obj_wrapper(DTR, LTR):
-    LTR = LTR.reshape((1, LTR.shape[0]))
-    Z = LTR.T @ LTR
+    H = Z * G
+
+    ones = np.ones(DTR.shape[1]).reshape(DTR.shape[1], 1)
     def svm_dual_obj(alfa):
         alfa = alfa.reshape(alfa.shape[0], 1)
-        G = DTR.T @ DTR
-        H = Z * G
-        ones = np.ones(DTR.shape[1]).reshape(DTR.shape[1], 1)
         L_hat_dual = 0.5 * (alfa.T @ H @ alfa) - alfa.T @ ones
-        grad = H @ alfa - ones
-        grad = grad.reshape(DTR.shape[1])
+        grad = (H @ alfa - ones).flatten()
         return (L_hat_dual, grad)
 
     return svm_dual_obj
 
 def linear_svm_primal_obj_wrapper(DTR, LTR, C):
+    Z = LTR * 2 - 1
     def svm_primal_obj(w):
         w = w.reshape(w.shape[0], 1)
         regularization_term = 0.5 * (w*w).sum()
@@ -74,37 +83,13 @@ def linear_svm_primal_obj_wrapper(DTR, LTR, C):
         tmp = 0.0
         for i in range(DTR.shape[1]):
             xi = DTR[:, i].reshape((DTR.shape[0], 1))
-            tmp = tmp + max(0, 1 - LTR[i] * (w.T @ xi))
+            tmp = tmp + max(0, 1 - Z[i] * (w.T @ xi))
 
         tmp = tmp * C
         Jhat = tmp + regularization_term
         return Jhat
 
     return svm_primal_obj
-
-def svm_dual_obj_wrapper(DTR, LTR, K, kernel):
-    def svm_dual_obj(alfa):
-        alfa = alfa.reshape(alfa.shape[0], 1)
-
-        # Calculate H
-        H = np.zeros((DTR.shape[1], DTR.shape[1]))
-        for i in range(DTR.shape[1]):
-            xi = DTR[:, i].reshape(DTR.shape[0], 1)
-            for j in range(DTR.shape[1]):
-                if (j >= i):
-                    xj = DTR[:, j].reshape(DTR.shape[0], 1)
-                    H[i, j] = LTR[i] * LTR[j] * (kernel(xi, xj) + K**2)
-                    if i != j:
-                        H[j, i] = H[i, j]
-
-        ones = np.ones(DTR.shape[1]).reshape(DTR.shape[1], 1)
-        # This corresponds to minus the objective function to maximize (J)
-        L_hat_dual = 0.5 * (alfa.T @ H @ alfa) - alfa.T @ ones
-        grad = H @ alfa - ones
-        grad = grad.reshape(DTR.shape[1])
-        return (L_hat_dual, grad)
-
-    return svm_dual_obj
 
 def svm_train(DTR, LTR, C, K, pi1=None, kernel=None, maxfun=15000, maxiter=15000, factr=10000000.0, verbose=0):
     if verbose:
@@ -114,12 +99,11 @@ def svm_train(DTR, LTR, C, K, pi1=None, kernel=None, maxfun=15000, maxiter=15000
         if kernel is not None:
             print("Kernel: ", kernel.__name__)
 
-    LTRz = np.array([1 if (label == 1) else -1 for label in LTR])
     if kernel is None:
         DTRhat = np.vstack((DTR, np.ones(DTR.shape[1]).reshape(1, DTR.shape[1]) * K))
-        dual_obj = linear_svm_dual_obj_wrapper(DTRhat, LTRz)
+        dual_obj = svm_dual_obj_wrapper(DTRhat, LTR)
     else:
-        dual_obj = svm_dual_obj_wrapper(DTR, LTRz, K, kernel)
+        dual_obj = svm_dual_obj_wrapper(DTR, LTR, K, kernel)
 
     x0 = np.zeros(DTR.shape[1])
 
@@ -136,31 +120,22 @@ def svm_train(DTR, LTR, C, K, pi1=None, kernel=None, maxfun=15000, maxiter=15000
     if verbose:
         print("Dual loss: ", -fMin)
     if kernel is None:
-        w_hat = (alfas * LTRz * DTRhat).sum(axis=1)
+        Z = 2 * LTR - 1
+        w_hat = (alfas * Z * DTRhat).sum(axis=1)
+        w_hat = w_hat.reshape(w_hat.shape[0], 1)
         return w_hat, alfas
 
     return alfas
 
 def svm_compute_scores(D, K, kernel=None, w_hat=None, alfas=None, DTR=None, LTR=None):
     if kernel is None:
-        w_hat = w_hat.reshape(w_hat.shape[0], 1)
         Dhat = np.vstack((D, np.ones(D.shape[1]).reshape(1, D.shape[1]) * K))
-        S = w_hat.T @ Dhat
-        S = S.flatten()
+        S = (w_hat.T @ Dhat).flatten()
     else:
-        LTRz = np.array([1 if (label == 1) else -1 for label in LTR])
-
-        S = []
-        # for each sample, we compute the score
-        for i in range(D.shape[1]):
-            xt = D[:, i].reshape((DTR.shape[0], 1))
-            score = 0.0
-            for j in range(LTRz.shape[0]):
-                if alfas[j] == 0:
-                    continue
-                xi = DTR[:, j].reshape((DTR.shape[0], 1))
-                score = score + alfas[j] * LTRz[j] * (kernel(xi, xt) + K**2)
-            S.append(score)
+        Z = LTR * 2 - 1
+        Z = Z.reshape(Z.shape[0], 1)
+        alfas = alfas.reshape(alfas.shape[0], 1)
+        S = ((kernel(DTR, D) + K ** 2) * Z * alfas).sum(axis=0)
 
     return S
 
@@ -172,10 +147,9 @@ def svm_inference(D, K, kernel=None, w_hat=None, alfas=None, DTR=None, LTR=None)
 
 def svm_duality_gap(DTR, LTR, C, K, w_hat, alfas):
     DTRhat = np.vstack((DTR, np.ones(DTR.shape[1]).reshape(1, DTR.shape[1]) * K))
-    LTRz = np.array([1 if (label == 1) else -1 for label in LTR])
 
-    primal_obj = linear_svm_primal_obj_wrapper(DTRhat, LTRz, C)
-    dual_obj = linear_svm_dual_obj_wrapper(DTRhat, LTRz)
+    primal_obj = linear_svm_primal_obj_wrapper(DTRhat, LTR, C)
+    dual_obj = svm_dual_obj_wrapper(DTRhat, LTR)
 
     primal_loss = primal_obj(w_hat)
     dual_loss = -dual_obj(alfas)[0]

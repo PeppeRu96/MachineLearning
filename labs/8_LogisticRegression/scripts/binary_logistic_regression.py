@@ -22,7 +22,6 @@ if __name__ == "__main__":
         lr_model = LogisticRegressionClassifier(2)
         lr_model.train(DTR, LTR, l, verbose=1)
         pred_labels = lr_model.inference(DTE)
-
         correct_predictions = (pred_labels == LTE).sum()
         accuracy = correct_predictions / pred_labels.shape[0]
         print("Accuracy: ", accuracy)

@@ -3,7 +3,6 @@ import sklearn.datasets
 import preproc.dstools as dst
 from classifiers.svm import SVM_Classifier
 
-
 def load_iris_binary():
     D, L = sklearn.datasets.load_iris()['data'].T, sklearn.datasets.load_iris()['target']
     D = D[:, L != 0]  # We remove setosa from D
@@ -41,10 +40,11 @@ if __name__ == "__main__":
         for K in Ks:
             for C in Cs:
                 svm = SVM_Classifier()
-                svm.train(DTR, LTR, C, K, pi1=0.5, kernel=kernel, factr=1.0, verbose=0)
+                svm.train(DTR, LTR, C, K, kernel=kernel, factr=1.0, verbose=0)
                 pred_labels = svm.inference(DTE)
                 correct_predictions = (pred_labels == LTE).sum()
                 accuracy = correct_predictions / pred_labels.shape[0]
+
                 print("{:>10}{:>10.1f}{:>30}{:>20.1f}%".format(K, C, ker_names[i], (1 - accuracy) * 100))
     print(
         "----------------------------------------------------------------------------------------------------------------")
