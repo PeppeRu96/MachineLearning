@@ -5,7 +5,8 @@ import scipy.special
 import preproc.dstools as dst
 
 class LogisticRegressionClassifier:
-    def __init__(self):
+    def __init__(self, K):
+        self.K = K
         self.DTR = None
         self.LTR = None
         self.l = 0
@@ -21,12 +22,11 @@ class LogisticRegressionClassifier:
         self.pi1 = pi1
         self.expand_feature_space_func = expand_feature_space_func
 
-        self.w, self.b = LR_Classifier_train(DTR, LTR, l, pi1, expand_feature_space_func, maxfun, maxiter, factr,
+        self.w, self.b = LR_Classifier_train(DTR, LTR, self.K, l, pi1, expand_feature_space_func, maxfun, maxiter, factr,
                                              verbose)
 
     def inference(self, D):
-        pred_labels = LR_Classifier_inference(D, self.w, self.b, self.expand_feature_space_func)
-        return pred_labels
+        return LR_Classifier_inference(D, self.w, self.b, self.expand_feature_space_func)
 
     def compute_binary_classifier_llr(self, D):
         return LR_Classifier_compute_llr(D, self.w, self.b, self.expand_feature_space_func)
@@ -34,73 +34,87 @@ class LogisticRegressionClassifier:
     @staticmethod
     def quadratic_feature_expansion(x):
         """
-        Computes the quadratic expansion phi(x) = [vec(x@x.T), x].T
-        :param x: feature vector (it has to be a column vector)
-        :return: a column vector containing the expanded input vector
+        Computes the quadratic expansion phi(x) = [vec(x@x.T), x].T of one or more column vectors
+        :param x: feature vector (it has to be a column vector) or a matrix of column feature vectors
+        :return: a column vector containing the expanded input vector or a matrix of column expanded vectors
         """
-        m = x @ x.T
-        phi_x = m.flatten(order='F')
-        phi_x = phi_x.reshape((phi_x.shape[0], 1))
-        phi_x = np.vstack((phi_x, x))
+        if (x.shape[1] > 1):
+            X_t = x.T
+            X = X_t.reshape(X_t.shape[0], X_t.shape[1], 1)
+            phi_x = X @ X.transpose((0, 2, 1))
+            phi_x = phi_x.reshape((phi_x.shape[0], phi_x.shape[1] * phi_x.shape[2]))
+            phi_x = phi_x.T
+            phi_x = np.vstack((phi_x, x))
+        else:
+            m = x @ x.T
+            phi_x = m.flatten(order='F')
+            phi_x = phi_x.reshape((phi_x.shape[0], 1))
+            phi_x = np.vstack((phi_x, x))
+
         return phi_x
 
+# Optimized for efficiency (it requires some additional memory due to additional views of the same data)
+def logreg_obj_wrapper(DTR, LTR, l, pi1=None):
+    def compute_sum(D, Z, w, b):
+        tmp = - Z * ( (w.T @ D).flatten() + b )
+        return np.logaddexp(np.array([0]), tmp).sum()
 
-def logreg_obj_wrapper(DTR, LTR, l, pi1=None, expand_feature_space_func=None):
+    def compute_sum0(D, w, b):
+        tmp = (w.T @ D).flatten() + b
+        return np.logaddexp(np.array([0]), tmp).sum()
+
+    def compute_sum1(D, w, b):
+        tmp = -1 * ( (w.T @ D).flatten() + b )
+        return np.logaddexp(np.array([0]), tmp).sum()
+
+    regularizer = 0.5 * l
+    Z = 2 * LTR - 1
+    DTR0 = DTR[:, (LTR == 0)]
+    DTR1 = DTR[:, (LTR == 1)]
+
     def logreg_obj(v):
         w, b = v[0:-1], v[-1]
         w = w.reshape((w.shape[0], 1))
-        regularization_term = 0.5 * l * (w ** 2).sum()
+        regularization_term = regularizer * (w ** 2).sum()
 
-        J = 0
-        Jv = np.zeros(2)
-        for i in range(DTR.shape[1]):
-            xi = DTR[:, i]
-            xi = xi.reshape(xi.shape[0], 1)
-            if expand_feature_space_func is not None:
-                xi = expand_feature_space_func(xi)
-            ci = LTR[i]
-            zi = 2 * ci - 1
-            tmp = ((w.T @ xi) + b).flatten()
-            if pi1 is None:
-                # J = J + np.log1p(np.exp(-zi*tmp))
-                J = J + np.logaddexp(np.array([0]), (-zi * tmp))
-            else:
-                # Jv[ci] = Jv[ci] + np.log1p(np.exp(-zi * tmp))
-                Jv[ci] = Jv[ci] + np.logaddexp(np.array([0]), (-zi * tmp))
-
-        if pi1 is None:
-            J = J / DTR.shape[1]
-        else:
-            Jv[0] = Jv[0] * (1 - pi1) / DTR[:, (LTR == 0)].shape[1]
-            Jv[1] = Jv[1] * (pi1) / DTR[:, (LTR == 1)].shape[1]
-            J = Jv[0] + Jv[1]
-
-        J = J + regularization_term
+        J = compute_sum(DTR, Z, w, b) / DTR.shape[1] + regularization_term
         return J
 
-    return logreg_obj
+    def logreg_obj_pi1(v):
+        w, b = v[0:-1], v[-1]
+        w = w.reshape((w.shape[0], 1))
+        regularization_term = regularizer * (w ** 2).sum()
+
+        J0 = compute_sum0(DTR0, w, b) * (1 - pi1) / DTR0.shape[1]
+        J1 = compute_sum1(DTR1, w, b) * pi1 / DTR1.shape[1]
+        J = J0 + J1 + regularization_term
+        return J
+
+    if pi1 is None:
+        return logreg_obj
+
+    return logreg_obj_pi1
 
 
-def LR_Classifier_train(DTR, LTR, l, pi1=None, expand_feature_space_func=None, maxfun=15000, maxiter=15000, factr=1e7,
+def LR_Classifier_train(DTR, LTR, K, l, pi1=None, expand_feature_space_func=None, maxfun=15000, maxiter=15000, factr=1e7,
                         verbose=0):
+    # K: number of classes
     if verbose:
         print("Training Logistic Regression classifier using Average Risk Minimizer method..")
         print("Lambda regularizer: ", l)
-        # print("Max function calls: ", maxfun)
-        # print("Max iterations: ", maxiter)
+
+    if expand_feature_space_func is not None:
+        DTR = expand_feature_space_func(DTR)
 
     D = DTR.shape[0]
-    K = len(set(LTR))
+
     # Multiclass or binary LR
     if K > 2:
-        logreg_obj = logreg_multiclass_obj_wrapper(DTR, LTR, l)
+        logreg_obj = logreg_multiclass_obj_wrapper(DTR, LTR, K, l)
         x0 = np.zeros(D * K + K)
     else:
-        logreg_obj = logreg_obj_wrapper(DTR, LTR, l, pi1=pi1, expand_feature_space_func=expand_feature_space_func)
-        if expand_feature_space_func is None:
-            x0 = np.zeros(D + 1)
-        else:
-            x0 = np.zeros(D * (D + 1) + 1)
+        logreg_obj = logreg_obj_wrapper(DTR, LTR, l, pi1=pi1)
+        x0 = np.zeros(D + 1)
 
     xMin, fMin, d = scipy.optimize.fmin_l_bfgs_b(logreg_obj, x0, maxfun=maxfun, maxiter=maxiter, factr=factr,
                                                  approx_grad=True)
@@ -108,13 +122,10 @@ def LR_Classifier_train(DTR, LTR, l, pi1=None, expand_feature_space_func=None, m
     if K > 2:
         w, b = xMin[0:D * K].reshape((D, K)), xMin[D * K:].reshape((K, 1))
     else:
-        w, b = xMin[0:-1].T, xMin[-1]
+        w, b = xMin[0:-1], xMin[-1]
         w = w.reshape((w.shape[0], 1))
 
     if verbose:
-        # print("Logistic Regression W direction and bias b:")
-        # print("w*: ", w)
-        # print("b*: ", b)
         print("J(w*, b*): ", fMin)
 
     return w, b
@@ -122,14 +133,7 @@ def LR_Classifier_train(DTR, LTR, l, pi1=None, expand_feature_space_func=None, m
 
 def LR_Classifier_compute_llr(D, w, b, expand_feature_space_func=None):
     if expand_feature_space_func is not None:
-        dim = D.shape[0]
-        Dexpanded = np.zeros((dim * (dim + 1), D.shape[1]))
-        for i in range(D.shape[1]):
-            xi = D[:, i]
-            xi = xi.reshape((xi.shape[0], 1))
-            xi = expand_feature_space_func(xi)
-            Dexpanded[:, i:i + 1] = xi
-        D = Dexpanded
+        D = expand_feature_space_func(D)
 
     S = (w.T @ D + b).flatten()
 
@@ -138,14 +142,7 @@ def LR_Classifier_compute_llr(D, w, b, expand_feature_space_func=None):
 
 def LR_Classifier_inference(D, w, b, expand_feature_space_func=None):
     if expand_feature_space_func is not None:
-        dim = D.shape[0]
-        Dexpanded = np.zeros((dim * (dim + 1), D.shape[1]))
-        for i in range(D.shape[1]):
-            xi = D[:, i]
-            xi = xi.reshape((xi.shape[0], 1))
-            xi = expand_feature_space_func(xi)
-            Dexpanded[:, i:i + 1] = xi
-        D = Dexpanded
+        D = expand_feature_space_func(D)
 
     S = (w.T @ D + b)
 
@@ -157,10 +154,9 @@ def LR_Classifier_inference(D, w, b, expand_feature_space_func=None):
 
 
 # MULTICLASS LR
-def logreg_multiclass_obj_wrapper(DTR, LTR, l):
+def logreg_multiclass_obj_wrapper(DTR, LTR, K, l):
     def logreg_multiclass_obj(v):
         D = DTR.shape[0]  # dimensionality of feature
-        K = len(set(LTR))  # number of classes
 
         W = v[0:D * K].reshape((D, K))
         b = v[D * K:].reshape((K, 1))
@@ -195,7 +191,7 @@ def cross_validate_lr(folds_data, folds_labels, preproc_conf, lambda_regularizer
         DTR, DTE = preproc_conf.apply_preproc_pipeline(DTR, LTR, DTE)
 
         # Train
-        lr = LogisticRegressionClassifier()
+        lr = LogisticRegressionClassifier(2)
         efs = LogisticRegressionClassifier.quadratic_feature_expansion if quadratic else None
         lr.train(DTR, LTR, lambda_regularizer, pi1=pi1, expand_feature_space_func=efs)
 

@@ -19,7 +19,7 @@ if __name__ == "__main__":
     print("LINEAR LR")
     for l in lambdas:
         print("Lambda: ", l)
-        lr_model = LogisticRegressionClassifier()
+        lr_model = LogisticRegressionClassifier(2)
         lr_model.train(DTR, LTR, l, verbose=1)
         pred_labels = lr_model.inference(DTE)
 
@@ -32,7 +32,7 @@ if __name__ == "__main__":
     print("QUADRATIC LR")
     for l in lambdas:
         print("Lambda: ", l)
-        lr_model = LogisticRegressionClassifier()
+        lr_model = LogisticRegressionClassifier(2)
         lr_model.train(DTR, LTR, l, expand_feature_space_func=LogisticRegressionClassifier.quadratic_feature_expansion, verbose=1)
         pred_labels = lr_model.inference(DTE)
 
