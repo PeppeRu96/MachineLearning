@@ -21,3 +21,6 @@ class GMM_Classifier:
         pred_labels = np.argmax(SPost, 0)
 
         return pred_labels
+
+    def compute_binary_llr(self, D):
+        return (gau.logpdf_GMM(D, self.gmms[1]) - gau.logpdf_GMM(D, self.gmms[0])).flatten()
