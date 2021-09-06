@@ -13,6 +13,7 @@ def load_iris():
 if (__name__ == "__main__"):
     print("Loading IRIS dataset..")
     D, L = load_iris()
+    K = len(set(L))
     # DTR and LTR are training data and labels, DTE and LTE are evaluation data and labels
     (DTR, LTR), (DTE, LTE) = dst.split_db_2to1(D, L, 2.0/3.0)
 
@@ -20,7 +21,7 @@ if (__name__ == "__main__"):
     print("Labels shape: ", L.shape)
     print(" ")
 
-    mvg = MVG_Classifier()
+    mvg = MVG_Classifier(K)
 
     mvg.train(DTR, LTR)
 
@@ -35,19 +36,19 @@ if (__name__ == "__main__"):
 
     # Naive Bayes Gaussian
     print("Evaluating Naive Bayes Gaussian classifier against test dataset (Test samples: %d) with logarithm densities.." % DTE.shape[1])
-    naive_gauss = MVG_Classifier()
+    naive_gauss = MVG_Classifier(K)
     naive_gauss.train(DTR, LTR, naive=True, verbose=True)
     naive_gauss.evaluate(DTE, LTE, Pc)
 
     # Tied Gaussian
     print("Evaluating Tied Gaussian classifier against test dataset (Test samples: %d) with logarithm densities.." %DTE.shape[1])
-    tied_gauss = MVG_Classifier()
+    tied_gauss = MVG_Classifier(K)
     tied_gauss.train(DTR, LTR, naive=False, tied=True, verbose=True)
     tied_gauss.evaluate(DTE, LTE, Pc)
 
     # Naive Tied Gaussian
     print("Evaluating Naive Tied Gaussian classifier against test dataset (Test samples: %d) with logarithm densities.." % DTE.shape[1])
-    naive_tied_gauss = MVG_Classifier()
+    naive_tied_gauss = MVG_Classifier(K)
     naive_tied_gauss.train(DTR, LTR, naive=True, tied=True, verbose=True)
     naive_tied_gauss.evaluate(DTE, LTE, Pc)
 

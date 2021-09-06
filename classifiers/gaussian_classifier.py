@@ -7,9 +7,10 @@ import preproc.dstools as dst
 
 class MVG_Classifier:
 
-    def __init__(self):
+    def __init__(self, K):
         self.DTR = None
         self.LTR = None
+        self.K = K
         self.mu = None
         self.C = None
         self.naive = False
@@ -19,7 +20,7 @@ class MVG_Classifier:
         self.DTR = DTR
         self.LTR = LTR
 
-        mu, C = MVG_classifier_train(DTR, LTR, naive, tied, verbose)
+        mu, C = MVG_classifier_train(DTR, LTR, self.K, naive, tied, verbose)
         self.mu = mu
         self.C = C
         self.naive = naive
@@ -57,7 +58,7 @@ class MVG_Classifier:
             correct = 0
 
             for DTR, LTR, DTE, LTE in dst.kfold_generate(folds, folds_labels):
-                mvg = MVG_Classifier()
+                mvg = MVG_Classifier(self.K)
                 mvg.train(DTR, LTR, self.naive, self.tied)
                 pred_labels = mvg.inference(DTE, Pc)
                 cnt = (pred_labels == LTE).sum()
@@ -78,7 +79,7 @@ class MVG_Classifier:
 # Train a multivariate gaussian classifier given a train dataset DTR-LTR
 # It returns a mu np array with shape (#dimensions, #classes) where each column i contains the mean for the class i
 # and a C np array with shape (#classes, #dimensions, #dimensions) containing the covariance matrices for each class
-def MVG_classifier_train(DTR, LTR, naive=False, tied=False, verbose=0):
+def MVG_classifier_train(DTR, LTR, K, naive=False, tied=False, verbose=0):
     if verbose:
         naive_str = ""
         tied_str = ""
@@ -90,7 +91,7 @@ def MVG_classifier_train(DTR, LTR, naive=False, tied=False, verbose=0):
     # Calculating empirical mean and variance for each class which correspond to the ML estimated
     mu = []
     C = []
-    nc = len(set(LTR))
+    nc = K
     for i in range(nc):
         DTRi = DTR[:, (LTR == i)]
         mu_i = DTRi.mean(1)

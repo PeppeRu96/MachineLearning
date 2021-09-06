@@ -14,6 +14,7 @@ def load_iris():
 if (__name__ == "__main__"):
     print("Loading IRIS dataset..")
     D, L = load_iris()
+    K = len(set(L))
     # DTR and LTR are training data and labels, DTE and LTE are evaluation data and labels
     (DTR, LTR), (DTE, LTE) = dst.split_db_2to1(D, L, 2.0/3.0)
 
@@ -22,7 +23,7 @@ if (__name__ == "__main__"):
     print(" ")
 
     # Confusion matrix of MVG
-    mvg = MVG_Classifier()
+    mvg = MVG_Classifier(K)
     mvg.train(DTR, LTR)
     pred_labels = mvg.inference(DTE, Pc)
     print("Confusion Matrix of MVG:")
@@ -30,7 +31,7 @@ if (__name__ == "__main__"):
     print("")
 
     # Confusion matrix of Tied MVG
-    tied_gauss = MVG_Classifier()
+    tied_gauss = MVG_Classifier(K)
     tied_gauss.train(DTR, LTR, naive=False, tied=True)
     pred_labels = tied_gauss.inference(DTE, Pc)
     print("Confusion matrix of Tied MVG:")
