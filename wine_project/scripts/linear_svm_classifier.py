@@ -96,8 +96,8 @@ if __name__ == "__main__":
 
     def linear_svm_class_balancing():
         # We select the best preproc configuration and the best K
-        preproc_conf = PreprocessConf([])
-        K = 1
+        preproc_conf = PreprocessConf([PreprocStage(Preproc.Gaussianization)])
+        K = 10
         Cs = np.logspace(-2, 1, 4)
 
         # Then, we try the best hyperparameters but now class-balancing with respect to the target application
@@ -112,11 +112,11 @@ if __name__ == "__main__":
         print("Operation finished")
 
     # Grid search to select the best hyperparameters
-    with LoggingPrinter(incremental_path(TRAINLOGS_BASEPATH, LINEAR_SVM_TRAINLOG_FNAME)):
-        linear_svm_gridsearch()
+    # with LoggingPrinter(incremental_path(TRAINLOGS_BASEPATH, LINEAR_SVM_TRAINLOG_FNAME)):
+    #     linear_svm_gridsearch()
 
     # Using the best hyperparameters, try class-balancing w.r.t target applications
-    # with LoggingPrinter(incremental_path(TRAINLOGS_BASEPATH, LINEAR_SVM_CLASS_BALANCING_TRAINLOG_FNAME)):
-    #     linear_svm_class_balancing()
+    with LoggingPrinter(incremental_path(TRAINLOGS_BASEPATH, LINEAR_SVM_CLASS_BALANCING_TRAINLOG_FNAME)):
+        linear_svm_class_balancing()
 
     plt.show()

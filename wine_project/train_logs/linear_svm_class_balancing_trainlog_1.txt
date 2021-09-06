@@ -1,0 +1,68 @@
+Trying the best hyperparameters but class-balancing w.r.t target applications..
+Target application 0 (π=0.5) specific training (class-balancing) through cross-validation against different values of C
+	(Ci: 0) - 5-Fold Cross-Validation Linear SVM with prior weight specific training (π=0.5) (C=1e-02 - K=10.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.364
+		min DCF (π=0.1) : 0.793
+		min DCF (π=0.9) : 0.833
+		time passed: 137 seconds
+	(Ci: 1) - 5-Fold Cross-Validation Linear SVM with prior weight specific training (π=0.5) (C=1e-01 - K=10.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.353
+		min DCF (π=0.1) : 0.821
+		min DCF (π=0.9) : 0.812
+		time passed: 655 seconds
+	(Ci: 2) - 5-Fold Cross-Validation Linear SVM with prior weight specific training (π=0.5) (C=1e+00 - K=10.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.354
+		min DCF (π=0.1) : 0.827
+		min DCF (π=0.9) : 0.809
+		time passed: 1893 seconds
+	(Ci: 3) - 5-Fold Cross-Validation Linear SVM with prior weight specific training (π=0.5) (C=1e+01 - K=10.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.354
+		min DCF (π=0.1) : 0.824
+		min DCF (π=0.9) : 0.802
+		time passed: 2687 seconds
+Target application 0 (π=0.5) cross-validation ended in 5374 seconds
+Target application 1 (π=0.1) specific training (class-balancing) through cross-validation against different values of C
+	(Ci: 0) - 5-Fold Cross-Validation Linear SVM with prior weight specific training (π=0.1) (C=1e-02 - K=10.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.576
+		min DCF (π=0.1) : 0.950
+		min DCF (π=0.9) : 0.980
+		time passed: 221 seconds
+	(Ci: 1) - 5-Fold Cross-Validation Linear SVM with prior weight specific training (π=0.1) (C=1e-01 - K=10.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.605
+		min DCF (π=0.1) : 0.941
+		min DCF (π=0.9) : 0.979
+		time passed: 246 seconds
+	(Ci: 2) - 5-Fold Cross-Validation Linear SVM with prior weight specific training (π=0.1) (C=1e+00 - K=10.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.613
+		min DCF (π=0.1) : 0.921
+		min DCF (π=0.9) : 0.974
+		time passed: 395 seconds
+	(Ci: 3) - 5-Fold Cross-Validation Linear SVM with prior weight specific training (π=0.1) (C=1e+01 - K=10.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.522
+		min DCF (π=0.1) : 0.916
+		min DCF (π=0.9) : 0.976
+		time passed: 1225 seconds
+Target application 1 (π=0.1) cross-validation ended in 2089 seconds
+Target application 2 (π=0.9) specific training (class-balancing) through cross-validation against different values of C
+	(Ci: 0) - 5-Fold Cross-Validation Linear SVM with prior weight specific training (π=0.9) (C=1e-02 - K=10.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.383
+		min DCF (π=0.1) : 0.943
+		min DCF (π=0.9) : 0.687
+		time passed: 182 seconds
+	(Ci: 1) - 5-Fold Cross-Validation Linear SVM with prior weight specific training (π=0.9) (C=1e-01 - K=10.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.391
+		min DCF (π=0.1) : 0.929
+		min DCF (π=0.9) : 0.670
+		time passed: 327 seconds
+	(Ci: 2) - 5-Fold Cross-Validation Linear SVM with prior weight specific training (π=0.9) (C=1e+00 - K=10.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.391
+		min DCF (π=0.1) : 0.943
+		min DCF (π=0.9) : 0.645
+		time passed: 716 seconds
+	(Ci: 3) - 5-Fold Cross-Validation Linear SVM with prior weight specific training (π=0.9) (C=1e+01 - K=10.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.391
+		min DCF (π=0.1) : 0.942
+		min DCF (π=0.9) : 0.650
+		time passed: 1726 seconds
+Target application 2 (π=0.9) cross-validation ended in 2952 seconds
+Operation finished

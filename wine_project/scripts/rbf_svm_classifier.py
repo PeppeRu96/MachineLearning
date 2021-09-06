@@ -22,7 +22,7 @@ if __name__ == "__main__":
         pi1_str = "with prior weight specific training (π=%.1f)" % (specific_pi1) if specific_pi1 is not None else ""
         minDCFs = np.zeros((len(Cs), len(applications)))
         for Ci, C in enumerate(Cs):
-            print("\t(Ci: {}) - 5-Fold Cross-Validation Polynomial SVM (gamma={.0e}) {} (C={:.0e} - K={:.1f}) - Preprocessing: {}".format(
+            print("\t(Ci: {}) - 5-Fold Cross-Validation RBF SVM (gamma={:.0e}) {} (C={:.0e} - K={:.1f}) - Preprocessing: {}".format(
                 Ci, g, pi1_str, C, K, conf))
             time_start = time.perf_counter()
             scores, labels = cross_validate_svm(folds_data, folds_labels, conf, C, K, specific_pi1=specific_pi1, kernel=kernel)
@@ -36,7 +36,7 @@ if __name__ == "__main__":
         # Create a plot
         plt.figure(figsize=[13, 9.7])
         pi1_str = " - pi1: %.1f" % specific_pi1 if specific_pi1 is not None else ""
-        title = "RBF SVM (gamma: {.0e}) (K: {:.1f}{}) - {}".format(g, K, pi1_str, conf.to_compact_string())
+        title = "RBF SVM (gamma: {:.0e}) (K: {:.1f}{}) - {}".format(g, K, pi1_str, conf.to_compact_string())
         plt.title(title)
         plt.xlabel("C")
         plt.ylabel("minDCF")
@@ -51,33 +51,22 @@ if __name__ == "__main__":
             pi1_without_points = pi1_without_points.replace(".", "")
         pi1_str = "_train-pi1-%s" % pi1_without_points if specific_pi1 is not None else ""
 
-        g_str = "_gamma-{.0e}".format(g)
+        g_str = "_gamma-{:.0e}".format(g)
         Kstr = "%.1f" % K
         Kstr = Kstr.replace(".", "-")
         Kstr = "K-" + Kstr
-        plt.savefig("%s%s%s_%s%s" % (POLYNOMIAL_SVM_GRAPH_PATH, Kstr, g_str, conf.to_compact_string(), pi1_str))
+        plt.savefig("%s%s%s_%s%s" % (RBF_SVM_GRAPH_PATH, Kstr, g_str, conf.to_compact_string(), pi1_str))
 
     def rbf_svm_gridsearch():
         # Preprocessing configurations to try
         preproc_configurations = [
-            PreprocessConf([]),
-            PreprocessConf([PreprocStage(Preproc.Gaussianization)]),
-            PreprocessConf([
-                PreprocStage(Preproc.Centering),
-                PreprocStage(Preproc.Whitening_Covariance),
-                PreprocStage(Preproc.L2_Normalization)
-            ]),
-            PreprocessConf([
-                PreprocStage(Preproc.Centering),
-                PreprocStage(Preproc.Whitening_Within_Covariance),
-                PreprocStage(Preproc.L2_Normalization)
-            ]),
+            PreprocessConf([PreprocStage(Preproc.Gaussianization)])
         ]
 
         # Grid polynomial svm hyperparameters
         Ks = [1]
-        Cs = np.logspace(-2, 1, 4)
-        gamma = np.logspace(-3, 1)
+        Cs = np.logspace(-2, 0, 3)
+        gamma = np.logspace(-3, 0, 4)
 
         # Grid search without class-balacing
         tot_time_start = time.perf_counter()
