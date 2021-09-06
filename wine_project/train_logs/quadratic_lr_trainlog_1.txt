@@ -1,0 +1,390 @@
+Quadratic Logistic Regression  analysis started
+Total LR cross-validation required  63
+Grid search iteration  1
+	Lambda iteration  1
+		5-Fold Cross-Validation Quadratic LR  (λ=0.00001) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.398
+		min DCF (π=0.1) : 0.850
+		min DCF (π=0.9) : 0.930
+		time passed: 31 seconds
+	Lambda iteration  2
+		5-Fold Cross-Validation Quadratic LR  (λ=0.00010) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.397
+		min DCF (π=0.1) : 0.855
+		min DCF (π=0.9) : 0.934
+		time passed: 31 seconds
+	Lambda iteration  3
+		5-Fold Cross-Validation Quadratic LR  (λ=0.00100) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.416
+		min DCF (π=0.1) : 0.839
+		min DCF (π=0.9) : 0.917
+		time passed: 33 seconds
+	Lambda iteration  4
+		5-Fold Cross-Validation Quadratic LR  (λ=0.01000) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.398
+		min DCF (π=0.1) : 0.840
+		min DCF (π=0.9) : 0.929
+		time passed: 33 seconds
+	Lambda iteration  5
+		5-Fold Cross-Validation Quadratic LR  (λ=0.10000) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.409
+		min DCF (π=0.1) : 0.851
+		min DCF (π=0.9) : 0.943
+		time passed: 33 seconds
+	Lambda iteration  6
+		5-Fold Cross-Validation Quadratic LR  (λ=1.00000) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.398
+		min DCF (π=0.1) : 0.836
+		min DCF (π=0.9) : 0.939
+		time passed: 33 seconds
+	Lambda iteration  7
+		5-Fold Cross-Validation Quadratic LR  (λ=10.00000) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.410
+		min DCF (π=0.1) : 0.837
+		min DCF (π=0.9) : 0.961
+		time passed: 44 seconds
+	Lambda iteration  8
+		5-Fold Cross-Validation Quadratic LR  (λ=100.00000) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.431
+		min DCF (π=0.1) : 0.836
+		min DCF (π=0.9) : 0.936
+		time passed: 33 seconds
+	Lambda iteration  9
+		5-Fold Cross-Validation Quadratic LR  (λ=1000.00000) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.495
+		min DCF (π=0.1) : 0.824
+		min DCF (π=0.9) : 0.947
+		time passed: 34 seconds
+Grid search iteration  2
+	Lambda iteration  1
+		5-Fold Cross-Validation Quadratic LR  (λ=0.00001) - Preprocessing: [ Pca: 10 ]
+		min DCF (π=0.5) : 0.582
+		min DCF (π=0.1) : 0.983
+		min DCF (π=0.9) : 0.998
+		time passed: 33 seconds
+	Lambda iteration  2
+		5-Fold Cross-Validation Quadratic LR  (λ=0.00010) - Preprocessing: [ Pca: 10 ]
+		min DCF (π=0.5) : 0.569
+		min DCF (π=0.1) : 0.992
+		min DCF (π=0.9) : 0.998
+		time passed: 33 seconds
+	Lambda iteration  3
+		5-Fold Cross-Validation Quadratic LR  (λ=0.00100) - Preprocessing: [ Pca: 10 ]
+		min DCF (π=0.5) : 0.554
+		min DCF (π=0.1) : 0.987
+		min DCF (π=0.9) : 0.998
+		time passed: 33 seconds
+	Lambda iteration  4
+		5-Fold Cross-Validation Quadratic LR  (λ=0.01000) - Preprocessing: [ Pca: 10 ]
+		min DCF (π=0.5) : 0.579
+		min DCF (π=0.1) : 0.973
+		min DCF (π=0.9) : 0.998
+		time passed: 32 seconds
+	Lambda iteration  5
+		5-Fold Cross-Validation Quadratic LR  (λ=0.10000) - Preprocessing: [ Pca: 10 ]
+		min DCF (π=0.5) : 0.586
+		min DCF (π=0.1) : 0.967
+		min DCF (π=0.9) : 0.998
+		time passed: 32 seconds
+	Lambda iteration  6
+		5-Fold Cross-Validation Quadratic LR  (λ=1.00000) - Preprocessing: [ Pca: 10 ]
+		min DCF (π=0.5) : 0.580
+		min DCF (π=0.1) : 0.990
+		min DCF (π=0.9) : 0.998
+		time passed: 33 seconds
+	Lambda iteration  7
+		5-Fold Cross-Validation Quadratic LR  (λ=10.00000) - Preprocessing: [ Pca: 10 ]
+		min DCF (π=0.5) : 0.572
+		min DCF (π=0.1) : 0.964
+		min DCF (π=0.9) : 0.998
+		time passed: 32 seconds
+	Lambda iteration  8
+		5-Fold Cross-Validation Quadratic LR  (λ=100.00000) - Preprocessing: [ Pca: 10 ]
+		min DCF (π=0.5) : 0.602
+		min DCF (π=0.1) : 1.000
+		min DCF (π=0.9) : 0.997
+		time passed: 32 seconds
+	Lambda iteration  9
+		5-Fold Cross-Validation Quadratic LR  (λ=1000.00000) - Preprocessing: [ Pca: 10 ]
+		min DCF (π=0.5) : 0.662
+		min DCF (π=0.1) : 1.000
+		min DCF (π=0.9) : 0.997
+		time passed: 32 seconds
+Grid search iteration  3
+	Lambda iteration  1
+		5-Fold Cross-Validation Quadratic LR  (λ=0.00001) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.298
+		min DCF (π=0.1) : 0.694
+		min DCF (π=0.9) : 0.641
+		time passed: 49 seconds
+	Lambda iteration  2
+		5-Fold Cross-Validation Quadratic LR  (λ=0.00010) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.297
+		min DCF (π=0.1) : 0.696
+		min DCF (π=0.9) : 0.641
+		time passed: 49 seconds
+	Lambda iteration  3
+		5-Fold Cross-Validation Quadratic LR  (λ=0.00100) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.294
+		min DCF (π=0.1) : 0.687
+		min DCF (π=0.9) : 0.632
+		time passed: 48 seconds
+	Lambda iteration  4
+		5-Fold Cross-Validation Quadratic LR  (λ=0.01000) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.289
+		min DCF (π=0.1) : 0.682
+		min DCF (π=0.9) : 0.636
+		time passed: 39 seconds
+	Lambda iteration  5
+		5-Fold Cross-Validation Quadratic LR  (λ=0.10000) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.304
+		min DCF (π=0.1) : 0.701
+		min DCF (π=0.9) : 0.808
+		time passed: 34 seconds
+	Lambda iteration  6
+		5-Fold Cross-Validation Quadratic LR  (λ=1.00000) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.350
+		min DCF (π=0.1) : 0.811
+		min DCF (π=0.9) : 0.938
+		time passed: 32 seconds
+	Lambda iteration  7
+		5-Fold Cross-Validation Quadratic LR  (λ=10.00000) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.413
+		min DCF (π=0.1) : 0.920
+		min DCF (π=0.9) : 0.966
+		time passed: 31 seconds
+	Lambda iteration  8
+		5-Fold Cross-Validation Quadratic LR  (λ=100.00000) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.435
+		min DCF (π=0.1) : 0.937
+		min DCF (π=0.9) : 0.972
+		time passed: 30 seconds
+	Lambda iteration  9
+		5-Fold Cross-Validation Quadratic LR  (λ=1000.00000) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.436
+		min DCF (π=0.1) : 0.938
+		min DCF (π=0.9) : 0.976
+		time passed: 31 seconds
+Grid search iteration  4
+	Lambda iteration  1
+		5-Fold Cross-Validation Quadratic LR  (λ=0.00001) - Preprocessing: [ Gaussianization, Pca: 10 ]
+		min DCF (π=0.5) : 0.293
+		min DCF (π=0.1) : 0.702
+		min DCF (π=0.9) : 0.672
+		time passed: 39 seconds
+	Lambda iteration  2
+		5-Fold Cross-Validation Quadratic LR  (λ=0.00010) - Preprocessing: [ Gaussianization, Pca: 10 ]
+		min DCF (π=0.5) : 0.294
+		min DCF (π=0.1) : 0.698
+		min DCF (π=0.9) : 0.673
+		time passed: 41 seconds
+	Lambda iteration  3
+		5-Fold Cross-Validation Quadratic LR  (λ=0.00100) - Preprocessing: [ Gaussianization, Pca: 10 ]
+		min DCF (π=0.5) : 0.291
+		min DCF (π=0.1) : 0.695
+		min DCF (π=0.9) : 0.664
+		time passed: 40 seconds
+	Lambda iteration  4
+		5-Fold Cross-Validation Quadratic LR  (λ=0.01000) - Preprocessing: [ Gaussianization, Pca: 10 ]
+		min DCF (π=0.5) : 0.289
+		min DCF (π=0.1) : 0.686
+		min DCF (π=0.9) : 0.680
+		time passed: 35 seconds
+	Lambda iteration  5
+		5-Fold Cross-Validation Quadratic LR  (λ=0.10000) - Preprocessing: [ Gaussianization, Pca: 10 ]
+		min DCF (π=0.5) : 0.303
+		min DCF (π=0.1) : 0.725
+		min DCF (π=0.9) : 0.853
+		time passed: 33 seconds
+	Lambda iteration  6
+		5-Fold Cross-Validation Quadratic LR  (λ=1.00000) - Preprocessing: [ Gaussianization, Pca: 10 ]
+		min DCF (π=0.5) : 0.354
+		min DCF (π=0.1) : 0.837
+		min DCF (π=0.9) : 0.937
+		time passed: 32 seconds
+	Lambda iteration  7
+		5-Fold Cross-Validation Quadratic LR  (λ=10.00000) - Preprocessing: [ Gaussianization, Pca: 10 ]
+		min DCF (π=0.5) : 0.435
+		min DCF (π=0.1) : 0.935
+		min DCF (π=0.9) : 0.972
+		time passed: 31 seconds
+	Lambda iteration  8
+		5-Fold Cross-Validation Quadratic LR  (λ=100.00000) - Preprocessing: [ Gaussianization, Pca: 10 ]
+		min DCF (π=0.5) : 0.464
+		min DCF (π=0.1) : 0.940
+		min DCF (π=0.9) : 0.973
+		time passed: 30 seconds
+	Lambda iteration  9
+		5-Fold Cross-Validation Quadratic LR  (λ=1000.00000) - Preprocessing: [ Gaussianization, Pca: 10 ]
+		min DCF (π=0.5) : 0.468
+		min DCF (π=0.1) : 0.942
+		min DCF (π=0.9) : 0.973
+		time passed: 32 seconds
+Grid search iteration  5
+	Lambda iteration  1
+		5-Fold Cross-Validation Quadratic LR  (λ=0.00001) - Preprocessing: [ Z_Normalization ]
+		min DCF (π=0.5) : 0.285
+		min DCF (π=0.1) : 0.753
+		min DCF (π=0.9) : 0.753
+		time passed: 31 seconds
+	Lambda iteration  2
+		5-Fold Cross-Validation Quadratic LR  (λ=0.00010) - Preprocessing: [ Z_Normalization ]
+		min DCF (π=0.5) : 0.285
+		min DCF (π=0.1) : 0.743
+		min DCF (π=0.9) : 0.744
+		time passed: 34 seconds
+	Lambda iteration  3
+		5-Fold Cross-Validation Quadratic LR  (λ=0.00100) - Preprocessing: [ Z_Normalization ]
+		min DCF (π=0.5) : 0.279
+		min DCF (π=0.1) : 0.752
+		min DCF (π=0.9) : 0.723
+		time passed: 32 seconds
+	Lambda iteration  4
+		5-Fold Cross-Validation Quadratic LR  (λ=0.01000) - Preprocessing: [ Z_Normalization ]
+		min DCF (π=0.5) : 0.291
+		min DCF (π=0.1) : 0.764
+		min DCF (π=0.9) : 0.752
+		time passed: 25 seconds
+	Lambda iteration  5
+		5-Fold Cross-Validation Quadratic LR  (λ=0.10000) - Preprocessing: [ Z_Normalization ]
+		min DCF (π=0.5) : 0.316
+		min DCF (π=0.1) : 0.803
+		min DCF (π=0.9) : 0.898
+		time passed: 19 seconds
+	Lambda iteration  6
+		5-Fold Cross-Validation Quadratic LR  (λ=1.00000) - Preprocessing: [ Z_Normalization ]
+		min DCF (π=0.5) : 0.371
+		min DCF (π=0.1) : 0.865
+		min DCF (π=0.9) : 0.959
+		time passed: 16 seconds
+	Lambda iteration  7
+		5-Fold Cross-Validation Quadratic LR  (λ=10.00000) - Preprocessing: [ Z_Normalization ]
+		min DCF (π=0.5) : 0.438
+		min DCF (π=0.1) : 0.905
+		min DCF (π=0.9) : 0.989
+		time passed: 16 seconds
+	Lambda iteration  8
+		5-Fold Cross-Validation Quadratic LR  (λ=100.00000) - Preprocessing: [ Z_Normalization ]
+		min DCF (π=0.5) : 0.466
+		min DCF (π=0.1) : 0.910
+		min DCF (π=0.9) : 0.989
+		time passed: 16 seconds
+	Lambda iteration  9
+		5-Fold Cross-Validation Quadratic LR  (λ=1000.00000) - Preprocessing: [ Z_Normalization ]
+		min DCF (π=0.5) : 0.465
+		min DCF (π=0.1) : 0.907
+		min DCF (π=0.9) : 0.989
+		time passed: 16 seconds
+Grid search iteration  6
+	Lambda iteration  1
+		5-Fold Cross-Validation Quadratic LR  (λ=0.00001) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.270
+		min DCF (π=0.1) : 0.710
+		min DCF (π=0.9) : 0.723
+		time passed: 22 seconds
+	Lambda iteration  2
+		5-Fold Cross-Validation Quadratic LR  (λ=0.00010) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.263
+		min DCF (π=0.1) : 0.701
+		min DCF (π=0.9) : 0.715
+		time passed: 19 seconds
+	Lambda iteration  3
+		5-Fold Cross-Validation Quadratic LR  (λ=0.00100) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.264
+		min DCF (π=0.1) : 0.730
+		min DCF (π=0.9) : 0.662
+		time passed: 18 seconds
+	Lambda iteration  4
+		5-Fold Cross-Validation Quadratic LR  (λ=0.01000) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.311
+		min DCF (π=0.1) : 0.741
+		min DCF (π=0.9) : 0.660
+		time passed: 14 seconds
+	Lambda iteration  5
+		5-Fold Cross-Validation Quadratic LR  (λ=0.10000) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.334
+		min DCF (π=0.1) : 0.792
+		min DCF (π=0.9) : 0.714
+		time passed: 13 seconds
+	Lambda iteration  6
+		5-Fold Cross-Validation Quadratic LR  (λ=1.00000) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.334
+		min DCF (π=0.1) : 0.795
+		min DCF (π=0.9) : 0.729
+		time passed: 15 seconds
+	Lambda iteration  7
+		5-Fold Cross-Validation Quadratic LR  (λ=10.00000) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.334
+		min DCF (π=0.1) : 0.795
+		min DCF (π=0.9) : 0.732
+		time passed: 15 seconds
+	Lambda iteration  8
+		5-Fold Cross-Validation Quadratic LR  (λ=100.00000) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.334
+		min DCF (π=0.1) : 0.806
+		min DCF (π=0.9) : 0.738
+		time passed: 15 seconds
+	Lambda iteration  9
+		5-Fold Cross-Validation Quadratic LR  (λ=1000.00000) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.334
+		min DCF (π=0.1) : 0.795
+		min DCF (π=0.9) : 0.733
+		time passed: 15 seconds
+Grid search iteration  7
+	Lambda iteration  1
+		5-Fold Cross-Validation Quadratic LR  (λ=0.00001) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.267
+		min DCF (π=0.1) : 0.713
+		min DCF (π=0.9) : 0.733
+		time passed: 22 seconds
+	Lambda iteration  2
+		5-Fold Cross-Validation Quadratic LR  (λ=0.00010) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.263
+		min DCF (π=0.1) : 0.711
+		min DCF (π=0.9) : 0.722
+		time passed: 20 seconds
+	Lambda iteration  3
+		5-Fold Cross-Validation Quadratic LR  (λ=0.00100) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.262
+		min DCF (π=0.1) : 0.744
+		min DCF (π=0.9) : 0.649
+		time passed: 17 seconds
+	Lambda iteration  4
+		5-Fold Cross-Validation Quadratic LR  (λ=0.01000) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.317
+		min DCF (π=0.1) : 0.751
+		min DCF (π=0.9) : 0.640
+		time passed: 14 seconds
+	Lambda iteration  5
+		5-Fold Cross-Validation Quadratic LR  (λ=0.10000) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.336
+		min DCF (π=0.1) : 0.801
+		min DCF (π=0.9) : 0.729
+		time passed: 14 seconds
+	Lambda iteration  6
+		5-Fold Cross-Validation Quadratic LR  (λ=1.00000) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.337
+		min DCF (π=0.1) : 0.811
+		min DCF (π=0.9) : 0.739
+		time passed: 15 seconds
+	Lambda iteration  7
+		5-Fold Cross-Validation Quadratic LR  (λ=10.00000) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.337
+		min DCF (π=0.1) : 0.812
+		min DCF (π=0.9) : 0.737
+		time passed: 15 seconds
+	Lambda iteration  8
+		5-Fold Cross-Validation Quadratic LR  (λ=100.00000) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.337
+		min DCF (π=0.1) : 0.812
+		min DCF (π=0.9) : 0.737
+		time passed: 15 seconds
+	Lambda iteration  9
+		5-Fold Cross-Validation Quadratic LR  (λ=1000.00000) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.342
+		min DCF (π=0.1) : 0.812
+		min DCF (π=0.9) : 0.728
+		time passed: 14 seconds
+LR analysis finished. Plots saved in D:\development\university\machine_learning\ml_repo\wine_project\scripts\..\graphs\quadratic_lr_graph_. Total time: 1785 seconds.
+
+
