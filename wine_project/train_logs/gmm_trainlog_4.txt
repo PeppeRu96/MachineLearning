@@ -1,0 +1,112 @@
+Grid search on GMM started.
+Total GMM cross-validation required  24
+Total grid search iterations required  4
+Grid search iteration 1 / 4
+	5-Fold Cross-Validation   GMM (components from 1 to 32) - Preprocessing: [  ]
+		GMM with 1 components min DCF (π=0.5) : 0.313
+		GMM with 1 components min DCF (π=0.1) : 0.817
+		GMM with 1 components min DCF (π=0.9) : 0.834
+
+		GMM with 2 components min DCF (π=0.5) : 0.311
+		GMM with 2 components min DCF (π=0.1) : 0.745
+		GMM with 2 components min DCF (π=0.9) : 0.734
+
+		GMM with 4 components min DCF (π=0.5) : 0.298
+		GMM with 4 components min DCF (π=0.1) : 0.754
+		GMM with 4 components min DCF (π=0.9) : 0.690
+
+		GMM with 8 components min DCF (π=0.5) : 0.291
+		GMM with 8 components min DCF (π=0.1) : 0.719
+		GMM with 8 components min DCF (π=0.9) : 0.703
+
+		GMM with 16 components min DCF (π=0.5) : 0.292
+		GMM with 16 components min DCF (π=0.1) : 0.685
+		GMM with 16 components min DCF (π=0.9) : 0.783
+
+		GMM with 32 components min DCF (π=0.5) : 0.302
+		GMM with 32 components min DCF (π=0.1) : 0.709
+		GMM with 32 components min DCF (π=0.9) : 0.943
+
+Grid search iteration ended in 232 seconds
+Grid search iteration 2 / 4
+	5-Fold Cross-Validation  Tied GMM (components from 1 to 32) - Preprocessing: [  ]
+		GMM with 1 components min DCF (π=0.5) : 0.313
+		GMM with 1 components min DCF (π=0.1) : 0.817
+		GMM with 1 components min DCF (π=0.9) : 0.834
+
+		GMM with 2 components min DCF (π=0.5) : 0.313
+		GMM with 2 components min DCF (π=0.1) : 0.817
+		GMM with 2 components min DCF (π=0.9) : 0.834
+
+		GMM with 4 components min DCF (π=0.5) : 0.320
+		GMM with 4 components min DCF (π=0.1) : 0.860
+		GMM with 4 components min DCF (π=0.9) : 0.806
+
+		GMM with 8 components min DCF (π=0.5) : 0.296
+		GMM with 8 components min DCF (π=0.1) : 0.759
+		GMM with 8 components min DCF (π=0.9) : 0.746
+
+		GMM with 16 components min DCF (π=0.5) : 0.308
+		GMM with 16 components min DCF (π=0.1) : 0.695
+		GMM with 16 components min DCF (π=0.9) : 0.694
+
+		GMM with 32 components min DCF (π=0.5) : 0.284
+		GMM with 32 components min DCF (π=0.1) : 0.768
+		GMM with 32 components min DCF (π=0.9) : 0.747
+
+Grid search iteration ended in 221 seconds
+Grid search iteration 3 / 4
+	5-Fold Cross-Validation Diagonal  GMM (components from 1 to 32) - Preprocessing: [  ]
+		GMM with 1 components min DCF (π=0.5) : 0.402
+		GMM with 1 components min DCF (π=0.1) : 0.823
+		GMM with 1 components min DCF (π=0.9) : 0.920
+
+		GMM with 2 components min DCF (π=0.5) : 0.406
+		GMM with 2 components min DCF (π=0.1) : 0.819
+		GMM with 2 components min DCF (π=0.9) : 0.885
+
+		GMM with 4 components min DCF (π=0.5) : 0.361
+		GMM with 4 components min DCF (π=0.1) : 0.823
+		GMM with 4 components min DCF (π=0.9) : 0.790
+
+		GMM with 8 components min DCF (π=0.5) : 0.321
+		GMM with 8 components min DCF (π=0.1) : 0.740
+		GMM with 8 components min DCF (π=0.9) : 0.820
+
+		GMM with 16 components min DCF (π=0.5) : 0.332
+		GMM with 16 components min DCF (π=0.1) : 0.764
+		GMM with 16 components min DCF (π=0.9) : 0.764
+
+		GMM with 32 components min DCF (π=0.5) : 0.319
+		GMM with 32 components min DCF (π=0.1) : 0.795
+		GMM with 32 components min DCF (π=0.9) : 0.736
+
+Grid search iteration ended in 241 seconds
+Grid search iteration 4 / 4
+	5-Fold Cross-Validation Diagonal Tied GMM (components from 1 to 32) - Preprocessing: [  ]
+		GMM with 1 components min DCF (π=0.5) : 0.402
+		GMM with 1 components min DCF (π=0.1) : 0.823
+		GMM with 1 components min DCF (π=0.9) : 0.920
+
+		GMM with 2 components min DCF (π=0.5) : 0.425
+		GMM with 2 components min DCF (π=0.1) : 0.859
+		GMM with 2 components min DCF (π=0.9) : 0.876
+
+		GMM with 4 components min DCF (π=0.5) : 0.363
+		GMM with 4 components min DCF (π=0.1) : 0.942
+		GMM with 4 components min DCF (π=0.9) : 0.817
+
+		GMM with 8 components min DCF (π=0.5) : 0.333
+		GMM with 8 components min DCF (π=0.1) : 0.747
+		GMM with 8 components min DCF (π=0.9) : 0.789
+
+		GMM with 16 components min DCF (π=0.5) : 0.321
+		GMM with 16 components min DCF (π=0.1) : 0.760
+		GMM with 16 components min DCF (π=0.9) : 0.756
+
+		GMM with 32 components min DCF (π=0.5) : 0.305
+		GMM with 32 components min DCF (π=0.1) : 0.771
+		GMM with 32 components min DCF (π=0.9) : 0.780
+
+Grid search iteration ended in 213 seconds
+Grid search on GMM without ended in 909 seconds

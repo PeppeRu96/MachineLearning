@@ -5,6 +5,8 @@ import matplotlib.pyplot as plt
 import classifiers.distributions.gaussian as gau
 import density_estimation.gaussian_mixture_model as gmm
 
+import time
+
 SCRIPT_PATH = os.path.dirname(__file__)
 GMM_SAMPLE_DATA_4D_PATH = os.path.join(SCRIPT_PATH, "..", "Data", "GMM_data_4D.npy")
 GMM_4D_4G_SOLUTION_PATH = os.path.join(SCRIPT_PATH, "..", "Data", "GMM_4D_4G_EM_LBG.json")
@@ -18,7 +20,9 @@ if __name__ == "__main__":
     print("4D DATASET ANALYSYS..")
     X_4D = np.load(GMM_SAMPLE_DATA_4D_PATH)
 
+    time_start = time.perf_counter()
     gmm_em_lbg_4D_all = gmm.LBG_estimate(X_4D, 0.1, stop_condition_fun=(lambda curr_gmm: len(curr_gmm) == 4), verbose=0)
+    time_end = time.perf_counter()
     gmm_em_lbg_4D = gmm_em_lbg_4D_all[-1]
     print("GMM EM LBG ESTIMATION:")
     print(gmm_em_lbg_4D)
@@ -26,13 +30,16 @@ if __name__ == "__main__":
     gmm_4d_solution = gau.load_gmm(GMM_4D_4G_SOLUTION_PATH)
     print("GMM EM LBG SOLUTION:")
     print(gmm_4d_solution)
+    print("Time passed: %d seconds" % (time_end-time_start))
     print("----------------------------------\n\n")
 
     # 1D
     print("1D DATASET ANALYSYS..")
     X_1D = np.load(GMM_SAMPLE_DATA_1D_PATH)
 
+    time_start = time.perf_counter()
     gmm_em_lbg_1D_all = gmm.LBG_estimate(X_1D, 0.1, stop_condition_fun=(lambda curr_gmm: len(curr_gmm) == 4), verbose=0)
+    time_end = time.perf_counter()
     gmm_em_lbg_1D = gmm_em_lbg_1D_all[-1]
     print("GMM EM LBGESTIMATION:")
     print(gmm_em_lbg_1D)
@@ -44,6 +51,7 @@ if __name__ == "__main__":
     gmm_1d_solution = gau.load_gmm(GMM_1D_4G_SOLUTION_PATH)
     print("GMM EM LBG SOLUTION:")
     print(gmm_1d_solution)
+    print("Time passed: %d seconds" % (time_end-time_start))
 
     # Plotting 1D histogram against estimated GMM density
     plt.figure()

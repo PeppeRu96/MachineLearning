@@ -15,25 +15,21 @@ def GAU_logpdf(x, mu, var):
 
 # Computes the logarithm of the multivariate gaussian distribution density of a np array x with shape (#dimensions, #samples)
 # given the mean mu (#dimensions, 1) and the covariance matrix C (#dimensions, #dimensions)
+c1 = - 0.5 * np.log(2 * np.pi)
 def logpdf_GAU_ND(x, mu, C):
     M = x.shape[0]
-    y = []
-    for i in range(x.shape[1]):
-        col = x[:, i].reshape(M, 1)
-        ycol = - 0.5 * M * np.log(2 * np.pi) - 0.5 * np.linalg.slogdet(C)[1] - 0.5 * np.dot((col - mu).T,
-                                                                                            np.dot(np.linalg.inv(C),
-                                                                                                   (col - mu)))
-        y.append(ycol)
-    y = np.array(y)
-    y = y.reshape(y.shape[0])
-    return y
+    k1 = c1 * M
+    k2 = - 0.5 * np.linalg.slogdet(C)[1]
+    Cinv = np.linalg.inv(C)
+    X_c = x - mu
+    Y = k1 + k2 - 0.5 * np.diag((X_c.T @ Cinv @ X_c))
+    return Y
 
 def logpdf_GMM(X, gmm):
     S = []
-    for gmm_component in gmm:
-        w_g, mu_g, sigma_g = gmm_component[0], gmm_component[1], gmm_component[2]
-        log_class_conditional_density_g = logpdf_GAU_ND(X, mu_g, sigma_g)
-        joint_log_density_g = log_class_conditional_density_g + np.log(w_g)
+    for (w, mu, sigma) in gmm:
+        log_class_conditional_density_g = logpdf_GAU_ND(X, mu, sigma)
+        joint_log_density_g = log_class_conditional_density_g + np.log(w)
         S.append(joint_log_density_g)
     S = np.array(S)
     gmm_log_density = scipy.special.logsumexp(S, axis=0)

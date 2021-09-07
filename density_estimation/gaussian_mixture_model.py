@@ -8,95 +8,58 @@ def gmm_em_estimate(X, gmm0, psi=0.01, diag_cov=False, tied_cov=False, avg_ll_th
         print("Estimating GMM through Expectation Maximization algorithm..")
 
     curr_gmm = gmm0
-    previous_avg_log_likelihood = gau.logpdf_GMM(X, curr_gmm).sum() / X.shape[1]
+    previous_avg_log_likelihood = None
     iterations = 0
     while(1):
+        G = len(curr_gmm)
+        # E-step: compute responsibilities from the previous gmm estimate
         S_joint_log_density = []
-        for gmm_component in curr_gmm:
-            w_g, mu_g, sigma_g = gmm_component[0], gmm_component[1], gmm_component[2]
-            log_class_conditional_density_g = gau.logpdf_GAU_ND(X, mu_g, sigma_g)
-            joint_log_density_g = log_class_conditional_density_g + np.log(w_g)
+        for (w, mu, sigma) in curr_gmm:
+            joint_log_density_g = gau.logpdf_GAU_ND(X, mu, sigma) + np.log(w)
             S_joint_log_density.append(joint_log_density_g)
         S_joint_log_density = np.array(S_joint_log_density)
         gmm_log_density = scipy.special.logsumexp(S_joint_log_density, axis=0)
-        S_log_posterior_prob = S_joint_log_density - gmm_log_density
-        S_posterior_prob = np.exp(S_log_posterior_prob)
 
-        # Estimating new gmm
-        new_gmm = []
+        # Stopping criterion
+        current_avg_log_likelihood = gmm_log_density.sum() / X.shape[1]
+        if previous_avg_log_likelihood is not None and current_avg_log_likelihood - previous_avg_log_likelihood < avg_ll_threshold:
+            break;
+        previous_avg_log_likelihood = current_avg_log_likelihood
 
+        S_posterior_prob = np.exp(S_joint_log_density - gmm_log_density)
+
+        # M-step: update the model parameters using the just estimated responsibilities
         # Calculating statistics
-        Z = []
-        F = []
-        S = []
-        for g in range(len(curr_gmm)):
-            Z_g = S_posterior_prob[g, :].sum()
-            F_g = (S_posterior_prob[g, :] * X).sum(axis=1)
-            S_g = (S_posterior_prob[g, :] * X) @ X.T
-
-            Z.append(Z_g)
-            F.append(F_g)
-            S.append(S_g)
-
-        Zsum = np.array(Z).sum()
+        Sprime = S_posterior_prob.reshape(G, 1, X.shape[1])
+        Z = S_posterior_prob.sum(axis=1)
+        F = (Sprime * X).sum(axis=2)
+        S = (Sprime * X) @ X.T
+        Zsum = Z.sum()
 
         # Calculating new gmm parameters from statistics
-        for g in range(len(curr_gmm)):
-            Z_g = Z[g]
-            F_g = F[g]
-            S_g = S[g]
-
-            mu_g = F_g / Z_g
-            mu_g = mu_g.reshape(mu_g.shape[0], 1)
-
-            sigma_g = S_g / Z_g - mu_g @ mu_g.T
-            if diag_cov:
-                sigma_g = sigma_g * np.eye(sigma_g.shape[0])
-
-            w_g = Z_g / Zsum
-
-            new_gmm.append((w_g, mu_g, sigma_g))
-
-        # Tied covariance
+        W = Z / Zsum
+        Z1 = Z.reshape(Z.shape[0], 1)
+        M = F / Z1
+        M = M.reshape(M.shape[0], M.shape[1], 1)
+        Z1 = Z.reshape(Z.shape[0], 1, 1)
+        Sigma = S / Z1 - M @ M.transpose((0, 2, 1))
+        # Diagonal and tied covariances
+        if diag_cov:
+            Sigma = Sigma * np.eye(Sigma.shape[1])
         if tied_cov:
-            dim = curr_gmm[0][2].shape[0]
-            tied_cov_matr = np.zeros((dim, dim))
-            for g in range(len(new_gmm)):
-                sigma_g = new_gmm[g][2]
-                Z_g = Z[g]
-                tied_cov_matr += Z_g * sigma_g
+            Stied = (Sigma * Z1).sum(axis=0) / X.shape[1]
+            Sigma[:] = Stied
+        # Constraining GMM
+        U, s, _ = np.linalg.svd(Sigma)
+        s[s < psi] = psi
+        s = s.reshape((s.shape[0], s.shape[1], 1))
+        Sigma = U @ (s * U.transpose(0, 2, 1))
 
-            tied_cov_matr = tied_cov_matr / X.shape[1]
-            tied_gmm = []
-            for component in new_gmm:
-                w_g, mu_g, sigma_g = component[0], component[1], component[2]
-                sigma_g = tied_cov_matr
-                tied_gmm.append((w_g, mu_g, sigma_g))
-            new_gmm = tied_gmm
-
-        # Constraint covariance eigenvalues
-        new_gmm = gmm_covariance_eigenvalues_constrained(new_gmm, psi)
-
-        # Calculating new log-likelihood on the training set with the estimated parameters
-        new_log_likelihood = gau.logpdf_GMM(X, new_gmm).sum()
-
-        # Use the average log-likelihood as a stopping criterion for the EM algorithm
-        avg_log_likelihood = new_log_likelihood / X.shape[1]
-        increasing = avg_log_likelihood - previous_avg_log_likelihood
-        curr_gmm = new_gmm
-
-        if avg_log_likelihood < previous_avg_log_likelihood:
-            print("Attention: found an average log likelihood smaller than the previous one!")
-
+        curr_gmm = [(w, mu, sigma) for w, mu, sigma in zip(W, M, Sigma)]
         iterations += 1
-        if increasing < avg_ll_threshold:
-            break
-
-        previous_avg_log_likelihood = avg_log_likelihood
 
     if verbose:
         print("EM estimation finished..")
-        print("Final average log-likelihood on the training set: ", avg_log_likelihood)
 
     return curr_gmm
 
@@ -190,21 +153,7 @@ def gmm_covariance_tied(gmm, X):
     gmm_log_density = scipy.special.logsumexp(S_joint_log_density, axis=0)
     S_log_posterior_prob = S_joint_log_density - gmm_log_density
     S_posterior_prob = np.exp(S_log_posterior_prob)
-
-    # Calculating statistics
-    Z = []
-    F = []
-    S = []
-    for g in range(len(gmm)):
-        Z_g = S_posterior_prob[g, :].sum()
-        F_g = (S_posterior_prob[g, :] * X).sum(axis=1)
-        S_g = (S_posterior_prob[g, :] * X) @ X.T
-
-        Z.append(Z_g)
-        F.append(F_g)
-        S.append(S_g)
-
-    Zsum = np.array(Z).sum()
+    Z = S_posterior_prob.sum(axis=1)
 
     dim = gmm[0][2].shape[0]
     tied_cov_matr = np.zeros((dim, dim))
@@ -212,7 +161,6 @@ def gmm_covariance_tied(gmm, X):
         sigma_g = gmm[g][2]
         Z_g = Z[g]
         tied_cov_matr += Z_g * sigma_g
-
     tied_cov_matr = tied_cov_matr / X.shape[1]
     tied_gmm = []
     for component in gmm:
@@ -230,8 +178,8 @@ def gmm_covariance_eigenvalues_constrained(gmm, psi):
         w, mu, sigma = c[0], c[1], c[2]
         U, s, _ = np.linalg.svd(sigma)
         s[s < psi] = psi
-        s = s * np.eye(s.shape[0])
-        sigma = U @ s @ U.T
+        s = s.reshape(s.shape[0], 1)
+        sigma = U @ (s * U.T)
 
         gmm_constrained.append((w, mu, sigma))
 
