@@ -60,28 +60,28 @@ if __name__ == "__main__":
 
     def gmm_gridsearch():
         # Preprocessing configurations to try
-        # preproc_configurations = [
-        #     PreprocessConf([]),
-        #     PreprocessConf([PreprocStage(Preproc.Gaussianization)]),
-        #     PreprocessConf([
-        #         PreprocStage(Preproc.Centering),
-        #         PreprocStage(Preproc.Whitening_Covariance),
-        #         PreprocStage(Preproc.L2_Normalization)
-        #     ]),
-        #     PreprocessConf([
-        #         PreprocStage(Preproc.Centering),
-        #         PreprocStage(Preproc.Whitening_Within_Covariance),
-        #         PreprocStage(Preproc.L2_Normalization)
-        #     ]),
-        # ]
         preproc_configurations = [
-            PreprocessConf([])
+            PreprocessConf([]),
+            PreprocessConf([PreprocStage(Preproc.Gaussianization)]),
+            PreprocessConf([
+                PreprocStage(Preproc.Centering),
+                PreprocStage(Preproc.Whitening_Covariance),
+                PreprocStage(Preproc.L2_Normalization)
+            ]),
+            PreprocessConf([
+                PreprocStage(Preproc.Centering),
+                PreprocStage(Preproc.Whitening_Within_Covariance),
+                PreprocStage(Preproc.L2_Normalization)
+            ]),
         ]
+        # preproc_configurations = [
+        #     PreprocessConf([])
+        # ]
 
         # Grid hyperparameters
         diags = [False, True]
         tieds = [False, True]
-        max_comps = 32
+        max_comps = 256
         logcomps = int(np.log2(max_comps))
         comps = np.logspace(0, logcomps, logcomps+1, base=2)
 
@@ -114,6 +114,7 @@ if __name__ == "__main__":
         print("Grid search on GMM without ended in %d seconds" % (tot_time_end - tot_time_start))
         np.save("temp.npy", minDCFs)
         # Plot
+        #minDCFs = np.load("temp.npy")
         for app_i, (pi1, Cfn, Cfp) in enumerate(applications):
             for d_i, diag in enumerate(diags):
                 for t_i, tied in enumerate(tieds):
@@ -124,10 +125,13 @@ if __name__ == "__main__":
                     plt.title(title)
                     plt.xlabel("Components")
                     plt.ylabel("minDCF")
-                    plt.xscale('log', basex=2)
+                    plt.xscale('log', base=2)
                     for conf_i, conf in enumerate(preproc_configurations):
                         y = minDCFs[conf_i, d_i, t_i, :, app_i]
-                        plt.bar(comps, y, label="{}".format(conf.to_compact_string()))
+                        width = [0.1 * c for c in comps]
+                        x = [c + (conf_i * 0.2 * c) for c in comps]
+                        label = conf.to_compact_string() if conf.to_compact_string() != "" else "no-preproc"
+                        plt.bar(x, y, label=label, width=width)
                     plt.legend()
                     pi1_without_points = ("%.1f" % pi1).replace(".", "")
                     pi1_str = "pi1-%s" % pi1_without_points
