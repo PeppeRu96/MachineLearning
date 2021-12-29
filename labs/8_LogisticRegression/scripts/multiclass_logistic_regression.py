@@ -12,11 +12,12 @@ def load_iris():
 if __name__ == "__main__":
     D, L = load_iris()
     (DTR, LTR), (DTE, LTE) = dst.split_db_2to1(D, L, 2.0/3.0)
+    K = len(set(LTR).union(set(LTE)))
 
     lambdas = [0, 1e-6, 1e-3, 1.0]
     for l in lambdas:
         print("Lambda: ", l)
-        lr_model = LogisticRegressionClassifier()
+        lr_model = LogisticRegressionClassifier(K)
         lr_model.train(DTR, LTR, l, verbose=1)
         pred_labels = lr_model.inference(DTE)
 
