@@ -1,0 +1,123 @@
+Grid search iteration  1
+5-Fold Cross-Validation   MVG training on  features  started
+Min DCF (π=0.50) : 0.310 
+Min DCF (π=0.36) : 0.413 
+Min DCF (π=0.64) : 0.410 
+Grid search iteration  2
+5-Fold Cross-Validation  Tied MVG training on  features  started
+Min DCF (π=0.50) : 0.334 
+Min DCF (π=0.36) : 0.459 
+Min DCF (π=0.64) : 0.454 
+Grid search iteration  3
+5-Fold Cross-Validation Naive  MVG training on  features  started
+Min DCF (π=0.50) : 0.420 
+Min DCF (π=0.36) : 0.508 
+Min DCF (π=0.64) : 0.606 
+Grid search iteration  4
+5-Fold Cross-Validation Naive Tied MVG training on  features  started
+Min DCF (π=0.50) : 0.408 
+Min DCF (π=0.36) : 0.516 
+Min DCF (π=0.64) : 0.570 
+Grid search iteration  5
+5-Fold Cross-Validation   MVG training on  features and after applying PCA=10 started
+Min DCF (π=0.50) : 0.326 
+Min DCF (π=0.36) : 0.435 
+Min DCF (π=0.64) : 0.443 
+Grid search iteration  6
+5-Fold Cross-Validation  Tied MVG training on  features and after applying PCA=10 started
+Min DCF (π=0.50) : 0.340 
+Min DCF (π=0.36) : 0.471 
+Min DCF (π=0.64) : 0.461 
+Grid search iteration  7
+5-Fold Cross-Validation Naive  MVG training on  features and after applying PCA=10 started
+Min DCF (π=0.50) : 0.395 
+Min DCF (π=0.36) : 0.516 
+Min DCF (π=0.64) : 0.557 
+Grid search iteration  8
+5-Fold Cross-Validation Naive Tied MVG training on  features and after applying PCA=10 started
+Min DCF (π=0.50) : 0.353 
+Min DCF (π=0.36) : 0.489 
+Min DCF (π=0.64) : 0.477 
+Grid search iteration  9
+5-Fold Cross-Validation   MVG training on  features and after applying PCA=9 started
+Min DCF (π=0.50) : 0.312 
+Min DCF (π=0.36) : 0.436 
+Min DCF (π=0.64) : 0.426 
+Grid search iteration  10
+5-Fold Cross-Validation  Tied MVG training on  features and after applying PCA=9 started
+Min DCF (π=0.50) : 0.340 
+Min DCF (π=0.36) : 0.463 
+Min DCF (π=0.64) : 0.461 
+Grid search iteration  11
+5-Fold Cross-Validation Naive  MVG training on  features and after applying PCA=9 started
+Min DCF (π=0.50) : 0.390 
+Min DCF (π=0.36) : 0.512 
+Min DCF (π=0.64) : 0.538 
+Grid search iteration  12
+5-Fold Cross-Validation Naive Tied MVG training on  features and after applying PCA=9 started
+Min DCF (π=0.50) : 0.350 
+Min DCF (π=0.36) : 0.482 
+Min DCF (π=0.64) : 0.472 
+Grid search iteration  13
+5-Fold Cross-Validation   MVG training on Gaussianized features  started
+Min DCF (π=0.50) : 0.304 
+Min DCF (π=0.36) : 0.399 
+Min DCF (π=0.64) : 0.411 
+Grid search iteration  14
+5-Fold Cross-Validation  Tied MVG training on Gaussianized features  started
+Min DCF (π=0.50) : 0.349 
+Min DCF (π=0.36) : 0.476 
+Min DCF (π=0.64) : 0.477 
+Grid search iteration  15
+5-Fold Cross-Validation Naive  MVG training on Gaussianized features  started
+Min DCF (π=0.50) : 0.443 
+Min DCF (π=0.36) : 0.557 
+Min DCF (π=0.64) : 0.631 
+Grid search iteration  16
+5-Fold Cross-Validation Naive Tied MVG training on Gaussianized features  started
+Min DCF (π=0.50) : 0.443 
+Min DCF (π=0.36) : 0.564 
+Min DCF (π=0.64) : 0.623 
+Grid search iteration  17
+5-Fold Cross-Validation   MVG training on Gaussianized features and after applying PCA=10 started
+Min DCF (π=0.50) : 0.299 
+Min DCF (π=0.36) : 0.408 
+Min DCF (π=0.64) : 0.404 
+Grid search iteration  18
+5-Fold Cross-Validation  Tied MVG training on Gaussianized features and after applying PCA=10 started
+Min DCF (π=0.50) : 0.352 
+Min DCF (π=0.36) : 0.482 
+Min DCF (π=0.64) : 0.479 
+Grid search iteration  19
+5-Fold Cross-Validation Naive  MVG training on Gaussianized features and after applying PCA=10 started
+Min DCF (π=0.50) : 0.401 
+Min DCF (π=0.36) : 0.519 
+Min DCF (π=0.64) : 0.499 
+Grid search iteration  20
+5-Fold Cross-Validation Naive Tied MVG training on Gaussianized features and after applying PCA=10 started
+Min DCF (π=0.50) : 0.354 
+Min DCF (π=0.36) : 0.476 
+Min DCF (π=0.64) : 0.482 
+Grid search iteration  21
+5-Fold Cross-Validation   MVG training on Gaussianized features and after applying PCA=9 started
+Min DCF (π=0.50) : 0.304 
+Min DCF (π=0.36) : 0.419 
+Min DCF (π=0.64) : 0.394 
+Grid search iteration  22
+5-Fold Cross-Validation  Tied MVG training on Gaussianized features and after applying PCA=9 started
+Min DCF (π=0.50) : 0.352 
+Min DCF (π=0.36) : 0.478 
+Min DCF (π=0.64) : 0.478 
+Grid search iteration  23
+5-Fold Cross-Validation Naive  MVG training on Gaussianized features and after applying PCA=9 started
+Min DCF (π=0.50) : 0.398 
+Min DCF (π=0.36) : 0.524 
+Min DCF (π=0.64) : 0.497 
+Grid search iteration  24
+5-Fold Cross-Validation Naive Tied MVG training on Gaussianized features and after applying PCA=9 started
+Min DCF (π=0.50) : 0.354 
+Min DCF (π=0.36) : 0.484 
+Min DCF (π=0.64) : 0.477 
+
+---------------------------------------------------------------------------------
+               Model        Gaussianized       PCA	
