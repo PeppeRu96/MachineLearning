@@ -76,8 +76,10 @@ class Dataset:
             print("{:>20}{:>10.1f}{:>10.1f}{:>10.1f}".format(self.feature_names[f], mins[f], maxs[f], means[f]))
 
 
-    def visualize_histogram(self, show: VISUALIZE = VISUALIZE.All, features_to_show: List[int] = None, bins=None, save_path=None) -> None:
-        visualize_histogram(self.samples, self.labels, self.feature_names, self.label_names, show, features_to_show, bins, save_path)
+    def visualize_histogram(self, show: VISUALIZE = VISUALIZE.All, features_to_show: List[int] = None, bins=None,
+                            separate_classes=False, base_title="", save_path=None) -> None:
+        visualize_histogram(self.samples, self.labels, self.feature_names, self.label_names, show, features_to_show,
+                            bins, separate_classes, base_title, save_path)
 
     def visualize_scatter(self, show: VISUALIZE = VISUALIZE.All, features_to_show: List[int] = None) -> None:
         visualize_scatter(self.samples, self.labels, self.feature_names, self.label_names, show, features_to_show)
@@ -122,7 +124,8 @@ def load_iris_from_csv(file_path: str) -> Dataset:
 # hist_show: should pass an HISTOGRAM_SHOW type
 # features_to_show: should pass a list of valid feature indices
 def visualize_histogram(D: np.ndarray, L: np.ndarray, feature_names: List[str], label_names: List[str],
-                        show: VISUALIZE = VISUALIZE.All, features_to_show: List[int] = None, bins = None, save_path=None) -> None:
+                        show: VISUALIZE = VISUALIZE.All, features_to_show: List[int]=None, bins=None,
+                        separate_classes=False, base_title="", save_path=None) -> None:
     if features_to_show is None:
         features_to_show = []
     if show == VISUALIZE.Hidden:
@@ -145,19 +148,26 @@ def visualize_histogram(D: np.ndarray, L: np.ndarray, feature_names: List[str], 
 
         if DEBUG:
             print("Showing histogram for the feature '%s'.." % name_feat)
+
         plt.figure()
-        plt.title(name_feat)
+        plt.title(f"{base_title} - Feature: {name_feat}")
         plt.xlabel(name_feat)
-        # For each label
-        for i, label_name in enumerate(label_names):
-            Mi = (L == i)  # Mask
-            # Filter columns (selects only the cols, that are the samples which belong to the current label)
-            # and select the row of the curr attribute.
-            Di = D[idx_feat, Mi]
-            plt.hist(Di, density=True, label=label_name, alpha=0.5, bins=bins, histtype='bar', ec='black')
-        plt.legend()
+        if separate_classes:
+            # For each class
+            for i, label_name in enumerate(label_names):
+                Mi = (L == i)  # Mask
+                # Filter columns (selects only the cols, that are the samples which belong to the current label)
+                # and select the row of the curr attribute.
+                Di = D[idx_feat, Mi]
+                plt.hist(Di, density=True, label=label_name, alpha=0.5, bins=bins, histtype='bar', ec='black')
+                plt.legend()
+        else:
+            Di = D[idx_feat, :]
+            plt.hist(Di, density=True, alpha=0.5, bins=bins, histtype='bar', ec='black')
+
         if save_path is not None:
-            plt.savefig("%s_hist_%d_%s" % (save_path, idx_feat, name_feat))
+            sep_class_str = "sep-class" if separate_classes else "all"
+            plt.savefig("%s_hist_%d_%s_%s" % (save_path, idx_feat, name_feat, sep_class_str))
 
 
 # Visualize, for the given features, all the pairs in scatter plots

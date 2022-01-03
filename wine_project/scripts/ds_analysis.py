@@ -6,15 +6,31 @@ import preproc.dstools as dst
 import wine_project.utility.ds_common as dsc
 import seaborn as sns
 
+import argparse
+
 SCRIPT_PATH = os.path.dirname(__file__)
 RAW_HISTOGRAMS_PATH = os.path.join(SCRIPT_PATH, "..", "graphs", "raw")
+RAW_HISTOGRAMS_PATH_PER_CLASS = os.path.join(SCRIPT_PATH, "..", "graphs", "raw_per_class")
 GAUSSIANIZED_HISTOGRAMS_PATH = os.path.join(SCRIPT_PATH, "..", "graphs", "gaussianized")
+GAUSSIANIZED_HISTOGRAMS_PATH_PER_CLASS = os.path.join(SCRIPT_PATH, "..", "graphs", "gaussianized_per_class")
 GAUSSIANIZED_LABEL0_HISTOGRAMS_PATH = os.path.join(SCRIPT_PATH, "..", "graphs", "gaussianized_Hf")
 GAUSSIANIZED_LABEL1_HISTOGRAMS_PATH = os.path.join(SCRIPT_PATH, "..", "graphs", "gaussianized_Ht")
 
 CORRELATION_PATH = os.path.join(SCRIPT_PATH, "..", "graphs", "correlation_heatmap")
 
+def get_args():
+    parser = argparse.ArgumentParser(description="Script to launch dataset preprocessing",
+                                     formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+
+    parser.add_argument("--hist_raw", type=bool, default=False, help="Visualize and save a histogram for the raw features")
+    parser.add_argument("--hist_gau", type=bool, default=False, help="Visualize and save a histogram for the Gaussianized features")
+    parser.add_argument("--show_correlations", type=bool, default=False, help="Visualize and save correlation matrices")
+
+    return parser.parse_args()
+
 if __name__ == "__main__":
+    args = get_args()
+
     # Load the train dataset in a wrapper of type Dataset to reuse useful utilities
     ds_train_wrapper = dsc.load_train_dataset()
 
@@ -22,7 +38,9 @@ if __name__ == "__main__":
     ds_train_wrapper.visualize_statistics()
 
     # Visualize histograms of the raw features
-    #ds_train_wrapper.visualize_histogram(bins=60, save_path=RAW_HISTOGRAMS_PATH)
+    if args.hist_raw:
+        ds_train_wrapper.visualize_histogram(bins=60, separate_classes=False, base_title="Raw", save_path=RAW_HISTOGRAMS_PATH)
+        ds_train_wrapper.visualize_histogram(bins=60, separate_classes=True, base_title="Raw", save_path=RAW_HISTOGRAMS_PATH_PER_CLASS)
 
     print("")
 
@@ -34,7 +52,9 @@ if __name__ == "__main__":
     ds_train_gaussianized_wrapper.visualize_statistics()
 
     # Visualize histograms of the gaussianized features
-    #ds_train_gaussianized_wrapper.visualize_histogram(bins=40, save_path=GAUSSIANIZED_HISTOGRAMS_PATH)
+    if args.hist_gau:
+        ds_train_gaussianized_wrapper.visualize_histogram(bins=40, separate_classes=False, base_title="Gaussianized", save_path=GAUSSIANIZED_HISTOGRAMS_PATH)
+        ds_train_gaussianized_wrapper.visualize_histogram(bins=40, separate_classes=True, base_title="Gaussianized", save_path=GAUSSIANIZED_HISTOGRAMS_PATH_PER_CLASS)
 
     # Visualize histograms of the gaussianized features per class
     D = ds_train_gaussianized_wrapper.samples
@@ -49,8 +69,9 @@ if __name__ == "__main__":
     D1_wrapper.samples = D1
     D1_wrapper.labels = np.zeros(D1.shape[1])
 
-    D0_wrapper.visualize_histogram(bins=40, save_path=GAUSSIANIZED_LABEL0_HISTOGRAMS_PATH)
-    D1_wrapper.visualize_histogram(bins=40, save_path=GAUSSIANIZED_LABEL1_HISTOGRAMS_PATH)
+    if args.hist_gau:
+        D0_wrapper.visualize_histogram(bins=40, separate_classes=True, base_title="Gaussianized", save_path=GAUSSIANIZED_LABEL0_HISTOGRAMS_PATH)
+        D1_wrapper.visualize_histogram(bins=40, separate_classes=True, base_title="Gaussianized", save_path=GAUSSIANIZED_LABEL1_HISTOGRAMS_PATH)
 
     def visualize_correlation_matrices():
         corrM = dst.correlation_matrix(ds_train_gaussianized_wrapper.samples)
@@ -76,5 +97,7 @@ if __name__ == "__main__":
         sns.heatmap(corrM1, annot=True, vmin=-1, vmax=1, center=0, cmap='Blues', linewidths=3, linecolor='black')
         plt.savefig(CORRELATION_PATH + "gaussianized_label1_dataset")
 
-    #visualize_correlation_matrices()
+    if args.show_correlations:
+        visualize_correlation_matrices()
+
     plt.show()

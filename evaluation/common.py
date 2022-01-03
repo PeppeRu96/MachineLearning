@@ -107,9 +107,9 @@ def bayes_min_dcf(llr, labels, pi_1, Cfn, Cfp):
     Computes the minimum normalized DCF trying different thresholds in the given range
     :param llr: log-likelihood ratios to classify
     :param labels: labels for building confusion matrix
-    :param min_threshold: minimum threshold against calculating the min dcf
-    :param max_threshold:  maximum threshold against calculating the min dcf
-    :param points: points on the range to calculate the min dcf on
+    :param pi_1: target application prior probability for the true class
+    :param Cfn: target application cost for a false negative prediction
+    :param Cfp: target application cost for a false positive prediction
     :return: the minimum normalized dcf
     """
 

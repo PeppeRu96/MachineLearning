@@ -1,5 +1,13 @@
 import wine_project.utility.ds_common as dsc
+import argparse
 
+def get_args():
+    parser = argparse.ArgumentParser(description="Script to launch dataset preprocessing",
+                                     formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+
+    parser.add_argument("--load", type=bool, default=True, help="Load already splitted dataset")
+
+    return parser.parse_args()
 
 if __name__ == "__main__":
     # Pay attention: don't run the split, the goal is to have the same 5 folds
@@ -10,10 +18,12 @@ if __name__ == "__main__":
     # The folds will have the same class ratio as of the original dataset (0.33 for the Ht) to ensure that all the folds
     # will have samples of both classes;
 
-    #folds_data, folds_labels = dsc.split_and_save_train_dataset_5_folds()
-    #print("Folds data shape: ", folds_data.shape)
-    #print("Folds labels shape: ", folds_labels.shape)
-    print("")
-    folds_data, folds_labels = dsc.load_train_dataset_5_folds()
+    args = get_args()
+
+    if args.load is False:
+        folds_data, folds_labels = dsc.split_and_save_train_dataset_5_folds()
+    else:
+        folds_data, folds_labels = dsc.load_train_dataset_5_folds()
     print("Folds data shape: ", folds_data.shape)
     print("Folds labels shape: ", folds_labels.shape)
+    print("")

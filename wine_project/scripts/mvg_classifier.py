@@ -2,13 +2,16 @@ import numpy as np
 
 from preproc.dim_reduction.pca import pca
 import preproc.dstools as dst
-import wine_project.utility.ds_common as dsc
+from wine_project.utility.ds_common import *
 import evaluation.common as eval
 
 from classifiers.gaussian_classifier import MVG_Classifier
 
+TRAINLOGS_BASEPATH = os.path.join(SCRIPT_PATH, "..", "train_logs")
+MVG_TRAINLOG_FNAME = "mvg_trainlog_1.txt"
+
 if __name__ == "__main__":
-    folds_data, folds_labels = dsc.load_train_dataset_5_folds()
+    folds_data, folds_labels = load_train_dataset_5_folds()
 
     def cross_validate_MVG(gaussianize_features, PCA, naive, tied):
         gauss_str = ""
@@ -44,7 +47,7 @@ if __name__ == "__main__":
 
 
             # Train
-            mvg = MVG_Classifier()
+            mvg = MVG_Classifier(K=2)
             mvg.train(DTR, LTR, naive, tied)
 
             # Validate
@@ -63,59 +66,62 @@ if __name__ == "__main__":
 
         return scores, labels
 
-    applications = dsc.applications
-    gauss_grid = [False, True]
-    PCA_grid = [None, 10, 9]
-    naive_grid = [False, True]
-    tied_grid = [False, True]
+    def mvg_gridsearch():
+        gauss_grid = [False, True]
+        PCA_grid = [None, 10, 9]
+        naive_grid = [False, True]
+        tied_grid = [False, True]
 
 
-    minDCFs = np.zeros((len(gauss_grid), len(PCA_grid), len(naive_grid), len(tied_grid), len(applications)))
-    # Grid search (exhaustive only because the process is speed enough to make
-    # 24 iterations (note that we are not embedding any information about the application)
-    # We don't need to retrain a new model when we change the application we want to target
-    # Therefore, we can train the models and next compute the minDCF for the different applications
-    iterations = 1
-    for gi, g in enumerate(gauss_grid):
-        for pi, p in enumerate(PCA_grid):
-            for ni, n in enumerate(naive_grid):
-                for ti, t in enumerate(tied_grid):
-                    print("Grid search iteration ", iterations)
-                    scores, labels = cross_validate_MVG(g, p, n, t)
-                    iterations += 1
-                    for app_i, (pi1, Cfn, Cfp) in enumerate(applications):
-                        minDCF, _ = eval.bayes_min_dcf(scores, labels, pi1, Cfn, Cfp)
-                        print("Min DCF: ", minDCF)
-                        minDCFs[gi, pi, ni, ti, app_i] = minDCF
+        minDCFs = np.zeros((len(gauss_grid), len(PCA_grid), len(naive_grid), len(tied_grid), len(applications)))
+        # Grid search (exhaustive only because the process is speed enough to make
+        # 24 iterations (note that we are not embedding any information about the application)
+        # We don't need to retrain a new model when we change the application we want to target
+        # Therefore, we can train the models and next compute the minDCF for the different applications
+        iterations = 1
+        for gi, g in enumerate(gauss_grid):
+            for pi, p in enumerate(PCA_grid):
+                for ni, n in enumerate(naive_grid):
+                    for ti, t in enumerate(tied_grid):
+                        print("Grid search iteration ", iterations)
+                        scores, labels = cross_validate_MVG(g, p, n, t)
+                        iterations += 1
+                        for app_i, (pi1, Cfn, Cfp) in enumerate(applications):
+                            minDCF, _ = eval.bayes_min_dcf(scores, labels, pi1, Cfn, Cfp)
+                            print("Min DCF (π=%.1f) : %.3f " % (pi1, minDCF))
+                            minDCFs[gi, pi, ni, ti, app_i] = minDCF
 
-    # Display a table
-    print("")
-    print("---------------------------------------------------------------------------------")
-    print("{:>20}{:>20}{:>10}\t".format("Model", "Gaussianized", "PCA"), end="")
-    for (pi1, Cfn, Cfp) in applications:
-        print("{:>10}".format("π=%.1f" % pi1), end="")
-    print("")
-    for gi, g in enumerate(gauss_grid):
-        for pi, p in enumerate(PCA_grid):
-            for ni, n in enumerate(naive_grid):
-                for ti, t in enumerate(tied_grid):
-                    name = "-Cov"
-                    if n:
-                        name = "Diag" + name
-                    else:
-                        name = "Full" + name
-                    if t:
-                        name = "Tied " + name
-                    if g:
-                        gau_str = "Yes"
-                    else:
-                        gau_str = "No"
-                    if p is not None:
-                        pca_str = "%d" % p
-                    else:
-                        pca_str = "No"
-                    print("{:>20}{:>20}{:>10}\t".format(name, gau_str, pca_str), end="")
-                    for app_i, (pi1, Cfn, Cfp) in enumerate(applications):
-                        print("{:>10.3f}".format(minDCFs[gi, pi, ni, ti, app_i]), end="")
-                    print("")
-    print("---------------------------------------------------------------------------------")
+        # Display a table
+        print("")
+        print("---------------------------------------------------------------------------------")
+        print("{:>20}{:>20}{:>10}\t".format("Model", "Gaussianized", "PCA"), end="")
+        for (pi1, Cfn, Cfp) in applications:
+            print("{:>10}".format("π=%.1f" % pi1), end="")
+        print("")
+        for gi, g in enumerate(gauss_grid):
+            for pi, p in enumerate(PCA_grid):
+                for ni, n in enumerate(naive_grid):
+                    for ti, t in enumerate(tied_grid):
+                        name = "-Cov"
+                        if n:
+                            name = "Diag" + name
+                        else:
+                            name = "Full" + name
+                        if t:
+                            name = "Tied " + name
+                        if g:
+                            gau_str = "Yes"
+                        else:
+                            gau_str = "No"
+                        if p is not None:
+                            pca_str = "%d" % p
+                        else:
+                            pca_str = "No"
+                        print("{:>20}{:>20}{:>10}\t".format(name, gau_str, pca_str), end="")
+                        for app_i, (pi1, Cfn, Cfp) in enumerate(applications):
+                            print("{:>10.3f}".format(minDCFs[gi, pi, ni, ti, app_i]), end="")
+                        print("")
+        print("---------------------------------------------------------------------------------")
+
+    with LoggingPrinter(incremental_path(TRAINLOGS_BASEPATH, MVG_TRAINLOG_FNAME)):
+        mvg_gridsearch()
