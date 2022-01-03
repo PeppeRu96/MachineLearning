@@ -18,8 +18,8 @@ FIVE_FOLDS_TRAIN_LABELS_PATH = os.path.join(SCRIPT_PATH, "..", "data", "5-folds_
 # We don't care about priors and costs distinctly
 applications = [
     (0.5, 1, 1),
-    (0.36, 1, 1), # Empirical prior for the test dataset (imagining that the test dataset reflects the real target application)
-    (0.64, 1, 1)  # Opposite scenario
+    (0.1, 1, 1),
+    (0.9, 1, 1)
 ]
 
 def load_dataset(train):
