@@ -7,7 +7,7 @@ import evaluation.common as eval
 
 from classifiers.gaussian_classifier import MVG_Classifier
 
-TRAINLOGS_BASEPATH = os.path.join(SCRIPT_PATH, "..", "train_logs")
+TRAINLOGS_BASEPATH = os.path.join(SCRIPT_PATH, "..", "train_logs", "mvg")
 MVG_TRAINLOG_FNAME = "mvg_trainlog_1.txt"
 
 if __name__ == "__main__":
@@ -88,7 +88,7 @@ if __name__ == "__main__":
                         iterations += 1
                         for app_i, (pi1, Cfn, Cfp) in enumerate(applications):
                             minDCF, _ = eval.bayes_min_dcf(scores, labels, pi1, Cfn, Cfp)
-                            print("Min DCF (π=%.1f) : %.3f " % (pi1, minDCF))
+                            print("Min DCF (π=%.2f) : %.3f " % (pi1, minDCF))
                             minDCFs[gi, pi, ni, ti, app_i] = minDCF
 
         # Display a table
@@ -96,7 +96,7 @@ if __name__ == "__main__":
         print("---------------------------------------------------------------------------------")
         print("{:>20}{:>20}{:>10}\t".format("Model", "Gaussianized", "PCA"), end="")
         for (pi1, Cfn, Cfp) in applications:
-            print("{:>10}".format("π=%.1f" % pi1), end="")
+            print("{:>10}".format("π=%.2f" % pi1), end="")
         print("")
         for gi, g in enumerate(gauss_grid):
             for pi, p in enumerate(PCA_grid):

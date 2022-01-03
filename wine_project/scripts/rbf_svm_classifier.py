@@ -6,10 +6,10 @@ import evaluation.common as eval
 
 from classifiers.svm import cross_validate_svm, SVM_Classifier
 
-TRAINLOGS_BASEPATH = os.path.join(SCRIPT_PATH, "..", "train_logs")
+TRAINLOGS_BASEPATH = os.path.join(SCRIPT_PATH, "..", "train_logs", "svm")
 RBF_SVM_TRAINLOG_FNAME = "rbf_svm_trainlog_1.txt"
 
-RBF_SVM_GRAPH_PATH = os.path.join(SCRIPT_PATH, "..", "graphs", "rbf_svm_graph_")
+RBF_SVM_GRAPH_PATH = os.path.join(SCRIPT_PATH, "..", "graphs", "svm", "rbf_svm_graph_")
 
 
 if __name__ == "__main__":

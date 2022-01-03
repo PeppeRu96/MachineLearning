@@ -18,11 +18,11 @@ FIVE_FOLDS_TRAIN_LABELS_PATH = os.path.join(SCRIPT_PATH, "..", "data", "5-folds_
 # We don't care about priors and costs distinctly
 applications = [
     (0.5, 1, 1),
-    (0.1, 1, 1),
-    (0.9, 1, 1)
+    (0.36, 1, 1), # Empirical prior for the test dataset (imagining that the test dataset reflects the real target application)
+    (0.64, 1, 1)  # Opposite scenario
 ]
 
-def load_train_dataset():
+def load_dataset(train):
     label_names = ["Low-quality (Hf)", "High-quality (Ht)"]
     feature_names = ["fixed acidity",
                      "volatile acidity",
@@ -36,8 +36,8 @@ def load_train_dataset():
                      "sulphates",
                      "alcohol"
                      ]
-
-    f = open(DATASET_TRAIN_PATH, "r")
+    ds_path = DATASET_TRAIN_PATH if train else DATASET_TEST_PATH
+    f = open(ds_path, "r")
     samples = []
     labels = []
     for line in f:
@@ -52,13 +52,14 @@ def load_train_dataset():
     f.close()
     samples = np.array(samples).T
     labels = np.array(labels)
-    dataset = dst.Dataset("Train Wine Dataset", label_names, feature_names, samples, labels)
+    train_str = "Train" if train else "Test"
+    dataset = dst.Dataset(f"{train_str} Wine Dataset", label_names, feature_names, samples, labels)
 
     return dataset
 
 def split_and_save_train_dataset_5_folds():
     # Load the train dataset in a wrapper of type Dataset to reuse useful utilities
-    ds_train_wrapper = load_train_dataset()
+    ds_train_wrapper = load_dataset(True)
 
     # We split our dataset in K folds only one time, so the different classifiers will be trained and validated
     # on the same set of folds, furthermore, saving the folds to the disk will speed up the process and

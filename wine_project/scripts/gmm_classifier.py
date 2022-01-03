@@ -9,10 +9,10 @@ import evaluation.common as eval
 from density_estimation.gaussian_mixture_model import LBG_estimate
 from classifiers.gmm_classifier import GMM_Classifier
 
-TRAINLOGS_BASEPATH = os.path.join(SCRIPT_PATH, "..", "train_logs")
+TRAINLOGS_BASEPATH = os.path.join(SCRIPT_PATH, "..", "train_logs", "gmm")
 GMM_TRAINLOG_FNAME = "gmm_trainlog_1.txt"
 
-GMM_GRAPH_PATH = os.path.join(SCRIPT_PATH, "..", "graphs", "gmm_graph_")
+GMM_GRAPH_PATH = os.path.join(SCRIPT_PATH, "..", "graphs", "gmm", "gmm_graph_")
 
 if __name__ == "__main__":
     # Load 5-Folds already splitted dataset

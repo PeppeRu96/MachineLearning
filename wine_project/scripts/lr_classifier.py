@@ -7,13 +7,13 @@ import evaluation.common as eval
 from classifiers.logistic_regression import cross_validate_lr
 
 SCRIPT_PATH = os.path.dirname(__file__)
-TRAINLOGS_BASEPATH = os.path.join(SCRIPT_PATH, "..", "train_logs")
+TRAINLOGS_BASEPATH = os.path.join(SCRIPT_PATH, "..", "train_logs", "lr")
 LINEAR_LR_TRAINLOG_FNAME = "linear_lr_trainlog_1.txt"
 QUADRATIC_LR_TRAINLOG_FNAME = "quadratic_lr_trainlog_1.txt"
 LINEAR_LR_BEST_TRAINLOG_FNAME = "linear_lr_best_trainlog_1.txt"
 QUADRATIC_LR_BEST_TRAINLOG_FNAME = "quadratic_lr_best_trainlog_1.txt"
-LINEAR_LR_GRAPH_PATH = os.path.join(SCRIPT_PATH, "..", "graphs", "linear_lr_graph_")
-QUADRATIC_LR_GRAPH_PATH = os.path.join(SCRIPT_PATH, "..", "graphs", "quadratic_lr_graph_")
+LINEAR_LR_GRAPH_PATH = os.path.join(SCRIPT_PATH, "..", "graphs", "lr", "linear_lr_graph_")
+QUADRATIC_LR_GRAPH_PATH = os.path.join(SCRIPT_PATH, "..", "graphs", "lr", "quadratic_lr_graph_")
 
 # This script has to be called with one (or more) command-line parameters among
 # {linear, quadratic, linear_best, quadratic_best}

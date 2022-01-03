@@ -9,14 +9,14 @@ import seaborn as sns
 import argparse
 
 SCRIPT_PATH = os.path.dirname(__file__)
-RAW_HISTOGRAMS_PATH = os.path.join(SCRIPT_PATH, "..", "graphs", "raw")
-RAW_HISTOGRAMS_PATH_PER_CLASS = os.path.join(SCRIPT_PATH, "..", "graphs", "raw_per_class")
-GAUSSIANIZED_HISTOGRAMS_PATH = os.path.join(SCRIPT_PATH, "..", "graphs", "gaussianized")
-GAUSSIANIZED_HISTOGRAMS_PATH_PER_CLASS = os.path.join(SCRIPT_PATH, "..", "graphs", "gaussianized_per_class")
-GAUSSIANIZED_LABEL0_HISTOGRAMS_PATH = os.path.join(SCRIPT_PATH, "..", "graphs", "gaussianized_Hf")
-GAUSSIANIZED_LABEL1_HISTOGRAMS_PATH = os.path.join(SCRIPT_PATH, "..", "graphs", "gaussianized_Ht")
+RAW_HISTOGRAMS_PATH = os.path.join(SCRIPT_PATH, "..", "graphs", "ds_analysis", "raw", "raw")
+RAW_HISTOGRAMS_PATH_PER_CLASS = os.path.join(SCRIPT_PATH, "..", "graphs", "ds_analysis", "raw", "raw_per_class")
+GAUSSIANIZED_HISTOGRAMS_PATH = os.path.join(SCRIPT_PATH, "..", "graphs", "ds_analysis", "gau", "gaussianized")
+GAUSSIANIZED_HISTOGRAMS_PATH_PER_CLASS = os.path.join(SCRIPT_PATH, "..", "graphs", "ds_analysis", "gau", "gaussianized_per_class")
+GAUSSIANIZED_LABEL0_HISTOGRAMS_PATH = os.path.join(SCRIPT_PATH, "..", "graphs", "ds_analysis", "gau", "gaussianized_Hf")
+GAUSSIANIZED_LABEL1_HISTOGRAMS_PATH = os.path.join(SCRIPT_PATH, "..", "graphs", "ds_analysis", "gau", "gaussianized_Ht")
 
-CORRELATION_PATH = os.path.join(SCRIPT_PATH, "..", "graphs", "correlation_heatmap")
+CORRELATION_PATH = os.path.join(SCRIPT_PATH, "..", "graphs", "ds_analysis", "correlation_heatmap")
 
 def get_args():
     parser = argparse.ArgumentParser(description="Script to launch dataset preprocessing",
@@ -32,7 +32,7 @@ if __name__ == "__main__":
     args = get_args()
 
     # Load the train dataset in a wrapper of type Dataset to reuse useful utilities
-    ds_train_wrapper = dsc.load_train_dataset()
+    ds_train_wrapper = dsc.load_dataset(train=True)
 
     # Visualize some statistics on the training dataset
     ds_train_wrapper.visualize_statistics()
@@ -67,11 +67,11 @@ if __name__ == "__main__":
 
     D1_wrapper = ds_train_gaussianized_wrapper.deep_copy()
     D1_wrapper.samples = D1
-    D1_wrapper.labels = np.zeros(D1.shape[1])
+    D1_wrapper.labels = np.zeros(D1.shape[1]) + 1
 
     if args.hist_gau:
-        D0_wrapper.visualize_histogram(bins=40, separate_classes=True, base_title="Gaussianized", save_path=GAUSSIANIZED_LABEL0_HISTOGRAMS_PATH)
-        D1_wrapper.visualize_histogram(bins=40, separate_classes=True, base_title="Gaussianized", save_path=GAUSSIANIZED_LABEL1_HISTOGRAMS_PATH)
+        D0_wrapper.visualize_histogram(bins=40, separate_classes=False, base_title="Gaussianized - Low quality wine (Hf)", save_path=GAUSSIANIZED_LABEL0_HISTOGRAMS_PATH)
+        D1_wrapper.visualize_histogram(bins=40, separate_classes=False, base_title="Gaussianized - High quality wine (Ht)", save_path=GAUSSIANIZED_LABEL1_HISTOGRAMS_PATH)
 
     def visualize_correlation_matrices():
         corrM = dst.correlation_matrix(ds_train_gaussianized_wrapper.samples)
@@ -99,5 +99,11 @@ if __name__ == "__main__":
 
     if args.show_correlations:
         visualize_correlation_matrices()
+
+    # Load the test dataset in a wrapper of type Dataset to reuse useful utilities
+    ds_test_wrapper = dsc.load_dataset(train=False)
+
+    # Visualize some statistics on the test dataset
+    ds_test_wrapper.visualize_statistics()
 
     plt.show()

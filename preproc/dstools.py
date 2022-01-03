@@ -70,10 +70,13 @@ class Dataset:
         mins = self.samples.min(axis=1)
         maxs = self.samples.max(axis=1)
         means = self.samples.mean(axis=1)
-        print("{:>20}{:>10}{:>10}{:>10}".format("Feature", "Min", "Max", "Mean"))
-        print("----------------------------------------------------")
+        means_col = means.reshape((means.shape[0], 1))
+        samples_centered = self.samples - means_col
+        variances = (samples_centered * samples_centered).sum(axis=1) / self.samples.shape[1]
+        print("{:>20}{:>20}{:>20}{:>20}{:>20}".format("Feature", "Min", "Max", "Mean", "Var"))
+        print("------------------------------------------------------------------------------------------------------------")
         for f in range(len(self.feature_names)):
-            print("{:>20}{:>10.1f}{:>10.1f}{:>10.1f}".format(self.feature_names[f], mins[f], maxs[f], means[f]))
+            print("{:>20}{:>20.4f}{:>20.4f}{:>20.4f}{:>20.8f}".format(self.feature_names[f], mins[f], maxs[f], means[f], variances[f]))
 
 
     def visualize_histogram(self, show: VISUALIZE = VISUALIZE.All, features_to_show: List[int] = None, bins=None,
