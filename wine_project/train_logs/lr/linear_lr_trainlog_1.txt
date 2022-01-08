@@ -1,0 +1,390 @@
+Linear Logistic Regression with prior weight specific training (π=0.5) analysis started
+Total LR cross-validation required  63
+Grid search iteration  1
+	Lambda iteration  1
+		5-Fold Cross-Validation Linear LR with prior weight specific training (π=0.5) (λ=0.00001) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.353
+		min DCF (π=0.1) : 0.865
+		min DCF (π=0.9) : 0.676
+		time passed: 16 seconds
+	Lambda iteration  2
+		5-Fold Cross-Validation Linear LR with prior weight specific training (π=0.5) (λ=0.00010) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.356
+		min DCF (π=0.1) : 0.861
+		min DCF (π=0.9) : 0.675
+		time passed: 24 seconds
+	Lambda iteration  3
+		5-Fold Cross-Validation Linear LR with prior weight specific training (π=0.5) (λ=0.00100) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.352
+		min DCF (π=0.1) : 0.846
+		min DCF (π=0.9) : 0.683
+		time passed: 21 seconds
+	Lambda iteration  4
+		5-Fold Cross-Validation Linear LR with prior weight specific training (π=0.5) (λ=0.01000) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.396
+		min DCF (π=0.1) : 0.819
+		min DCF (π=0.9) : 0.804
+		time passed: 16 seconds
+	Lambda iteration  5
+		5-Fold Cross-Validation Linear LR with prior weight specific training (π=0.5) (λ=0.10000) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.418
+		min DCF (π=0.1) : 0.861
+		min DCF (π=0.9) : 0.983
+		time passed: 13 seconds
+	Lambda iteration  6
+		5-Fold Cross-Validation Linear LR with prior weight specific training (π=0.5) (λ=1.00000) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.475
+		min DCF (π=0.1) : 0.961
+		min DCF (π=0.9) : 0.988
+		time passed: 12 seconds
+	Lambda iteration  7
+		5-Fold Cross-Validation Linear LR with prior weight specific training (π=0.5) (λ=10.00000) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.728
+		min DCF (π=0.1) : 1.000
+		min DCF (π=0.9) : 0.999
+		time passed: 13 seconds
+	Lambda iteration  8
+		5-Fold Cross-Validation Linear LR with prior weight specific training (π=0.5) (λ=100.00000) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.805
+		min DCF (π=0.1) : 0.998
+		min DCF (π=0.9) : 0.999
+		time passed: 15 seconds
+	Lambda iteration  9
+		5-Fold Cross-Validation Linear LR with prior weight specific training (π=0.5) (λ=1000.00000) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.824
+		min DCF (π=0.1) : 1.000
+		min DCF (π=0.9) : 0.998
+		time passed: 14 seconds
+Grid search iteration  2
+	Lambda iteration  1
+		5-Fold Cross-Validation Linear LR with prior weight specific training (π=0.5) (λ=0.00001) - Preprocessing: [ Pca: 10 ]
+		min DCF (π=0.5) : 0.358
+		min DCF (π=0.1) : 0.862
+		min DCF (π=0.9) : 0.676
+		time passed: 24 seconds
+	Lambda iteration  2
+		5-Fold Cross-Validation Linear LR with prior weight specific training (π=0.5) (λ=0.00010) - Preprocessing: [ Pca: 10 ]
+		min DCF (π=0.5) : 0.353
+		min DCF (π=0.1) : 0.860
+		min DCF (π=0.9) : 0.677
+		time passed: 21 seconds
+	Lambda iteration  3
+		5-Fold Cross-Validation Linear LR with prior weight specific training (π=0.5) (λ=0.00100) - Preprocessing: [ Pca: 10 ]
+		min DCF (π=0.5) : 0.351
+		min DCF (π=0.1) : 0.846
+		min DCF (π=0.9) : 0.683
+		time passed: 18 seconds
+	Lambda iteration  4
+		5-Fold Cross-Validation Linear LR with prior weight specific training (π=0.5) (λ=0.01000) - Preprocessing: [ Pca: 10 ]
+		min DCF (π=0.5) : 0.395
+		min DCF (π=0.1) : 0.819
+		min DCF (π=0.9) : 0.804
+		time passed: 18 seconds
+	Lambda iteration  5
+		5-Fold Cross-Validation Linear LR with prior weight specific training (π=0.5) (λ=0.10000) - Preprocessing: [ Pca: 10 ]
+		min DCF (π=0.5) : 0.418
+		min DCF (π=0.1) : 0.861
+		min DCF (π=0.9) : 0.983
+		time passed: 16 seconds
+	Lambda iteration  6
+		5-Fold Cross-Validation Linear LR with prior weight specific training (π=0.5) (λ=1.00000) - Preprocessing: [ Pca: 10 ]
+		min DCF (π=0.5) : 0.476
+		min DCF (π=0.1) : 0.961
+		min DCF (π=0.9) : 0.988
+		time passed: 14 seconds
+	Lambda iteration  7
+		5-Fold Cross-Validation Linear LR with prior weight specific training (π=0.5) (λ=10.00000) - Preprocessing: [ Pca: 10 ]
+		min DCF (π=0.5) : 0.728
+		min DCF (π=0.1) : 1.000
+		min DCF (π=0.9) : 0.999
+		time passed: 13 seconds
+	Lambda iteration  8
+		5-Fold Cross-Validation Linear LR with prior weight specific training (π=0.5) (λ=100.00000) - Preprocessing: [ Pca: 10 ]
+		min DCF (π=0.5) : 0.805
+		min DCF (π=0.1) : 0.998
+		min DCF (π=0.9) : 0.999
+		time passed: 13 seconds
+	Lambda iteration  9
+		5-Fold Cross-Validation Linear LR with prior weight specific training (π=0.5) (λ=1000.00000) - Preprocessing: [ Pca: 10 ]
+		min DCF (π=0.5) : 0.826
+		min DCF (π=0.1) : 1.000
+		min DCF (π=0.9) : 0.998
+		time passed: 14 seconds
+Grid search iteration  3
+	Lambda iteration  1
+		5-Fold Cross-Validation Linear LR with prior weight specific training (π=0.5) (λ=0.00001) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.357
+		min DCF (π=0.1) : 0.836
+		min DCF (π=0.9) : 0.765
+		time passed: 31 seconds
+	Lambda iteration  2
+		5-Fold Cross-Validation Linear LR with prior weight specific training (π=0.5) (λ=0.00010) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.357
+		min DCF (π=0.1) : 0.836
+		min DCF (π=0.9) : 0.763
+		time passed: 33 seconds
+	Lambda iteration  3
+		5-Fold Cross-Validation Linear LR with prior weight specific training (π=0.5) (λ=0.00100) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.357
+		min DCF (π=0.1) : 0.833
+		min DCF (π=0.9) : 0.755
+		time passed: 34 seconds
+	Lambda iteration  4
+		5-Fold Cross-Validation Linear LR with prior weight specific training (π=0.5) (λ=0.01000) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.362
+		min DCF (π=0.1) : 0.811
+		min DCF (π=0.9) : 0.750
+		time passed: 35 seconds
+	Lambda iteration  5
+		5-Fold Cross-Validation Linear LR with prior weight specific training (π=0.5) (λ=0.10000) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.378
+		min DCF (π=0.1) : 0.823
+		min DCF (π=0.9) : 0.824
+		time passed: 35 seconds
+	Lambda iteration  6
+		5-Fold Cross-Validation Linear LR with prior weight specific training (π=0.5) (λ=1.00000) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.425
+		min DCF (π=0.1) : 0.833
+		min DCF (π=0.9) : 0.896
+		time passed: 31 seconds
+	Lambda iteration  7
+		5-Fold Cross-Validation Linear LR with prior weight specific training (π=0.5) (λ=10.00000) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.452
+		min DCF (π=0.1) : 0.874
+		min DCF (π=0.9) : 0.947
+		time passed: 32 seconds
+	Lambda iteration  8
+		5-Fold Cross-Validation Linear LR with prior weight specific training (π=0.5) (λ=100.00000) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.468
+		min DCF (π=0.1) : 0.882
+		min DCF (π=0.9) : 0.949
+		time passed: 33 seconds
+	Lambda iteration  9
+		5-Fold Cross-Validation Linear LR with prior weight specific training (π=0.5) (λ=1000.00000) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.458
+		min DCF (π=0.1) : 0.877
+		min DCF (π=0.9) : 0.952
+		time passed: 44 seconds
+Grid search iteration  4
+	Lambda iteration  1
+		5-Fold Cross-Validation Linear LR with prior weight specific training (π=0.5) (λ=0.00001) - Preprocessing: [ Gaussianization, Pca: 10 ]
+		min DCF (π=0.5) : 0.361
+		min DCF (π=0.1) : 0.834
+		min DCF (π=0.9) : 0.712
+		time passed: 33 seconds
+	Lambda iteration  2
+		5-Fold Cross-Validation Linear LR with prior weight specific training (π=0.5) (λ=0.00010) - Preprocessing: [ Gaussianization, Pca: 10 ]
+		min DCF (π=0.5) : 0.361
+		min DCF (π=0.1) : 0.834
+		min DCF (π=0.9) : 0.711
+		time passed: 34 seconds
+	Lambda iteration  3
+		5-Fold Cross-Validation Linear LR with prior weight specific training (π=0.5) (λ=0.00100) - Preprocessing: [ Gaussianization, Pca: 10 ]
+		min DCF (π=0.5) : 0.361
+		min DCF (π=0.1) : 0.832
+		min DCF (π=0.9) : 0.711
+		time passed: 30 seconds
+	Lambda iteration  4
+		5-Fold Cross-Validation Linear LR with prior weight specific training (π=0.5) (λ=0.01000) - Preprocessing: [ Gaussianization, Pca: 10 ]
+		min DCF (π=0.5) : 0.368
+		min DCF (π=0.1) : 0.824
+		min DCF (π=0.9) : 0.708
+		time passed: 56 seconds
+	Lambda iteration  5
+		5-Fold Cross-Validation Linear LR with prior weight specific training (π=0.5) (λ=0.10000) - Preprocessing: [ Gaussianization, Pca: 10 ]
+		min DCF (π=0.5) : 0.380
+		min DCF (π=0.1) : 0.820
+		min DCF (π=0.9) : 0.828
+		time passed: 44 seconds
+	Lambda iteration  6
+		5-Fold Cross-Validation Linear LR with prior weight specific training (π=0.5) (λ=1.00000) - Preprocessing: [ Gaussianization, Pca: 10 ]
+		min DCF (π=0.5) : 0.426
+		min DCF (π=0.1) : 0.840
+		min DCF (π=0.9) : 0.894
+		time passed: 36 seconds
+	Lambda iteration  7
+		5-Fold Cross-Validation Linear LR with prior weight specific training (π=0.5) (λ=10.00000) - Preprocessing: [ Gaussianization, Pca: 10 ]
+		min DCF (π=0.5) : 0.455
+		min DCF (π=0.1) : 0.871
+		min DCF (π=0.9) : 0.948
+		time passed: 38 seconds
+	Lambda iteration  8
+		5-Fold Cross-Validation Linear LR with prior weight specific training (π=0.5) (λ=100.00000) - Preprocessing: [ Gaussianization, Pca: 10 ]
+		min DCF (π=0.5) : 0.458
+		min DCF (π=0.1) : 0.881
+		min DCF (π=0.9) : 0.954
+		time passed: 40 seconds
+	Lambda iteration  9
+		5-Fold Cross-Validation Linear LR with prior weight specific training (π=0.5) (λ=1000.00000) - Preprocessing: [ Gaussianization, Pca: 10 ]
+		min DCF (π=0.5) : 0.459
+		min DCF (π=0.1) : 0.882
+		min DCF (π=0.9) : 0.954
+		time passed: 36 seconds
+Grid search iteration  5
+	Lambda iteration  1
+		5-Fold Cross-Validation Linear LR with prior weight specific training (π=0.5) (λ=0.00001) - Preprocessing: [ Z_Normalization ]
+		min DCF (π=0.5) : 0.354
+		min DCF (π=0.1) : 0.869
+		min DCF (π=0.9) : 0.682
+		time passed: 22 seconds
+	Lambda iteration  2
+		5-Fold Cross-Validation Linear LR with prior weight specific training (π=0.5) (λ=0.00010) - Preprocessing: [ Z_Normalization ]
+		min DCF (π=0.5) : 0.354
+		min DCF (π=0.1) : 0.869
+		min DCF (π=0.9) : 0.682
+		time passed: 19 seconds
+	Lambda iteration  3
+		5-Fold Cross-Validation Linear LR with prior weight specific training (π=0.5) (λ=0.00100) - Preprocessing: [ Z_Normalization ]
+		min DCF (π=0.5) : 0.353
+		min DCF (π=0.1) : 0.863
+		min DCF (π=0.9) : 0.688
+		time passed: 27 seconds
+	Lambda iteration  4
+		5-Fold Cross-Validation Linear LR with prior weight specific training (π=0.5) (λ=0.01000) - Preprocessing: [ Z_Normalization ]
+		min DCF (π=0.5) : 0.345
+		min DCF (π=0.1) : 0.859
+		min DCF (π=0.9) : 0.694
+		time passed: 21 seconds
+	Lambda iteration  5
+		5-Fold Cross-Validation Linear LR with prior weight specific training (π=0.5) (λ=0.10000) - Preprocessing: [ Z_Normalization ]
+		min DCF (π=0.5) : 0.349
+		min DCF (π=0.1) : 0.834
+		min DCF (π=0.9) : 0.777
+		time passed: 16 seconds
+	Lambda iteration  6
+		5-Fold Cross-Validation Linear LR with prior weight specific training (π=0.5) (λ=1.00000) - Preprocessing: [ Z_Normalization ]
+		min DCF (π=0.5) : 0.397
+		min DCF (π=0.1) : 0.863
+		min DCF (π=0.9) : 0.898
+		time passed: 14 seconds
+	Lambda iteration  7
+		5-Fold Cross-Validation Linear LR with prior weight specific training (π=0.5) (λ=10.00000) - Preprocessing: [ Z_Normalization ]
+		min DCF (π=0.5) : 0.418
+		min DCF (π=0.1) : 0.882
+		min DCF (π=0.9) : 0.958
+		time passed: 18 seconds
+	Lambda iteration  8
+		5-Fold Cross-Validation Linear LR with prior weight specific training (π=0.5) (λ=100.00000) - Preprocessing: [ Z_Normalization ]
+		min DCF (π=0.5) : 0.420
+		min DCF (π=0.1) : 0.885
+		min DCF (π=0.9) : 0.960
+		time passed: 17 seconds
+	Lambda iteration  9
+		5-Fold Cross-Validation Linear LR with prior weight specific training (π=0.5) (λ=1000.00000) - Preprocessing: [ Z_Normalization ]
+		min DCF (π=0.5) : 0.421
+		min DCF (π=0.1) : 0.885
+		min DCF (π=0.9) : 0.959
+		time passed: 14 seconds
+Grid search iteration  6
+	Lambda iteration  1
+		5-Fold Cross-Validation Linear LR with prior weight specific training (π=0.5) (λ=0.00001) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.347
+		min DCF (π=0.1) : 0.834
+		min DCF (π=0.9) : 0.634
+		time passed: 15 seconds
+	Lambda iteration  2
+		5-Fold Cross-Validation Linear LR with prior weight specific training (π=0.5) (λ=0.00010) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.347
+		min DCF (π=0.1) : 0.833
+		min DCF (π=0.9) : 0.634
+		time passed: 19 seconds
+	Lambda iteration  3
+		5-Fold Cross-Validation Linear LR with prior weight specific training (π=0.5) (λ=0.00100) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.348
+		min DCF (π=0.1) : 0.832
+		min DCF (π=0.9) : 0.653
+		time passed: 13 seconds
+	Lambda iteration  4
+		5-Fold Cross-Validation Linear LR with prior weight specific training (π=0.5) (λ=0.01000) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.341
+		min DCF (π=0.1) : 0.830
+		min DCF (π=0.9) : 0.721
+		time passed: 13 seconds
+	Lambda iteration  5
+		5-Fold Cross-Validation Linear LR with prior weight specific training (π=0.5) (λ=0.10000) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.333
+		min DCF (π=0.1) : 0.826
+		min DCF (π=0.9) : 0.758
+		time passed: 13 seconds
+	Lambda iteration  6
+		5-Fold Cross-Validation Linear LR with prior weight specific training (π=0.5) (λ=1.00000) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.335
+		min DCF (π=0.1) : 0.820
+		min DCF (π=0.9) : 0.790
+		time passed: 27 seconds
+	Lambda iteration  7
+		5-Fold Cross-Validation Linear LR with prior weight specific training (π=0.5) (λ=10.00000) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.336
+		min DCF (π=0.1) : 0.825
+		min DCF (π=0.9) : 0.796
+		time passed: 23 seconds
+	Lambda iteration  8
+		5-Fold Cross-Validation Linear LR with prior weight specific training (π=0.5) (λ=100.00000) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.339
+		min DCF (π=0.1) : 0.823
+		min DCF (π=0.9) : 0.793
+		time passed: 14 seconds
+	Lambda iteration  9
+		5-Fold Cross-Validation Linear LR with prior weight specific training (π=0.5) (λ=1000.00000) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.339
+		min DCF (π=0.1) : 0.823
+		min DCF (π=0.9) : 0.793
+		time passed: 18 seconds
+Grid search iteration  7
+	Lambda iteration  1
+		5-Fold Cross-Validation Linear LR with prior weight specific training (π=0.5) (λ=0.00001) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.346
+		min DCF (π=0.1) : 0.833
+		min DCF (π=0.9) : 0.635
+		time passed: 16 seconds
+	Lambda iteration  2
+		5-Fold Cross-Validation Linear LR with prior weight specific training (π=0.5) (λ=0.00010) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.348
+		min DCF (π=0.1) : 0.832
+		min DCF (π=0.9) : 0.636
+		time passed: 22 seconds
+	Lambda iteration  3
+		5-Fold Cross-Validation Linear LR with prior weight specific training (π=0.5) (λ=0.00100) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.347
+		min DCF (π=0.1) : 0.833
+		min DCF (π=0.9) : 0.655
+		time passed: 26 seconds
+	Lambda iteration  4
+		5-Fold Cross-Validation Linear LR with prior weight specific training (π=0.5) (λ=0.01000) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.341
+		min DCF (π=0.1) : 0.839
+		min DCF (π=0.9) : 0.720
+		time passed: 24 seconds
+	Lambda iteration  5
+		5-Fold Cross-Validation Linear LR with prior weight specific training (π=0.5) (λ=0.10000) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.337
+		min DCF (π=0.1) : 0.837
+		min DCF (π=0.9) : 0.758
+		time passed: 17 seconds
+	Lambda iteration  6
+		5-Fold Cross-Validation Linear LR with prior weight specific training (π=0.5) (λ=1.00000) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.337
+		min DCF (π=0.1) : 0.830
+		min DCF (π=0.9) : 0.785
+		time passed: 20 seconds
+	Lambda iteration  7
+		5-Fold Cross-Validation Linear LR with prior weight specific training (π=0.5) (λ=10.00000) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.337
+		min DCF (π=0.1) : 0.826
+		min DCF (π=0.9) : 0.787
+		time passed: 15 seconds
+	Lambda iteration  8
+		5-Fold Cross-Validation Linear LR with prior weight specific training (π=0.5) (λ=100.00000) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.339
+		min DCF (π=0.1) : 0.836
+		min DCF (π=0.9) : 0.782
+		time passed: 13 seconds
+	Lambda iteration  9
+		5-Fold Cross-Validation Linear LR with prior weight specific training (π=0.5) (λ=1000.00000) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.339
+		min DCF (π=0.1) : 0.836
+		min DCF (π=0.9) : 0.782
+		time passed: 20 seconds
+LR analysis finished. Plots saved in D:\development\university\machine_learning\ml_repo\wine_project\scripts\..\graphs\lr\linear_lr_graph_. Total time: 1482 seconds.
+
+

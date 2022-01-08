@@ -1,0 +1,13 @@
+Cross-validating Linear Logistic Regression with the best preproc configuration and the best lambda embedding target application prior in the training process..
+	Linear Logistic Regression training for target application specific π=0.1..
+		5-Fold Cross-Validation Linear LR with prior weight specific training (π=0.1) (λ=0.01000) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.346
+		min DCF (π=0.1) : 0.789
+		min DCF (π=0.9) : 0.893
+		time passed: 24 seconds
+	Linear Logistic Regression training for target application specific π=0.9..
+		5-Fold Cross-Validation Linear LR with prior weight specific training (π=0.9) (λ=0.00001) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.369
+		min DCF (π=0.1) : 0.863
+		min DCF (π=0.9) : 0.631
+		time passed: 10 seconds
