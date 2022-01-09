@@ -1,4 +1,0 @@
-Grid search on RBF SVM without class balancing started.
-Total RBF SVM cross-validation required  100
-Total grid search iterations required  1
-Grid search iteration 1 / 1

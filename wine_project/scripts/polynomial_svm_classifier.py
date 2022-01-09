@@ -8,7 +8,7 @@ from classifiers.svm import cross_validate_svm, SVM_Classifier
 
 import argparse
 
-TRAINLOGS_BASEPATH = os.path.join(SCRIPT_PATH, "..", "train_logs", "svm")
+TRAINLOGS_BASEPATH = os.path.join(SCRIPT_PATH, "..", "train_logs", "svm", "polynomial")
 POLYNOMIAL_SVM_TRAINLOG_FNAME = "polynomial_svm_trainlog_1.txt"
 POLYNOMIAL_SVM_CLASS_BALANCING_TRAINLOG_FNAME = "polynomial_svm_class_balancing_trainlog_1.txt"
 

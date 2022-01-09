@@ -10,10 +10,12 @@ from classifiers.svm import cross_validate_svm, SVM_Classifier
 
 import argparse
 
-TRAINLOGS_BASEPATH = os.path.join(SCRIPT_PATH, "..", "train_logs", "svm")
+TRAINLOGS_BASEPATH = os.path.join(SCRIPT_PATH, "..", "train_logs", "rbf", "svm")
 RBF_SVM_TRAINLOG_FNAME = "rbf_svm_trainlog_1.txt"
 RBF_SVM_FINE_GRAINED_TRAINLOG_FNAME = "rbf_svm_fine_grained_trainlog_1.txt"
-RBF_SVM_CLASS_BALANCING_TRAINLOG_FNAME = "rbf_svm_class_balancing_trainlog_1.txt"
+RBF_SVM_CLASS_BALANCING_PI05_TRAINLOG_FNAME = "rbf_svm_class_balancing_pi05_trainlog_1.txt"
+RBF_SVM_CLASS_BALANCING_PI01_TRAINLOG_FNAME = "rbf_svm_class_balancing_pi01_trainlog_1.txt"
+RBF_SVM_CLASS_BALANCING_PI09_TRAINLOG_FNAME = "rbf_svm_class_balancing_pi09_trainlog_1.txt"
 
 RBF_SVM_GRAPH_PATH = os.path.join(SCRIPT_PATH, "..", "graphs", "svm", "rbf", "rbf_svm_graph_")
 
@@ -73,12 +75,12 @@ if __name__ == "__main__":
                     y_min = min(ys)
                     return y_min
 
-                g_sorted = [t[1] for t in sorted(enumerate(gs), key=f_cmp)]
+                g_sorted = sorted(enumerate(gs), key=f_cmp)
                 gs_to_plot = g_sorted[:3]
             else:
-                gs_to_plot = gs
+                gs_to_plot = [(gi, g) for gi, g in enumerate(gs)]
 
-            for gi, g in enumerate(gs_to_plot):
+            for gi, g in gs_to_plot:
                 y = minDCFs[:, gi, app_i].flatten()
                 gamma_str = f"{int(np.log10(g))}" if float(g).is_integer() else f"{np.log10(g):.1f}"
                 plt.plot(x, y, label=f"log(γ)={gamma_str}")
@@ -118,17 +120,7 @@ if __name__ == "__main__":
         tot_time_end = time.perf_counter()
         print("Grid search on RBF SVM without class balancing ended in %d seconds" % (tot_time_end - tot_time_start))
 
-    def rbf_svm_class_balancing():
-        # We select the best preproc configuration, gamma and C value
-        preproc_conf = PreprocessConf([
-                PreprocStage(Preproc.Centering),
-                PreprocStage(Preproc.Whitening_Within_Covariance),
-                PreprocStage(Preproc.L2_Normalization)
-            ])
-        K = 1
-        g = 10**(-3)
-        C = 0.1
-
+    def rbf_svm_class_balancing(preproc_conf, K, g, C):
         kernel = SVM_Classifier.Kernel_RadialBasisFunction(g)
 
         # Then, we try the best hyperparameters but now class-balancing with respect to the target application
@@ -142,7 +134,7 @@ if __name__ == "__main__":
                 print("\t\tmin DCF (π=%.1f) : %.3f" % (pi1, minDCF))
             time_end = time.perf_counter()
             print("Target application (π=%.1f) specific training cross-validation ended in %d seconds" % (
-            pi1, (time_end - time_start)))
+            train_pi1, (time_end - time_start)))
         print("Operation finished")
 
 
@@ -193,7 +185,40 @@ if __name__ == "__main__":
     # -------------------------------------------------------------------------- #
 
     if args.class_balancing:
-        with LoggingPrinter(incremental_path(TRAINLOGS_BASEPATH, RBF_SVM_CLASS_BALANCING_TRAINLOG_FNAME)):
-            rbf_svm_class_balancing()
+        # pi05 best model - select the best preproc configuration, gamma and C value
+        preproc_conf = PreprocessConf([
+            PreprocStage(Preproc.Centering),
+            PreprocStage(Preproc.Whitening_Within_Covariance),
+            PreprocStage(Preproc.L2_Normalization)
+        ])
+        K = 1
+        g = 8
+        C = 0.5
+        with LoggingPrinter(incremental_path(TRAINLOGS_BASEPATH, RBF_SVM_CLASS_BALANCING_PI05_TRAINLOG_FNAME)):
+            rbf_svm_class_balancing(preproc_conf, K, g, C)
+
+        # pi01 best model - select the best preproc configuration, gamma and C value
+        preproc_conf = PreprocessConf([
+            PreprocStage(Preproc.Centering),
+            PreprocStage(Preproc.Whitening_Within_Covariance),
+            PreprocStage(Preproc.L2_Normalization)
+        ])
+        K = 1
+        g = 10
+        C = 0.1
+        with LoggingPrinter(incremental_path(TRAINLOGS_BASEPATH, RBF_SVM_CLASS_BALANCING_PI01_TRAINLOG_FNAME)):
+            rbf_svm_class_balancing(preproc_conf, K, g, C)
+
+        # pi09 best model - select the best preproc configuration, gamma and C value
+        preproc_conf = PreprocessConf([
+            PreprocStage(Preproc.Centering),
+            PreprocStage(Preproc.Whitening_Within_Covariance),
+            PreprocStage(Preproc.L2_Normalization)
+        ])
+        K = 1
+        g = 10
+        C = 0.1
+        with LoggingPrinter(incremental_path(TRAINLOGS_BASEPATH, RBF_SVM_CLASS_BALANCING_PI09_TRAINLOG_FNAME)):
+            rbf_svm_class_balancing(preproc_conf, K, g, C)
 
     plt.show()
