@@ -1,0 +1,17 @@
+Trying the best hyperparameters but class-balancing w.r.t target applications..
+RBF SVM cross-validation with class-balancing for the target application with π=0.5 (gamma=1e+01) (C=1e-01 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.452
+		min DCF (π=0.1) : 0.678
+		min DCF (π=0.9) : 0.859
+Target application (π=0.5) specific training cross-validation ended in 10 seconds
+RBF SVM cross-validation with class-balancing for the target application with π=0.1 (gamma=1e+01) (C=1e-01 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.212
+		min DCF (π=0.1) : 0.472
+		min DCF (π=0.9) : 0.547
+Target application (π=0.1) specific training cross-validation ended in 12 seconds
+RBF SVM cross-validation with class-balancing for the target application with π=0.9 (gamma=1e+01) (C=1e-01 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.217
+		min DCF (π=0.1) : 0.543
+		min DCF (π=0.9) : 0.595
+Target application (π=0.9) specific training cross-validation ended in 11 seconds
+Operation finished

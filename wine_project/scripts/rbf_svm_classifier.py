@@ -217,7 +217,7 @@ if __name__ == "__main__":
         ])
         K = 1
         g = 10
-        C = 0.1
+        C = 1
         with LoggingPrinter(incremental_path(TRAINLOGS_BASEPATH, RBF_SVM_CLASS_BALANCING_PI09_TRAINLOG_FNAME)):
             rbf_svm_class_balancing(preproc_conf, K, g, C)
 
