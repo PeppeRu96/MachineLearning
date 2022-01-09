@@ -112,7 +112,7 @@ if __name__ == "__main__":
         # We select the best preproc configuration and the best K
         preproc_conf = PreprocessConf([PreprocStage(Preproc.Gaussianization)])
         K = 10
-        Cs = np.logspace(-2, 1, 4)
+        Cs = np.logspace(-2, 2, 5)
 
         # Then, we try the best hyperparameters but now class-balancing with respect to the target application
         print("Trying the best hyperparameters but class-balancing w.r.t target applications..")

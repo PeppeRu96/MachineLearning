@@ -6,13 +6,28 @@ import evaluation.common as eval
 
 from classifiers.svm import cross_validate_svm, SVM_Classifier
 
+import argparse
+
 TRAINLOGS_BASEPATH = os.path.join(SCRIPT_PATH, "..", "train_logs", "svm")
 POLYNOMIAL_SVM_TRAINLOG_FNAME = "polynomial_svm_trainlog_1.txt"
+POLYNOMIAL_SVM_CLASS_BALANCING_TRAINLOG_FNAME = "polynomial_svm_class_balancing_trainlog_1.txt"
 
 POLYNOMIAL_SVM_GRAPH_PATH = os.path.join(SCRIPT_PATH, "..", "graphs", "svm", "polynomial", "polynomial_svm_graph_")
 
+def get_args():
+    parser = argparse.ArgumentParser(description="Script to launch Logistic Regression classificator building",
+                                     formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+
+    parser.add_argument("--gridsearch", type=bool, default=False,
+                        help="Start a cross-validation grid search to select the best preprocess configuration and the best C")
+    parser.add_argument("--class_balancing", type=bool, default=False,
+                        help="Start a cross-validation for a polynomial svm model rebalancing the classes to embed a specific prior")
+
+    return parser.parse_args()
 
 if __name__ == "__main__":
+    args = get_args()
+
     # Load 5-Folds already splitted dataset
     folds_data, folds_labels = load_train_dataset_5_folds()
 
@@ -104,8 +119,40 @@ if __name__ == "__main__":
         tot_time_end = time.perf_counter()
         print("Grid search on Polynomial SVM without class balancing ended in %d seconds" % (tot_time_end - tot_time_start))
 
+    def polynomial_svm_class_balancing():
+        # We select the best preproc configuration, polynomial degree and C value
+        preproc_conf = PreprocessConf([
+                PreprocStage(Preproc.Centering),
+                PreprocStage(Preproc.Whitening_Within_Covariance),
+                PreprocStage(Preproc.L2_Normalization)
+            ])
+        K = 1
+        d = 3
+        C = 0.1
+
+        kernel = SVM_Classifier.Kernel_Polynomial(d, 1)
+        # Then, we try the best hyperparameters but now class-balancing with respect to the target application
+        print("Trying the best hyperparameters but class-balancing w.r.t target applications..")
+        for app_i, (train_pi1, Cfn, Cfp) in enumerate(applications):
+            print(f"Polynomial SVM cross-validation with class-balancing for the target application with π={train_pi1:.1f} (d={d} - c={1}) (C={C:.0e} - K={K:.1f}) - Preprocessing: {preproc_conf}")
+            time_start = time.perf_counter()
+            scores, labels = cross_validate_svm(folds_data, folds_labels, preproc_conf, C, K, specific_pi1=train_pi1, kernel=kernel)
+            for app_i, (pi1, Cfn, Cfp) in enumerate(applications):
+                minDCF, _ = eval.bayes_min_dcf(scores, labels, pi1, Cfn, Cfp)
+                print("\t\tmin DCF (π=%.1f) : %.3f" % (pi1, minDCF))
+            time_end = time.perf_counter()
+            print("Target application (π=%.1f) specific training cross-validation ended in %d seconds" % (
+            pi1, (time_end - time_start)))
+        print("Operation finished")
+
+
     # Grid search to select the best hyperparameters
-    with LoggingPrinter(incremental_path(TRAINLOGS_BASEPATH, POLYNOMIAL_SVM_TRAINLOG_FNAME)):
-        polynomial_svm_gridsearch()
+    if args.gridsearch:
+        with LoggingPrinter(incremental_path(TRAINLOGS_BASEPATH, POLYNOMIAL_SVM_TRAINLOG_FNAME)):
+            polynomial_svm_gridsearch()
+
+    if args.class_balancing:
+        with LoggingPrinter(incremental_path(TRAINLOGS_BASEPATH, POLYNOMIAL_SVM_CLASS_BALANCING_TRAINLOG_FNAME)):
+            polynomial_svm_class_balancing()
 
     plt.show()
