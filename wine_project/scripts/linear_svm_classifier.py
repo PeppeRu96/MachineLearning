@@ -6,14 +6,28 @@ import evaluation.common as eval
 
 from classifiers.svm import cross_validate_svm
 
+import argparse
+
 TRAINLOGS_BASEPATH = os.path.join(SCRIPT_PATH, "..", "train_logs", "svm")
 LINEAR_SVM_TRAINLOG_FNAME = "linear_svm_trainlog_1.txt"
 LINEAR_SVM_CLASS_BALANCING_TRAINLOG_FNAME = "linear_svm_class_balancing_trainlog_1.txt"
 
-LINEAR_SVM_GRAPH_PATH = os.path.join(SCRIPT_PATH, "..", "graphs", "svm", "linear_svm_graph_")
+LINEAR_SVM_GRAPH_PATH = os.path.join(SCRIPT_PATH, "..", "graphs", "svm", "linear", "linear_svm_graph_")
 
+def get_args():
+    parser = argparse.ArgumentParser(description="Script to launch Logistic Regression classificator building",
+                                     formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+
+    parser.add_argument("--gridsearch", type=bool, default=False,
+                        help="Start a cross-validation grid search to select the best preprocess configuration and the best C")
+    parser.add_argument("--class_balancing", type=bool, default=False,
+                        help="Start a cross-validation for a linear svm model rebalancing the classes to embed a specific prior")
+
+    return parser.parse_args()
 
 if __name__ == "__main__":
+    args = get_args()
+
     # Load 5-Folds already splitted dataset
     folds_data, folds_labels = load_train_dataset_5_folds()
 
@@ -112,11 +126,13 @@ if __name__ == "__main__":
         print("Operation finished")
 
     # Grid search to select the best hyperparameters
-    # with LoggingPrinter(incremental_path(TRAINLOGS_BASEPATH, LINEAR_SVM_TRAINLOG_FNAME)):
-    #     linear_svm_gridsearch()
+    if args.gridsearch:
+        with LoggingPrinter(incremental_path(TRAINLOGS_BASEPATH, LINEAR_SVM_TRAINLOG_FNAME)):
+            linear_svm_gridsearch()
 
     # Using the best hyperparameters, try class-balancing w.r.t target applications
-    with LoggingPrinter(incremental_path(TRAINLOGS_BASEPATH, LINEAR_SVM_CLASS_BALANCING_TRAINLOG_FNAME)):
-        linear_svm_class_balancing()
+    if args.class_balancing:
+        with LoggingPrinter(incremental_path(TRAINLOGS_BASEPATH, LINEAR_SVM_CLASS_BALANCING_TRAINLOG_FNAME)):
+            linear_svm_class_balancing()
 
     plt.show()

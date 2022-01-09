@@ -9,7 +9,7 @@ from classifiers.svm import cross_validate_svm, SVM_Classifier
 TRAINLOGS_BASEPATH = os.path.join(SCRIPT_PATH, "..", "train_logs", "svm")
 POLYNOMIAL_SVM_TRAINLOG_FNAME = "polynomial_svm_trainlog_1.txt"
 
-POLYNOMIAL_SVM_GRAPH_PATH = os.path.join(SCRIPT_PATH, "..", "graphs", "svm", "polynomial_svm_graph_")
+POLYNOMIAL_SVM_GRAPH_PATH = os.path.join(SCRIPT_PATH, "..", "graphs", "svm", "polynomial", "polynomial_svm_graph_")
 
 
 if __name__ == "__main__":
