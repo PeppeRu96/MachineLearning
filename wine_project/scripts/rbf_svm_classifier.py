@@ -63,19 +63,21 @@ if __name__ == "__main__":
 
             # Plot only some important values of gamma
             if len(gs) > 3:
-                gs_to_plot = []
-                for g in gs:
-                    g_log10 = np.log10(g)
-                    if g_log10 >= -3 and g_log10 < 0 and float(g_log10).is_integer():
-                        gs_to_plot.append(g)
-                    if len(gs_to_plot) >= 3:
-                        break
+                # Plot the three top gamma results
+                def f_cmp(tup):
+                    g_i = tup[0]
+                    ys = minDCFs[:, g_i, app_i].flatten()
+                    y_min = min(ys)
+                    return y_min
+
+                g_sorted = [t[1] for t in sorted(enumerate(gs), key=f_cmp)]
+                gs_to_plot = g_sorted[:3]
             else:
                 gs_to_plot = gs
 
             for gi, g in enumerate(gs_to_plot):
                 y = minDCFs[:, gi, app_i].flatten()
-                gamma_str = f"{int(np.log10(g))}" if g.is_integer() else f"{np.log10(g):.1f}"
+                gamma_str = f"{int(np.log10(g))}" if float(g).is_integer() else f"{np.log10(g):.1f}"
                 plt.plot(x, y, label=f"log(γ)={gamma_str}")
             plt.legend()
 
@@ -112,7 +114,7 @@ if __name__ == "__main__":
 
         # Grid rbf svm hyperparameters
         Ks = [1]
-        Cs = np.logspace(-3, 3, 7)
+        Cs = np.logspace(-3, 5, 9)
         gamma = np.logspace(-3, 3, 7)
 
         # Grid search without class-balacing
