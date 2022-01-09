@@ -10,7 +10,7 @@ from classifiers.svm import cross_validate_svm, SVM_Classifier
 
 import argparse
 
-TRAINLOGS_BASEPATH = os.path.join(SCRIPT_PATH, "..", "train_logs", "rbf", "svm")
+TRAINLOGS_BASEPATH = os.path.join(SCRIPT_PATH, "..", "train_logs", "svm", "rbf")
 RBF_SVM_TRAINLOG_FNAME = "rbf_svm_trainlog_1.txt"
 RBF_SVM_FINE_GRAINED_TRAINLOG_FNAME = "rbf_svm_fine_grained_trainlog_1.txt"
 RBF_SVM_CLASS_BALANCING_PI05_TRAINLOG_FNAME = "rbf_svm_class_balancing_pi05_trainlog_1.txt"
