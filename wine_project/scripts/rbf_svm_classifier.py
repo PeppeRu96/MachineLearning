@@ -12,6 +12,7 @@ import argparse
 
 TRAINLOGS_BASEPATH = os.path.join(SCRIPT_PATH, "..", "train_logs", "svm")
 RBF_SVM_TRAINLOG_FNAME = "rbf_svm_trainlog_1.txt"
+RBF_SVM_FINE_GRAINED_TRAINLOG_FNAME = "rbf_svm_fine_grained_trainlog_1.txt"
 RBF_SVM_CLASS_BALANCING_TRAINLOG_FNAME = "rbf_svm_class_balancing_trainlog_1.txt"
 
 RBF_SVM_GRAPH_PATH = os.path.join(SCRIPT_PATH, "..", "graphs", "svm", "rbf", "rbf_svm_graph_")
@@ -21,7 +22,9 @@ def get_args():
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
     parser.add_argument("--gridsearch", type=bool, default=False,
-                        help="Start gridsearch cross-validation to jointly optimize C and gamma for different preprocess configurations")
+                        help="Start a coarse-level gridsearch cross-validation to jointly optimize C and gamma for different preprocess configurations")
+    parser.add_argument("--gridsearch_fine_grained", type=bool, default=False,
+                        help="Start a fine-grained gridsearch cross-validation to jointly optimize C and gamma for different preprocess configurations")
     parser.add_argument("--class_balancing", type=bool, default=False,
                         help="Start cross-validation to try class-balancing with the best hyperparameters")
     return parser.parse_args()
@@ -32,7 +35,7 @@ if __name__ == "__main__":
     # Load 5-Folds already splitted dataset
     folds_data, folds_labels = load_train_dataset_5_folds()
 
-    def plot_against_C_gamma(conf, K, Cs, gs, specific_pi1=None):
+    def plot_against_C_gamma(conf, K, Cs, gs, specific_pi1=None, prefix_title=""):
 
         pi1_str = "with prior weight specific training (π=%.1f)" % (specific_pi1) if specific_pi1 is not None else ""
         minDCFs = np.zeros((len(Cs), len(gs), len(applications)))
@@ -54,7 +57,7 @@ if __name__ == "__main__":
         for app_i, (pi1, Cfn, Cfp) in enumerate(applications):
             plt.figure(figsize=[13, 9.7])
             pi1_str = " - train-π: %.1f" % specific_pi1 if specific_pi1 is not None else ""
-            title = "RBF SVM (K: {:.1f}{}) - {} - target-π={:.1f}".format(K, pi1_str, conf.to_compact_string(), pi1)
+            title = "{} RBF SVM (K: {:.1f}{}) - {} - target-π={:.1f}".format(prefix_title, K, pi1_str, conf.to_compact_string(), pi1)
             plt.title(title)
             plt.xlabel("C")
             plt.ylabel("minDCF")
@@ -93,30 +96,9 @@ if __name__ == "__main__":
             Kstr = "%.1f" % K
             Kstr = Kstr.replace(".", "-")
             Kstr = "K-" + Kstr
-            plt.savefig("%s%s_%s%s%s" % (RBF_SVM_GRAPH_PATH, Kstr, conf.to_compact_string(), pi1_str, target_pi1_str))
+            plt.savefig("%s%s_%s%s%s_%s" % (RBF_SVM_GRAPH_PATH, Kstr, conf.to_compact_string(), pi1_str, target_pi1_str, prefix_title))
 
-    def rbf_svm_gridsearch():
-        # Preprocessing configurations to try
-        preproc_configurations = [
-            PreprocessConf([]),
-            PreprocessConf([PreprocStage(Preproc.Gaussianization)]),
-            PreprocessConf([
-                PreprocStage(Preproc.Centering),
-                PreprocStage(Preproc.Whitening_Covariance),
-                PreprocStage(Preproc.L2_Normalization)
-            ]),
-            PreprocessConf([
-                PreprocStage(Preproc.Centering),
-                PreprocStage(Preproc.Whitening_Within_Covariance),
-                PreprocStage(Preproc.L2_Normalization)
-            ]),
-        ]
-
-        # Grid rbf svm hyperparameters
-        Ks = [1]
-        Cs = np.logspace(-3, 5, 9)
-        gamma = np.logspace(-3, 3, 7)
-
+    def rbf_svm_gridsearch(preproc_configurations, Ks, Cs, gamma, prefix_title=""):
         # Grid search without class-balacing
         tot_time_start = time.perf_counter()
         print("Grid search on RBF SVM without class balancing started.")
@@ -129,7 +111,7 @@ if __name__ == "__main__":
                 for Ki, K in enumerate(Ks):
                     print("Grid search iteration %d / %d" % (grid_search_iterations, tot_gs_iterations_required))
                     time_start = time.perf_counter()
-                    plot_against_C_gamma(conf, K, Cs, gamma)
+                    plot_against_C_gamma(conf, K, Cs, gamma, prefix_title=prefix_title)
                     time_end = time.perf_counter()
                     grid_search_iterations += 1
                     print("Grid search iteration ended in %d seconds" % (time_end - time_start))
@@ -163,10 +145,52 @@ if __name__ == "__main__":
             pi1, (time_end - time_start)))
         print("Operation finished")
 
-    # Grid search to select the best hyperparameters
+
+    # Coarse-level grid search to select the best hyperparameters
     if args.gridsearch:
+        # Preprocessing configurations to try
+        preproc_configurations = [
+            PreprocessConf([]),
+            PreprocessConf([PreprocStage(Preproc.Gaussianization)]),
+            PreprocessConf([
+                PreprocStage(Preproc.Centering),
+                PreprocStage(Preproc.Whitening_Covariance),
+                PreprocStage(Preproc.L2_Normalization)
+            ]),
+            PreprocessConf([
+                PreprocStage(Preproc.Centering),
+                PreprocStage(Preproc.Whitening_Within_Covariance),
+                PreprocStage(Preproc.L2_Normalization)
+            ]),
+        ]
+        # Coarse-level grid rbf svm hyperparameters
+        Ks = [1]
+        Cs = np.logspace(-3, 5, 9)
+        gamma = np.logspace(-3, 3, 7)
         with LoggingPrinter(incremental_path(TRAINLOGS_BASEPATH, RBF_SVM_TRAINLOG_FNAME)):
-            rbf_svm_gridsearch()
+            rbf_svm_gridsearch(preproc_configurations, Ks, Cs, gamma)
+
+    # ----------------------------------------------------------------------- #
+
+    # Fine-grained grid search to select the best hyperparameters
+    if args.gridsearch_fine_grained:
+        # Preprocessing configurations to try
+        preproc_configurations = [
+            PreprocessConf([
+                PreprocStage(Preproc.Centering),
+                PreprocStage(Preproc.Whitening_Within_Covariance),
+                PreprocStage(Preproc.L2_Normalization)
+            ])
+        ]
+
+        # Fine-grained grid rbf svm hyperparameters
+        Ks = [1]
+        Cs = np.logspace(-1, 1, 10)
+        gamma = np.logspace(0, 2, 10)
+        with LoggingPrinter(incremental_path(TRAINLOGS_BASEPATH, RBF_SVM_FINE_GRAINED_TRAINLOG_FNAME)):
+            rbf_svm_gridsearch(preproc_configurations, Ks, Cs, gamma, prefix_title="fine-grained")
+
+    # -------------------------------------------------------------------------- #
 
     if args.class_balancing:
         with LoggingPrinter(incremental_path(TRAINLOGS_BASEPATH, RBF_SVM_CLASS_BALANCING_TRAINLOG_FNAME)):
