@@ -82,7 +82,7 @@ def bayes_binary_dcfu(conf_matr, pi_1, Cfn, Cfp):
 
     return DCFu
 
-def bayes_binary_dcf(conf_matr, pi_1, Cfn, Cfp):
+def _bayes_binary_dcf(conf_matr, pi_1, Cfn, Cfp):
     """
     Computes the Detection Cost Function or Bayes Empirical Risk for a Binary Task on a validation/evaluation dataset
     :param conf_matr: confusion matrix
@@ -101,6 +101,22 @@ def bayes_binary_dcf(conf_matr, pi_1, Cfn, Cfp):
     DCF = DCFu / Bdummy
 
     return DCF
+
+def bayes_binary_dcf(llr, labels, pi_1, Cfn, Cfp, threshold=None):
+    """
+    Computes the actual normalized DCF  for the selected application
+    using either the optimal bayes threshold or the given threshold.
+    :param llr: scores
+    :param labels: ground truths
+    :param pi_1: target application prior probability for the true class
+    :param Cfn: target application cost for a false negative prediction
+    :param Cfp: target application cost for a false positive prediction
+    :return: the actual normalized dcf for the given target application
+    """
+    predictions = bayes_binary_optimal_classifier(llr, pi_1, Cfn, Cfp, threshold=threshold)
+    conf_matr = get_confusion_matrix(predictions, labels)
+    dcf = _bayes_binary_dcf(conf_matr, pi_1, Cfn, Cfp)
+    return dcf
 
 def bayes_min_dcf(llr, labels, pi_1, Cfn, Cfp):
     """
@@ -122,7 +138,7 @@ def bayes_min_dcf(llr, labels, pi_1, Cfn, Cfp):
     for t in llr_sorted:
         predictions = bayes_binary_optimal_classifier(llr, pi_1, Cfn, Cfp, threshold=t)
         conf_matr = get_confusion_matrix(predictions, labels)
-        dcf = bayes_binary_dcf(conf_matr, pi_1, Cfn, Cfp)
+        dcf = _bayes_binary_dcf(conf_matr, pi_1, Cfn, Cfp)
         if dcf < minDCF:
             minDCF = dcf
             best_threshold = t
@@ -183,7 +199,7 @@ def draw_NormalizedBayesErrorPlot(llr, labels, p_min, p_max, p_points, recognize
         effPrior = 1 / (1 + np.exp(-p))
         predictions = bayes_binary_optimal_classifier(llr, effPrior, 1, 1)
         conf_matr = get_confusion_matrix(predictions, labels)
-        DCF = bayes_binary_dcf(conf_matr, effPrior, 1, 1)
+        DCF = _bayes_binary_dcf(conf_matr, effPrior, 1, 1)
         minDCF, _ = bayes_min_dcf(llr, labels, effPrior, 1, 1)
         DCFs.append(DCF)
         minDCFs.append(minDCF)

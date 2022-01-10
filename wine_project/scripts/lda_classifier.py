@@ -57,7 +57,7 @@ if __name__ == "__main__":
     # Make the predictions using the estimated threshold
     predictions = eval.bayes_binary_optimal_classifier(score_eval, dsc.applications[0][0], dsc.applications[0][1], dsc.applications[0][2], estimated_threshold)
     conf_matr = eval.get_confusion_matrix(predictions, label_eval)
-    actualDCF = eval.bayes_binary_dcf(conf_matr, dsc.applications[0][0], dsc.applications[0][1], dsc.applications[0][2])
+    actualDCF = eval._bayes_binary_dcf(conf_matr, dsc.applications[0][0], dsc.applications[0][1], dsc.applications[0][2])
     print("Actual DCF on the validation partition using the estimated threshold: ", actualDCF)
 
     # Draw ROC for the validation subset

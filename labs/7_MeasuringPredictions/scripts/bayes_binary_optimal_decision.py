@@ -52,7 +52,7 @@ if __name__ == "__main__":
     def test_bayes_dcf(pi_1, Cfn, Cfp):
         predictions = eval.bayes_binary_optimal_classifier(llr_infpar, pi_1, Cfn, Cfp)
         conf_matr = eval.get_confusion_matrix(predictions, labels_infpar)
-        dcf = eval.bayes_binary_dcf(conf_matr, pi_1, Cfn, Cfp)
+        dcf = eval._bayes_binary_dcf(conf_matr, pi_1, Cfn, Cfp)
         print("DCF with an application (pi_1: %.2f, Cfn: %.2f, Cfp: %.2f):\t%.3f" % (pi_1, Cfn, Cfp, dcf))
 
 
@@ -86,11 +86,11 @@ if __name__ == "__main__":
         # DCF
         predictions = eval.bayes_binary_optimal_classifier(llr_infpar, pi_1, Cfn, Cfp)
         conf_matr = eval.get_confusion_matrix(predictions, labels_infpar)
-        dcf = eval.bayes_binary_dcf(conf_matr, pi_1, Cfn, Cfp)
+        dcf = eval._bayes_binary_dcf(conf_matr, pi_1, Cfn, Cfp)
 
         predictions_eps1 = eval.bayes_binary_optimal_classifier(llr_infpar_eps1, pi_1, Cfn, Cfp)
         conf_matr_eps1 = eval.get_confusion_matrix(predictions_eps1, labels_infpar)
-        dcf_eps1 = eval.bayes_binary_dcf(conf_matr_eps1, pi_1, Cfn, Cfp)
+        dcf_eps1 = eval._bayes_binary_dcf(conf_matr_eps1, pi_1, Cfn, Cfp)
 
         # MIN DCF
         minDCF, _ = eval.bayes_min_dcf(llr_infpar, labels_infpar, pi_1, Cfn, Cfp)
