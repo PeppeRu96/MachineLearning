@@ -20,7 +20,7 @@ RBF_SVM_CLASS_BALANCING_PI09_TRAINLOG_FNAME = "rbf_svm_class_balancing_pi09_trai
 RBF_SVM_GRAPH_PATH = os.path.join(SCRIPT_PATH, "..", "graphs", "svm", "rbf", "rbf_svm_graph_")
 
 def get_args():
-    parser = argparse.ArgumentParser(description="Script to launch Logistic Regression classificator building",
+    parser = argparse.ArgumentParser(description="Script to launch RBF SVM classificator building",
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
     parser.add_argument("--gridsearch", type=bool, default=False,

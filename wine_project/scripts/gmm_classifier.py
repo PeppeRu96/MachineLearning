@@ -9,12 +9,24 @@ import evaluation.common as eval
 from density_estimation.gaussian_mixture_model import LBG_estimate
 from classifiers.gmm_classifier import GMM_Classifier
 
+import argparse
+
 TRAINLOGS_BASEPATH = os.path.join(SCRIPT_PATH, "..", "train_logs", "gmm")
 GMM_TRAINLOG_FNAME = "gmm_trainlog_1.txt"
 
 GMM_GRAPH_PATH = os.path.join(SCRIPT_PATH, "..", "graphs", "gmm", "gmm_graph_")
 
+def get_args():
+    parser = argparse.ArgumentParser(description="Script to launch GMM classificator building",
+                                     formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+
+    parser.add_argument("--gridsearch", type=bool, default=False,
+                        help="Start a gridsearch cross-validation to optimize with respect to the number of components, the preprocess configuration and the model type")
+    return parser.parse_args()
+
 if __name__ == "__main__":
+    args = get_args()
+
     # Load 5-Folds already splitted dataset
     folds_data, folds_labels = load_train_dataset_5_folds()
 
@@ -45,7 +57,7 @@ if __name__ == "__main__":
                 gmms = [g0, g1]
                 gmm_classifiers.append(GMM_Classifier(gmms))
 
-            # Now gmm_classifiers contains `max_components` gmm classifiers
+            # Now gmm_classifiers contains log2(max_components) gmm classifiers
 
             # Validate
             for i, gmm_classifier in enumerate(gmm_classifiers):
@@ -139,7 +151,8 @@ if __name__ == "__main__":
                     tied_str = "_tied" if tied else ""
                     plt.savefig("%s%s%s%s" % (GMM_GRAPH_PATH, pi1_str, diag_str, tied_str))
 
-    with LoggingPrinter(incremental_path(TRAINLOGS_BASEPATH, GMM_TRAINLOG_FNAME)):
-        gmm_gridsearch()
+    if args.gridsearch:
+        with LoggingPrinter(incremental_path(TRAINLOGS_BASEPATH, GMM_TRAINLOG_FNAME)):
+            gmm_gridsearch()
 
     plt.show()
