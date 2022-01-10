@@ -6,8 +6,14 @@ import preproc.dstools as dst
 from density_estimation.gaussian_mixture_model import LBG_estimate
 
 class GMM_Classifier:
-
     def __init__(self, gmms):
+        """
+        A GMM is represented as a vector of tuples of three elements each.
+        [ (w_1, mu_1, sigma_1), (w_2, mu_2, sigma_2) ... (w_n, mu_n, sigma_n) ]
+        where w is the weight, mu is the mean vector and sigma is the covariance matrix.
+        The GMM Classifier allows to model the data of each class with an independent GMM.
+        :param gmms: a vector [g0, g1] containing the gmm for the false class and the gmm for the true class
+        """
         self.gmms = gmms
 
     def inference(self, D, Pc):
@@ -43,8 +49,9 @@ def cross_validate_gmm(folds_data, folds_labels, preproc_conf, alpha, psi, diag_
     iterations = 1
     K = folds_data.shape[0]
     nk = folds_labels.shape[1]
-    scores = np.zeros((max_components, K*nk))
-    labels = np.zeros((max_components, K*nk))
+    num_classifiers = int(np.log2(max_components) + 1)
+    scores = np.zeros((num_classifiers, K*nk))
+    labels = np.zeros((num_classifiers, K*nk))
     k = 0
     for DTR, LTR, DTE, LTE in dst.kfold_generate(folds_data, folds_labels):
         # Preprocess data

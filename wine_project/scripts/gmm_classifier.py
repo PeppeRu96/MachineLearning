@@ -68,9 +68,9 @@ if __name__ == "__main__":
         # Grid search
         tot_time_start = time.perf_counter()
         print("Grid search on GMM started.")
-        tot_iterations_required = len(preproc_configurations) * len(diags) * len(tieds) * len(comps)
+        #tot_iterations_required = len(preproc_configurations) * len(diags) * len(tieds) * len(comps)
         tot_gs_iterations_required = len(preproc_configurations) * len(diags) * len(tieds)
-        print("Total GMM cross-validation required ", tot_iterations_required)
+        #print("Total GMM components trained required ", tot_iterations_required)
         print("Total grid search iterations required ", tot_gs_iterations_required)
         grid_search_iterations = 1
         for conf_i, conf in enumerate(preproc_configurations):
