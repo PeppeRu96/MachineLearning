@@ -1,10 +1,9 @@
 import matplotlib.pyplot as plt
 import time
+from wine_project.utility.ds_common import *
 
 import numpy as np
 
-from wine_project.utility.ds_common import *
-import evaluation.common as eval
 
 from classifiers.svm import cross_validate_svm, SVM_Classifier
 
@@ -18,8 +17,13 @@ RBF_SVM_CLASS_BALANCING_PI01_TRAINLOG_FNAME = "rbf_svm_class_balancing_pi01_trai
 RBF_SVM_CLASS_BALANCING_PI09_TRAINLOG_FNAME = "rbf_svm_class_balancing_pi09_trainlog_1.txt"
 RBF_SVM_ACTUAL_DCF_TRAINLOG_FNAME = "rbf_svm_actual_dcf_trainlog_1.txt"
 
+create_folder_if_not_exist(TRAINLOGS_BASEPATH)
+create_folder_if_not_exist(os.path.join(TRAINLOGS_BASEPATH, "dummy.txt"))
 
 RBF_SVM_GRAPH_PATH = os.path.join(SCRIPT_PATH, "..", "graphs", "svm", "rbf", "rbf_svm_graph_")
+
+create_folder_if_not_exist(os.path.join(SCRIPT_PATH, "..", "graphs", "svm", "rbf"))
+create_folder_if_not_exist(RBF_SVM_GRAPH_PATH)
 
 def get_args():
     parser = argparse.ArgumentParser(description="Script to launch RBF SVM classificator building",
@@ -33,6 +37,8 @@ def get_args():
                         help="Start cross-validation to try class-balancing with the best hyperparameters")
     parser.add_argument("--actual_dcf", type=bool, default=False,
                         help="Calculate actual DCF for the different target application using the best model")
+    parser.add_argument("--bayes_error_plot", type=bool, default=False,
+                        help="Display the bayes error plot for the best model")
     return parser.parse_args()
 
 if __name__ == "__main__":
@@ -244,5 +250,15 @@ if __name__ == "__main__":
                 print("\t\tmin DCF (π=%.1f) : %.3f" % (pi1, minDCF))
                 print("\t\tact DCF (π=%.1f) : %.3f" % (pi1, actDCF))
                 print()
+
+    # -------------------------------------------------------------------------- #
+
+    # Bayes error plot
+    if args.bayes_error_plot:
+        kernel = SVM_Classifier.Kernel_RadialBasisFunction(best_g)
+        scores, labels = cross_validate_svm(folds_data, folds_labels, best_preproc_conf, best_C, best_K,
+                                            specific_pi1=None, kernel=kernel)
+        plt.figure(figsize=[13, 9.7])
+        eval.draw_NormalizedBayesErrorPlot(scores, labels, -4, 4, 25, recognizer_name="RBF SVM", color="red")
 
     plt.show()

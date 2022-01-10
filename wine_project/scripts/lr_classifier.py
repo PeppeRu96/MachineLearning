@@ -17,6 +17,9 @@ QUADRATIC_LR_BEST_TRAINLOG_FNAME = "quadratic_lr_best_trainlog_1.txt"
 LINEAR_LR_GRAPH_PATH = os.path.join(SCRIPT_PATH, "..", "graphs", "lr", "linear_lr_graph_")
 QUADRATIC_LR_GRAPH_PATH = os.path.join(SCRIPT_PATH, "..", "graphs", "lr", "quadratic_lr_graph_")
 
+create_folder_if_not_exist(os.path.join(TRAINLOGS_BASEPATH, "dummy.txt"))
+create_folder_if_not_exist(LINEAR_LR_GRAPH_PATH)
+
 def get_args():
     parser = argparse.ArgumentParser(description="Script to launch Logistic Regression classificator building",
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)

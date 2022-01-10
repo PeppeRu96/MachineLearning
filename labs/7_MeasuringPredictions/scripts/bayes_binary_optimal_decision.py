@@ -79,7 +79,7 @@ if __name__ == "__main__":
     eval.draw_ROC(llr_infpar, labels_infpar)
 
     plt.figure()
-    eval.draw_NormalizedBayesErrorPlot(llr_infpar, labels_infpar, -3, 3, 21, recognizer_name="eps: 0.001")
+    eval.draw_NormalizedBayesErrorPlot(llr_infpar, labels_infpar, -3, 3, 21, recognizer_name="eps: 0.001", color='black')
 
     # Comparing recognizers
     def test_comparing_recognizers(pi_1, Cfn, Cfp):
@@ -104,7 +104,9 @@ if __name__ == "__main__":
         test_comparing_recognizers(pi_1, Cfn, Cfp)
 
     plt.figure()
-    eval.draw_NormalizedBayesErrorPlot(llr_infpar, labels_infpar, -3, 3, 21, recognizer_name="eps: 0.001")
-    eval.draw_NormalizedBayesErrorPlot(llr_infpar_eps1, labels_infpar_eps1, -3, 3, 21, recognizer_name="eps: 1")
+    print(f"Min llr_infpar: {min(llr_infpar)}")
+    print(f"Max llr_infpar: {max(llr_infpar)}")
+    eval.draw_NormalizedBayesErrorPlot(llr_infpar, labels_infpar, -3, 3, 21, recognizer_name="eps: 0.001", color='red')
+    eval.draw_NormalizedBayesErrorPlot(llr_infpar_eps1, labels_infpar_eps1, -3, 3, 21, recognizer_name="eps: 1", color='blue')
 
     plt.show()

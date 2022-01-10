@@ -14,6 +14,11 @@ LINEAR_SVM_CLASS_BALANCING_TRAINLOG_FNAME = "linear_svm_class_balancing_trainlog
 
 LINEAR_SVM_GRAPH_PATH = os.path.join(SCRIPT_PATH, "..", "graphs", "svm", "linear", "linear_svm_graph_")
 
+create_folder_if_not_exist(TRAINLOGS_BASEPATH)
+create_folder_if_not_exist(os.path.join(TRAINLOGS_BASEPATH, "dummy.txt"))
+create_folder_if_not_exist(os.path.join(SCRIPT_PATH, "..", "graphs", "svm", "linear"))
+create_folder_if_not_exist(LINEAR_SVM_GRAPH_PATH)
+
 def get_args():
     parser = argparse.ArgumentParser(description="Script to launch Logistic Regression classificator building",
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)

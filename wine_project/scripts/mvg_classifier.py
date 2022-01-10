@@ -10,6 +10,8 @@ from classifiers.gaussian_classifier import MVG_Classifier
 TRAINLOGS_BASEPATH = os.path.join(SCRIPT_PATH, "..", "train_logs", "mvg")
 MVG_TRAINLOG_FNAME = "mvg_trainlog_1.txt"
 
+create_folder_if_not_exist(os.path.join(TRAINLOGS_BASEPATH, "dummy.txt"))
+
 if __name__ == "__main__":
     folds_data, folds_labels = load_train_dataset_5_folds()
 

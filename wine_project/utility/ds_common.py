@@ -275,3 +275,7 @@ def incremental_path(basepath, filename):
 
     return os.path.join(basepath, newfname)
 
+def create_folder_if_not_exist(file_path):
+    head, tail = os.path.split(file_path)
+    if not os.path.isdir(head):
+        os.mkdir(head)

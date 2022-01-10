@@ -13,8 +13,13 @@ import argparse
 
 TRAINLOGS_BASEPATH = os.path.join(SCRIPT_PATH, "..", "train_logs", "gmm")
 GMM_TRAINLOG_FNAME = "gmm_trainlog_1.txt"
+GMM_ACTUAL_DCF_TRAINLOG_FNAME = "gmm_actual_dcf_trainlog_1.txt"
+
+create_folder_if_not_exist(os.path.join(TRAINLOGS_BASEPATH, "dummy.txt"))
 
 GMM_GRAPH_PATH = os.path.join(SCRIPT_PATH, "..", "graphs", "gmm", "gmm_graph_")
+
+create_folder_if_not_exist(GMM_GRAPH_PATH)
 
 def get_args():
     parser = argparse.ArgumentParser(description="Script to launch GMM classificator building",
@@ -117,8 +122,31 @@ if __name__ == "__main__":
                     tied_str = "_tied" if tied else ""
                     plt.savefig("%s%s%s%s" % (GMM_GRAPH_PATH, pi1_str, diag_str, tied_str))
 
+    # ------------------------------------------------------------------------------------- #
     if args.gridsearch:
         with LoggingPrinter(incremental_path(TRAINLOGS_BASEPATH, GMM_TRAINLOG_FNAME)):
             gmm_gridsearch()
+
+    # ------------------------------------------------------------------------------------- #
+
+    best_preproc_conf = PreprocessConf([
+                PreprocStage(Preproc.Centering),
+                PreprocStage(Preproc.Whitening_Within_Covariance),
+                PreprocStage(Preproc.L2_Normalization)
+            ])
+    best_num_components = 256
+    best_diag = False
+    best_tied = False
+
+    if args.actual_dcf:
+        with LoggingPrinter(incremental_path(TRAINLOGS_BASEPATH, GMM_ACTUAL_DCF_TRAINLOG_FNAME)):
+            scores, labels = cross_validate_gmm(folds_data, folds_labels, best_preproc_conf, ALPHA, PSI, best_diag,
+                                                best_tied, best_num_components, verbose=True)
+            for app_i, (pi1, Cfn, Cfp) in enumerate(applications):
+                minDCF, _ = eval.bayes_min_dcf(scores[-1], labels[-1], pi1, Cfn, Cfp)
+                actDCF = eval.bayes_binary_dcf(scores[-1], labels[-1], pi1, Cfn, Cfp)
+                print("\t\tmin DCF (π=%.1f) : %.3f" % (pi1, minDCF))
+                print("\t\tact DCF (π=%.1f) : %.3f" % (pi1, actDCF))
+                print()
 
     plt.show()

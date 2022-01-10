@@ -177,7 +177,7 @@ def draw_ROC(llr, labels):
     plt.ylim([0, 1])
     plt.plot(FPRs, TPRs)
 
-def draw_NormalizedBayesErrorPlot(llr, labels, p_min, p_max, p_points, recognizer_name=""):
+def draw_NormalizedBayesErrorPlot(llr, labels, p_min, p_max, p_points, recognizer_name="", color=None):
     """
     Draw the Normalized Bayes Error Plots to assess the performance of the classifier as we vary the application
     :param llr: log-likelihood ratios to compare with the different thresholds
@@ -185,9 +185,6 @@ def draw_NormalizedBayesErrorPlot(llr, labels, p_min, p_max, p_points, recognize
     :param p_min: minimum of effective prior log odds to calculate dcf and min-dcf on
     :param p_max: maximum of effective prior log odds to calculate dcf and min-dcf on
     :param p_points: points of effective prior log odds to calculate dcf and min-dcf on
-    :param t_min: minimum threshold to calculate the dcf min
-    :param t_max: maximum threshold to caculate the dcf min
-    :param t_points: points of thresholds to calculate the dcf min
     :param recognizer_name: A descriptive name of the recognizer under evaluation, useful for comparing on the same
                             figure different recognizers
     :return: None
@@ -207,10 +204,15 @@ def draw_NormalizedBayesErrorPlot(llr, labels, p_min, p_max, p_points, recognize
     plt.title("Normalized Bayes Error Plots")
     plt.xlabel("Prior log-odds")
     plt.ylabel("DCF value")
-    plt.plot(effPriorLogOdds, DCFs, label="DCF (%s)" % recognizer_name)
-    plt.plot(effPriorLogOdds, minDCFs, label="min DCF (%s)" % recognizer_name)
+    if color is not None:
+        plt.plot(effPriorLogOdds, DCFs, color=color, label="DCF (%s)" % recognizer_name)
+        plt.plot(effPriorLogOdds, minDCFs, color=color, linestyle='dashed', label="min DCF (%s)" % recognizer_name)
+    else:
+        plt.plot(effPriorLogOdds, DCFs, label="DCF (%s)" % recognizer_name)
+        plt.plot(effPriorLogOdds, minDCFs, linestyle='dashed', label="min DCF (%s)" % recognizer_name)
+
     plt.legend(loc="lower left")
-    plt.ylim([0, 1.1])
+    plt.ylim([0, 1.2])
     plt.xlim([p_min, p_max])
 
 def bayes_multiclass_dcfu(conf_matr, pi, C):
