@@ -99,6 +99,7 @@ if __name__ == "__main__":
         else:
             # Standard train-validation on fixed split
             print("Train and validation %s %s MVG training on %s features %s started" % (naive_str, tied_str, gauss_str, PCA_str))
+            print(f"Training samples: {y_train.shape[0]}\nEval samples: {y_test.shape[0]}")
             scores = train_and_validate(X_train, y_train, X_test, y_test)
             scores = scores.flatten()
             labels = y_test
@@ -111,20 +112,23 @@ if __name__ == "__main__":
         naive_grid = [False, True]
         tied_grid = [False, True]
 
+        tot_grid_iterations = len(gauss_grid) * len(PCA_grid) * len(naive_grid) * len(tied_grid)
+        print(f"Grid search total iterations: {tot_grid_iterations}")
+
 
         minDCFs = np.zeros((len(gauss_grid), len(PCA_grid), len(naive_grid), len(tied_grid), len(applications)))
         # Grid search (exhaustive only because the process is speed enough to make
         # 24 iterations (note that we are not embedding any information about the application)
         # We don't need to retrain a new model when we change the application we want to target
         # Therefore, we can train the models and next compute the minDCF for the different applications
-        iterations = 1
+        it = 1
         for gi, g in enumerate(gauss_grid):
             for pi, p in enumerate(PCA_grid):
                 for ni, n in enumerate(naive_grid):
                     for ti, t in enumerate(tied_grid):
-                        print("Grid search iteration ", iterations)
+                        print(f"Grid search iteration {it} / {tot_grid_iterations}")
                         scores, labels = cross_validate_MVG(g, p, n, t, X_train, y_train, X_test, y_test)
-                        iterations += 1
+                        it += 1
                         for app_i, (pi1, Cfn, Cfp) in enumerate(applications):
                             minDCF, _ = eval.bayes_min_dcf(scores, labels, pi1, Cfn, Cfp)
                             print("Min DCF (π=%.2f) : %.3f " % (pi1, minDCF))
