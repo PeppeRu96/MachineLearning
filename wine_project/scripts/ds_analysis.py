@@ -18,7 +18,7 @@ GAUSSIANIZED_LABEL1_HISTOGRAMS_PATH = os.path.join(SCRIPT_PATH, "..", "graphs", 
 
 CORRELATION_PATH = os.path.join(SCRIPT_PATH, "..", "graphs", "ds_analysis", "correlation_heatmap")
 
-dsc.create_folder_if_not_exist(os.path.join(SCRIPT_PATH, "..", "graphs", "ds_analysis", "raw"))
+dsc.create_folder_if_not_exist(os.path.join(SCRIPT_PATH, "..", "graphs", "ds_analysis", "dummy.txt"))
 dsc.create_folder_if_not_exist(RAW_HISTOGRAMS_PATH)
 dsc.create_folder_if_not_exist(GAUSSIANIZED_HISTOGRAMS_PATH)
 

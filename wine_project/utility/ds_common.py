@@ -287,3 +287,8 @@ def create_folder_if_not_exist(file_path):
     head, tail = os.path.split(file_path)
     if not os.path.isdir(head):
         os.mkdir(head)
+
+create_folder_if_not_exist(os.path.join(SCRIPT_PATH, "..", "data", "dummy.txt"))
+create_folder_if_not_exist(os.path.join(SCRIPT_PATH, "..", "graphs", "dummy.txt"))
+create_folder_if_not_exist(os.path.join(SCRIPT_PATH, "..", "train_logs", "dummy.txt"))
+
