@@ -1,0 +1,152 @@
+Grid search on the evaluation dataset using the full training dataset
+Training samples: 1835
+Eval samples: 1822
+Grid search total iterations: 24
+Grid search iteration 1 / 24
+Train and validation   MVG training on  features  started
+Min DCF (π=0.50) : 0.337 
+Min DCF (π=0.10) : 0.656 
+Min DCF (π=0.90) : 0.698 
+Grid search iteration 2 / 24
+Train and validation  Tied MVG training on  features  started
+Min DCF (π=0.50) : 0.315 
+Min DCF (π=0.10) : 0.681 
+Min DCF (π=0.90) : 0.700 
+Grid search iteration 3 / 24
+Train and validation Naive  MVG training on  features  started
+Min DCF (π=0.50) : 0.367 
+Min DCF (π=0.10) : 0.731 
+Min DCF (π=0.90) : 0.869 
+Grid search iteration 4 / 24
+Train and validation Naive Tied MVG training on  features  started
+Min DCF (π=0.50) : 0.369 
+Min DCF (π=0.10) : 0.738 
+Min DCF (π=0.90) : 0.930 
+Grid search iteration 5 / 24
+Train and validation   MVG training on  features and after applying PCA=10 started
+Min DCF (π=0.50) : 0.343 
+Min DCF (π=0.10) : 0.692 
+Min DCF (π=0.90) : 0.707 
+Grid search iteration 6 / 24
+Train and validation  Tied MVG training on  features and after applying PCA=10 started
+Min DCF (π=0.50) : 0.328 
+Min DCF (π=0.10) : 0.711 
+Min DCF (π=0.90) : 0.723 
+Grid search iteration 7 / 24
+Train and validation Naive  MVG training on  features and after applying PCA=10 started
+Min DCF (π=0.50) : 0.357 
+Min DCF (π=0.10) : 0.730 
+Min DCF (π=0.90) : 0.804 
+Grid search iteration 8 / 24
+Train and validation Naive Tied MVG training on  features and after applying PCA=10 started
+Min DCF (π=0.50) : 0.331 
+Min DCF (π=0.10) : 0.726 
+Min DCF (π=0.90) : 0.716 
+Grid search iteration 9 / 24
+Train and validation   MVG training on  features and after applying PCA=9 started
+Min DCF (π=0.50) : 0.349 
+Min DCF (π=0.10) : 0.699 
+Min DCF (π=0.90) : 0.703 
+Grid search iteration 10 / 24
+Train and validation  Tied MVG training on  features and after applying PCA=9 started
+Min DCF (π=0.50) : 0.332 
+Min DCF (π=0.10) : 0.712 
+Min DCF (π=0.90) : 0.714 
+Grid search iteration 11 / 24
+Train and validation Naive  MVG training on  features and after applying PCA=9 started
+Min DCF (π=0.50) : 0.358 
+Min DCF (π=0.10) : 0.745 
+Min DCF (π=0.90) : 0.811 
+Grid search iteration 12 / 24
+Train and validation Naive Tied MVG training on  features and after applying PCA=9 started
+Min DCF (π=0.50) : 0.330 
+Min DCF (π=0.10) : 0.723 
+Min DCF (π=0.90) : 0.719 
+Grid search iteration 13 / 24
+Train and validation   MVG training on Gaussianized features  started
+Min DCF (π=0.50) : 0.334 
+Min DCF (π=0.10) : 0.675 
+Min DCF (π=0.90) : 0.724 
+Grid search iteration 14 / 24
+Train and validation  Tied MVG training on Gaussianized features  started
+Min DCF (π=0.50) : 0.319 
+Min DCF (π=0.10) : 0.698 
+Min DCF (π=0.90) : 0.800 
+Grid search iteration 15 / 24
+Train and validation Naive  MVG training on Gaussianized features  started
+Min DCF (π=0.50) : 0.377 
+Min DCF (π=0.10) : 0.760 
+Min DCF (π=0.90) : 0.913 
+Grid search iteration 16 / 24
+Train and validation Naive Tied MVG training on Gaussianized features  started
+Min DCF (π=0.50) : 0.379 
+Min DCF (π=0.10) : 0.821 
+Min DCF (π=0.90) : 0.942 
+Grid search iteration 17 / 24
+Train and validation   MVG training on Gaussianized features and after applying PCA=10 started
+Min DCF (π=0.50) : 0.319 
+Min DCF (π=0.10) : 0.719 
+Min DCF (π=0.90) : 0.687 
+Grid search iteration 18 / 24
+Train and validation  Tied MVG training on Gaussianized features and after applying PCA=10 started
+Min DCF (π=0.50) : 0.313 
+Min DCF (π=0.10) : 0.717 
+Min DCF (π=0.90) : 0.796 
+Grid search iteration 19 / 24
+Train and validation Naive  MVG training on Gaussianized features and after applying PCA=10 started
+Min DCF (π=0.50) : 0.330 
+Min DCF (π=0.10) : 0.772 
+Min DCF (π=0.90) : 0.889 
+Grid search iteration 20 / 24
+Train and validation Naive Tied MVG training on Gaussianized features and after applying PCA=10 started
+Min DCF (π=0.50) : 0.311 
+Min DCF (π=0.10) : 0.720 
+Min DCF (π=0.90) : 0.806 
+Grid search iteration 21 / 24
+Train and validation   MVG training on Gaussianized features and after applying PCA=9 started
+Min DCF (π=0.50) : 0.324 
+Min DCF (π=0.10) : 0.732 
+Min DCF (π=0.90) : 0.710 
+Grid search iteration 22 / 24
+Train and validation  Tied MVG training on Gaussianized features and after applying PCA=9 started
+Min DCF (π=0.50) : 0.322 
+Min DCF (π=0.10) : 0.731 
+Min DCF (π=0.90) : 0.827 
+Grid search iteration 23 / 24
+Train and validation Naive  MVG training on Gaussianized features and after applying PCA=9 started
+Min DCF (π=0.50) : 0.339 
+Min DCF (π=0.10) : 0.787 
+Min DCF (π=0.90) : 0.790 
+Grid search iteration 24 / 24
+Train and validation Naive Tied MVG training on Gaussianized features and after applying PCA=9 started
+Min DCF (π=0.50) : 0.316 
+Min DCF (π=0.10) : 0.747 
+Min DCF (π=0.90) : 0.833 
+
+---------------------------------------------------------------------------------
+               Model        Gaussianized       PCA	    π=0.50    π=0.10    π=0.90
+            Full-Cov                  No        No	     0.337     0.656     0.698
+       Tied Full-Cov                  No        No	     0.315     0.681     0.700
+            Diag-Cov                  No        No	     0.367     0.731     0.869
+       Tied Diag-Cov                  No        No	     0.369     0.738     0.930
+            Full-Cov                  No        10	     0.343     0.692     0.707
+       Tied Full-Cov                  No        10	     0.328     0.711     0.723
+            Diag-Cov                  No        10	     0.357     0.730     0.804
+       Tied Diag-Cov                  No        10	     0.331     0.726     0.716
+            Full-Cov                  No         9	     0.349     0.699     0.703
+       Tied Full-Cov                  No         9	     0.332     0.712     0.714
+            Diag-Cov                  No         9	     0.358     0.745     0.811
+       Tied Diag-Cov                  No         9	     0.330     0.723     0.719
+            Full-Cov                 Yes        No	     0.334     0.675     0.724
+       Tied Full-Cov                 Yes        No	     0.319     0.698     0.800
+            Diag-Cov                 Yes        No	     0.377     0.760     0.913
+       Tied Diag-Cov                 Yes        No	     0.379     0.821     0.942
+            Full-Cov                 Yes        10	     0.319     0.719     0.687
+       Tied Full-Cov                 Yes        10	     0.313     0.717     0.796
+            Diag-Cov                 Yes        10	     0.330     0.772     0.889
+       Tied Diag-Cov                 Yes        10	     0.311     0.720     0.806
+            Full-Cov                 Yes         9	     0.324     0.732     0.710
+       Tied Full-Cov                 Yes         9	     0.322     0.731     0.827
+            Diag-Cov                 Yes         9	     0.339     0.787     0.790
+       Tied Diag-Cov                 Yes         9	     0.316     0.747     0.833
+---------------------------------------------------------------------------------
