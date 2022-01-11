@@ -203,15 +203,6 @@ def cross_validate_lr(preproc_conf, lambda_regularizer, X_train, y_train, X_test
         scores = []
         labels = []
         for DTR, LTR, DTE, LTE in dst.kfold_generate(X_train, y_train):
-            # Preprocess data
-            DTR, DTE = preproc_conf.apply_preproc_pipeline(DTR, LTR, DTE)
-
-            # Train
-            lr = LogisticRegressionClassifier(2)
-            efs = LogisticRegressionClassifier.quadratic_feature_expansion if quadratic else None
-            lr.train(DTR, LTR, lambda_regularizer, pi1=pi1, expand_feature_space_func=efs)
-
-            # Validate
             s = train_and_validate(DTR, LTR, DTE, LTE)
 
             # Collect scores and associated labels
