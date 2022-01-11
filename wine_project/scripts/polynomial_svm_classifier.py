@@ -8,16 +8,34 @@ from classifiers.svm import cross_validate_svm, SVM_Classifier
 
 import argparse
 
+# TRAIN OUTPUT PATHS
 TRAINLOGS_BASEPATH = os.path.join(SCRIPT_PATH, "..", "train_logs", "svm", "polynomial")
 POLYNOMIAL_SVM_TRAINLOG_FNAME = "polynomial_svm_trainlog_1.txt"
 POLYNOMIAL_SVM_CLASS_BALANCING_TRAINLOG_FNAME = "polynomial_svm_class_balancing_trainlog_1.txt"
 
 POLYNOMIAL_SVM_GRAPH_PATH = os.path.join(SCRIPT_PATH, "..", "graphs", "svm", "polynomial", "polynomial_svm_graph_")
 
+# EVALUATION OUTPUT PATHS
+EVAL_TRAINLOGS_BASEPATH = os.path.join(SCRIPT_PATH, "..", "train_logs", "svm", "polynomial", "eval")
+# PARTIAL TRAINING DATASET
+EVAL_PARTIAL_POLYNOMIAL_SVM_TRAINLOG_FNAME = "eval_partial_polynomial_svm_trainlog_1.txt"
+EVAL_PARTIAL_POLYNOMIAL_SVM_CLASS_BALANCING_TRAINLOG_FNAME = "eval_partial_polynomial_svm_class_balancing_trainlog_1.txt"
+
+EVAL_PARTIAL_POLYNOMIAL_SVM_GRAPH_PATH = os.path.join(SCRIPT_PATH, "..", "graphs", "svm", "polynomial", "eval", "eval_partial_polynomial_svm_graph_")
+# PARTIAL TRAINING DATASET
+EVAL_FULL_POLYNOMIAL_SVM_TRAINLOG_FNAME = "eval_full_polynomial_svm_trainlog_1.txt"
+EVAL_FULL_POLYNOMIAL_SVM_CLASS_BALANCING_TRAINLOG_FNAME = "eval_full_polynomial_svm_class_balancing_trainlog_1.txt"
+
+EVAL_FULL_POLYNOMIAL_SVM_GRAPH_PATH = os.path.join(SCRIPT_PATH, "..", "graphs", "svm", "polynomial", "eval", "eval_full_polynomial_svm_graph_")
+
 create_folder_if_not_exist(TRAINLOGS_BASEPATH)
 create_folder_if_not_exist(os.path.join(TRAINLOGS_BASEPATH, "dummy.txt"))
 create_folder_if_not_exist(os.path.join(SCRIPT_PATH, "..", "graphs", "svm", "polynomial"))
 create_folder_if_not_exist(POLYNOMIAL_SVM_GRAPH_PATH)
+
+create_folder_if_not_exist(os.path.join(EVAL_TRAINLOGS_BASEPATH, "dummy.txt"))
+create_folder_if_not_exist(EVAL_PARTIAL_POLYNOMIAL_SVM_GRAPH_PATH)
+
 
 def get_args():
     parser = argparse.ArgumentParser(description="Script to launch Logistic Regression classificator building",
@@ -28,6 +46,16 @@ def get_args():
     parser.add_argument("--class_balancing", type=bool, default=False,
                         help="Start a cross-validation for a polynomial svm model rebalancing the classes to embed a specific prior")
 
+    parser.add_argument("--eval_partial_gridsearch", type=bool, default=False,
+                        help="Start a gridsearch, training on partial training dataset and validating on the evaluation dataset to select the best preprocess configuration and the best C")
+    parser.add_argument("--eval_partial_class_balancing", type=bool, default=False,
+                        help="Start a training on partial training dataset and validating on the evaluation dataset for a linear svm model rebalancing the classes to embed a specific prior")
+
+    parser.add_argument("--eval_full_gridsearch", type=bool, default=False,
+                        help="Start a gridsearch, training on the full training dataset and validating on the evaluation dataset to select the best preprocess configuration and the best C")
+    parser.add_argument("--eval_full_class_balancing", type=bool, default=False,
+                        help="Start a training on the full training dataset and validating on the evaluation dataset for a linear svm model rebalancing the classes to embed a specific prior")
+
     return parser.parse_args()
 
 if __name__ == "__main__":
@@ -36,16 +64,24 @@ if __name__ == "__main__":
     # Load 5-Folds already splitted dataset
     folds_data, folds_labels = load_train_dataset_5_folds()
 
-    def plot_against_C(conf, K, Cs, d, c, specific_pi1=None):
+    # Load the test dataset
+    X_test, y_test = load_dataset(train=False, only_data=True)
+
+    def plot_against_C(conf, K, Cs, d, c, X_train, y_train, X_test=None, y_test=None, partial=False, specific_pi1=None):
         kernel = SVM_Classifier.Kernel_Polynomial(d, c)
 
         pi1_str = "with prior weight specific training (π=%.1f)" % (specific_pi1) if specific_pi1 is not None else ""
         minDCFs = np.zeros((len(Cs), len(applications)))
         for Ci, C in enumerate(Cs):
-            print("\t(Ci: {}) - 5-Fold Cross-Validation Polynomial SVM (d={} - c={}) {} (C={:.0e} - K={:.1f}) - Preprocessing: {}".format(
-                Ci, d, c, pi1_str, C, K, conf))
+            if X_test is None:
+                print("\t(Ci: {}) - 5-Fold Cross-Validation Polynomial SVM (d={} - c={}) {} (C={:.0e} - K={:.1f}) - Preprocessing: {}".format(
+                    Ci, d, c, pi1_str, C, K, conf))
+            else:
+                print("\t(Ci: {}) - Train and validation (eval) Polynomial SVM (d={} - c={}) {} (C={:.0e} - K={:.1f}) - Preprocessing: {}".format(
+                        Ci, d, c, pi1_str, C, K, conf))
             time_start = time.perf_counter()
-            scores, labels = cross_validate_svm(folds_data, folds_labels, conf, C, K, specific_pi1=specific_pi1, kernel=kernel)
+            scores, labels = cross_validate_svm(conf, C, K, X_train=X_train, y_train=y_train, X_test=X_test, y_test=y_test,
+                                                specific_pi1=specific_pi1, kernel=kernel)
             for app_i, (pi1, Cfn, Cfp) in enumerate(applications):
                 minDCF, _ = eval.bayes_min_dcf(scores, labels, pi1, Cfn, Cfp)
                 print("\t\tmin DCF (π=%.1f) : %.3f" % (pi1, minDCF))
@@ -78,9 +114,21 @@ if __name__ == "__main__":
         Kstr = "%.1f" % K
         Kstr = Kstr.replace(".", "-")
         Kstr = "K-" + Kstr
-        plt.savefig("%s%s%s%s_%s%s" % (POLYNOMIAL_SVM_GRAPH_PATH, Kstr, d_str, c_without_points, conf.to_compact_string(), pi1_str))
 
-    def polynomial_svm_gridsearch():
+        if X_test is not None:
+            if partial:
+                base_path = EVAL_PARTIAL_POLYNOMIAL_SVM_GRAPH_PATH
+            else:
+                base_path = EVAL_FULL_POLYNOMIAL_SVM_GRAPH_PATH
+        else:
+            base_path = POLYNOMIAL_SVM_GRAPH_PATH
+
+        full_path = "%s%s%s%s_%s%s" % (base_path, Kstr, d_str, c_without_points, conf.to_compact_string(), pi1_str)
+
+        plt.savefig(full_path)
+        print(f"Plot saved in {full_path}.")
+
+    def polynomial_svm_gridsearch(X_train, y_train, X_test=None, y_test=None, partial=False):
         # Preprocessing configurations to try
         preproc_configurations = [
             PreprocessConf([]),
@@ -117,6 +165,8 @@ if __name__ == "__main__":
                     for Ki, K in enumerate(Ks):
                         print("Grid search iteration %d / %d" % (grid_search_iterations, tot_gs_iterations_required))
                         time_start = time.perf_counter()
+                        plot_against_C(conf, K, Cs, d, c, X_train=X_train, y_train=y_train, X_test=X_test, y_test=y_test,
+                                       partial=partial, specific_pi1=None)
                         plot_against_C(conf, K, Cs, d, c)
                         time_end = time.perf_counter()
                         grid_search_iterations += 1
@@ -124,7 +174,7 @@ if __name__ == "__main__":
         tot_time_end = time.perf_counter()
         print("Grid search on Polynomial SVM without class balancing ended in %d seconds" % (tot_time_end - tot_time_start))
 
-    def polynomial_svm_class_balancing():
+    def polynomial_svm_class_balancing(X_train, y_train, X_test=None, y_test=None):
         # We select the best preproc configuration, polynomial degree and C value
         preproc_conf = PreprocessConf([
                 PreprocStage(Preproc.Centering),
@@ -141,7 +191,8 @@ if __name__ == "__main__":
         for app_i, (train_pi1, Cfn, Cfp) in enumerate(applications):
             print(f"Polynomial SVM cross-validation with class-balancing for the target application with π={train_pi1:.1f} (d={d} - c={1}) (C={C:.0e} - K={K:.1f}) - Preprocessing: {preproc_conf}")
             time_start = time.perf_counter()
-            scores, labels = cross_validate_svm(folds_data, folds_labels, preproc_conf, C, K, specific_pi1=train_pi1, kernel=kernel)
+            scores, labels = cross_validate_svm(preproc_conf, C, K, X_train=X_train, y_train=y_train, X_test=X_test,
+                                                y_test=y_test, specific_pi1=train_pi1, kernel=kernel)
             for app_i, (pi1, Cfn, Cfp) in enumerate(applications):
                 minDCF, _ = eval.bayes_min_dcf(scores, labels, pi1, Cfn, Cfp)
                 print("\t\tmin DCF (π=%.1f) : %.3f" % (pi1, minDCF))
@@ -150,14 +201,47 @@ if __name__ == "__main__":
             pi1, (time_end - time_start)))
         print("Operation finished")
 
-
+    # TRAIN
     # Grid search to select the best hyperparameters
     if args.gridsearch:
         with LoggingPrinter(incremental_path(TRAINLOGS_BASEPATH, POLYNOMIAL_SVM_TRAINLOG_FNAME)):
-            polynomial_svm_gridsearch()
+            print("Grid search Cross-Validation on the training dataset for Polynomial SVM")
+            polynomial_svm_gridsearch(X_train=folds_data, y_train=folds_labels, X_test=None, y_test=None, partial=False)
 
     if args.class_balancing:
         with LoggingPrinter(incremental_path(TRAINLOGS_BASEPATH, POLYNOMIAL_SVM_CLASS_BALANCING_TRAINLOG_FNAME)):
-            polynomial_svm_class_balancing()
+            print("Cross-Validation on the training dataset for Polynomial SVM class-balancing with a prior")
+            polynomial_svm_class_balancing(X_train=folds_data, y_train=folds_labels, X_test=None, y_test=None)
+
+    # EVALUATION
+    # PARTIAL TRAINING DATASET
+    if args.eval_partial_gridsearch:
+        with LoggingPrinter(incremental_path(EVAL_TRAINLOGS_BASEPATH, EVAL_PARTIAL_POLYNOMIAL_SVM_TRAINLOG_FNAME)):
+            print("Grid search training on partial training dataset and evaluating on the evaluation dataset for Polynomial SVM")
+            X_train, y_train = concat_kfolds(folds_data[:-1], folds_labels[:-1])
+            polynomial_svm_gridsearch(X_train=X_train, y_train=y_train, X_test=X_test, y_test=y_test, partial=True)
+
+    if args.eval_partial_class_balancing:
+        with LoggingPrinter(incremental_path(EVAL_TRAINLOGS_BASEPATH, EVAL_PARTIAL_POLYNOMIAL_SVM_CLASS_BALANCING_TRAINLOG_FNAME)):
+            print("Training on partial training dataset and evaluating on the evaluation datasetfor Polynomial SVM class-balancing with a prior")
+            X_train, y_train = concat_kfolds(folds_data[:-1], folds_labels[:-1])
+            polynomial_svm_class_balancing(X_train=X_train, y_train=y_train, X_test=X_test, y_test=y_test)
+
+    # FULL TRAINING DATASET
+    if args.eval_full_gridsearch:
+        with LoggingPrinter(incremental_path(EVAL_TRAINLOGS_BASEPATH, EVAL_FULL_POLYNOMIAL_SVM_TRAINLOG_FNAME)):
+            print(
+                "Grid search training on the full training dataset and evaluating on the evaluation dataset for Polynomial SVM")
+            X_train, y_train = concat_kfolds(folds_data, folds_labels)
+            polynomial_svm_gridsearch(X_train=X_train, y_train=y_train, X_test=X_test, y_test=y_test, partial=False)
+
+    if args.eval_full_class_balancing:
+        with LoggingPrinter(incremental_path(EVAL_TRAINLOGS_BASEPATH,
+                                             EVAL_FULL_POLYNOMIAL_SVM_CLASS_BALANCING_TRAINLOG_FNAME)):
+            print(
+                "Training on the full training dataset and evaluating on the evaluation datasetfor Polynomial SVM class-balancing with a prior")
+            X_train, y_train = concat_kfolds(folds_data, folds_labels)
+            polynomial_svm_class_balancing(X_train=X_train, y_train=y_train, X_test=X_test, y_test=y_test)
+
 
     plt.show()

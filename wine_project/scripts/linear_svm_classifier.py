@@ -70,8 +70,13 @@ if __name__ == "__main__":
         pi1_str = "with prior weight specific training (π=%.1f)" % (specific_pi1) if specific_pi1 is not None else ""
         minDCFs = np.zeros((len(Cs), len(applications)))
         for Ci, C in enumerate(Cs):
-            print("\t(Ci: {}) - 5-Fold Cross-Validation Linear SVM {} (C={:.0e} - K={:.1f}) - Preprocessing: {}".format(
-                Ci, pi1_str, C, K, conf))
+            if X_test is None:
+                print("\t(Ci: {}) - 5-Fold Cross-Validation Linear SVM {} (C={:.0e} - K={:.1f}) - Preprocessing: {}".format(
+                    Ci, pi1_str, C, K, conf))
+            else:
+                print("\t(Ci: {}) - Train and validation (eval) Linear SVM {} (C={:.0e} - K={:.1f}) - Preprocessing: {}".format(
+                        Ci, pi1_str, C, K, conf))
+
             time_start = time.perf_counter()
             scores, labels = cross_validate_svm(conf, C, K, X_train=X_train, y_train=y_train, X_test=X_test, y_test=y_test,
                                                 specific_pi1=specific_pi1)
@@ -199,7 +204,7 @@ if __name__ == "__main__":
     # Using the best hyperparameters, try class-balancing w.r.t target applications
     if args.eval_partial_class_balancing:
         with LoggingPrinter(incremental_path(EVAL_TRAINLOGS_BASEPATH, EVAL_PARTIAL_LINEAR_SVM_CLASS_BALANCING_TRAINLOG_FNAME)):
-            print("Cross-Validation training on partial training dataset and evaluating on the evaluation dataset for Linear SVM class-balancing with a prior")
+            print("Training on partial training dataset and evaluating on the evaluation dataset for Linear SVM class-balancing with a prior")
             X_train, y_train = concat_kfolds(folds_data[:-1], folds_labels[:-1])
             linear_svm_class_balancing(X_train=X_train, y_train=y_train, X_test=X_test, y_test=y_test, partial=True)
 
@@ -213,7 +218,7 @@ if __name__ == "__main__":
     # Using the best hyperparameters, try class-balancing w.r.t target applications
     if args.eval_full_class_balancing:
         with LoggingPrinter(incremental_path(EVAL_TRAINLOGS_BASEPATH, EVAL_FULL_LINEAR_SVM_CLASS_BALANCING_TRAINLOG_FNAME)):
-            print("Cross-Validation training on the full training dataset and evaluating on the evaluation dataset for Linear SVM class-balancing with a prior")
+            print("Training on the full training dataset and evaluating on the evaluation dataset for Linear SVM class-balancing with a prior")
             X_train, y_train = concat_kfolds(folds_data, folds_labels)
             linear_svm_class_balancing(X_train=X_train, y_train=y_train, X_test=X_test, y_test=y_test, partial=False)
 
