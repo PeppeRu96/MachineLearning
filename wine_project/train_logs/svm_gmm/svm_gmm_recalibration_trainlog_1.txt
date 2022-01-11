@@ -1,0 +1,95 @@
+Uncalibrated results on the validation set (validation of the calibration-validation split):
+	uncalibrated RBF SVM minDCF (π=0.5): 0.193
+	uncalibrated RBF SVM actDCF (π=0.5): 0.557
+	uncalibrated GMM minDCF (π=0.5): 0.239
+	uncalibrated GMM actDCF (π=0.5): 0.251
+
+	uncalibrated RBF SVM minDCF (π=0.1): 0.477
+	uncalibrated RBF SVM actDCF (π=0.1): 1.000
+	uncalibrated GMM minDCF (π=0.1): 0.568
+	uncalibrated GMM actDCF (π=0.1): 0.822
+
+	uncalibrated RBF SVM minDCF (π=0.9): 0.504
+	uncalibrated RBF SVM actDCF (π=0.9): 1.000
+	uncalibrated GMM minDCF (π=0.9): 0.567
+	uncalibrated GMM actDCF (π=0.9): 1.257
+
+
+Calibrated results:
+Recovering calibrated scores for target application π=0.5:
+	A) calibrated RBF SVM minDCF (target π=0.5): 0.193
+	A) calibrated RBF SVM actDCF (target π=0.5): 0.199
+	B) calibrated GMM minDCF (target π=0.5): 0.239
+	B) calibrated GMM actDCF (target π=0.5): 0.248
+	C) Fusion minDCF (target π=0.5): 0.209
+	C) Fusion actDCF (target π=0.5): 0.213
+
+	A) calibrated RBF SVM minDCF (target π=0.1): 0.477
+	A) calibrated RBF SVM actDCF (target π=0.1): 0.554
+	B) calibrated GMM minDCF (target π=0.1): 0.568
+	B) calibrated GMM actDCF (target π=0.1): 0.594
+	C) Fusion minDCF (target π=0.1): 0.471
+	C) Fusion actDCF (target π=0.1): 0.494
+
+	A) calibrated RBF SVM minDCF (target π=0.9): 0.504
+	A) calibrated RBF SVM actDCF (target π=0.9): 0.624
+	B) calibrated GMM minDCF (target π=0.9): 0.567
+	B) calibrated GMM actDCF (target π=0.9): 0.588
+	C) Fusion minDCF (target π=0.9): 0.472
+	C) Fusion actDCF (target π=0.9): 0.541
+
+
+Recovering calibrated scores for target application π=0.1:
+	A) calibrated RBF SVM minDCF (target π=0.5): 0.193
+	A) calibrated RBF SVM actDCF (target π=0.5): 0.570
+	B) calibrated GMM minDCF (target π=0.5): 0.239
+	B) calibrated GMM actDCF (target π=0.5): 0.479
+	C) Fusion minDCF (target π=0.5): 0.209
+	C) Fusion actDCF (target π=0.5): 0.460
+
+	A) calibrated RBF SVM minDCF (target π=0.1): 0.477
+	A) calibrated RBF SVM actDCF (target π=0.1): 0.622
+	B) calibrated GMM minDCF (target π=0.1): 0.568
+	B) calibrated GMM actDCF (target π=0.1): 1.340
+	C) Fusion minDCF (target π=0.1): 0.471
+	C) Fusion actDCF (target π=0.1): 0.971
+
+	A) calibrated RBF SVM minDCF (target π=0.9): 0.504
+	A) calibrated RBF SVM actDCF (target π=0.9): 1.000
+	B) calibrated GMM minDCF (target π=0.9): 0.567
+	B) calibrated GMM actDCF (target π=0.9): 0.754
+	C) Fusion minDCF (target π=0.9): 0.472
+	C) Fusion actDCF (target π=0.9): 0.896
+
+
+Recovering calibrated scores for target application π=0.9:
+	A) calibrated RBF SVM minDCF (target π=0.5): 0.193
+	A) calibrated RBF SVM actDCF (target π=0.5): 0.438
+	B) calibrated GMM minDCF (target π=0.5): 0.239
+	B) calibrated GMM actDCF (target π=0.5): 0.479
+	C) Fusion minDCF (target π=0.5): 0.209
+	C) Fusion actDCF (target π=0.5): 0.404
+
+	A) calibrated RBF SVM minDCF (target π=0.1): 0.477
+	A) calibrated RBF SVM actDCF (target π=0.1): 0.711
+	B) calibrated GMM minDCF (target π=0.1): 0.568
+	B) calibrated GMM actDCF (target π=0.1): 0.895
+	C) Fusion minDCF (target π=0.1): 0.471
+	C) Fusion actDCF (target π=0.1): 0.743
+
+	A) calibrated RBF SVM minDCF (target π=0.9): 0.504
+	A) calibrated RBF SVM actDCF (target π=0.9): 1.365
+	B) calibrated GMM minDCF (target π=0.9): 0.567
+	B) calibrated GMM actDCF (target π=0.9): 1.143
+	C) Fusion minDCF (target π=0.9): 0.472
+	C) Fusion actDCF (target π=0.9): 1.162
+
+
+Printing Bayes Error Plot of SVM and GMM without calibration (on the validation of the calibration-validation split)..
+Bayes Error Plot of SVM and GMM saved in C:\Users\rugge\Documents\development\university\machine_learning\ml_repo\wine_project\utility\..\graphs\svm_gmm\svm_gmm_uncalibrated_bayes_error_plot
+Printing Bayes Error Plot of SVM and GMM after calibration (on the validation of the calibration-validation split)..
+Bayes Error Plot of SVM and GMM saved in C:\Users\rugge\Documents\development\university\machine_learning\ml_repo\wine_project\utility\..\graphs\svm_gmm\svm_gmm_calibrated_bayes_error_plot
+Printing Bayes Error Plot of calibrated SVM, calibrated GMM and Fusion (on the validation of the calibration-validation split)..
+Bayes Error Plot of SVM and GMM saved in C:\Users\rugge\Documents\development\university\machine_learning\ml_repo\wine_project\utility\..\graphs\svm_gmm\svm_gmm_fusion_bayes_error_plot
+Printing ROC of calibrated SVM, calibrated GMM and Fusion (on the validation of the calibration-validation split)..
+Bayes Error Plot of SVM and GMM saved in C:\Users\rugge\Documents\development\university\machine_learning\ml_repo\wine_project\utility\..\graphs\svm_gmm\svm_gmm_fusion_roc

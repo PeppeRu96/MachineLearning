@@ -145,14 +145,11 @@ def bayes_min_dcf(llr, labels, pi_1, Cfn, Cfp):
 
     return minDCF, best_threshold
 
-def draw_ROC(llr, labels):
+def draw_ROC(llr, labels, color=None, recognizer_name=""):
     """
     Draw the ROC
     :param llr: log-likelihood ratios for comparing against thresholds
     :param labels: labels for building confusion matrix and then FNR/FPR
-    :param min_threshold: minimum threshold
-    :param max_threshold: maximum threshold
-    :param points: number of points in the range of the thresholds to calculate TPR/FPR on
     :return: None
     """
     if llr.ndim > 1:
@@ -175,9 +172,14 @@ def draw_ROC(llr, labels):
     plt.ylabel("TPR")
     plt.xlim([0, 1])
     plt.ylim([0, 1])
-    plt.plot(FPRs, TPRs)
+    if color is not None:
+        plt.plot(FPRs, TPRs, color=color, label=f"{recognizer_name}")
+    else:
+        plt.plot(FPRs, TPRs, label=f"{recognizer_name}")
 
-def draw_NormalizedBayesErrorPlot(llr, labels, p_min, p_max, p_points, recognizer_name="", color=None):
+    plt.legend(loc="lower right")
+
+def draw_NormalizedBayesErrorPlot(llr, labels, p_min, p_max, p_points, recognizer_name="", color=None, actDCF_only=False, minDCF_only=False):
     """
     Draw the Normalized Bayes Error Plots to assess the performance of the classifier as we vary the application
     :param llr: log-likelihood ratios to compare with the different thresholds
@@ -205,11 +207,15 @@ def draw_NormalizedBayesErrorPlot(llr, labels, p_min, p_max, p_points, recognize
     plt.xlabel("Prior log-odds")
     plt.ylabel("DCF value")
     if color is not None:
-        plt.plot(effPriorLogOdds, DCFs, color=color, label="DCF (%s)" % recognizer_name)
-        plt.plot(effPriorLogOdds, minDCFs, color=color, linestyle='dashed', label="min DCF (%s)" % recognizer_name)
+        if not minDCF_only:
+            plt.plot(effPriorLogOdds, DCFs, color=color, label="DCF (%s)" % recognizer_name)
+        if not actDCF_only:
+            plt.plot(effPriorLogOdds, minDCFs, color=color, linestyle='dashed', label="min DCF (%s)" % recognizer_name)
     else:
-        plt.plot(effPriorLogOdds, DCFs, label="DCF (%s)" % recognizer_name)
-        plt.plot(effPriorLogOdds, minDCFs, linestyle='dashed', label="min DCF (%s)" % recognizer_name)
+        if not minDCF_only:
+            plt.plot(effPriorLogOdds, DCFs, label="DCF (%s)" % recognizer_name)
+        if not actDCF_only:
+            plt.plot(effPriorLogOdds, minDCFs, linestyle='dashed', label="min DCF (%s)" % recognizer_name)
 
     plt.legend(loc="lower left")
     plt.ylim([0, 1.2])

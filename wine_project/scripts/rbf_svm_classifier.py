@@ -253,12 +253,4 @@ if __name__ == "__main__":
 
     # -------------------------------------------------------------------------- #
 
-    # Bayes error plot
-    if args.bayes_error_plot:
-        kernel = SVM_Classifier.Kernel_RadialBasisFunction(best_g)
-        scores, labels = cross_validate_svm(folds_data, folds_labels, best_preproc_conf, best_C, best_K,
-                                            specific_pi1=None, kernel=kernel)
-        plt.figure(figsize=[13, 9.7])
-        eval.draw_NormalizedBayesErrorPlot(scores, labels, -4, 4, 25, recognizer_name="RBF SVM", color="red")
-
     plt.show()
