@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import time
 from wine_project.utility.ds_common import *
+import evaluation.common as eval
 
 import numpy as np
 
@@ -9,6 +10,7 @@ from classifiers.svm import cross_validate_svm, SVM_Classifier
 
 import argparse
 
+# TRAIN OUTPUT PATHS
 TRAINLOGS_BASEPATH = os.path.join(SCRIPT_PATH, "..", "train_logs", "svm", "rbf")
 RBF_SVM_TRAINLOG_FNAME = "rbf_svm_trainlog_1.txt"
 RBF_SVM_FINE_GRAINED_TRAINLOG_FNAME = "rbf_svm_fine_grained_trainlog_1.txt"
@@ -17,13 +19,38 @@ RBF_SVM_CLASS_BALANCING_PI01_TRAINLOG_FNAME = "rbf_svm_class_balancing_pi01_trai
 RBF_SVM_CLASS_BALANCING_PI09_TRAINLOG_FNAME = "rbf_svm_class_balancing_pi09_trainlog_1.txt"
 RBF_SVM_ACTUAL_DCF_TRAINLOG_FNAME = "rbf_svm_actual_dcf_trainlog_1.txt"
 
+RBF_SVM_GRAPH_PATH = os.path.join(SCRIPT_PATH, "..", "graphs", "svm", "rbf", "rbf_svm_graph_")
+
+#EVALUATION OUTPUT PATHS
+EVAL_TRAINLOGS_BASEPATH = os.path.join(SCRIPT_PATH, "..", "train_logs", "svm", "rbf", "eval")
+# PARTIAL TRAINING DATASET
+EVAL_PARTIAL_RBF_SVM_TRAINLOG_FNAME = "eval_partial_rbf_svm_trainlog_1.txt"
+EVAL_PARTIAL_RBF_SVM_FINE_GRAINED_TRAINLOG_FNAME = "eval_partial_rbf_svm_fine_grained_trainlog_1.txt"
+EVAL_PARTIAL_RBF_SVM_CLASS_BALANCING_PI05_TRAINLOG_FNAME = "eval_partial_rbf_svm_class_balancing_pi05_trainlog_1.txt"
+EVAL_PARTIAL_RBF_SVM_CLASS_BALANCING_PI01_TRAINLOG_FNAME = "eval_partial_rbf_svm_class_balancing_pi01_trainlog_1.txt"
+EVAL_PARTIAL_RBF_SVM_CLASS_BALANCING_PI09_TRAINLOG_FNAME = "eval_partial_rbf_svm_class_balancing_pi09_trainlog_1.txt"
+EVAL_PARTIAL_RBF_SVM_ACTUAL_DCF_TRAINLOG_FNAME = "eval_partial_rbf_svm_actual_dcf_trainlog_1.txt"
+
+EVAL_PARTIAL_RBF_SVM_GRAPH_PATH = os.path.join(SCRIPT_PATH, "..", "graphs", "svm", "rbf", "eval", "eval_partial_rbf_svm_graph_")
+
+# FULL TRAINING DATASET
+EVAL_FULL_RBF_SVM_TRAINLOG_FNAME = "eval_full_rbf_svm_trainlog_1.txt"
+EVAL_FULL_RBF_SVM_FINE_GRAINED_TRAINLOG_FNAME = "eval_full_rbf_svm_fine_grained_trainlog_1.txt"
+EVAL_FULL_RBF_SVM_CLASS_BALANCING_PI05_TRAINLOG_FNAME = "eval_full_rbf_svm_class_balancing_pi05_trainlog_1.txt"
+EVAL_FULL_RBF_SVM_CLASS_BALANCING_PI01_TRAINLOG_FNAME = "eval_full_rbf_svm_class_balancing_pi01_trainlog_1.txt"
+EVAL_FULL_RBF_SVM_CLASS_BALANCING_PI09_TRAINLOG_FNAME = "eval_full_rbf_svm_class_balancing_pi09_trainlog_1.txt"
+EVAL_FULL_RBF_SVM_ACTUAL_DCF_TRAINLOG_FNAME = "eval_full_rbf_svm_actual_dcf_trainlog_1.txt"
+
+EVAL_FULL_RBF_SVM_GRAPH_PATH = os.path.join(SCRIPT_PATH, "..", "graphs", "svm", "rbf", "eval", "eval_full_rbf_svm_graph_")
+
 create_folder_if_not_exist(TRAINLOGS_BASEPATH)
 create_folder_if_not_exist(os.path.join(TRAINLOGS_BASEPATH, "dummy.txt"))
 
-RBF_SVM_GRAPH_PATH = os.path.join(SCRIPT_PATH, "..", "graphs", "svm", "rbf", "rbf_svm_graph_")
-
 create_folder_if_not_exist(os.path.join(SCRIPT_PATH, "..", "graphs", "svm", "rbf"))
 create_folder_if_not_exist(RBF_SVM_GRAPH_PATH)
+
+create_folder_if_not_exist(os.path.join(EVAL_TRAINLOGS_BASEPATH, "dummy.txt"))
+create_folder_if_not_exist(EVAL_FULL_RBF_SVM_GRAPH_PATH)
 
 def get_args():
     parser = argparse.ArgumentParser(description="Script to launch RBF SVM classificator building",
@@ -37,8 +64,25 @@ def get_args():
                         help="Start cross-validation to try class-balancing with the best hyperparameters")
     parser.add_argument("--actual_dcf", type=bool, default=False,
                         help="Calculate actual DCF for the different target application using the best model")
-    parser.add_argument("--bayes_error_plot", type=bool, default=False,
-                        help="Display the bayes error plot for the best model")
+
+    parser.add_argument("--eval_partial_gridsearch", type=bool, default=False,
+                        help="Start a coarse-level gridsearch cross-validation to jointly optimize C and gamma for different preprocess configurations")
+    parser.add_argument("--eval_partial_gridsearch_fine_grained", type=bool, default=False,
+                        help="Start a fine-grained gridsearch cross-validation to jointly optimize C and gamma for different preprocess configurations")
+    parser.add_argument("--eval_partial_class_balancing", type=bool, default=False,
+                        help="Start cross-validation to try class-balancing with the best hyperparameters")
+    parser.add_argument("--eval_partial_actual_dcf", type=bool, default=False,
+                        help="Calculate actual DCF for the different target application using the best model")
+
+    parser.add_argument("--eval_full_gridsearch", type=bool, default=False,
+                        help="Start a coarse-level gridsearch cross-validation to jointly optimize C and gamma for different preprocess configurations")
+    parser.add_argument("--eval_full_gridsearch_fine_grained", type=bool, default=False,
+                        help="Start a fine-grained gridsearch cross-validation to jointly optimize C and gamma for different preprocess configurations")
+    parser.add_argument("--eval_full_class_balancing", type=bool, default=False,
+                        help="Start cross-validation to try class-balancing with the best hyperparameters")
+    parser.add_argument("--eval_full_actual_dcf", type=bool, default=False,
+                        help="Calculate actual DCF for the different target application using the best model")
+
     return parser.parse_args()
 
 if __name__ == "__main__":
@@ -47,17 +91,25 @@ if __name__ == "__main__":
     # Load 5-Folds already splitted dataset
     folds_data, folds_labels = load_train_dataset_5_folds()
 
-    def plot_against_C_gamma(conf, K, Cs, gs, specific_pi1=None, prefix_title=""):
+    # Load the test dataset
+    X_test, y_test = load_dataset(train=False, only_data=True)
+
+    def plot_against_C_gamma(conf, K, Cs, gs, X_train, y_train, X_test=None, y_test=None, partial=False, specific_pi1=None, prefix_title=""):
 
         pi1_str = "with prior weight specific training (π=%.1f)" % (specific_pi1) if specific_pi1 is not None else ""
         minDCFs = np.zeros((len(Cs), len(gs), len(applications)))
         for Ci, C in enumerate(Cs):
             for gi, g in enumerate(gs):
                 kernel = SVM_Classifier.Kernel_RadialBasisFunction(g)
-                print("\t(Ci: {}) - 5-Fold Cross-Validation RBF SVM (gamma={:.0e}) {} (C={:.0e} - K={:.1f}) - Preprocessing: {}".format(
-                    Ci, g, pi1_str, C, K, conf))
+                if X_test is None:
+                    print("\t(Ci: {}) - 5-Fold Cross-Validation RBF SVM (gamma={:.0e}) {} (C={:.0e} - K={:.1f}) - Preprocessing: {}".format(
+                        Ci, g, pi1_str, C, K, conf))
+                else:
+                    print("\t(Ci: {}) - Train and validation (eval) RBF SVM (gamma={:.0e}) {} (C={:.0e} - K={:.1f}) - Preprocessing: {}".format(
+                            Ci, g, pi1_str, C, K, conf))
                 time_start = time.perf_counter()
-                scores, labels = cross_validate_svm(folds_data, folds_labels, conf, C, K, specific_pi1=specific_pi1, kernel=kernel)
+                scores, labels = cross_validate_svm(conf, C, K, X_train=X_train, y_train=y_train, X_test=X_test,
+                                                    y_test=y_test, specific_pi1=specific_pi1, kernel=kernel)
                 for app_i, (pi1, Cfn, Cfp) in enumerate(applications):
                     minDCF, _ = eval.bayes_min_dcf(scores, labels, pi1, Cfn, Cfp)
                     print("\t\tmin DCF (π=%.1f) : %.3f" % (pi1, minDCF))
@@ -108,9 +160,20 @@ if __name__ == "__main__":
             Kstr = "%.1f" % K
             Kstr = Kstr.replace(".", "-")
             Kstr = "K-" + Kstr
-            plt.savefig("%s%s_%s%s%s_%s" % (RBF_SVM_GRAPH_PATH, Kstr, conf.to_compact_string(), pi1_str, target_pi1_str, prefix_title))
 
-    def rbf_svm_gridsearch(preproc_configurations, Ks, Cs, gamma, prefix_title=""):
+            if X_test is not None:
+                if partial:
+                    base_path = EVAL_PARTIAL_RBF_SVM_GRAPH_PATH
+                else:
+                    base_path = EVAL_FULL_RBF_SVM_GRAPH_PATH
+            else:
+                base_path = RBF_SVM_GRAPH_PATH
+
+            full_path = "%s%s_%s%s%s_%s" % (base_path, Kstr, conf.to_compact_string(), pi1_str, target_pi1_str, prefix_title)
+            plt.savefig(full_path)
+            print(f"Plot saved in {full_path}.")
+
+    def rbf_svm_gridsearch(preproc_configurations, Ks, Cs, gamma, X_train, y_train, X_test=None, y_test=None, partial=False, prefix_title=""):
         # Grid search without class-balacing
         tot_time_start = time.perf_counter()
         print("Grid search on RBF SVM without class balancing started.")
@@ -123,22 +186,27 @@ if __name__ == "__main__":
                 for Ki, K in enumerate(Ks):
                     print("Grid search iteration %d / %d" % (grid_search_iterations, tot_gs_iterations_required))
                     time_start = time.perf_counter()
-                    plot_against_C_gamma(conf, K, Cs, gamma, prefix_title=prefix_title)
+                    plot_against_C_gamma(conf, K, Cs, gamma, X_train=X_train, y_train=y_train, X_test=X_test,
+                                         y_test=y_test, partial=partial, specific_pi1=None, prefix_title=prefix_title)
                     time_end = time.perf_counter()
                     grid_search_iterations += 1
                     print("Grid search iteration ended in %d seconds" % (time_end - time_start))
         tot_time_end = time.perf_counter()
         print("Grid search on RBF SVM without class balancing ended in %d seconds" % (tot_time_end - tot_time_start))
 
-    def rbf_svm_class_balancing(preproc_conf, K, g, C):
+    def rbf_svm_class_balancing(preproc_conf, K, g, C, X_train, y_train, X_test=None, y_test=None):
         kernel = SVM_Classifier.Kernel_RadialBasisFunction(g)
 
         # Then, we try the best hyperparameters but now class-balancing with respect to the target application
         print("Trying the best hyperparameters but class-balancing w.r.t target applications..")
         for app_i, (train_pi1, Cfn, Cfp) in enumerate(applications):
-            print(f"RBF SVM cross-validation with class-balancing for the target application with π={train_pi1:.1f} (gamma={g:.0e}) (C={C:.0e} - K={K:.1f}) - Preprocessing: {preproc_conf}")
+            if X_test is None:
+                print(f"RBF SVM cross-validation with class-balancing for the target application with π={train_pi1:.1f} (gamma={g:.0e}) (C={C:.0e} - K={K:.1f}) - Preprocessing: {preproc_conf}")
+            else:
+                print(f"RBF SVM training on the train dataset and evaluating on the eval dataset with class-balancing for the target application with π={train_pi1:.1f} (gamma={g:.0e}) (C={C:.0e} - K={K:.1f}) - Preprocessing: {preproc_conf}")
             time_start = time.perf_counter()
-            scores, labels = cross_validate_svm(folds_data, folds_labels, preproc_conf, C, K, specific_pi1=train_pi1, kernel=kernel)
+            scores, labels = cross_validate_svm(preproc_conf, C, K, X_train=X_train, y_train=y_train, X_test=X_test,
+                                                y_test=y_test, specific_pi1=train_pi1, kernel=kernel)
             for app_i, (pi1, Cfn, Cfp) in enumerate(applications):
                 minDCF, _ = eval.bayes_min_dcf(scores, labels, pi1, Cfn, Cfp)
                 print("\t\tmin DCF (π=%.1f) : %.3f" % (pi1, minDCF))
@@ -147,9 +215,9 @@ if __name__ == "__main__":
             train_pi1, (time_end - time_start)))
         print("Operation finished")
 
-
+    # TRAIN
     # Coarse-level grid search to select the best hyperparameters
-    if args.gridsearch:
+    if args.gridsearch or args.eval_partial_gridsearch or args.eval_full_gridsearch:
         # Preprocessing configurations to try
         preproc_configurations = [
             PreprocessConf([]),
@@ -169,13 +237,29 @@ if __name__ == "__main__":
         Ks = [1]
         Cs = np.logspace(-3, 5, 9)
         gamma = np.logspace(-3, 3, 7)
-        with LoggingPrinter(incremental_path(TRAINLOGS_BASEPATH, RBF_SVM_TRAINLOG_FNAME)):
-            rbf_svm_gridsearch(preproc_configurations, Ks, Cs, gamma)
+        if args.gridsearch:
+            with LoggingPrinter(incremental_path(TRAINLOGS_BASEPATH, RBF_SVM_TRAINLOG_FNAME)):
+                print("Coarse-level grid search cross-validation on the training dataset for RBF SVM")
+                rbf_svm_gridsearch(preproc_configurations, Ks, Cs, gamma, X_train=folds_data, y_train=folds_labels,
+                                   X_test=None, y_test=None, partial=False, prefix_title="")
+        if args.eval_partial_gridsearch:
+            with LoggingPrinter(incremental_path(EVAL_TRAINLOGS_BASEPATH, EVAL_PARTIAL_RBF_SVM_TRAINLOG_FNAME)):
+                print("Coarse-level grid search training on partial train dataset and evaluating on the eval dataset for RBF SVM")
+                X_train, y_train = concat_kfolds(folds_data[:-1], folds_labels[:-1])
+                rbf_svm_gridsearch(preproc_configurations, Ks, Cs, gamma, X_train=X_train, y_train=y_train,
+                                   X_test=X_test, y_test=y_test, partial=True, prefix_title="")
+
+        if args.eval_full_gridsearch:
+            with LoggingPrinter(incremental_path(EVAL_TRAINLOGS_BASEPATH, EVAL_FULL_RBF_SVM_TRAINLOG_FNAME)):
+                print("Coarse-level grid search training on the full train dataset and evaluating on the eval dataset for RBF SVM")
+                X_train, y_train = concat_kfolds(folds_data, folds_labels)
+                rbf_svm_gridsearch(preproc_configurations, Ks, Cs, gamma, X_train=X_train, y_train=y_train,
+                                   X_test=X_test, y_test=y_test, partial=False, prefix_title="")
 
     # ----------------------------------------------------------------------- #
 
     # Fine-grained grid search to select the best hyperparameters
-    if args.gridsearch_fine_grained:
+    if args.gridsearch_fine_grained or args.eval_partial_gridsearch_fine_grained or args.eval_full_gridsearch_fine_grained:
         # Preprocessing configurations to try
         preproc_configurations = [
             PreprocessConf([
@@ -189,9 +273,24 @@ if __name__ == "__main__":
         Ks = [1]
         Cs = np.logspace(-1, 1, 10)
         gamma = np.logspace(0, 2, 10)
-        with LoggingPrinter(incremental_path(TRAINLOGS_BASEPATH, RBF_SVM_FINE_GRAINED_TRAINLOG_FNAME)):
-            rbf_svm_gridsearch(preproc_configurations, Ks, Cs, gamma, prefix_title="fine-grained")
 
+        if args.gridsearch_fine_grained:
+            with LoggingPrinter(incremental_path(TRAINLOGS_BASEPATH, RBF_SVM_FINE_GRAINED_TRAINLOG_FNAME)):
+                print("Fine-grained grid search cross-validation on the training dataset for RBF SVM")
+                rbf_svm_gridsearch(preproc_configurations, Ks, Cs, gamma, X_train=folds_data, y_train=folds_labels,
+                                   X_test=None, y_test=None, partial=False, prefix_title="fine-grained")
+        if args.eval_partial_gridsearch_fine_grained:
+            with LoggingPrinter(incremental_path(EVAL_TRAINLOGS_BASEPATH, EVAL_PARTIAL_RBF_SVM_FINE_GRAINED_TRAINLOG_FNAME)):
+                print("Fine-grained grid search training on partial train dataset and evaluating on the eval dataset for RBF SVM")
+                X_train, y_train = concat_kfolds(folds_data[:-1], folds_labels[:-1])
+                rbf_svm_gridsearch(preproc_configurations, Ks, Cs, gamma, X_train=X_train, y_train=y_train,
+                                   X_test=X_test, y_test=y_test, partial=True, prefix_title="fine-grained")
+        if args.eval_full_gridsearch_fine_grained:
+            with LoggingPrinter(incremental_path(EVAL_TRAINLOGS_BASEPATH, EVAL_FULL_RBF_SVM_FINE_GRAINED_TRAINLOG_FNAME)):
+                print("Fine-grained grid search training on the full train dataset and evaluating on the eval dataset for RBF SVM")
+                X_train, y_train = concat_kfolds(folds_data, folds_labels)
+                rbf_svm_gridsearch(preproc_configurations, Ks, Cs, gamma, X_train=X_train, y_train=y_train,
+                                   X_test=X_test, y_test=y_test, partial=False, prefix_title="fine-grained")
     # -------------------------------------------------------------------------- #
 
     # Best configuration for our main target application
@@ -204,14 +303,26 @@ if __name__ == "__main__":
     best_g = 8
     best_C = 0.5
 
-    if args.class_balancing:
+    if args.class_balancing or args.eval_partial_class_balancing or args.eval_full_class_balancing:
         # pi05 best model - select the best preproc configuration, gamma and C value
         preproc_conf = best_preproc_conf
         K = best_K
         g = best_g
         C = best_C
-        with LoggingPrinter(incremental_path(TRAINLOGS_BASEPATH, RBF_SVM_CLASS_BALANCING_PI05_TRAINLOG_FNAME)):
-            rbf_svm_class_balancing(preproc_conf, K, g, C)
+        if args.class_balancing:
+            with LoggingPrinter(incremental_path(TRAINLOGS_BASEPATH, RBF_SVM_CLASS_BALANCING_PI05_TRAINLOG_FNAME)):
+                print("Cross-Validation on the training dataset for RBF SVM class-balancing with a prior (best model for the first target application)")
+                rbf_svm_class_balancing(preproc_conf, K, g, C, X_train=folds_data, y_train=folds_labels, X_test=None, y_test=None)
+        if args.eval_partial_class_balancing:
+            with LoggingPrinter(incremental_path(EVAL_TRAINLOGS_BASEPATH, EVAL_PARTIAL_RBF_SVM_CLASS_BALANCING_PI05_TRAINLOG_FNAME)):
+                print("Training on partial train dataset and evaluating on the eval dataset for RBF SVM class-balancing with a prior (best model for the first target application)")
+                X_train, y_train = concat_kfolds(folds_data[:-1], folds_labels[:-1])
+                rbf_svm_class_balancing(preproc_conf, K, g, C, X_train=X_train, y_train=y_train, X_test=X_test, y_test=y_test)
+        if args.eval_full_class_balancing:
+            with LoggingPrinter(incremental_path(EVAL_TRAINLOGS_BASEPATH, EVAL_FULL_RBF_SVM_CLASS_BALANCING_PI05_TRAINLOG_FNAME)):
+                print("Training on the full train dataset and evaluating on the eval dataset for RBF SVM class-balancing with a prior (best model for the first target application)")
+                X_train, y_train = concat_kfolds(folds_data, folds_labels)
+                rbf_svm_class_balancing(preproc_conf, K, g, C, X_train=X_train, y_train=y_train, X_test=X_test, y_test=y_test)
 
         # pi01 best model - select the best preproc configuration, gamma and C value
         preproc_conf = PreprocessConf([
@@ -222,8 +333,28 @@ if __name__ == "__main__":
         K = 1
         g = 10
         C = 0.1
-        with LoggingPrinter(incremental_path(TRAINLOGS_BASEPATH, RBF_SVM_CLASS_BALANCING_PI01_TRAINLOG_FNAME)):
-            rbf_svm_class_balancing(preproc_conf, K, g, C)
+        if args.class_balancing:
+            with LoggingPrinter(incremental_path(TRAINLOGS_BASEPATH, RBF_SVM_CLASS_BALANCING_PI01_TRAINLOG_FNAME)):
+                print(
+                    "Cross-Validation on the training dataset for RBF SVM class-balancing with a prior (best model for the second target application)")
+                rbf_svm_class_balancing(preproc_conf, K, g, C, X_train=folds_data, y_train=folds_labels, X_test=None,
+                                        y_test=None)
+        if args.eval_partial_class_balancing:
+            with LoggingPrinter(incremental_path(EVAL_TRAINLOGS_BASEPATH,
+                                                 EVAL_PARTIAL_RBF_SVM_CLASS_BALANCING_PI01_TRAINLOG_FNAME)):
+                print(
+                    "Training on partial train dataset and evaluating on the eval dataset for RBF SVM class-balancing with a prior (best model for the second target application)")
+                X_train, y_train = concat_kfolds(folds_data[:-1], folds_labels[:-1])
+                rbf_svm_class_balancing(preproc_conf, K, g, C, X_train=X_train, y_train=y_train, X_test=X_test,
+                                        y_test=y_test)
+        if args.eval_full_class_balancing:
+            with LoggingPrinter(incremental_path(EVAL_TRAINLOGS_BASEPATH,
+                                                 EVAL_FULL_RBF_SVM_CLASS_BALANCING_PI01_TRAINLOG_FNAME)):
+                print(
+                    "Training on the full train dataset and evaluating on the eval dataset for RBF SVM class-balancing with a prior (best model for the second target application)")
+                X_train, y_train = concat_kfolds(folds_data, folds_labels)
+                rbf_svm_class_balancing(preproc_conf, K, g, C, X_train=X_train, y_train=y_train, X_test=X_test,
+                                        y_test=y_test)
 
         # pi09 best model - select the best preproc configuration, gamma and C value
         preproc_conf = PreprocessConf([
@@ -234,16 +365,38 @@ if __name__ == "__main__":
         K = 1
         g = 10
         C = 1
-        with LoggingPrinter(incremental_path(TRAINLOGS_BASEPATH, RBF_SVM_CLASS_BALANCING_PI09_TRAINLOG_FNAME)):
-            rbf_svm_class_balancing(preproc_conf, K, g, C)
+        if args.class_balancing:
+            with LoggingPrinter(incremental_path(TRAINLOGS_BASEPATH, RBF_SVM_CLASS_BALANCING_PI09_TRAINLOG_FNAME)):
+                print(
+                    "Cross-Validation on the training dataset for RBF SVM class-balancing with a prior (best model for the third target application)")
+                rbf_svm_class_balancing(preproc_conf, K, g, C, X_train=folds_data, y_train=folds_labels, X_test=None,
+                                        y_test=None)
+        if args.eval_partial_class_balancing:
+            with LoggingPrinter(incremental_path(EVAL_TRAINLOGS_BASEPATH,
+                                                 EVAL_PARTIAL_RBF_SVM_CLASS_BALANCING_PI09_TRAINLOG_FNAME)):
+                print(
+                    "Training on partial train dataset and evaluating on the eval dataset for RBF SVM class-balancing with a prior (best model for the third target application)")
+                X_train, y_train = concat_kfolds(folds_data[:-1], folds_labels[:-1])
+                rbf_svm_class_balancing(preproc_conf, K, g, C, X_train=X_train, y_train=y_train, X_test=X_test,
+                                        y_test=y_test)
+        if args.eval_full_class_balancing:
+            with LoggingPrinter(incremental_path(EVAL_TRAINLOGS_BASEPATH,
+                                                 EVAL_FULL_RBF_SVM_CLASS_BALANCING_PI09_TRAINLOG_FNAME)):
+                print(
+                    "Training on the full train dataset and evaluating on the eval dataset for RBF SVM class-balancing with a prior (best model for the third target application)")
+                X_train, y_train = concat_kfolds(folds_data, folds_labels)
+                rbf_svm_class_balancing(preproc_conf, K, g, C, X_train=X_train, y_train=y_train, X_test=X_test,
+                                        y_test=y_test)
 
     # -------------------------------------------------------------------------- #
 
     # Calculate actual DCF for the different target applications using the best model
+    kernel = SVM_Classifier.Kernel_RadialBasisFunction(best_g)
     if args.actual_dcf:
-        kernel = SVM_Classifier.Kernel_RadialBasisFunction(best_g)
         with LoggingPrinter(incremental_path(TRAINLOGS_BASEPATH, RBF_SVM_ACTUAL_DCF_TRAINLOG_FNAME)):
-            scores, labels = cross_validate_svm(folds_data, folds_labels, best_preproc_conf, best_C, best_K, specific_pi1=None, kernel=kernel)
+            print("Actual DCF for the different target application calculated after cross-validating on the training dataset")
+            scores, labels = cross_validate_svm(best_preproc_conf, best_C, best_K, X_train=folds_data, y_train=folds_labels, X_test=None,
+                                                y_test=None, specific_pi1=None, kernel=kernel)
             for app_i, (pi1, Cfn, Cfp) in enumerate(applications):
                 minDCF, _ = eval.bayes_min_dcf(scores, labels, pi1, Cfn, Cfp)
                 actDCF = eval.bayes_binary_dcf(scores, labels, pi1, Cfn, Cfp)
@@ -251,6 +404,31 @@ if __name__ == "__main__":
                 print("\t\tact DCF (π=%.1f) : %.3f" % (pi1, actDCF))
                 print()
 
+    if args.eval_partial_actual_dcf:
+        with LoggingPrinter(incremental_path(EVAL_TRAINLOGS_BASEPATH, EVAL_PARTIAL_RBF_SVM_ACTUAL_DCF_TRAINLOG_FNAME)):
+            print("Actual DCF for the different target application calculated training on a partial train dataset and validating on the eval dataset")
+            X_train, y_train = concat_kfolds(folds_data[:-1], folds_labels[:-1])
+            scores, labels = cross_validate_svm(best_preproc_conf, best_C, best_K, X_train=X_train, y_train=y_train, X_test=X_test,
+                                                y_test=y_test, specific_pi1=None, kernel=kernel)
+            for app_i, (pi1, Cfn, Cfp) in enumerate(applications):
+                minDCF, _ = eval.bayes_min_dcf(scores, labels, pi1, Cfn, Cfp)
+                actDCF = eval.bayes_binary_dcf(scores, labels, pi1, Cfn, Cfp)
+                print("\t\tmin DCF (π=%.1f) : %.3f" % (pi1, minDCF))
+                print("\t\tact DCF (π=%.1f) : %.3f" % (pi1, actDCF))
+                print()
+
+    if args.eval_full_actual_dcf:
+        with LoggingPrinter(incremental_path(EVAL_TRAINLOGS_BASEPATH, EVAL_FULL_RBF_SVM_ACTUAL_DCF_TRAINLOG_FNAME)):
+            print("Actual DCF for the different target application calculated training on a the full train dataset and validating on the eval dataset")
+            X_train, y_train = concat_kfolds(folds_data, folds_labels)
+            scores, labels = cross_validate_svm(best_preproc_conf, best_C, best_K, X_train=X_train, y_train=y_train, X_test=X_test,
+                                                y_test=y_test, specific_pi1=None, kernel=kernel)
+            for app_i, (pi1, Cfn, Cfp) in enumerate(applications):
+                minDCF, _ = eval.bayes_min_dcf(scores, labels, pi1, Cfn, Cfp)
+                actDCF = eval.bayes_binary_dcf(scores, labels, pi1, Cfn, Cfp)
+                print("\t\tmin DCF (π=%.1f) : %.3f" % (pi1, minDCF))
+                print("\t\tact DCF (π=%.1f) : %.3f" % (pi1, actDCF))
+                print()
     # -------------------------------------------------------------------------- #
 
     plt.show()

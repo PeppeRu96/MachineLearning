@@ -167,7 +167,6 @@ if __name__ == "__main__":
                         time_start = time.perf_counter()
                         plot_against_C(conf, K, Cs, d, c, X_train=X_train, y_train=y_train, X_test=X_test, y_test=y_test,
                                        partial=partial, specific_pi1=None)
-                        plot_against_C(conf, K, Cs, d, c)
                         time_end = time.perf_counter()
                         grid_search_iterations += 1
                         print("Grid search iteration ended in %d seconds" % (time_end - time_start))
@@ -189,7 +188,11 @@ if __name__ == "__main__":
         # Then, we try the best hyperparameters but now class-balancing with respect to the target application
         print("Trying the best hyperparameters but class-balancing w.r.t target applications..")
         for app_i, (train_pi1, Cfn, Cfp) in enumerate(applications):
-            print(f"Polynomial SVM cross-validation with class-balancing for the target application with π={train_pi1:.1f} (d={d} - c={1}) (C={C:.0e} - K={K:.1f}) - Preprocessing: {preproc_conf}")
+            if X_test is None:
+                print(f"Polynomial SVM cross-validation with class-balancing for the target application with π={train_pi1:.1f} (d={d} - c={1}) (C={C:.0e} - K={K:.1f}) - Preprocessing: {preproc_conf}")
+            else:
+                print(f"Polynomial SVM training on the train dataset and evaluating on the eval dataset with class-balancing for the target application with π={train_pi1:.1f} (d={d} - c={1}) (C={C:.0e} - K={K:.1f}) - Preprocessing: {preproc_conf}")
+
             time_start = time.perf_counter()
             scores, labels = cross_validate_svm(preproc_conf, C, K, X_train=X_train, y_train=y_train, X_test=X_test,
                                                 y_test=y_test, specific_pi1=train_pi1, kernel=kernel)
