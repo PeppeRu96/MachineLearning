@@ -179,14 +179,10 @@ def logreg_multiclass_obj_wrapper(DTR, LTR, K, l):
     return logreg_multiclass_obj
 
 
-def cross_validate_lr(folds_data, folds_labels, preproc_conf, lambda_regularizer, pi1=None, quadratic=False):
+def cross_validate_lr(preproc_conf, lambda_regularizer, X_train, y_train, X_test=None, y_test=None, pi1=None, quadratic=False):
     pi1_str = "with prior weight specific training (π=%.1f)" % (pi1) if pi1 is not None else ""
-    print("\t\t5-Fold Cross-Validation %s LR %s (λ=%.5f) - Preprocessing: %s" %
-          ("Quadratic" if quadratic else "Linear", pi1_str, lambda_regularizer, preproc_conf))
-    iterations = 1
-    scores = []
-    labels = []
-    for DTR, LTR, DTE, LTE in dst.kfold_generate(folds_data, folds_labels):
+
+    def train_and_validate(DTR, LTR, DTE, LTE):
         # Preprocess data
         DTR, DTE = preproc_conf.apply_preproc_pipeline(DTR, LTR, DTE)
 
@@ -197,14 +193,41 @@ def cross_validate_lr(folds_data, folds_labels, preproc_conf, lambda_regularizer
 
         # Validate
         s = lr.compute_binary_classifier_llr(DTE)
+        return s
 
-        # Collect scores and associated labels
-        scores.append(s)
-        labels.append(LTE)
+    if X_test is None:
+        # Cross-validation
+        print("\t\t5-Fold Cross-Validation %s LR %s (λ=%.5f) - Preprocessing: %s" %
+              ("Quadratic" if quadratic else "Linear", pi1_str, lambda_regularizer, preproc_conf))
+        iterations = 1
+        scores = []
+        labels = []
+        for DTR, LTR, DTE, LTE in dst.kfold_generate(X_train, y_train):
+            # Preprocess data
+            DTR, DTE = preproc_conf.apply_preproc_pipeline(DTR, LTR, DTE)
 
-        iterations += 1
+            # Train
+            lr = LogisticRegressionClassifier(2)
+            efs = LogisticRegressionClassifier.quadratic_feature_expansion if quadratic else None
+            lr.train(DTR, LTR, lambda_regularizer, pi1=pi1, expand_feature_space_func=efs)
 
-    scores = np.array(scores).flatten()
-    labels = np.array(labels).flatten()
+            # Validate
+            s = train_and_validate(DTR, LTR, DTE, LTE)
+
+            # Collect scores and associated labels
+            scores.append(s)
+            labels.append(LTE)
+
+            iterations += 1
+
+        scores = np.array(scores).flatten()
+        labels = np.array(labels).flatten()
+    else:
+        # Standard train-validation on fixed split
+        print("\t\tTrain and validation %s LR %s (λ=%.5f) - Preprocessing: %s" %
+              ("Quadratic" if quadratic else "Linear", pi1_str, lambda_regularizer, preproc_conf))
+        scores = train_and_validate(X_train, y_train, X_test, y_test)
+        scores = scores.flatten()
+        labels = y_test
 
     return scores, labels
