@@ -158,11 +158,8 @@ def svm_duality_gap(DTR, LTR, C, K, w_hat, alfas):
 
     return duality_gap, primal_loss, dual_loss
 
-def cross_validate_svm(folds_data, folds_labels, preproc_conf, C, K, specific_pi1=None, kernel=None, maxfun=15000, maxiter=15000, factr=1.0):
-    iterations = 1
-    scores = []
-    labels = []
-    for DTR, LTR, DTE, LTE in dst.kfold_generate(folds_data, folds_labels):
+def cross_validate_svm(preproc_conf, C, K, X_train, y_train, X_test=None, y_test=None, specific_pi1=None, kernel=None, maxfun=15000, maxiter=15000, factr=1.0):
+    def train_and_validate(DTR, LTR, DTE, LTE):
         # Preprocess data
         DTR, DTE = preproc_conf.apply_preproc_pipeline(DTR, LTR, DTE)
 
@@ -172,14 +169,28 @@ def cross_validate_svm(folds_data, folds_labels, preproc_conf, C, K, specific_pi
 
         # Validate
         s = svm.compute_scores(DTE)
+        return s
 
-        # Collect scores and associated labels
-        scores.append(s)
-        labels.append(LTE)
+    if X_test is None:
+        # Cross-validation
+        iterations = 1
+        scores = []
+        labels = []
+        for DTR, LTR, DTE, LTE in dst.kfold_generate(X_train, y_train):
+            s = train_and_validate(DTR, LTR, DTE, LTE)
 
-        iterations += 1
+            # Collect scores and associated labels
+            scores.append(s)
+            labels.append(LTE)
 
-    scores = np.array(scores).flatten()
-    labels = np.array(labels).flatten()
+            iterations += 1
+
+        scores = np.array(scores).flatten()
+        labels = np.array(labels).flatten()
+    else:
+        # Standard train-validation on fixed split
+        scores = train_and_validate(X_train, y_train, X_test, y_test)
+        scores = scores.flatten()
+        labels = y_test
 
     return scores, labels
