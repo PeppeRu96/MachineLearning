@@ -1,0 +1,189 @@
+Grid search training on partial training dataset and evaluating on the evaluation dataset for Polynomial SVM
+Grid search on Polynomial SVM without class balancing started.
+Total Polynomial SVM cross-validation required  32
+Total grid search iterations required  8
+Grid search iteration 1 / 8
+	(Ci: 0) - Train and validation (eval) Polynomial SVM (d=2 - c=1)  (C=1e-02 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.948
+		min DCF (π=0.1) : 1.000
+		min DCF (π=0.9) : 0.999
+		time passed: 28 seconds
+	(Ci: 1) - Train and validation (eval) Polynomial SVM (d=2 - c=1)  (C=1e-01 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.805
+		min DCF (π=0.1) : 1.000
+		min DCF (π=0.9) : 0.968
+		time passed: 27 seconds
+	(Ci: 2) - Train and validation (eval) Polynomial SVM (d=2 - c=1)  (C=1e+00 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.765
+		min DCF (π=0.1) : 0.993
+		min DCF (π=0.9) : 0.985
+		time passed: 31 seconds
+	(Ci: 3) - Train and validation (eval) Polynomial SVM (d=2 - c=1)  (C=1e+01 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.763
+		min DCF (π=0.1) : 1.000
+		min DCF (π=0.9) : 0.940
+		time passed: 33 seconds
+Plot saved in C:\Users\rugge\Documents\development\university\machine_learning\ml_repo\wine_project\utility\..\graphs\svm\polynomial\eval\eval_partial_polynomial_svm_graph_K-1-0_d-2_c-1-0_.
+Grid search iteration ended in 121 seconds
+Grid search iteration 2 / 8
+	(Ci: 0) - Train and validation (eval) Polynomial SVM (d=3 - c=1)  (C=1e-02 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.782
+		min DCF (π=0.1) : 0.998
+		min DCF (π=0.9) : 0.972
+		time passed: 9 seconds
+	(Ci: 1) - Train and validation (eval) Polynomial SVM (d=3 - c=1)  (C=1e-01 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.817
+		min DCF (π=0.1) : 0.985
+		min DCF (π=0.9) : 0.963
+		time passed: 10 seconds
+	(Ci: 2) - Train and validation (eval) Polynomial SVM (d=3 - c=1)  (C=1e+00 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.875
+		min DCF (π=0.1) : 1.000
+		min DCF (π=0.9) : 0.991
+		time passed: 8 seconds
+	(Ci: 3) - Train and validation (eval) Polynomial SVM (d=3 - c=1)  (C=1e+01 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.875
+		min DCF (π=0.1) : 1.000
+		min DCF (π=0.9) : 0.991
+		time passed: 8 seconds
+Plot saved in C:\Users\rugge\Documents\development\university\machine_learning\ml_repo\wine_project\utility\..\graphs\svm\polynomial\eval\eval_partial_polynomial_svm_graph_K-1-0_d-3_c-1-0_.
+Grid search iteration ended in 37 seconds
+Grid search iteration 3 / 8
+	(Ci: 0) - Train and validation (eval) Polynomial SVM (d=2 - c=1)  (C=1e-02 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.280
+		min DCF (π=0.1) : 0.626
+		min DCF (π=0.9) : 0.710
+		time passed: 13 seconds
+	(Ci: 1) - Train and validation (eval) Polynomial SVM (d=2 - c=1)  (C=1e-01 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.296
+		min DCF (π=0.1) : 0.687
+		min DCF (π=0.9) : 0.645
+		time passed: 16 seconds
+	(Ci: 2) - Train and validation (eval) Polynomial SVM (d=2 - c=1)  (C=1e+00 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.306
+		min DCF (π=0.1) : 0.673
+		min DCF (π=0.9) : 0.634
+		time passed: 29 seconds
+	(Ci: 3) - Train and validation (eval) Polynomial SVM (d=2 - c=1)  (C=1e+01 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.309
+		min DCF (π=0.1) : 0.673
+		min DCF (π=0.9) : 0.638
+		time passed: 35 seconds
+Plot saved in C:\Users\rugge\Documents\development\university\machine_learning\ml_repo\wine_project\utility\..\graphs\svm\polynomial\eval\eval_partial_polynomial_svm_graph_K-1-0_d-2_c-1-0_gau.
+Grid search iteration ended in 95 seconds
+Grid search iteration 4 / 8
+	(Ci: 0) - Train and validation (eval) Polynomial SVM (d=3 - c=1)  (C=1e-02 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.292
+		min DCF (π=0.1) : 0.753
+		min DCF (π=0.9) : 0.747
+		time passed: 13 seconds
+	(Ci: 1) - Train and validation (eval) Polynomial SVM (d=3 - c=1)  (C=1e-01 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.330
+		min DCF (π=0.1) : 0.845
+		min DCF (π=0.9) : 0.798
+		time passed: 15 seconds
+	(Ci: 2) - Train and validation (eval) Polynomial SVM (d=3 - c=1)  (C=1e+00 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.370
+		min DCF (π=0.1) : 0.958
+		min DCF (π=0.9) : 0.807
+		time passed: 18 seconds
+	(Ci: 3) - Train and validation (eval) Polynomial SVM (d=3 - c=1)  (C=1e+01 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.411
+		min DCF (π=0.1) : 0.972
+		min DCF (π=0.9) : 0.811
+		time passed: 26 seconds
+Plot saved in C:\Users\rugge\Documents\development\university\machine_learning\ml_repo\wine_project\utility\..\graphs\svm\polynomial\eval\eval_partial_polynomial_svm_graph_K-1-0_d-3_c-1-0_gau.
+Grid search iteration ended in 75 seconds
+Grid search iteration 5 / 8
+	(Ci: 0) - Train and validation (eval) Polynomial SVM (d=2 - c=1)  (C=1e-02 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.318
+		min DCF (π=0.1) : 0.657
+		min DCF (π=0.9) : 0.824
+		time passed: 8 seconds
+	(Ci: 1) - Train and validation (eval) Polynomial SVM (d=2 - c=1)  (C=1e-01 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.293
+		min DCF (π=0.1) : 0.601
+		min DCF (π=0.9) : 0.564
+		time passed: 9 seconds
+	(Ci: 2) - Train and validation (eval) Polynomial SVM (d=2 - c=1)  (C=1e+00 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.288
+		min DCF (π=0.1) : 0.669
+		min DCF (π=0.9) : 0.604
+		time passed: 11 seconds
+	(Ci: 3) - Train and validation (eval) Polynomial SVM (d=2 - c=1)  (C=1e+01 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.305
+		min DCF (π=0.1) : 0.692
+		min DCF (π=0.9) : 0.597
+		time passed: 18 seconds
+Plot saved in C:\Users\rugge\Documents\development\university\machine_learning\ml_repo\wine_project\utility\..\graphs\svm\polynomial\eval\eval_partial_polynomial_svm_graph_K-1-0_d-2_c-1-0_center_whitec_l2norm.
+Grid search iteration ended in 48 seconds
+Grid search iteration 6 / 8
+	(Ci: 0) - Train and validation (eval) Polynomial SVM (d=3 - c=1)  (C=1e-02 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.299
+		min DCF (π=0.1) : 0.630
+		min DCF (π=0.9) : 0.639
+		time passed: 9 seconds
+	(Ci: 1) - Train and validation (eval) Polynomial SVM (d=3 - c=1)  (C=1e-01 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.275
+		min DCF (π=0.1) : 0.625
+		min DCF (π=0.9) : 0.575
+		time passed: 9 seconds
+	(Ci: 2) - Train and validation (eval) Polynomial SVM (d=3 - c=1)  (C=1e+00 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.286
+		min DCF (π=0.1) : 0.687
+		min DCF (π=0.9) : 0.565
+		time passed: 10 seconds
+	(Ci: 3) - Train and validation (eval) Polynomial SVM (d=3 - c=1)  (C=1e+01 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.293
+		min DCF (π=0.1) : 0.829
+		min DCF (π=0.9) : 0.641
+		time passed: 12 seconds
+Plot saved in C:\Users\rugge\Documents\development\university\machine_learning\ml_repo\wine_project\utility\..\graphs\svm\polynomial\eval\eval_partial_polynomial_svm_graph_K-1-0_d-3_c-1-0_center_whitec_l2norm.
+Grid search iteration ended in 41 seconds
+Grid search iteration 7 / 8
+	(Ci: 0) - Train and validation (eval) Polynomial SVM (d=2 - c=1)  (C=1e-02 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.313
+		min DCF (π=0.1) : 0.647
+		min DCF (π=0.9) : 0.794
+		time passed: 8 seconds
+	(Ci: 1) - Train and validation (eval) Polynomial SVM (d=2 - c=1)  (C=1e-01 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.288
+		min DCF (π=0.1) : 0.603
+		min DCF (π=0.9) : 0.573
+		time passed: 9 seconds
+	(Ci: 2) - Train and validation (eval) Polynomial SVM (d=2 - c=1)  (C=1e+00 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.286
+		min DCF (π=0.1) : 0.686
+		min DCF (π=0.9) : 0.608
+		time passed: 11 seconds
+	(Ci: 3) - Train and validation (eval) Polynomial SVM (d=2 - c=1)  (C=1e+01 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.302
+		min DCF (π=0.1) : 0.704
+		min DCF (π=0.9) : 0.597
+		time passed: 17 seconds
+Plot saved in C:\Users\rugge\Documents\development\university\machine_learning\ml_repo\wine_project\utility\..\graphs\svm\polynomial\eval\eval_partial_polynomial_svm_graph_K-1-0_d-2_c-1-0_center_whitewc_l2norm.
+Grid search iteration ended in 47 seconds
+Grid search iteration 8 / 8
+	(Ci: 0) - Train and validation (eval) Polynomial SVM (d=3 - c=1)  (C=1e-02 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.300
+		min DCF (π=0.1) : 0.629
+		min DCF (π=0.9) : 0.594
+		time passed: 9 seconds
+	(Ci: 1) - Train and validation (eval) Polynomial SVM (d=3 - c=1)  (C=1e-01 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.273
+		min DCF (π=0.1) : 0.629
+		min DCF (π=0.9) : 0.570
+		time passed: 9 seconds
+	(Ci: 2) - Train and validation (eval) Polynomial SVM (d=3 - c=1)  (C=1e+00 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.281
+		min DCF (π=0.1) : 0.701
+		min DCF (π=0.9) : 0.551
+		time passed: 10 seconds
+	(Ci: 3) - Train and validation (eval) Polynomial SVM (d=3 - c=1)  (C=1e+01 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.279
+		min DCF (π=0.1) : 0.857
+		min DCF (π=0.9) : 0.648
+		time passed: 12 seconds
+Plot saved in C:\Users\rugge\Documents\development\university\machine_learning\ml_repo\wine_project\utility\..\graphs\svm\polynomial\eval\eval_partial_polynomial_svm_graph_K-1-0_d-3_c-1-0_center_whitewc_l2norm.
+Grid search iteration ended in 41 seconds
+Grid search on Polynomial SVM without class balancing ended in 509 seconds

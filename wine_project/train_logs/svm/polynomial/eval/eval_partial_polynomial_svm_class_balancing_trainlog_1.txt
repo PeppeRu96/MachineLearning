@@ -1,0 +1,18 @@
+Training on partial training dataset and evaluating on the evaluation datasetfor Polynomial SVM class-balancing with a prior
+Trying the best hyperparameters but class-balancing w.r.t target applications..
+Polynomial SVM training on the train dataset and evaluating on the eval dataset with class-balancing for the target application with π=0.5 (d=3 - c=1) (C=1e-01 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.282
+		min DCF (π=0.1) : 0.633
+		min DCF (π=0.9) : 0.507
+Target application (π=0.9) specific training cross-validation ended in 9 seconds
+Polynomial SVM training on the train dataset and evaluating on the eval dataset with class-balancing for the target application with π=0.1 (d=3 - c=1) (C=1e-01 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.282
+		min DCF (π=0.1) : 0.614
+		min DCF (π=0.9) : 0.760
+Target application (π=0.9) specific training cross-validation ended in 9 seconds
+Polynomial SVM training on the train dataset and evaluating on the eval dataset with class-balancing for the target application with π=0.9 (d=3 - c=1) (C=1e-01 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.300
+		min DCF (π=0.1) : 0.939
+		min DCF (π=0.9) : 0.507
+Target application (π=0.9) specific training cross-validation ended in 9 seconds
+Operation finished
