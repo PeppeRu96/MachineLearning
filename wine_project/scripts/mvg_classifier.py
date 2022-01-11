@@ -99,7 +99,6 @@ if __name__ == "__main__":
         else:
             # Standard train-validation on fixed split
             print("Train and validation %s %s MVG training on %s features %s started" % (naive_str, tied_str, gauss_str, PCA_str))
-            print(f"Training samples: {y_train.shape[0]}\nEval samples: {y_test.shape[0]}")
             scores = train_and_validate(X_train, y_train, X_test, y_test)
             scores = scores.flatten()
             labels = y_test
@@ -111,6 +110,9 @@ if __name__ == "__main__":
         PCA_grid = [None, 10, 9]
         naive_grid = [False, True]
         tied_grid = [False, True]
+
+        if (X_test is not None):
+            print(f"Training samples: {y_train.shape[0]}\nEval samples: {y_test.shape[0]}")
 
         tot_grid_iterations = len(gauss_grid) * len(PCA_grid) * len(naive_grid) * len(tied_grid)
         print(f"Grid search total iterations: {tot_grid_iterations}")
