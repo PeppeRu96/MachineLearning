@@ -295,7 +295,6 @@ if __name__ == "__main__":
             print(f"\tQuadratic Logistic Regression training for target application specific π={pi09:.1f}..")
             _cross_validate_lr(quadratic_preproc_conf_pi09, quadratic_lambda_pi09, X_train=folds_data, y_train=folds_labels,
                                X_test=None, y_test=None, pi1=pi09, quadratic=True)
-            _cross_validate_lr(quadratic_preproc_conf_pi09, quadratic_lambda_pi09, pi1=pi09, quadratic=True)
 
     # --------------------------------------------------------- #
 
@@ -331,11 +330,10 @@ if __name__ == "__main__":
             print(f"\tQuadratic Logistic Regression training for target application specific π={pi09:.1f}..")
             _cross_validate_lr(quadratic_preproc_conf_pi09, quadratic_lambda_pi09, X_train=X_train, y_train=y_train,
                                X_test=X_test, y_test=y_test, pi1=pi09, quadratic=True)
-            _cross_validate_lr(quadratic_preproc_conf_pi09, quadratic_lambda_pi09, pi1=pi09, quadratic=True)
 
     # EVALUATION DATASET - FULL - LINEAR LR
-    if args.eval_partial_linear_app_specific:
-        with LoggingPrinter(incremental_path(EVAL_TRAINLOGS_BASEPATH, EVAL_PARTIAL_LINEAR_LR_BEST_TRAINLOG_FNAME)):
+    if args.eval_full_linear_app_specific:
+        with LoggingPrinter(incremental_path(EVAL_TRAINLOGS_BASEPATH, EVAL_FULL_LINEAR_LR_BEST_TRAINLOG_FNAME)):
             print(f"(EVALUATION DATASET - Full Training Dataset) Training and validate Linear Logistic Regression with the best preproc configuration and the best lambda embedding target application prior in the training process..")
             pi01 = applications[1][0]
             print(f"\tLinear Logistic Regression training for target application specific π={pi01:.1f}..")
@@ -351,9 +349,9 @@ if __name__ == "__main__":
     print("\n")
 
     # EVALUATION DATASET - FULL - QUADRATIC LR
-    if args.eval_partial_quadratic_app_specific:
+    if args.eval_full_quadratic_app_specific:
         with LoggingPrinter(
-                incremental_path(EVAL_TRAINLOGS_BASEPATH, EVAL_PARTIAL_QUADRATIC_LR_BEST_TRAINLOG_FNAME)):
+                incremental_path(EVAL_TRAINLOGS_BASEPATH, EVAL_FULL_QUADRATIC_LR_BEST_TRAINLOG_FNAME)):
             print(
                 f"(EVALUATION DATASET - Full Training Dataset) Training and validate Quadratic Logistic Regression with the best preproc configuration and the best lambda embedding target application prior in the training process..")
             pi01 = applications[1][0]
@@ -366,6 +364,5 @@ if __name__ == "__main__":
             print(f"\tQuadratic Logistic Regression training for target application specific π={pi09:.1f}..")
             _cross_validate_lr(quadratic_preproc_conf_pi09, quadratic_lambda_pi09, X_train=X_train, y_train=y_train,
                                X_test=X_test, y_test=y_test, pi1=pi09, quadratic=True)
-            _cross_validate_lr(quadratic_preproc_conf_pi09, quadratic_lambda_pi09, pi1=pi09, quadratic=True)
 
     plt.show()

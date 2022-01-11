@@ -1,0 +1,398 @@
+Grid search on the evaluation dataset using 4/5 of the training dataset for Quadratic Regularized Logistic Regression
+Quadratic Logistic Regression with prior weight specific training (π=0.5) analysis started
+Total LR cross-validation required  63
+Grid search iteration  1
+	Lambda iteration  1
+		Train and validation Quadratic LR with prior weight specific training (π=0.5) (λ=0.00001) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.434
+		min DCF (π=0.1) : 0.766
+		min DCF (π=0.9) : 0.895
+		time passed: 11 seconds
+	Lambda iteration  2
+		Train and validation Quadratic LR with prior weight specific training (π=0.5) (λ=0.00010) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.427
+		min DCF (π=0.1) : 0.778
+		min DCF (π=0.9) : 0.884
+		time passed: 11 seconds
+	Lambda iteration  3
+		Train and validation Quadratic LR with prior weight specific training (π=0.5) (λ=0.00100) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.422
+		min DCF (π=0.1) : 0.763
+		min DCF (π=0.9) : 0.897
+		time passed: 11 seconds
+	Lambda iteration  4
+		Train and validation Quadratic LR with prior weight specific training (π=0.5) (λ=0.01000) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.426
+		min DCF (π=0.1) : 0.767
+		min DCF (π=0.9) : 0.891
+		time passed: 11 seconds
+	Lambda iteration  5
+		Train and validation Quadratic LR with prior weight specific training (π=0.5) (λ=0.10000) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.428
+		min DCF (π=0.1) : 0.760
+		min DCF (π=0.9) : 0.895
+		time passed: 11 seconds
+	Lambda iteration  6
+		Train and validation Quadratic LR with prior weight specific training (π=0.5) (λ=1.00000) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.431
+		min DCF (π=0.1) : 0.779
+		min DCF (π=0.9) : 0.888
+		time passed: 11 seconds
+	Lambda iteration  7
+		Train and validation Quadratic LR with prior weight specific training (π=0.5) (λ=10.00000) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.401
+		min DCF (π=0.1) : 0.769
+		min DCF (π=0.9) : 0.832
+		time passed: 11 seconds
+	Lambda iteration  8
+		Train and validation Quadratic LR with prior weight specific training (π=0.5) (λ=100.00000) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.421
+		min DCF (π=0.1) : 0.732
+		min DCF (π=0.9) : 0.900
+		time passed: 11 seconds
+	Lambda iteration  9
+		Train and validation Quadratic LR with prior weight specific training (π=0.5) (λ=1000.00000) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.437
+		min DCF (π=0.1) : 0.712
+		min DCF (π=0.9) : 0.951
+		time passed: 11 seconds
+Plot saved in C:\Users\rugge\Documents\development\university\machine_learning\ml_repo\wine_project\scripts\..\graphs\lr\eval\eval_partial_quadratic_lr_graph__train-pi1-05.
+Grid search iteration  2
+	Lambda iteration  1
+		Train and validation Quadratic LR with prior weight specific training (π=0.5) (λ=0.00001) - Preprocessing: [ Pca: 10 ]
+		min DCF (π=0.5) : 0.585
+		min DCF (π=0.1) : 1.000
+		min DCF (π=0.9) : 0.950
+		time passed: 11 seconds
+	Lambda iteration  2
+		Train and validation Quadratic LR with prior weight specific training (π=0.5) (λ=0.00010) - Preprocessing: [ Pca: 10 ]
+		min DCF (π=0.5) : 0.587
+		min DCF (π=0.1) : 1.000
+		min DCF (π=0.9) : 0.959
+		time passed: 11 seconds
+	Lambda iteration  3
+		Train and validation Quadratic LR with prior weight specific training (π=0.5) (λ=0.00100) - Preprocessing: [ Pca: 10 ]
+		min DCF (π=0.5) : 0.582
+		min DCF (π=0.1) : 1.000
+		min DCF (π=0.9) : 0.936
+		time passed: 11 seconds
+	Lambda iteration  4
+		Train and validation Quadratic LR with prior weight specific training (π=0.5) (λ=0.01000) - Preprocessing: [ Pca: 10 ]
+		min DCF (π=0.5) : 0.585
+		min DCF (π=0.1) : 1.000
+		min DCF (π=0.9) : 0.966
+		time passed: 11 seconds
+	Lambda iteration  5
+		Train and validation Quadratic LR with prior weight specific training (π=0.5) (λ=0.10000) - Preprocessing: [ Pca: 10 ]
+		min DCF (π=0.5) : 0.572
+		min DCF (π=0.1) : 1.000
+		min DCF (π=0.9) : 0.955
+		time passed: 11 seconds
+	Lambda iteration  6
+		Train and validation Quadratic LR with prior weight specific training (π=0.5) (λ=1.00000) - Preprocessing: [ Pca: 10 ]
+		min DCF (π=0.5) : 0.585
+		min DCF (π=0.1) : 1.000
+		min DCF (π=0.9) : 0.956
+		time passed: 11 seconds
+	Lambda iteration  7
+		Train and validation Quadratic LR with prior weight specific training (π=0.5) (λ=10.00000) - Preprocessing: [ Pca: 10 ]
+		min DCF (π=0.5) : 0.602
+		min DCF (π=0.1) : 1.000
+		min DCF (π=0.9) : 0.962
+		time passed: 11 seconds
+	Lambda iteration  8
+		Train and validation Quadratic LR with prior weight specific training (π=0.5) (λ=100.00000) - Preprocessing: [ Pca: 10 ]
+		min DCF (π=0.5) : 0.653
+		min DCF (π=0.1) : 1.000
+		min DCF (π=0.9) : 0.969
+		time passed: 11 seconds
+	Lambda iteration  9
+		Train and validation Quadratic LR with prior weight specific training (π=0.5) (λ=1000.00000) - Preprocessing: [ Pca: 10 ]
+		min DCF (π=0.5) : 0.663
+		min DCF (π=0.1) : 1.000
+		min DCF (π=0.9) : 0.974
+		time passed: 11 seconds
+Plot saved in C:\Users\rugge\Documents\development\university\machine_learning\ml_repo\wine_project\scripts\..\graphs\lr\eval\eval_partial_quadratic_lr_graph_pca-10_train-pi1-05.
+Grid search iteration  3
+	Lambda iteration  1
+		Train and validation Quadratic LR with prior weight specific training (π=0.5) (λ=0.00001) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.294
+		min DCF (π=0.1) : 0.692
+		min DCF (π=0.9) : 0.570
+		time passed: 14 seconds
+	Lambda iteration  2
+		Train and validation Quadratic LR with prior weight specific training (π=0.5) (λ=0.00010) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.299
+		min DCF (π=0.1) : 0.691
+		min DCF (π=0.9) : 0.571
+		time passed: 14 seconds
+	Lambda iteration  3
+		Train and validation Quadratic LR with prior weight specific training (π=0.5) (λ=0.00100) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.296
+		min DCF (π=0.1) : 0.669
+		min DCF (π=0.9) : 0.557
+		time passed: 14 seconds
+	Lambda iteration  4
+		Train and validation Quadratic LR with prior weight specific training (π=0.5) (λ=0.01000) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.284
+		min DCF (π=0.1) : 0.648
+		min DCF (π=0.9) : 0.555
+		time passed: 13 seconds
+	Lambda iteration  5
+		Train and validation Quadratic LR with prior weight specific training (π=0.5) (λ=0.10000) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.297
+		min DCF (π=0.1) : 0.672
+		min DCF (π=0.9) : 0.644
+		time passed: 12 seconds
+	Lambda iteration  6
+		Train and validation Quadratic LR with prior weight specific training (π=0.5) (λ=1.00000) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.367
+		min DCF (π=0.1) : 0.718
+		min DCF (π=0.9) : 0.899
+		time passed: 12 seconds
+	Lambda iteration  7
+		Train and validation Quadratic LR with prior weight specific training (π=0.5) (λ=10.00000) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.435
+		min DCF (π=0.1) : 0.827
+		min DCF (π=0.9) : 0.994
+		time passed: 12 seconds
+	Lambda iteration  8
+		Train and validation Quadratic LR with prior weight specific training (π=0.5) (λ=100.00000) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.458
+		min DCF (π=0.1) : 0.833
+		min DCF (π=0.9) : 0.996
+		time passed: 12 seconds
+	Lambda iteration  9
+		Train and validation Quadratic LR with prior weight specific training (π=0.5) (λ=1000.00000) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.461
+		min DCF (π=0.1) : 0.833
+		min DCF (π=0.9) : 0.997
+		time passed: 11 seconds
+Plot saved in C:\Users\rugge\Documents\development\university\machine_learning\ml_repo\wine_project\scripts\..\graphs\lr\eval\eval_partial_quadratic_lr_graph_gau_train-pi1-05.
+Grid search iteration  4
+	Lambda iteration  1
+		Train and validation Quadratic LR with prior weight specific training (π=0.5) (λ=0.00001) - Preprocessing: [ Gaussianization, Pca: 10 ]
+		min DCF (π=0.5) : 0.291
+		min DCF (π=0.1) : 0.692
+		min DCF (π=0.9) : 0.587
+		time passed: 13 seconds
+	Lambda iteration  2
+		Train and validation Quadratic LR with prior weight specific training (π=0.5) (λ=0.00010) - Preprocessing: [ Gaussianization, Pca: 10 ]
+		min DCF (π=0.5) : 0.290
+		min DCF (π=0.1) : 0.692
+		min DCF (π=0.9) : 0.585
+		time passed: 13 seconds
+	Lambda iteration  3
+		Train and validation Quadratic LR with prior weight specific training (π=0.5) (λ=0.00100) - Preprocessing: [ Gaussianization, Pca: 10 ]
+		min DCF (π=0.5) : 0.290
+		min DCF (π=0.1) : 0.693
+		min DCF (π=0.9) : 0.577
+		time passed: 13 seconds
+	Lambda iteration  4
+		Train and validation Quadratic LR with prior weight specific training (π=0.5) (λ=0.01000) - Preprocessing: [ Gaussianization, Pca: 10 ]
+		min DCF (π=0.5) : 0.283
+		min DCF (π=0.1) : 0.673
+		min DCF (π=0.9) : 0.593
+		time passed: 12 seconds
+	Lambda iteration  5
+		Train and validation Quadratic LR with prior weight specific training (π=0.5) (λ=0.10000) - Preprocessing: [ Gaussianization, Pca: 10 ]
+		min DCF (π=0.5) : 0.296
+		min DCF (π=0.1) : 0.675
+		min DCF (π=0.9) : 0.666
+		time passed: 12 seconds
+	Lambda iteration  6
+		Train and validation Quadratic LR with prior weight specific training (π=0.5) (λ=1.00000) - Preprocessing: [ Gaussianization, Pca: 10 ]
+		min DCF (π=0.5) : 0.379
+		min DCF (π=0.1) : 0.736
+		min DCF (π=0.9) : 0.912
+		time passed: 12 seconds
+	Lambda iteration  7
+		Train and validation Quadratic LR with prior weight specific training (π=0.5) (λ=10.00000) - Preprocessing: [ Gaussianization, Pca: 10 ]
+		min DCF (π=0.5) : 0.445
+		min DCF (π=0.1) : 0.842
+		min DCF (π=0.9) : 0.994
+		time passed: 12 seconds
+	Lambda iteration  8
+		Train and validation Quadratic LR with prior weight specific training (π=0.5) (λ=100.00000) - Preprocessing: [ Gaussianization, Pca: 10 ]
+		min DCF (π=0.5) : 0.469
+		min DCF (π=0.1) : 0.885
+		min DCF (π=0.9) : 0.996
+		time passed: 11 seconds
+	Lambda iteration  9
+		Train and validation Quadratic LR with prior weight specific training (π=0.5) (λ=1000.00000) - Preprocessing: [ Gaussianization, Pca: 10 ]
+		min DCF (π=0.5) : 0.471
+		min DCF (π=0.1) : 0.888
+		min DCF (π=0.9) : 0.996
+		time passed: 11 seconds
+Plot saved in C:\Users\rugge\Documents\development\university\machine_learning\ml_repo\wine_project\scripts\..\graphs\lr\eval\eval_partial_quadratic_lr_graph_gau_pca-10_train-pi1-05.
+Grid search iteration  5
+	Lambda iteration  1
+		Train and validation Quadratic LR with prior weight specific training (π=0.5) (λ=0.00001) - Preprocessing: [ Z_Normalization ]
+		min DCF (π=0.5) : 0.266
+		min DCF (π=0.1) : 0.631
+		min DCF (π=0.9) : 0.579
+		time passed: 12 seconds
+	Lambda iteration  2
+		Train and validation Quadratic LR with prior weight specific training (π=0.5) (λ=0.00010) - Preprocessing: [ Z_Normalization ]
+		min DCF (π=0.5) : 0.264
+		min DCF (π=0.1) : 0.632
+		min DCF (π=0.9) : 0.578
+		time passed: 12 seconds
+	Lambda iteration  3
+		Train and validation Quadratic LR with prior weight specific training (π=0.5) (λ=0.00100) - Preprocessing: [ Z_Normalization ]
+		min DCF (π=0.5) : 0.263
+		min DCF (π=0.1) : 0.647
+		min DCF (π=0.9) : 0.572
+		time passed: 12 seconds
+	Lambda iteration  4
+		Train and validation Quadratic LR with prior weight specific training (π=0.5) (λ=0.01000) - Preprocessing: [ Z_Normalization ]
+		min DCF (π=0.5) : 0.272
+		min DCF (π=0.1) : 0.675
+		min DCF (π=0.9) : 0.590
+		time passed: 10 seconds
+	Lambda iteration  5
+		Train and validation Quadratic LR with prior weight specific training (π=0.5) (λ=0.10000) - Preprocessing: [ Z_Normalization ]
+		min DCF (π=0.5) : 0.310
+		min DCF (π=0.1) : 0.722
+		min DCF (π=0.9) : 0.655
+		time passed: 10 seconds
+	Lambda iteration  6
+		Train and validation Quadratic LR with prior weight specific training (π=0.5) (λ=1.00000) - Preprocessing: [ Z_Normalization ]
+		min DCF (π=0.5) : 0.391
+		min DCF (π=0.1) : 0.735
+		min DCF (π=0.9) : 0.932
+		time passed: 9 seconds
+	Lambda iteration  7
+		Train and validation Quadratic LR with prior weight specific training (π=0.5) (λ=10.00000) - Preprocessing: [ Z_Normalization ]
+		min DCF (π=0.5) : 0.443
+		min DCF (π=0.1) : 0.803
+		min DCF (π=0.9) : 0.966
+		time passed: 9 seconds
+	Lambda iteration  8
+		Train and validation Quadratic LR with prior weight specific training (π=0.5) (λ=100.00000) - Preprocessing: [ Z_Normalization ]
+		min DCF (π=0.5) : 0.447
+		min DCF (π=0.1) : 0.811
+		min DCF (π=0.9) : 0.963
+		time passed: 8 seconds
+	Lambda iteration  9
+		Train and validation Quadratic LR with prior weight specific training (π=0.5) (λ=1000.00000) - Preprocessing: [ Z_Normalization ]
+		min DCF (π=0.5) : 0.447
+		min DCF (π=0.1) : 0.811
+		min DCF (π=0.9) : 0.963
+		time passed: 8 seconds
+Plot saved in C:\Users\rugge\Documents\development\university\machine_learning\ml_repo\wine_project\scripts\..\graphs\lr\eval\eval_partial_quadratic_lr_graph_znorm_train-pi1-05.
+Grid search iteration  6
+	Lambda iteration  1
+		Train and validation Quadratic LR with prior weight specific training (π=0.5) (λ=0.00001) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.276
+		min DCF (π=0.1) : 0.711
+		min DCF (π=0.9) : 0.567
+		time passed: 10 seconds
+	Lambda iteration  2
+		Train and validation Quadratic LR with prior weight specific training (π=0.5) (λ=0.00010) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.276
+		min DCF (π=0.1) : 0.687
+		min DCF (π=0.9) : 0.566
+		time passed: 10 seconds
+	Lambda iteration  3
+		Train and validation Quadratic LR with prior weight specific training (π=0.5) (λ=0.00100) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.284
+		min DCF (π=0.1) : 0.607
+		min DCF (π=0.9) : 0.580
+		time passed: 9 seconds
+	Lambda iteration  4
+		Train and validation Quadratic LR with prior weight specific training (π=0.5) (λ=0.01000) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.292
+		min DCF (π=0.1) : 0.621
+		min DCF (π=0.9) : 0.535
+		time passed: 9 seconds
+	Lambda iteration  5
+		Train and validation Quadratic LR with prior weight specific training (π=0.5) (λ=0.10000) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.312
+		min DCF (π=0.1) : 0.649
+		min DCF (π=0.9) : 0.686
+		time passed: 9 seconds
+	Lambda iteration  6
+		Train and validation Quadratic LR with prior weight specific training (π=0.5) (λ=1.00000) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.315
+		min DCF (π=0.1) : 0.674
+		min DCF (π=0.9) : 0.725
+		time passed: 8 seconds
+	Lambda iteration  7
+		Train and validation Quadratic LR with prior weight specific training (π=0.5) (λ=10.00000) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.315
+		min DCF (π=0.1) : 0.679
+		min DCF (π=0.9) : 0.729
+		time passed: 8 seconds
+	Lambda iteration  8
+		Train and validation Quadratic LR with prior weight specific training (π=0.5) (λ=100.00000) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.315
+		min DCF (π=0.1) : 0.679
+		min DCF (π=0.9) : 0.729
+		time passed: 8 seconds
+	Lambda iteration  9
+		Train and validation Quadratic LR with prior weight specific training (π=0.5) (λ=1000.00000) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.315
+		min DCF (π=0.1) : 0.679
+		min DCF (π=0.9) : 0.729
+		time passed: 8 seconds
+Plot saved in C:\Users\rugge\Documents\development\university\machine_learning\ml_repo\wine_project\scripts\..\graphs\lr\eval\eval_partial_quadratic_lr_graph_center_whitec_l2norm_train-pi1-05.
+Grid search iteration  7
+	Lambda iteration  1
+		Train and validation Quadratic LR with prior weight specific training (π=0.5) (λ=0.00001) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.273
+		min DCF (π=0.1) : 0.719
+		min DCF (π=0.9) : 0.567
+		time passed: 9 seconds
+	Lambda iteration  2
+		Train and validation Quadratic LR with prior weight specific training (π=0.5) (λ=0.00010) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.269
+		min DCF (π=0.1) : 0.701
+		min DCF (π=0.9) : 0.561
+		time passed: 10 seconds
+	Lambda iteration  3
+		Train and validation Quadratic LR with prior weight specific training (π=0.5) (λ=0.00100) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.284
+		min DCF (π=0.1) : 0.619
+		min DCF (π=0.9) : 0.573
+		time passed: 9 seconds
+	Lambda iteration  4
+		Train and validation Quadratic LR with prior weight specific training (π=0.5) (λ=0.01000) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.296
+		min DCF (π=0.1) : 0.632
+		min DCF (π=0.9) : 0.546
+		time passed: 9 seconds
+	Lambda iteration  5
+		Train and validation Quadratic LR with prior weight specific training (π=0.5) (λ=0.10000) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.313
+		min DCF (π=0.1) : 0.645
+		min DCF (π=0.9) : 0.667
+		time passed: 9 seconds
+	Lambda iteration  6
+		Train and validation Quadratic LR with prior weight specific training (π=0.5) (λ=1.00000) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.312
+		min DCF (π=0.1) : 0.666
+		min DCF (π=0.9) : 0.705
+		time passed: 8 seconds
+	Lambda iteration  7
+		Train and validation Quadratic LR with prior weight specific training (π=0.5) (λ=10.00000) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.313
+		min DCF (π=0.1) : 0.670
+		min DCF (π=0.9) : 0.709
+		time passed: 8 seconds
+	Lambda iteration  8
+		Train and validation Quadratic LR with prior weight specific training (π=0.5) (λ=100.00000) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.313
+		min DCF (π=0.1) : 0.670
+		min DCF (π=0.9) : 0.709
+		time passed: 8 seconds
+	Lambda iteration  9
+		Train and validation Quadratic LR with prior weight specific training (π=0.5) (λ=1000.00000) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.313
+		min DCF (π=0.1) : 0.670
+		min DCF (π=0.9) : 0.709
+		time passed: 8 seconds
+Plot saved in C:\Users\rugge\Documents\development\university\machine_learning\ml_repo\wine_project\scripts\..\graphs\lr\eval\eval_partial_quadratic_lr_graph_center_whitewc_l2norm_train-pi1-05.
+LR gridsearch finished. Total time: 707.3825372 seconds.
+
+

@@ -1,0 +1,398 @@
+Grid search on the evaluation dataset using 4/5 of the training dataset for Linear Regularized Logistic Regression
+Linear Logistic Regression with prior weight specific training (π=0.5) analysis started
+Total LR cross-validation required  63
+Grid search iteration  1
+	Lambda iteration  1
+		Train and validation Linear LR with prior weight specific training (π=0.5) (λ=0.00001) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.348
+		min DCF (π=0.1) : 0.717
+		min DCF (π=0.9) : 0.645
+		time passed: 9 seconds
+	Lambda iteration  2
+		Train and validation Linear LR with prior weight specific training (π=0.5) (λ=0.00010) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.342
+		min DCF (π=0.1) : 0.690
+		min DCF (π=0.9) : 0.638
+		time passed: 9 seconds
+	Lambda iteration  3
+		Train and validation Linear LR with prior weight specific training (π=0.5) (λ=0.00100) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.319
+		min DCF (π=0.1) : 0.702
+		min DCF (π=0.9) : 0.657
+		time passed: 9 seconds
+	Lambda iteration  4
+		Train and validation Linear LR with prior weight specific training (π=0.5) (λ=0.01000) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.339
+		min DCF (π=0.1) : 0.710
+		min DCF (π=0.9) : 0.764
+		time passed: 9 seconds
+	Lambda iteration  5
+		Train and validation Linear LR with prior weight specific training (π=0.5) (λ=0.10000) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.362
+		min DCF (π=0.1) : 0.728
+		min DCF (π=0.9) : 0.940
+		time passed: 8 seconds
+	Lambda iteration  6
+		Train and validation Linear LR with prior weight specific training (π=0.5) (λ=1.00000) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.408
+		min DCF (π=0.1) : 0.852
+		min DCF (π=0.9) : 0.991
+		time passed: 8 seconds
+	Lambda iteration  7
+		Train and validation Linear LR with prior weight specific training (π=0.5) (λ=10.00000) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.694
+		min DCF (π=0.1) : 1.000
+		min DCF (π=0.9) : 0.977
+		time passed: 8 seconds
+	Lambda iteration  8
+		Train and validation Linear LR with prior weight specific training (π=0.5) (λ=100.00000) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.745
+		min DCF (π=0.1) : 1.000
+		min DCF (π=0.9) : 0.983
+		time passed: 8 seconds
+	Lambda iteration  9
+		Train and validation Linear LR with prior weight specific training (π=0.5) (λ=1000.00000) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.801
+		min DCF (π=0.1) : 1.000
+		min DCF (π=0.9) : 0.983
+		time passed: 8 seconds
+Plot saved in C:\Users\rugge\Documents\development\university\machine_learning\ml_repo\wine_project\scripts\..\graphs\lr\eval\eval_partial_linear_lr_graph__train-pi1-05.
+Grid search iteration  2
+	Lambda iteration  1
+		Train and validation Linear LR with prior weight specific training (π=0.5) (λ=0.00001) - Preprocessing: [ Pca: 10 ]
+		min DCF (π=0.5) : 0.348
+		min DCF (π=0.1) : 0.718
+		min DCF (π=0.9) : 0.643
+		time passed: 9 seconds
+	Lambda iteration  2
+		Train and validation Linear LR with prior weight specific training (π=0.5) (λ=0.00010) - Preprocessing: [ Pca: 10 ]
+		min DCF (π=0.5) : 0.343
+		min DCF (π=0.1) : 0.699
+		min DCF (π=0.9) : 0.632
+		time passed: 9 seconds
+	Lambda iteration  3
+		Train and validation Linear LR with prior weight specific training (π=0.5) (λ=0.00100) - Preprocessing: [ Pca: 10 ]
+		min DCF (π=0.5) : 0.319
+		min DCF (π=0.1) : 0.705
+		min DCF (π=0.9) : 0.657
+		time passed: 9 seconds
+	Lambda iteration  4
+		Train and validation Linear LR with prior weight specific training (π=0.5) (λ=0.01000) - Preprocessing: [ Pca: 10 ]
+		min DCF (π=0.5) : 0.338
+		min DCF (π=0.1) : 0.709
+		min DCF (π=0.9) : 0.765
+		time passed: 8 seconds
+	Lambda iteration  5
+		Train and validation Linear LR with prior weight specific training (π=0.5) (λ=0.10000) - Preprocessing: [ Pca: 10 ]
+		min DCF (π=0.5) : 0.362
+		min DCF (π=0.1) : 0.728
+		min DCF (π=0.9) : 0.940
+		time passed: 8 seconds
+	Lambda iteration  6
+		Train and validation Linear LR with prior weight specific training (π=0.5) (λ=1.00000) - Preprocessing: [ Pca: 10 ]
+		min DCF (π=0.5) : 0.408
+		min DCF (π=0.1) : 0.852
+		min DCF (π=0.9) : 0.991
+		time passed: 8 seconds
+	Lambda iteration  7
+		Train and validation Linear LR with prior weight specific training (π=0.5) (λ=10.00000) - Preprocessing: [ Pca: 10 ]
+		min DCF (π=0.5) : 0.695
+		min DCF (π=0.1) : 1.000
+		min DCF (π=0.9) : 0.977
+		time passed: 8 seconds
+	Lambda iteration  8
+		Train and validation Linear LR with prior weight specific training (π=0.5) (λ=100.00000) - Preprocessing: [ Pca: 10 ]
+		min DCF (π=0.5) : 0.745
+		min DCF (π=0.1) : 1.000
+		min DCF (π=0.9) : 0.983
+		time passed: 8 seconds
+	Lambda iteration  9
+		Train and validation Linear LR with prior weight specific training (π=0.5) (λ=1000.00000) - Preprocessing: [ Pca: 10 ]
+		min DCF (π=0.5) : 0.801
+		min DCF (π=0.1) : 1.000
+		min DCF (π=0.9) : 0.983
+		time passed: 8 seconds
+Plot saved in C:\Users\rugge\Documents\development\university\machine_learning\ml_repo\wine_project\scripts\..\graphs\lr\eval\eval_partial_linear_lr_graph_pca-10_train-pi1-05.
+Grid search iteration  3
+	Lambda iteration  1
+		Train and validation Linear LR with prior weight specific training (π=0.5) (λ=0.00001) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.337
+		min DCF (π=0.1) : 0.717
+		min DCF (π=0.9) : 0.713
+		time passed: 12 seconds
+	Lambda iteration  2
+		Train and validation Linear LR with prior weight specific training (π=0.5) (λ=0.00010) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.337
+		min DCF (π=0.1) : 0.716
+		min DCF (π=0.9) : 0.713
+		time passed: 11 seconds
+	Lambda iteration  3
+		Train and validation Linear LR with prior weight specific training (π=0.5) (λ=0.00100) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.337
+		min DCF (π=0.1) : 0.713
+		min DCF (π=0.9) : 0.709
+		time passed: 12 seconds
+	Lambda iteration  4
+		Train and validation Linear LR with prior weight specific training (π=0.5) (λ=0.01000) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.337
+		min DCF (π=0.1) : 0.725
+		min DCF (π=0.9) : 0.709
+		time passed: 11 seconds
+	Lambda iteration  5
+		Train and validation Linear LR with prior weight specific training (π=0.5) (λ=0.10000) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.335
+		min DCF (π=0.1) : 0.767
+		min DCF (π=0.9) : 0.780
+		time passed: 11 seconds
+	Lambda iteration  6
+		Train and validation Linear LR with prior weight specific training (π=0.5) (λ=1.00000) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.372
+		min DCF (π=0.1) : 0.829
+		min DCF (π=0.9) : 0.867
+		time passed: 11 seconds
+	Lambda iteration  7
+		Train and validation Linear LR with prior weight specific training (π=0.5) (λ=10.00000) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.397
+		min DCF (π=0.1) : 0.840
+		min DCF (π=0.9) : 0.892
+		time passed: 11 seconds
+	Lambda iteration  8
+		Train and validation Linear LR with prior weight specific training (π=0.5) (λ=100.00000) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.400
+		min DCF (π=0.1) : 0.839
+		min DCF (π=0.9) : 0.897
+		time passed: 11 seconds
+	Lambda iteration  9
+		Train and validation Linear LR with prior weight specific training (π=0.5) (λ=1000.00000) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.400
+		min DCF (π=0.1) : 0.839
+		min DCF (π=0.9) : 0.897
+		time passed: 11 seconds
+Plot saved in C:\Users\rugge\Documents\development\university\machine_learning\ml_repo\wine_project\scripts\..\graphs\lr\eval\eval_partial_linear_lr_graph_gau_train-pi1-05.
+Grid search iteration  4
+	Lambda iteration  1
+		Train and validation Linear LR with prior weight specific training (π=0.5) (λ=0.00001) - Preprocessing: [ Gaussianization, Pca: 10 ]
+		min DCF (π=0.5) : 0.343
+		min DCF (π=0.1) : 0.752
+		min DCF (π=0.9) : 0.702
+		time passed: 11 seconds
+	Lambda iteration  2
+		Train and validation Linear LR with prior weight specific training (π=0.5) (λ=0.00010) - Preprocessing: [ Gaussianization, Pca: 10 ]
+		min DCF (π=0.5) : 0.343
+		min DCF (π=0.1) : 0.754
+		min DCF (π=0.9) : 0.702
+		time passed: 11 seconds
+	Lambda iteration  3
+		Train and validation Linear LR with prior weight specific training (π=0.5) (λ=0.00100) - Preprocessing: [ Gaussianization, Pca: 10 ]
+		min DCF (π=0.5) : 0.344
+		min DCF (π=0.1) : 0.751
+		min DCF (π=0.9) : 0.704
+		time passed: 11 seconds
+	Lambda iteration  4
+		Train and validation Linear LR with prior weight specific training (π=0.5) (λ=0.01000) - Preprocessing: [ Gaussianization, Pca: 10 ]
+		min DCF (π=0.5) : 0.336
+		min DCF (π=0.1) : 0.745
+		min DCF (π=0.9) : 0.707
+		time passed: 11 seconds
+	Lambda iteration  5
+		Train and validation Linear LR with prior weight specific training (π=0.5) (λ=0.10000) - Preprocessing: [ Gaussianization, Pca: 10 ]
+		min DCF (π=0.5) : 0.334
+		min DCF (π=0.1) : 0.773
+		min DCF (π=0.9) : 0.786
+		time passed: 12 seconds
+	Lambda iteration  6
+		Train and validation Linear LR with prior weight specific training (π=0.5) (λ=1.00000) - Preprocessing: [ Gaussianization, Pca: 10 ]
+		min DCF (π=0.5) : 0.372
+		min DCF (π=0.1) : 0.834
+		min DCF (π=0.9) : 0.866
+		time passed: 12 seconds
+	Lambda iteration  7
+		Train and validation Linear LR with prior weight specific training (π=0.5) (λ=10.00000) - Preprocessing: [ Gaussianization, Pca: 10 ]
+		min DCF (π=0.5) : 0.397
+		min DCF (π=0.1) : 0.844
+		min DCF (π=0.9) : 0.883
+		time passed: 12 seconds
+	Lambda iteration  8
+		Train and validation Linear LR with prior weight specific training (π=0.5) (λ=100.00000) - Preprocessing: [ Gaussianization, Pca: 10 ]
+		min DCF (π=0.5) : 0.399
+		min DCF (π=0.1) : 0.841
+		min DCF (π=0.9) : 0.889
+		time passed: 11 seconds
+	Lambda iteration  9
+		Train and validation Linear LR with prior weight specific training (π=0.5) (λ=1000.00000) - Preprocessing: [ Gaussianization, Pca: 10 ]
+		min DCF (π=0.5) : 0.399
+		min DCF (π=0.1) : 0.841
+		min DCF (π=0.9) : 0.892
+		time passed: 11 seconds
+Plot saved in C:\Users\rugge\Documents\development\university\machine_learning\ml_repo\wine_project\scripts\..\graphs\lr\eval\eval_partial_linear_lr_graph_gau_pca-10_train-pi1-05.
+Grid search iteration  5
+	Lambda iteration  1
+		Train and validation Linear LR with prior weight specific training (π=0.5) (λ=0.00001) - Preprocessing: [ Z_Normalization ]
+		min DCF (π=0.5) : 0.343
+		min DCF (π=0.1) : 0.706
+		min DCF (π=0.9) : 0.639
+		time passed: 9 seconds
+	Lambda iteration  2
+		Train and validation Linear LR with prior weight specific training (π=0.5) (λ=0.00010) - Preprocessing: [ Z_Normalization ]
+		min DCF (π=0.5) : 0.343
+		min DCF (π=0.1) : 0.706
+		min DCF (π=0.9) : 0.638
+		time passed: 8 seconds
+	Lambda iteration  3
+		Train and validation Linear LR with prior weight specific training (π=0.5) (λ=0.00100) - Preprocessing: [ Z_Normalization ]
+		min DCF (π=0.5) : 0.342
+		min DCF (π=0.1) : 0.708
+		min DCF (π=0.9) : 0.635
+		time passed: 9 seconds
+	Lambda iteration  4
+		Train and validation Linear LR with prior weight specific training (π=0.5) (λ=0.01000) - Preprocessing: [ Z_Normalization ]
+		min DCF (π=0.5) : 0.326
+		min DCF (π=0.1) : 0.704
+		min DCF (π=0.9) : 0.653
+		time passed: 8 seconds
+	Lambda iteration  5
+		Train and validation Linear LR with prior weight specific training (π=0.5) (λ=0.10000) - Preprocessing: [ Z_Normalization ]
+		min DCF (π=0.5) : 0.329
+		min DCF (π=0.1) : 0.745
+		min DCF (π=0.9) : 0.714
+		time passed: 8 seconds
+	Lambda iteration  6
+		Train and validation Linear LR with prior weight specific training (π=0.5) (λ=1.00000) - Preprocessing: [ Z_Normalization ]
+		min DCF (π=0.5) : 0.351
+		min DCF (π=0.1) : 0.750
+		min DCF (π=0.9) : 0.836
+		time passed: 8 seconds
+	Lambda iteration  7
+		Train and validation Linear LR with prior weight specific training (π=0.5) (λ=10.00000) - Preprocessing: [ Z_Normalization ]
+		min DCF (π=0.5) : 0.374
+		min DCF (π=0.1) : 0.768
+		min DCF (π=0.9) : 0.885
+		time passed: 8 seconds
+	Lambda iteration  8
+		Train and validation Linear LR with prior weight specific training (π=0.5) (λ=100.00000) - Preprocessing: [ Z_Normalization ]
+		min DCF (π=0.5) : 0.383
+		min DCF (π=0.1) : 0.768
+		min DCF (π=0.9) : 0.888
+		time passed: 8 seconds
+	Lambda iteration  9
+		Train and validation Linear LR with prior weight specific training (π=0.5) (λ=1000.00000) - Preprocessing: [ Z_Normalization ]
+		min DCF (π=0.5) : 0.385
+		min DCF (π=0.1) : 0.768
+		min DCF (π=0.9) : 0.889
+		time passed: 8 seconds
+Plot saved in C:\Users\rugge\Documents\development\university\machine_learning\ml_repo\wine_project\scripts\..\graphs\lr\eval\eval_partial_linear_lr_graph_znorm_train-pi1-05.
+Grid search iteration  6
+	Lambda iteration  1
+		Train and validation Linear LR with prior weight specific training (π=0.5) (λ=0.00001) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.331
+		min DCF (π=0.1) : 0.737
+		min DCF (π=0.9) : 0.643
+		time passed: 8 seconds
+	Lambda iteration  2
+		Train and validation Linear LR with prior weight specific training (π=0.5) (λ=0.00010) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.332
+		min DCF (π=0.1) : 0.737
+		min DCF (π=0.9) : 0.644
+		time passed: 8 seconds
+	Lambda iteration  3
+		Train and validation Linear LR with prior weight specific training (π=0.5) (λ=0.00100) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.331
+		min DCF (π=0.1) : 0.732
+		min DCF (π=0.9) : 0.671
+		time passed: 8 seconds
+	Lambda iteration  4
+		Train and validation Linear LR with prior weight specific training (π=0.5) (λ=0.01000) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.318
+		min DCF (π=0.1) : 0.699
+		min DCF (π=0.9) : 0.679
+		time passed: 9 seconds
+	Lambda iteration  5
+		Train and validation Linear LR with prior weight specific training (π=0.5) (λ=0.10000) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.318
+		min DCF (π=0.1) : 0.672
+		min DCF (π=0.9) : 0.740
+		time passed: 8 seconds
+	Lambda iteration  6
+		Train and validation Linear LR with prior weight specific training (π=0.5) (λ=1.00000) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.325
+		min DCF (π=0.1) : 0.666
+		min DCF (π=0.9) : 0.778
+		time passed: 8 seconds
+	Lambda iteration  7
+		Train and validation Linear LR with prior weight specific training (π=0.5) (λ=10.00000) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.325
+		min DCF (π=0.1) : 0.666
+		min DCF (π=0.9) : 0.789
+		time passed: 8 seconds
+	Lambda iteration  8
+		Train and validation Linear LR with prior weight specific training (π=0.5) (λ=100.00000) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.325
+		min DCF (π=0.1) : 0.666
+		min DCF (π=0.9) : 0.789
+		time passed: 8 seconds
+	Lambda iteration  9
+		Train and validation Linear LR with prior weight specific training (π=0.5) (λ=1000.00000) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.325
+		min DCF (π=0.1) : 0.666
+		min DCF (π=0.9) : 0.789
+		time passed: 9 seconds
+Plot saved in C:\Users\rugge\Documents\development\university\machine_learning\ml_repo\wine_project\scripts\..\graphs\lr\eval\eval_partial_linear_lr_graph_center_whitec_l2norm_train-pi1-05.
+Grid search iteration  7
+	Lambda iteration  1
+		Train and validation Linear LR with prior weight specific training (π=0.5) (λ=0.00001) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.332
+		min DCF (π=0.1) : 0.734
+		min DCF (π=0.9) : 0.642
+		time passed: 8 seconds
+	Lambda iteration  2
+		Train and validation Linear LR with prior weight specific training (π=0.5) (λ=0.00010) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.333
+		min DCF (π=0.1) : 0.734
+		min DCF (π=0.9) : 0.640
+		time passed: 8 seconds
+	Lambda iteration  3
+		Train and validation Linear LR with prior weight specific training (π=0.5) (λ=0.00100) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.331
+		min DCF (π=0.1) : 0.735
+		min DCF (π=0.9) : 0.660
+		time passed: 8 seconds
+	Lambda iteration  4
+		Train and validation Linear LR with prior weight specific training (π=0.5) (λ=0.01000) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.318
+		min DCF (π=0.1) : 0.708
+		min DCF (π=0.9) : 0.673
+		time passed: 8 seconds
+	Lambda iteration  5
+		Train and validation Linear LR with prior weight specific training (π=0.5) (λ=0.10000) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.317
+		min DCF (π=0.1) : 0.682
+		min DCF (π=0.9) : 0.728
+		time passed: 8 seconds
+	Lambda iteration  6
+		Train and validation Linear LR with prior weight specific training (π=0.5) (λ=1.00000) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.321
+		min DCF (π=0.1) : 0.677
+		min DCF (π=0.9) : 0.761
+		time passed: 8 seconds
+	Lambda iteration  7
+		Train and validation Linear LR with prior weight specific training (π=0.5) (λ=10.00000) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.322
+		min DCF (π=0.1) : 0.677
+		min DCF (π=0.9) : 0.766
+		time passed: 9 seconds
+	Lambda iteration  8
+		Train and validation Linear LR with prior weight specific training (π=0.5) (λ=100.00000) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.322
+		min DCF (π=0.1) : 0.677
+		min DCF (π=0.9) : 0.768
+		time passed: 8 seconds
+	Lambda iteration  9
+		Train and validation Linear LR with prior weight specific training (π=0.5) (λ=1000.00000) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.322
+		min DCF (π=0.1) : 0.677
+		min DCF (π=0.9) : 0.768
+		time passed: 8 seconds
+Plot saved in C:\Users\rugge\Documents\development\university\machine_learning\ml_repo\wine_project\scripts\..\graphs\lr\eval\eval_partial_linear_lr_graph_center_whitewc_l2norm_train-pi1-05.
+LR gridsearch finished. Total time: 617.5866413 seconds.
+
+
