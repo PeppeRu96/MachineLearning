@@ -8,16 +8,33 @@ from classifiers.svm import cross_validate_svm
 
 import argparse
 
+# TRAIN OUTPUT PATHS
 TRAINLOGS_BASEPATH = os.path.join(SCRIPT_PATH, "..", "train_logs", "svm", "linear")
 LINEAR_SVM_TRAINLOG_FNAME = "linear_svm_trainlog_1.txt"
 LINEAR_SVM_CLASS_BALANCING_TRAINLOG_FNAME = "linear_svm_class_balancing_trainlog_1.txt"
 
 LINEAR_SVM_GRAPH_PATH = os.path.join(SCRIPT_PATH, "..", "graphs", "svm", "linear", "linear_svm_graph_")
 
+# EVAL OUTPUT PATHS
+EVAL_TRAINLOGS_BASEPATH = os.path.join(SCRIPT_PATH, "..", "train_logs", "svm", "linear", "eval")
+
+EVAL_PARTIAL_LINEAR_SVM_TRAINLOG_FNAME = "eval_partial_linear_svm_trainlog_1.txt"
+EVAL_PARTIAL_LINEAR_SVM_CLASS_BALANCING_TRAINLOG_FNAME = "eval_partial_linear_svm_class_balancing_trainlog_1.txt"
+
+EVAL_PARTIAL_LINEAR_SVM_GRAPH_PATH = os.path.join(SCRIPT_PATH, "..", "graphs", "svm", "linear", "eval", "eval_partial_linear_svm_graph_")
+
+EVAL_FULL_LINEAR_SVM_TRAINLOG_FNAME = "eval_full_linear_svm_trainlog_1.txt"
+EVAL_FULL_LINEAR_SVM_CLASS_BALANCING_TRAINLOG_FNAME = "eval_full_linear_svm_class_balancing_trainlog_1.txt"
+
+EVAL_FULL_LINEAR_SVM_GRAPH_PATH = os.path.join(SCRIPT_PATH, "..", "graphs", "svm", "linear", "eval", "eval_full_linear_svm_graph_")
+
 create_folder_if_not_exist(TRAINLOGS_BASEPATH)
 create_folder_if_not_exist(os.path.join(TRAINLOGS_BASEPATH, "dummy.txt"))
 create_folder_if_not_exist(os.path.join(SCRIPT_PATH, "..", "graphs", "svm", "linear"))
 create_folder_if_not_exist(LINEAR_SVM_GRAPH_PATH)
+
+create_folder_if_not_exist(os.path.join(EVAL_TRAINLOGS_BASEPATH, "dummy.txt"))
+create_folder_if_not_exist(EVAL_FULL_LINEAR_SVM_GRAPH_PATH)
 
 def get_args():
     parser = argparse.ArgumentParser(description="Script to launch Logistic Regression classificator building",
@@ -28,6 +45,16 @@ def get_args():
     parser.add_argument("--class_balancing", type=bool, default=False,
                         help="Start a cross-validation for a linear svm model rebalancing the classes to embed a specific prior")
 
+    parser.add_argument("--eval_partial_gridsearch", type=bool, default=False,
+                        help="Start a gridsearch, training on partial training dataset and validating on the evaluation dataset to select the best preprocess configuration and the best C")
+    parser.add_argument("--eval_partial_class_balancing", type=bool, default=False,
+                        help="Start a training on partial training dataset and validating on the evaluation dataset for a linear svm model rebalancing the classes to embed a specific prior")
+
+    parser.add_argument("--eval_full_gridsearch", type=bool, default=False,
+                        help="Start a gridsearch, training on the full training dataset and validating on the evaluation dataset to select the best preprocess configuration and the best C")
+    parser.add_argument("--eval_full_class_balancing", type=bool, default=False,
+                        help="Start a training on the full training dataset and validating on the evaluation dataset for a linear svm model rebalancing the classes to embed a specific prior")
+
     return parser.parse_args()
 
 if __name__ == "__main__":
@@ -36,14 +63,18 @@ if __name__ == "__main__":
     # Load 5-Folds already splitted dataset
     folds_data, folds_labels = load_train_dataset_5_folds()
 
-    def plot_against_C(conf, K, Cs, specific_pi1=None):
+    # Load the test dataset
+    X_test, y_test = load_dataset(train=False, only_data=True)
+
+    def plot_against_C(conf, K, Cs, X_train, y_train, X_test=None, y_test=None, partial=False, specific_pi1=None):
         pi1_str = "with prior weight specific training (π=%.1f)" % (specific_pi1) if specific_pi1 is not None else ""
         minDCFs = np.zeros((len(Cs), len(applications)))
         for Ci, C in enumerate(Cs):
             print("\t(Ci: {}) - 5-Fold Cross-Validation Linear SVM {} (C={:.0e} - K={:.1f}) - Preprocessing: {}".format(
                 Ci, pi1_str, C, K, conf))
             time_start = time.perf_counter()
-            scores, labels = cross_validate_svm(folds_data, folds_labels, conf, C, K, specific_pi1=specific_pi1)
+            scores, labels = cross_validate_svm(conf, C, K, X_train=X_train, y_train=y_train, X_test=X_test, y_test=y_test,
+                                                specific_pi1=specific_pi1)
             for app_i, (pi1, Cfn, Cfp) in enumerate(applications):
                 minDCF, _ = eval.bayes_min_dcf(scores, labels, pi1, Cfn, Cfp)
                 print("\t\tmin DCF (π=%.1f) : %.3f" % (pi1, minDCF))
@@ -71,9 +102,21 @@ if __name__ == "__main__":
         Kstr = "%.1f" % K
         Kstr = Kstr.replace(".", "-")
         Kstr = "K-" + Kstr
-        plt.savefig("%s%s_%s%s" % (LINEAR_SVM_GRAPH_PATH, Kstr, conf.to_compact_string(), pi1_str))
 
-    def linear_svm_gridsearch():
+        if X_test is not None:
+            if partial:
+                base_path = EVAL_PARTIAL_LINEAR_SVM_GRAPH_PATH
+            else:
+                base_path = EVAL_FULL_LINEAR_SVM_GRAPH_PATH
+        else:
+            base_path = LINEAR_SVM_GRAPH_PATH
+
+        full_path = "%s%s_%s%s" % (base_path, Kstr, conf.to_compact_string(), pi1_str)
+        plt.savefig(full_path)
+        print(f"Plot saved in {full_path}.")
+
+
+    def linear_svm_gridsearch(X_train, y_train, X_test=None, y_test=None, partial=False):
         # Preprocessing configurations to try
         preproc_configurations = [
             PreprocessConf([]),
@@ -106,14 +149,15 @@ if __name__ == "__main__":
             for Ki, K in enumerate(Ks):
                 print("Grid search iteration %d / %d" % (grid_search_iterations, tot_gs_iterations_required))
                 time_start = time.perf_counter()
-                plot_against_C(conf, K, Cs)
+                plot_against_C(conf, K, Cs, X_train=X_train, y_train=y_train, X_test=X_test, y_test=y_test, partial=partial,
+                               specific_pi1=None)
                 time_end = time.perf_counter()
                 grid_search_iterations += 1
                 print("Grid search iteration ended in %d seconds" % (time_end - time_start))
         tot_time_end = time.perf_counter()
         print("Grid search on Linear SVM without class balancing ended in %d seconds" % (tot_time_end - tot_time_start))
 
-    def linear_svm_class_balancing():
+    def linear_svm_class_balancing(X_train, y_train, X_test=None, y_test=None, partial=False):
         # We select the best preproc configuration and the best K
         preproc_conf = PreprocessConf([PreprocStage(Preproc.Gaussianization)])
         K = 10
@@ -125,19 +169,52 @@ if __name__ == "__main__":
             print("Target application %d (π=%.1f) specific training (class-balancing) through cross-validation against different values of C"
                   % (app_i, pi1))
             time_start = time.perf_counter()
-            plot_against_C(preproc_conf, K, Cs, pi1)
+            plot_against_C(preproc_conf, K, Cs, X_train=X_train, y_train=y_train, X_test=X_test, y_test=y_test, partial=partial,
+                           specific_pi1=pi1)
             time_end = time.perf_counter()
             print("Target application %d (π=%.1f) cross-validation ended in %d seconds" % (app_i, pi1, (time_end - time_start)))
         print("Operation finished")
 
+    # TRAIN
     # Grid search to select the best hyperparameters
     if args.gridsearch:
         with LoggingPrinter(incremental_path(TRAINLOGS_BASEPATH, LINEAR_SVM_TRAINLOG_FNAME)):
-            linear_svm_gridsearch()
+            print("Grid search Cross-Validation on the training dataset for Linear SVM")
+            linear_svm_gridsearch(X_train=folds_data, y_train=folds_labels, X_test=None, y_test=None, partial=False)
 
     # Using the best hyperparameters, try class-balancing w.r.t target applications
     if args.class_balancing:
         with LoggingPrinter(incremental_path(TRAINLOGS_BASEPATH, LINEAR_SVM_CLASS_BALANCING_TRAINLOG_FNAME)):
-            linear_svm_class_balancing()
+            print("Cross-Validation on the training dataset for Linear SVM class-balancing with a prior")
+            linear_svm_class_balancing(X_train=folds_data, y_train=folds_labels, X_test=None, y_test=None, partial=False)
+
+    # EVALUATION
+    # PARTIAL TRAINING DATASET
+    if args.eval_partial_gridsearch:
+        with LoggingPrinter(incremental_path(EVAL_TRAINLOGS_BASEPATH, EVAL_PARTIAL_LINEAR_SVM_TRAINLOG_FNAME)):
+            print("Grid search training on partial training dataset and evaluating on the evaluation dataset for Linear SVM")
+            X_train, y_train = concat_kfolds(folds_data[:-1], folds_labels[:-1])
+            linear_svm_gridsearch(X_train=X_train, y_train=y_train, X_test=X_test, y_test=y_test, partial=True)
+
+    # Using the best hyperparameters, try class-balancing w.r.t target applications
+    if args.eval_partial_class_balancing:
+        with LoggingPrinter(incremental_path(EVAL_TRAINLOGS_BASEPATH, EVAL_PARTIAL_LINEAR_SVM_CLASS_BALANCING_TRAINLOG_FNAME)):
+            print("Cross-Validation training on partial training dataset and evaluating on the evaluation dataset for Linear SVM class-balancing with a prior")
+            X_train, y_train = concat_kfolds(folds_data[:-1], folds_labels[:-1])
+            linear_svm_class_balancing(X_train=X_train, y_train=y_train, X_test=X_test, y_test=y_test, partial=True)
+
+    # FULL TRAINING DATASET
+    if args.eval_full_gridsearch:
+        with LoggingPrinter(incremental_path(EVAL_TRAINLOGS_BASEPATH, EVAL_FULL_LINEAR_SVM_TRAINLOG_FNAME)):
+            print("Grid search training on the full training dataset and evaluating on the evaluation dataset for Linear SVM")
+            X_train, y_train = concat_kfolds(folds_data, folds_labels)
+            linear_svm_gridsearch(X_train=X_train, y_train=y_train, X_test=X_test, y_test=y_test, partial=False)
+
+    # Using the best hyperparameters, try class-balancing w.r.t target applications
+    if args.eval_full_class_balancing:
+        with LoggingPrinter(incremental_path(EVAL_TRAINLOGS_BASEPATH, EVAL_FULL_LINEAR_SVM_CLASS_BALANCING_TRAINLOG_FNAME)):
+            print("Cross-Validation training on the full training dataset and evaluating on the evaluation dataset for Linear SVM class-balancing with a prior")
+            X_train, y_train = concat_kfolds(folds_data, folds_labels)
+            linear_svm_class_balancing(X_train=X_train, y_train=y_train, X_test=X_test, y_test=y_test, partial=False)
 
     plt.show()
