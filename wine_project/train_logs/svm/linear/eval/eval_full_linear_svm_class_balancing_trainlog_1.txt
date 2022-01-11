@@ -1,0 +1,87 @@
+Training on the full training dataset and evaluating on the evaluation dataset for Linear SVM class-balancing with a prior
+Trying the best hyperparameters but class-balancing w.r.t target applications..
+Target application 0 (π=0.5) specific training (class-balancing) through cross-validation against different values of C
+	(Ci: 0) - Train and validation (eval) Linear SVM with prior weight specific training (π=0.5) (C=1e-02 - K=10.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.327
+		min DCF (π=0.1) : 0.744
+		min DCF (π=0.9) : 0.797
+		time passed: 14 seconds
+	(Ci: 1) - Train and validation (eval) Linear SVM with prior weight specific training (π=0.5) (C=1e-01 - K=10.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.321
+		min DCF (π=0.1) : 0.694
+		min DCF (π=0.9) : 0.790
+		time passed: 19 seconds
+	(Ci: 2) - Train and validation (eval) Linear SVM with prior weight specific training (π=0.5) (C=1e+00 - K=10.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.328
+		min DCF (π=0.1) : 0.702
+		min DCF (π=0.9) : 0.784
+		time passed: 24 seconds
+	(Ci: 3) - Train and validation (eval) Linear SVM with prior weight specific training (π=0.5) (C=1e+01 - K=10.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.328
+		min DCF (π=0.1) : 0.693
+		min DCF (π=0.9) : 0.785
+		time passed: 34 seconds
+	(Ci: 4) - Train and validation (eval) Linear SVM with prior weight specific training (π=0.5) (C=1e+02 - K=10.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.344
+		min DCF (π=0.1) : 0.724
+		min DCF (π=0.9) : 0.926
+		time passed: 49 seconds
+Plot saved in C:\Users\rugge\Documents\development\university\machine_learning\ml_repo\wine_project\utility\..\graphs\svm\linear\eval\eval_full_linear_svm_graph_K-10-0_gau_train-pi1-05.
+Target application 0 (π=0.5) cross-validation ended in 142 seconds
+Target application 1 (π=0.1) specific training (class-balancing) through cross-validation against different values of C
+	(Ci: 0) - Train and validation (eval) Linear SVM with prior weight specific training (π=0.1) (C=1e-02 - K=10.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.319
+		min DCF (π=0.1) : 0.683
+		min DCF (π=0.9) : 0.991
+		time passed: 21 seconds
+	(Ci: 1) - Train and validation (eval) Linear SVM with prior weight specific training (π=0.1) (C=1e-01 - K=10.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.318
+		min DCF (π=0.1) : 0.680
+		min DCF (π=0.9) : 0.990
+		time passed: 23 seconds
+	(Ci: 2) - Train and validation (eval) Linear SVM with prior weight specific training (π=0.1) (C=1e+00 - K=10.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.318
+		min DCF (π=0.1) : 0.682
+		min DCF (π=0.9) : 0.990
+		time passed: 27 seconds
+	(Ci: 3) - Train and validation (eval) Linear SVM with prior weight specific training (π=0.1) (C=1e+01 - K=10.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.314
+		min DCF (π=0.1) : 0.687
+		min DCF (π=0.9) : 0.997
+		time passed: 30 seconds
+	(Ci: 4) - Train and validation (eval) Linear SVM with prior weight specific training (π=0.1) (C=1e+02 - K=10.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.349
+		min DCF (π=0.1) : 0.758
+		min DCF (π=0.9) : 0.963
+		time passed: 47 seconds
+Plot saved in C:\Users\rugge\Documents\development\university\machine_learning\ml_repo\wine_project\utility\..\graphs\svm\linear\eval\eval_full_linear_svm_graph_K-10-0_gau_train-pi1-01.
+Target application 1 (π=0.1) cross-validation ended in 151 seconds
+Target application 2 (π=0.9) specific training (class-balancing) through cross-validation against different values of C
+	(Ci: 0) - Train and validation (eval) Linear SVM with prior weight specific training (π=0.9) (C=1e-02 - K=10.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.372
+		min DCF (π=0.1) : 0.876
+		min DCF (π=0.9) : 0.636
+		time passed: 14 seconds
+	(Ci: 1) - Train and validation (eval) Linear SVM with prior weight specific training (π=0.9) (C=1e-01 - K=10.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.391
+		min DCF (π=0.1) : 0.902
+		min DCF (π=0.9) : 0.646
+		time passed: 18 seconds
+	(Ci: 2) - Train and validation (eval) Linear SVM with prior weight specific training (π=0.9) (C=1e+00 - K=10.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.399
+		min DCF (π=0.1) : 0.936
+		min DCF (π=0.9) : 0.648
+		time passed: 23 seconds
+	(Ci: 3) - Train and validation (eval) Linear SVM with prior weight specific training (π=0.9) (C=1e+01 - K=10.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.400
+		min DCF (π=0.1) : 0.938
+		min DCF (π=0.9) : 0.648
+		time passed: 34 seconds
+	(Ci: 4) - Train and validation (eval) Linear SVM with prior weight specific training (π=0.9) (C=1e+02 - K=10.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.411
+		min DCF (π=0.1) : 0.951
+		min DCF (π=0.9) : 0.690
+		time passed: 47 seconds
+Plot saved in C:\Users\rugge\Documents\development\university\machine_learning\ml_repo\wine_project\utility\..\graphs\svm\linear\eval\eval_full_linear_svm_graph_K-10-0_gau_train-pi1-09.
+Target application 2 (π=0.9) cross-validation ended in 138 seconds
+Operation finished

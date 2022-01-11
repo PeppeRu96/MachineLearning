@@ -1,0 +1,189 @@
+Grid search training on partial training dataset and evaluating on the evaluation dataset for Linear SVM
+Grid search on Linear SVM without class balancing started.
+Total Linear SVM cross-validation required  32
+Total grid search iterations required  8
+Grid search iteration 1 / 8
+	(Ci: 0) - Train and validation (eval) Linear SVM  (C=1e-02 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.407
+		min DCF (π=0.1) : 0.779
+		min DCF (π=0.9) : 0.965
+		time passed: 20 seconds
+	(Ci: 1) - Train and validation (eval) Linear SVM  (C=1e-01 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.618
+		min DCF (π=0.1) : 0.978
+		min DCF (π=0.9) : 0.991
+		time passed: 11 seconds
+	(Ci: 2) - Train and validation (eval) Linear SVM  (C=1e+00 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.419
+		min DCF (π=0.1) : 0.805
+		min DCF (π=0.9) : 0.816
+		time passed: 26 seconds
+	(Ci: 3) - Train and validation (eval) Linear SVM  (C=1e+01 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.565
+		min DCF (π=0.1) : 0.961
+		min DCF (π=0.9) : 0.907
+		time passed: 34 seconds
+Plot saved in C:\Users\rugge\Documents\development\university\machine_learning\ml_repo\wine_project\utility\..\graphs\svm\linear\eval\eval_partial_linear_svm_graph_K-1-0_.
+Grid search iteration ended in 92 seconds
+Grid search iteration 2 / 8
+	(Ci: 0) - Train and validation (eval) Linear SVM  (C=1e-02 - K=10.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.355
+		min DCF (π=0.1) : 0.731
+		min DCF (π=0.9) : 0.982
+		time passed: 16 seconds
+	(Ci: 1) - Train and validation (eval) Linear SVM  (C=1e-01 - K=10.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.335
+		min DCF (π=0.1) : 0.701
+		min DCF (π=0.9) : 0.809
+		time passed: 29 seconds
+	(Ci: 2) - Train and validation (eval) Linear SVM  (C=1e+00 - K=10.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.423
+		min DCF (π=0.1) : 0.802
+		min DCF (π=0.9) : 0.795
+		time passed: 33 seconds
+	(Ci: 3) - Train and validation (eval) Linear SVM  (C=1e+01 - K=10.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.801
+		min DCF (π=0.1) : 0.998
+		min DCF (π=0.9) : 0.965
+		time passed: 15 seconds
+Plot saved in C:\Users\rugge\Documents\development\university\machine_learning\ml_repo\wine_project\utility\..\graphs\svm\linear\eval\eval_partial_linear_svm_graph_K-10-0_.
+Grid search iteration ended in 95 seconds
+Grid search iteration 3 / 8
+	(Ci: 0) - Train and validation (eval) Linear SVM  (C=1e-02 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.317
+		min DCF (π=0.1) : 0.737
+		min DCF (π=0.9) : 0.893
+		time passed: 12 seconds
+	(Ci: 1) - Train and validation (eval) Linear SVM  (C=1e-01 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.315
+		min DCF (π=0.1) : 0.687
+		min DCF (π=0.9) : 0.841
+		time passed: 13 seconds
+	(Ci: 2) - Train and validation (eval) Linear SVM  (C=1e+00 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.311
+		min DCF (π=0.1) : 0.685
+		min DCF (π=0.9) : 0.859
+		time passed: 14 seconds
+	(Ci: 3) - Train and validation (eval) Linear SVM  (C=1e+01 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.317
+		min DCF (π=0.1) : 0.678
+		min DCF (π=0.9) : 0.859
+		time passed: 23 seconds
+Plot saved in C:\Users\rugge\Documents\development\university\machine_learning\ml_repo\wine_project\utility\..\graphs\svm\linear\eval\eval_partial_linear_svm_graph_K-1-0_gau.
+Grid search iteration ended in 65 seconds
+Grid search iteration 4 / 8
+	(Ci: 0) - Train and validation (eval) Linear SVM  (C=1e-02 - K=10.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.311
+		min DCF (π=0.1) : 0.715
+		min DCF (π=0.9) : 0.898
+		time passed: 13 seconds
+	(Ci: 1) - Train and validation (eval) Linear SVM  (C=1e-01 - K=10.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.317
+		min DCF (π=0.1) : 0.687
+		min DCF (π=0.9) : 0.838
+		time passed: 15 seconds
+	(Ci: 2) - Train and validation (eval) Linear SVM  (C=1e+00 - K=10.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.311
+		min DCF (π=0.1) : 0.686
+		min DCF (π=0.9) : 0.855
+		time passed: 17 seconds
+	(Ci: 3) - Train and validation (eval) Linear SVM  (C=1e+01 - K=10.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.311
+		min DCF (π=0.1) : 0.684
+		min DCF (π=0.9) : 0.836
+		time passed: 22 seconds
+Plot saved in C:\Users\rugge\Documents\development\university\machine_learning\ml_repo\wine_project\utility\..\graphs\svm\linear\eval\eval_partial_linear_svm_graph_K-10-0_gau.
+Grid search iteration ended in 68 seconds
+Grid search iteration 5 / 8
+	(Ci: 0) - Train and validation (eval) Linear SVM  (C=1e-02 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.330
+		min DCF (π=0.1) : 0.719
+		min DCF (π=0.9) : 0.943
+		time passed: 8 seconds
+	(Ci: 1) - Train and validation (eval) Linear SVM  (C=1e-01 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.315
+		min DCF (π=0.1) : 0.650
+		min DCF (π=0.9) : 0.807
+		time passed: 9 seconds
+	(Ci: 2) - Train and validation (eval) Linear SVM  (C=1e+00 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.313
+		min DCF (π=0.1) : 0.665
+		min DCF (π=0.9) : 0.780
+		time passed: 10 seconds
+	(Ci: 3) - Train and validation (eval) Linear SVM  (C=1e+01 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.315
+		min DCF (π=0.1) : 0.674
+		min DCF (π=0.9) : 0.767
+		time passed: 13 seconds
+Plot saved in C:\Users\rugge\Documents\development\university\machine_learning\ml_repo\wine_project\utility\..\graphs\svm\linear\eval\eval_partial_linear_svm_graph_K-1-0_center_whitec_l2norm.
+Grid search iteration ended in 42 seconds
+Grid search iteration 6 / 8
+	(Ci: 0) - Train and validation (eval) Linear SVM  (C=1e-02 - K=10.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.326
+		min DCF (π=0.1) : 0.702
+		min DCF (π=0.9) : 0.934
+		time passed: 9 seconds
+	(Ci: 1) - Train and validation (eval) Linear SVM  (C=1e-01 - K=10.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.318
+		min DCF (π=0.1) : 0.652
+		min DCF (π=0.9) : 0.811
+		time passed: 10 seconds
+	(Ci: 2) - Train and validation (eval) Linear SVM  (C=1e+00 - K=10.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.315
+		min DCF (π=0.1) : 0.666
+		min DCF (π=0.9) : 0.777
+		time passed: 14 seconds
+	(Ci: 3) - Train and validation (eval) Linear SVM  (C=1e+01 - K=10.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.315
+		min DCF (π=0.1) : 0.674
+		min DCF (π=0.9) : 0.767
+		time passed: 26 seconds
+Plot saved in C:\Users\rugge\Documents\development\university\machine_learning\ml_repo\wine_project\utility\..\graphs\svm\linear\eval\eval_partial_linear_svm_graph_K-10-0_center_whitec_l2norm.
+Grid search iteration ended in 61 seconds
+Grid search iteration 7 / 8
+	(Ci: 0) - Train and validation (eval) Linear SVM  (C=1e-02 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.325
+		min DCF (π=0.1) : 0.703
+		min DCF (π=0.9) : 0.892
+		time passed: 9 seconds
+	(Ci: 1) - Train and validation (eval) Linear SVM  (C=1e-01 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.318
+		min DCF (π=0.1) : 0.652
+		min DCF (π=0.9) : 0.805
+		time passed: 9 seconds
+	(Ci: 2) - Train and validation (eval) Linear SVM  (C=1e+00 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.316
+		min DCF (π=0.1) : 0.659
+		min DCF (π=0.9) : 0.779
+		time passed: 10 seconds
+	(Ci: 3) - Train and validation (eval) Linear SVM  (C=1e+01 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.318
+		min DCF (π=0.1) : 0.675
+		min DCF (π=0.9) : 0.760
+		time passed: 12 seconds
+Plot saved in C:\Users\rugge\Documents\development\university\machine_learning\ml_repo\wine_project\utility\..\graphs\svm\linear\eval\eval_partial_linear_svm_graph_K-1-0_center_whitewc_l2norm.
+Grid search iteration ended in 41 seconds
+Grid search iteration 8 / 8
+	(Ci: 0) - Train and validation (eval) Linear SVM  (C=1e-02 - K=10.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.326
+		min DCF (π=0.1) : 0.695
+		min DCF (π=0.9) : 0.906
+		time passed: 9 seconds
+	(Ci: 1) - Train and validation (eval) Linear SVM  (C=1e-01 - K=10.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.319
+		min DCF (π=0.1) : 0.646
+		min DCF (π=0.9) : 0.809
+		time passed: 11 seconds
+	(Ci: 2) - Train and validation (eval) Linear SVM  (C=1e+00 - K=10.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.315
+		min DCF (π=0.1) : 0.673
+		min DCF (π=0.9) : 0.743
+		time passed: 10 seconds
+	(Ci: 3) - Train and validation (eval) Linear SVM  (C=1e+01 - K=10.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.317
+		min DCF (π=0.1) : 0.668
+		min DCF (π=0.9) : 0.762
+		time passed: 17 seconds
+Plot saved in C:\Users\rugge\Documents\development\university\machine_learning\ml_repo\wine_project\utility\..\graphs\svm\linear\eval\eval_partial_linear_svm_graph_K-10-0_center_whitewc_l2norm.
+Grid search iteration ended in 49 seconds
+Grid search on Linear SVM without class balancing ended in 516 seconds
