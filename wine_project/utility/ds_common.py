@@ -22,7 +22,7 @@ applications = [
     (0.9, 1, 1)
 ]
 
-def load_dataset(train):
+def load_dataset(train, only_data=False):
     label_names = ["Low-quality (Hf)", "High-quality (Ht)"]
     feature_names = ["fixed acidity",
                      "volatile acidity",
@@ -54,8 +54,16 @@ def load_dataset(train):
     labels = np.array(labels)
     train_str = "Train" if train else "Test"
     dataset = dst.Dataset(f"{train_str} Wine Dataset", label_names, feature_names, samples, labels)
+    if only_data:
+        return dataset.samples, dataset.labels
+    else:
+        return dataset
 
-    return dataset
+def concat_kfolds(folds_data, folds_labels):
+    folds_data_stack = np.hstack(folds_data)
+    folds_labels_stack = np.hstack(folds_labels)
+
+    return folds_data_stack, folds_labels_stack
 
 def split_and_save_train_dataset_5_folds():
     # Load the train dataset in a wrapper of type Dataset to reuse useful utilities

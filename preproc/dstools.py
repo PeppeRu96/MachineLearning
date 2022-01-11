@@ -290,7 +290,7 @@ def kfold_split(D, L, K):
 
     return folds_data, folds_labels
 
-# Requires folds (K, #dimensions, #samples), folds_labels (#folds, #samples)
+# Requires folds (K, #dimensions, #samples), folds_labels (K, #samples)
 # Returns a generator that can be looped with DTR, LTR, DTE, LTE up to K times
 def kfold_generate(folds, folds_labels):
     for i in range(folds.shape[0]):

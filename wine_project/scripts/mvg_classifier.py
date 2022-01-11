@@ -7,15 +7,40 @@ import evaluation.common as eval
 
 from classifiers.gaussian_classifier import MVG_Classifier
 
+import argparse
+
 TRAINLOGS_BASEPATH = os.path.join(SCRIPT_PATH, "..", "train_logs", "mvg")
+EVAL_TRAINLOGS_BASEPATH = os.path.join(SCRIPT_PATH, "..", "train_logs", "mvg", "eval")
 MVG_TRAINLOG_FNAME = "mvg_trainlog_1.txt"
+EVAL_MVG_TRAIN_PARTIAL_TRAINLOG_FNAME = "eval_mvg_partial_trainlog_1.txt"
+EVAL_MVG_TRAIN_FULL_TRAINLOG_FNAME = "eval_mvg_full_trainlog_1.txt"
 
 create_folder_if_not_exist(os.path.join(TRAINLOGS_BASEPATH, "dummy.txt"))
+create_folder_if_not_exist(os.path.join(EVAL_TRAINLOGS_BASEPATH, "dummy.txt"))
+
+def get_args():
+    parser = argparse.ArgumentParser(description="Script to launch Logistic Regression classificator building",
+                                     formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+
+    parser.add_argument("--gridsearch", type=bool, default=False,
+                        help="Start gridsearch cross-validation on the training dataset for the mvg models")
+    parser.add_argument("--eval_partial_gridsearch", type=bool, default=False,
+                        help="Start gridsearch on the evaluation dataset for the mvg models using 4/5 of the training dataset")
+    parser.add_argument("--eval_full_gridsearch", type=bool, default=False,
+                        help="Start gridsearch on the evaluation dataset for the mvg models using the full training dataset")
+
+    return parser.parse_args()
 
 if __name__ == "__main__":
+    args = get_args()
+
+    # Load 5-folds already split training dataset
     folds_data, folds_labels = load_train_dataset_5_folds()
 
-    def cross_validate_MVG(gaussianize_features, PCA, naive, tied):
+    # Load the test dataset
+    X_test, y_test = load_dataset(train=False, only_data=True)
+
+    def cross_validate_MVG(gaussianize_features, PCA, naive, tied, X_train, y_train, X_test=None, y_test=None):
         gauss_str = ""
         PCA_str = ""
         naive_str = ""
@@ -29,11 +54,7 @@ if __name__ == "__main__":
         if tied:
             tied_str = "Tied"
 
-        print("5-Fold Cross-Validation %s %s MVG training on %s features %s started" % (naive_str, tied_str, gauss_str, PCA_str))
-        iterations = 1
-        scores = []
-        labels = []
-        for DTR, LTR, DTE, LTE in dst.kfold_generate(folds_data, folds_labels):
+        def train_and_validate(DTR, LTR, DTE, LTE):
             # Preprocess data
             if gaussianize_features:
                 DTRoriginal = np.array(DTR)
@@ -47,7 +68,6 @@ if __name__ == "__main__":
                 DTE = DTE - mu
                 DTE = P.T @ DTE
 
-
             # Train
             mvg = MVG_Classifier(K=2)
             mvg.train(DTR, LTR, naive, tied)
@@ -55,20 +75,37 @@ if __name__ == "__main__":
             # Validate
             s = mvg.compute_binary_classifier_llr(DTE)
 
-            # Collect scores and associated labels
-            scores.append(s)
-            labels.append(LTE)
+            return s
 
-            iterations += 1
+        if X_test is None:
+            # Cross-validation
+            print("5-Fold Cross-Validation %s %s MVG training on %s features %s started" % (naive_str, tied_str, gauss_str, PCA_str))
+            iterations = 1
+            scores = []
+            labels = []
+            for DTR, LTR, DTE, LTE in dst.kfold_generate(X_train, y_train):
+                s = train_and_validate(DTR, LTR, DTE, LTE)
 
-        scores = np.array(scores)
-        scores = scores.flatten()
-        labels = np.array(labels)
-        labels = labels.flatten()
+                # Collect scores and associated labels
+                scores.append(s)
+                labels.append(LTE)
+
+                iterations += 1
+
+            scores = np.array(scores)
+            scores = scores.flatten()
+            labels = np.array(labels)
+            labels = labels.flatten()
+        else:
+            # Standard train-validation on fixed split
+            print("Train and validation %s %s MVG training on %s features %s started" % (naive_str, tied_str, gauss_str, PCA_str))
+            scores = train_and_validate(X_train, y_train, X_test, y_test)
+            scores = scores.flatten()
+            labels = y_test
 
         return scores, labels
 
-    def mvg_gridsearch():
+    def mvg_gridsearch(X_train, y_train, X_test=None, y_test=None):
         gauss_grid = [False, True]
         PCA_grid = [None, 10, 9]
         naive_grid = [False, True]
@@ -86,7 +123,7 @@ if __name__ == "__main__":
                 for ni, n in enumerate(naive_grid):
                     for ti, t in enumerate(tied_grid):
                         print("Grid search iteration ", iterations)
-                        scores, labels = cross_validate_MVG(g, p, n, t)
+                        scores, labels = cross_validate_MVG(g, p, n, t, X_train, y_train, X_test, y_test)
                         iterations += 1
                         for app_i, (pi1, Cfn, Cfp) in enumerate(applications):
                             minDCF, _ = eval.bayes_min_dcf(scores, labels, pi1, Cfn, Cfp)
@@ -125,5 +162,22 @@ if __name__ == "__main__":
                         print("")
         print("---------------------------------------------------------------------------------")
 
-    with LoggingPrinter(incremental_path(TRAINLOGS_BASEPATH, MVG_TRAINLOG_FNAME)):
-        mvg_gridsearch()
+    # Grid search cross-validation on the training dataset
+    if args.gridsearch:
+        with LoggingPrinter(incremental_path(TRAINLOGS_BASEPATH, MVG_TRAINLOG_FNAME)):
+            print("Grid search Cross-Validation on the training dataset")
+            mvg_gridsearch(folds_data, folds_labels)
+
+    # Grid search on the evaluation dataset using 4/5 of the training dataset
+    if args.eval_partial_gridsearch:
+        with LoggingPrinter(incremental_path(EVAL_TRAINLOGS_BASEPATH, EVAL_MVG_TRAIN_PARTIAL_TRAINLOG_FNAME)):
+            print("Grid search on the evaluation dataset using 4/5 of the training dataset")
+            X_train, y_train = concat_kfolds(folds_data[:-1], folds_labels[:-1])
+            mvg_gridsearch(X_train, y_train, X_test, y_test)
+
+    # Grid search on the evaluation dataset using 4/5 of the training dataset
+    if args.eval_full_gridsearch:
+        with LoggingPrinter(incremental_path(EVAL_TRAINLOGS_BASEPATH, EVAL_MVG_TRAIN_FULL_TRAINLOG_FNAME)):
+            print("Grid search on the evaluation dataset using the full training dataset")
+            X_train, y_train = concat_kfolds(folds_data, folds_labels)
+            mvg_gridsearch(X_train, y_train, X_test, y_test)
