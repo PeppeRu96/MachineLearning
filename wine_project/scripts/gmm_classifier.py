@@ -11,15 +11,31 @@ from classifiers.gmm_classifier import cross_validate_gmm
 
 import argparse
 
+# TRAIN OUTPUT PATHS
 TRAINLOGS_BASEPATH = os.path.join(SCRIPT_PATH, "..", "train_logs", "gmm")
 GMM_TRAINLOG_FNAME = "gmm_trainlog_1.txt"
 GMM_ACTUAL_DCF_TRAINLOG_FNAME = "gmm_actual_dcf_trainlog_1.txt"
 
-create_folder_if_not_exist(os.path.join(TRAINLOGS_BASEPATH, "dummy.txt"))
-
 GMM_GRAPH_PATH = os.path.join(SCRIPT_PATH, "..", "graphs", "gmm", "gmm_graph_")
 
+# EVALUATION OUTPUT PATHS
+EVAL_TRAINLOGS_BASEPATH = os.path.join(SCRIPT_PATH, "..", "train_logs", "gmm", "eval")
+# PARTIAL TRAINING DATASET
+EVAL_PARTIAL_GMM_TRAINLOG_FNAME = "eval_partial_gmm_trainlog_1.txt"
+EVAL_PARTIAL_GMM_ACTUAL_DCF_TRAINLOG_FNAME = "eval_partial_gmm_actual_dcf_trainlog_1.txt"
+
+EVAL_PARTIAL_GMM_GRAPH_PATH = os.path.join(SCRIPT_PATH, "..", "graphs", "gmm", "eval", "eval_partial_gmm_graph_")
+
+# FULL TRAINING DATASET
+EVAL_FULL_GMM_TRAINLOG_FNAME = "eval_full_gmm_trainlog_1.txt"
+EVAL_FULL_GMM_ACTUAL_DCF_TRAINLOG_FNAME = "eval_full_gmm_actual_dcf_trainlog_1.txt"
+
+EVAL_FULL_GMM_GRAPH_PATH = os.path.join(SCRIPT_PATH, "..", "graphs", "gmm", "eval", "eval_full_gmm_graph_")
+
+create_folder_if_not_exist(os.path.join(TRAINLOGS_BASEPATH, "dummy.txt"))
 create_folder_if_not_exist(GMM_GRAPH_PATH)
+create_folder_if_not_exist(os.path.join(EVAL_TRAINLOGS_BASEPATH, "dummy.txt"))
+create_folder_if_not_exist(EVAL_FULL_GMM_GRAPH_PATH)
 
 def get_args():
     parser = argparse.ArgumentParser(description="Script to launch GMM classificator building",
@@ -29,6 +45,17 @@ def get_args():
                         help="Start a gridsearch cross-validation to optimize with respect to the number of components, the preprocess configuration and the model type")
     parser.add_argument("--actual_dcf", type=bool, default=False,
                         help="Calculate actual DCF for the different target application using the best model")
+
+    parser.add_argument("--eval_partial_gridsearch", type=bool, default=False,
+                        help="Start a gridsearch cross-validation to optimize with respect to the number of components, the preprocess configuration and the model type")
+    parser.add_argument("--eval_partial_actual_dcf", type=bool, default=False,
+                        help="Calculate actual DCF for the different target application using the best model")
+
+    parser.add_argument("--eval_full_gridsearch", type=bool, default=False,
+                        help="Start a gridsearch cross-validation to optimize with respect to the number of components, the preprocess configuration and the model type")
+    parser.add_argument("--eval_full_actual_dcf", type=bool, default=False,
+                        help="Calculate actual DCF for the different target application using the best model")
+
     return parser.parse_args()
 
 if __name__ == "__main__":
@@ -37,11 +64,14 @@ if __name__ == "__main__":
     # Load 5-Folds already splitted dataset
     folds_data, folds_labels = load_train_dataset_5_folds()
 
+    # Load the test dataset
+    X_test, y_test = load_dataset(train=False, only_data=True)
+
     # constants
     ALPHA = 0.1
     PSI = 0.01
 
-    def gmm_gridsearch():
+    def gmm_gridsearch(X_train, y_train, X_test=None, y_test=None, partial=False):
         # Preprocessing configurations to try
         preproc_configurations = [
             PreprocessConf([]),
@@ -83,7 +113,8 @@ if __name__ == "__main__":
                 for t_i, tied in enumerate(tieds):
                     print("Grid search iteration %d / %d" % (grid_search_iterations, tot_gs_iterations_required))
                     time_start = time.perf_counter()
-                    scores, labels = cross_validate_gmm(folds_data, folds_labels, conf, ALPHA, PSI, diag, tied, max_comps, verbose=True)
+                    scores, labels = cross_validate_gmm(conf, ALPHA, PSI, diag, tied, max_comps, X_train=X_train,
+                                                        y_train=y_train, X_test=X_test, y_test=y_test, verbose=True)
                     for ci, c in enumerate(comps):
                         for app_i, (pi1, Cfn, Cfp) in enumerate(applications):
                             minDCF, _ = eval.bayes_min_dcf(scores[ci], labels[ci], pi1, Cfn, Cfp)
@@ -95,9 +126,7 @@ if __name__ == "__main__":
                     print("Grid search iteration ended in %d seconds" % (time_end - time_start))
         tot_time_end = time.perf_counter()
         print("Grid search on GMM without ended in %d seconds" % (tot_time_end - tot_time_start))
-        np.save("temp.npy", minDCFs)
         # Plot
-        #minDCFs = np.load("temp.npy")
         for app_i, (pi1, Cfn, Cfp) in enumerate(applications):
             for d_i, diag in enumerate(diags):
                 for t_i, tied in enumerate(tieds):
@@ -120,12 +149,36 @@ if __name__ == "__main__":
                     pi1_str = "pi1-%s" % pi1_without_points
                     diag_str = "_diag" if diag else ""
                     tied_str = "_tied" if tied else ""
-                    plt.savefig("%s%s%s%s" % (GMM_GRAPH_PATH, pi1_str, diag_str, tied_str))
+                    if X_test is not None:
+                        if partial:
+                            base_path = EVAL_PARTIAL_GMM_GRAPH_PATH
+                        else:
+                            base_path = EVAL_FULL_GMM_GRAPH_PATH
+                    else:
+                        base_path = GMM_GRAPH_PATH
+
+                    full_path = "%s%s%s%s" % (base_path, pi1_str, diag_str, tied_str)
+
+                    plt.savefig(full_path)
+                    print(f"Plot saved in {full_path}.")
 
     # ------------------------------------------------------------------------------------- #
+    # TRAIN
     if args.gridsearch:
         with LoggingPrinter(incremental_path(TRAINLOGS_BASEPATH, GMM_TRAINLOG_FNAME)):
-            gmm_gridsearch()
+            print("Grid search Cross-Validation on the training dataset for GMM")
+            gmm_gridsearch(X_train=folds_data, y_train=folds_labels, X_test=None, y_test=None, partial=False)
+    # EVALUATION
+    if args.eval_partial_gridsearch:
+        with LoggingPrinter(incremental_path(EVAL_TRAINLOGS_BASEPATH, EVAL_PARTIAL_GMM_TRAINLOG_FNAME)):
+            print("Grid search training on partial train dataset and evaluating on eval dataset for GMM")
+            X_train, y_train = concat_kfolds(folds_data[:-1], folds_labels[:-1])
+            gmm_gridsearch(X_train=X_train, y_train=y_train, X_test=X_test, y_test=y_test, partial=True)
+    if args.eval_full_gridsearch:
+        with LoggingPrinter(incremental_path(EVAL_TRAINLOGS_BASEPATH, EVAL_FULL_GMM_TRAINLOG_FNAME)):
+            print("Grid search training on the full train dataset and evaluating on eval dataset for GMM")
+            X_train, y_train = concat_kfolds(folds_data, folds_labels)
+            gmm_gridsearch(X_train=X_train, y_train=y_train, X_test=X_test, y_test=y_test, partial=False)
 
     # ------------------------------------------------------------------------------------- #
 
@@ -138,10 +191,39 @@ if __name__ == "__main__":
     best_diag = False
     best_tied = False
 
+    # TRAIN
     if args.actual_dcf:
         with LoggingPrinter(incremental_path(TRAINLOGS_BASEPATH, GMM_ACTUAL_DCF_TRAINLOG_FNAME)):
-            scores, labels = cross_validate_gmm(folds_data, folds_labels, best_preproc_conf, ALPHA, PSI, best_diag,
-                                                best_tied, best_num_components, verbose=True)
+            print("Actual DCF for the different target application calculated after cross-validating on the training dataset")
+            scores, labels = cross_validate_gmm(best_preproc_conf, ALPHA, PSI, best_diag, best_tied, best_num_components,
+                                                X_train=folds_data, y_train=folds_labels, X_test=None, y_test=None, verbose=True)
+            for app_i, (pi1, Cfn, Cfp) in enumerate(applications):
+                minDCF, _ = eval.bayes_min_dcf(scores[-1], labels[-1], pi1, Cfn, Cfp)
+                actDCF = eval.bayes_binary_dcf(scores[-1], labels[-1], pi1, Cfn, Cfp)
+                print("\t\tmin DCF (π=%.1f) : %.3f" % (pi1, minDCF))
+                print("\t\tact DCF (π=%.1f) : %.3f" % (pi1, actDCF))
+                print()
+
+    # EVAL
+    if args.eval_partial_actual_dcf:
+        with LoggingPrinter(incremental_path(EVAL_TRAINLOGS_BASEPATH, EVAL_PARTIAL_GMM_ACTUAL_DCF_TRAINLOG_FNAME)):
+            print("Actual DCF for the different target application calculated training on a partial train dataset and validating on the eval dataset")
+            X_train, y_train = concat_kfolds(folds_data[:-1], folds_labels[:-1])
+            scores, labels = cross_validate_gmm(best_preproc_conf, ALPHA, PSI, best_diag, best_tied, best_num_components,
+                                                X_train=X_train, y_train=y_train, X_test=X_test, y_test=y_test, verbose=True)
+            for app_i, (pi1, Cfn, Cfp) in enumerate(applications):
+                minDCF, _ = eval.bayes_min_dcf(scores[-1], labels[-1], pi1, Cfn, Cfp)
+                actDCF = eval.bayes_binary_dcf(scores[-1], labels[-1], pi1, Cfn, Cfp)
+                print("\t\tmin DCF (π=%.1f) : %.3f" % (pi1, minDCF))
+                print("\t\tact DCF (π=%.1f) : %.3f" % (pi1, actDCF))
+                print()
+
+    if args.eval_full_actual_dcf:
+        with LoggingPrinter(incremental_path(EVAL_TRAINLOGS_BASEPATH, EVAL_FULL_GMM_ACTUAL_DCF_TRAINLOG_FNAME)):
+            print("Actual DCF for the different target application calculated training on a the full train dataset and validating on the eval dataset")
+            X_train, y_train = concat_kfolds(folds_data, folds_labels)
+            scores, labels = cross_validate_gmm(best_preproc_conf, ALPHA, PSI, best_diag, best_tied, best_num_components,
+                                                X_train=X_train, y_train=y_train, X_test=X_test, y_test=y_test, verbose=True)
             for app_i, (pi1, Cfn, Cfp) in enumerate(applications):
                 minDCF, _ = eval.bayes_min_dcf(scores[-1], labels[-1], pi1, Cfn, Cfp)
                 actDCF = eval.bayes_binary_dcf(scores[-1], labels[-1], pi1, Cfn, Cfp)
