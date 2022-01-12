@@ -87,7 +87,7 @@ def cross_validate_gmm(preproc_conf, alpha, psi, diag_cov, tied_cov, max_compone
         # Validate
         scores = []
         for gmm_classifier in gmm_classifiers:
-            s = gmm_classifier.compute_binary_llr(DTE)
+            s = gmm_classifier.compute_binary_llr(DTV)
             scores.append(s)
 
         return scores

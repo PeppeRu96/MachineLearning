@@ -275,9 +275,9 @@ if __name__ == "__main__":
 
         print()
         print(f"Calibration scores shape: {calibration_scores.shape}")
-        print(f"Calibration labels shape: {calibration_labels.shape}")
+        print(f"Calibration labels shape: {cal_labels.shape}")
         print(f"Validation scores shape: {validation_scores.shape}")
-        print(f"Validation labels shape: {validation_labels.shape}")
+        print(f"Validation labels shape: {val_labels.shape}")
 
         return calibration_scores, cal_labels, validation_scores, val_labels
 
