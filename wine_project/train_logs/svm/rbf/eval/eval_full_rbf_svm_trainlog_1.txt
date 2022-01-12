@@ -1,0 +1,1285 @@
+Coarse-level grid search training on the full train dataset and evaluating on the eval dataset for RBF SVM
+Grid search on RBF SVM without class balancing started.
+Total RBF SVM cross-validation required  252
+Total grid search iterations required  4
+Grid search iteration 1 / 4
+	(Ci: 0) - Train and validation (eval) RBF SVM (gamma=1e-03)  (C=1e-03 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.676
+		min DCF (π=0.1) : 0.998
+		min DCF (π=0.9) : 0.996
+		time passed: 9 seconds
+	(Ci: 0) - Train and validation (eval) RBF SVM (gamma=1e-02)  (C=1e-03 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.670
+		min DCF (π=0.1) : 0.966
+		min DCF (π=0.9) : 0.949
+		time passed: 9 seconds
+	(Ci: 0) - Train and validation (eval) RBF SVM (gamma=1e-01)  (C=1e-03 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.591
+		min DCF (π=0.1) : 0.989
+		min DCF (π=0.9) : 0.962
+		time passed: 9 seconds
+	(Ci: 0) - Train and validation (eval) RBF SVM (gamma=1e+00)  (C=1e-03 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.616
+		min DCF (π=0.1) : 0.981
+		min DCF (π=0.9) : 0.961
+		time passed: 9 seconds
+	(Ci: 0) - Train and validation (eval) RBF SVM (gamma=1e+01)  (C=1e-03 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.874
+		min DCF (π=0.1) : 0.981
+		min DCF (π=0.9) : 0.981
+		time passed: 9 seconds
+	(Ci: 0) - Train and validation (eval) RBF SVM (gamma=1e+02)  (C=1e-03 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.986
+		min DCF (π=0.1) : 0.986
+		min DCF (π=0.9) : 0.992
+		time passed: 9 seconds
+	(Ci: 0) - Train and validation (eval) RBF SVM (gamma=1e+03)  (C=1e-03 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.992
+		min DCF (π=0.1) : 0.992
+		min DCF (π=0.9) : 0.998
+		time passed: 9 seconds
+	(Ci: 1) - Train and validation (eval) RBF SVM (gamma=1e-03)  (C=1e-02 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.617
+		min DCF (π=0.1) : 0.998
+		min DCF (π=0.9) : 0.969
+		time passed: 10 seconds
+	(Ci: 1) - Train and validation (eval) RBF SVM (gamma=1e-02)  (C=1e-02 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.541
+		min DCF (π=0.1) : 0.969
+		min DCF (π=0.9) : 0.978
+		time passed: 9 seconds
+	(Ci: 1) - Train and validation (eval) RBF SVM (gamma=1e-01)  (C=1e-02 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.565
+		min DCF (π=0.1) : 0.985
+		min DCF (π=0.9) : 0.949
+		time passed: 9 seconds
+	(Ci: 1) - Train and validation (eval) RBF SVM (gamma=1e+00)  (C=1e-02 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.606
+		min DCF (π=0.1) : 0.984
+		min DCF (π=0.9) : 0.971
+		time passed: 9 seconds
+	(Ci: 1) - Train and validation (eval) RBF SVM (gamma=1e+01)  (C=1e-02 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.872
+		min DCF (π=0.1) : 0.981
+		min DCF (π=0.9) : 0.982
+		time passed: 9 seconds
+	(Ci: 1) - Train and validation (eval) RBF SVM (gamma=1e+02)  (C=1e-02 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.986
+		min DCF (π=0.1) : 0.986
+		min DCF (π=0.9) : 0.992
+		time passed: 9 seconds
+	(Ci: 1) - Train and validation (eval) RBF SVM (gamma=1e+03)  (C=1e-02 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.992
+		min DCF (π=0.1) : 0.992
+		min DCF (π=0.9) : 0.998
+		time passed: 9 seconds
+	(Ci: 2) - Train and validation (eval) RBF SVM (gamma=1e-03)  (C=1e-01 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.553
+		min DCF (π=0.1) : 0.995
+		min DCF (π=0.9) : 0.972
+		time passed: 12 seconds
+	(Ci: 2) - Train and validation (eval) RBF SVM (gamma=1e-02)  (C=1e-01 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.522
+		min DCF (π=0.1) : 0.952
+		min DCF (π=0.9) : 0.974
+		time passed: 10 seconds
+	(Ci: 2) - Train and validation (eval) RBF SVM (gamma=1e-01)  (C=1e-01 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.575
+		min DCF (π=0.1) : 0.984
+		min DCF (π=0.9) : 0.967
+		time passed: 10 seconds
+	(Ci: 2) - Train and validation (eval) RBF SVM (gamma=1e+00)  (C=1e-01 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.612
+		min DCF (π=0.1) : 0.982
+		min DCF (π=0.9) : 0.971
+		time passed: 10 seconds
+	(Ci: 2) - Train and validation (eval) RBF SVM (gamma=1e+01)  (C=1e-01 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.869
+		min DCF (π=0.1) : 0.981
+		min DCF (π=0.9) : 0.982
+		time passed: 9 seconds
+	(Ci: 2) - Train and validation (eval) RBF SVM (gamma=1e+02)  (C=1e-01 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.986
+		min DCF (π=0.1) : 0.986
+		min DCF (π=0.9) : 0.992
+		time passed: 9 seconds
+	(Ci: 2) - Train and validation (eval) RBF SVM (gamma=1e+03)  (C=1e-01 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.992
+		min DCF (π=0.1) : 0.992
+		min DCF (π=0.9) : 0.998
+		time passed: 9 seconds
+	(Ci: 3) - Train and validation (eval) RBF SVM (gamma=1e-03)  (C=1e+00 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.404
+		min DCF (π=0.1) : 0.853
+		min DCF (π=0.9) : 0.912
+		time passed: 20 seconds
+	(Ci: 3) - Train and validation (eval) RBF SVM (gamma=1e-02)  (C=1e+00 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.454
+		min DCF (π=0.1) : 0.878
+		min DCF (π=0.9) : 0.969
+		time passed: 10 seconds
+	(Ci: 3) - Train and validation (eval) RBF SVM (gamma=1e-01)  (C=1e+00 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.558
+		min DCF (π=0.1) : 0.934
+		min DCF (π=0.9) : 0.965
+		time passed: 11 seconds
+	(Ci: 3) - Train and validation (eval) RBF SVM (gamma=1e+00)  (C=1e+00 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.609
+		min DCF (π=0.1) : 0.984
+		min DCF (π=0.9) : 0.971
+		time passed: 11 seconds
+	(Ci: 3) - Train and validation (eval) RBF SVM (gamma=1e+01)  (C=1e+00 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.866
+		min DCF (π=0.1) : 0.981
+		min DCF (π=0.9) : 0.982
+		time passed: 9 seconds
+	(Ci: 3) - Train and validation (eval) RBF SVM (gamma=1e+02)  (C=1e+00 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.986
+		min DCF (π=0.1) : 0.986
+		min DCF (π=0.9) : 0.992
+		time passed: 10 seconds
+	(Ci: 3) - Train and validation (eval) RBF SVM (gamma=1e+03)  (C=1e+00 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.992
+		min DCF (π=0.1) : 0.992
+		min DCF (π=0.9) : 0.998
+		time passed: 9 seconds
+	(Ci: 4) - Train and validation (eval) RBF SVM (gamma=1e-03)  (C=1e+01 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.361
+		min DCF (π=0.1) : 0.761
+		min DCF (π=0.9) : 0.820
+		time passed: 25 seconds
+	(Ci: 4) - Train and validation (eval) RBF SVM (gamma=1e-02)  (C=1e+01 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.448
+		min DCF (π=0.1) : 0.809
+		min DCF (π=0.9) : 0.913
+		time passed: 14 seconds
+	(Ci: 4) - Train and validation (eval) RBF SVM (gamma=1e-01)  (C=1e+01 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.566
+		min DCF (π=0.1) : 0.997
+		min DCF (π=0.9) : 0.973
+		time passed: 14 seconds
+	(Ci: 4) - Train and validation (eval) RBF SVM (gamma=1e+00)  (C=1e+01 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.612
+		min DCF (π=0.1) : 0.984
+		min DCF (π=0.9) : 0.971
+		time passed: 11 seconds
+	(Ci: 4) - Train and validation (eval) RBF SVM (gamma=1e+01)  (C=1e+01 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.868
+		min DCF (π=0.1) : 0.981
+		min DCF (π=0.9) : 0.982
+		time passed: 10 seconds
+	(Ci: 4) - Train and validation (eval) RBF SVM (gamma=1e+02)  (C=1e+01 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.986
+		min DCF (π=0.1) : 0.986
+		min DCF (π=0.9) : 0.992
+		time passed: 11 seconds
+	(Ci: 4) - Train and validation (eval) RBF SVM (gamma=1e+03)  (C=1e+01 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.992
+		min DCF (π=0.1) : 0.992
+		min DCF (π=0.9) : 0.998
+		time passed: 10 seconds
+	(Ci: 5) - Train and validation (eval) RBF SVM (gamma=1e-03)  (C=1e+02 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.359
+		min DCF (π=0.1) : 0.737
+		min DCF (π=0.9) : 0.841
+		time passed: 38 seconds
+	(Ci: 5) - Train and validation (eval) RBF SVM (gamma=1e-02)  (C=1e+02 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.477
+		min DCF (π=0.1) : 0.898
+		min DCF (π=0.9) : 0.961
+		time passed: 19 seconds
+	(Ci: 5) - Train and validation (eval) RBF SVM (gamma=1e-01)  (C=1e+02 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.566
+		min DCF (π=0.1) : 0.999
+		min DCF (π=0.9) : 0.967
+		time passed: 13 seconds
+	(Ci: 5) - Train and validation (eval) RBF SVM (gamma=1e+00)  (C=1e+02 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.612
+		min DCF (π=0.1) : 0.984
+		min DCF (π=0.9) : 0.971
+		time passed: 11 seconds
+	(Ci: 5) - Train and validation (eval) RBF SVM (gamma=1e+01)  (C=1e+02 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.868
+		min DCF (π=0.1) : 0.981
+		min DCF (π=0.9) : 0.982
+		time passed: 10 seconds
+	(Ci: 5) - Train and validation (eval) RBF SVM (gamma=1e+02)  (C=1e+02 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.986
+		min DCF (π=0.1) : 0.986
+		min DCF (π=0.9) : 0.992
+		time passed: 11 seconds
+	(Ci: 5) - Train and validation (eval) RBF SVM (gamma=1e+03)  (C=1e+02 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.992
+		min DCF (π=0.1) : 0.992
+		min DCF (π=0.9) : 0.998
+		time passed: 10 seconds
+	(Ci: 6) - Train and validation (eval) RBF SVM (gamma=1e-03)  (C=1e+03 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.326
+		min DCF (π=0.1) : 0.769
+		min DCF (π=0.9) : 0.799
+		time passed: 51 seconds
+	(Ci: 6) - Train and validation (eval) RBF SVM (gamma=1e-02)  (C=1e+03 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.518
+		min DCF (π=0.1) : 0.893
+		min DCF (π=0.9) : 0.929
+		time passed: 29 seconds
+	(Ci: 6) - Train and validation (eval) RBF SVM (gamma=1e-01)  (C=1e+03 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.566
+		min DCF (π=0.1) : 0.999
+		min DCF (π=0.9) : 0.967
+		time passed: 14 seconds
+	(Ci: 6) - Train and validation (eval) RBF SVM (gamma=1e+00)  (C=1e+03 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.612
+		min DCF (π=0.1) : 0.984
+		min DCF (π=0.9) : 0.971
+		time passed: 12 seconds
+	(Ci: 6) - Train and validation (eval) RBF SVM (gamma=1e+01)  (C=1e+03 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.868
+		min DCF (π=0.1) : 0.981
+		min DCF (π=0.9) : 0.982
+		time passed: 10 seconds
+	(Ci: 6) - Train and validation (eval) RBF SVM (gamma=1e+02)  (C=1e+03 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.986
+		min DCF (π=0.1) : 0.986
+		min DCF (π=0.9) : 0.992
+		time passed: 11 seconds
+	(Ci: 6) - Train and validation (eval) RBF SVM (gamma=1e+03)  (C=1e+03 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.992
+		min DCF (π=0.1) : 0.992
+		min DCF (π=0.9) : 0.998
+		time passed: 10 seconds
+	(Ci: 7) - Train and validation (eval) RBF SVM (gamma=1e-03)  (C=1e+04 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.337
+		min DCF (π=0.1) : 0.800
+		min DCF (π=0.9) : 0.790
+		time passed: 56 seconds
+	(Ci: 7) - Train and validation (eval) RBF SVM (gamma=1e-02)  (C=1e+04 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.524
+		min DCF (π=0.1) : 0.916
+		min DCF (π=0.9) : 0.958
+		time passed: 32 seconds
+	(Ci: 7) - Train and validation (eval) RBF SVM (gamma=1e-01)  (C=1e+04 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.566
+		min DCF (π=0.1) : 0.999
+		min DCF (π=0.9) : 0.967
+		time passed: 13 seconds
+	(Ci: 7) - Train and validation (eval) RBF SVM (gamma=1e+00)  (C=1e+04 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.612
+		min DCF (π=0.1) : 0.984
+		min DCF (π=0.9) : 0.971
+		time passed: 10 seconds
+	(Ci: 7) - Train and validation (eval) RBF SVM (gamma=1e+01)  (C=1e+04 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.868
+		min DCF (π=0.1) : 0.981
+		min DCF (π=0.9) : 0.982
+		time passed: 11 seconds
+	(Ci: 7) - Train and validation (eval) RBF SVM (gamma=1e+02)  (C=1e+04 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.986
+		min DCF (π=0.1) : 0.986
+		min DCF (π=0.9) : 0.992
+		time passed: 13 seconds
+	(Ci: 7) - Train and validation (eval) RBF SVM (gamma=1e+03)  (C=1e+04 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.992
+		min DCF (π=0.1) : 0.992
+		min DCF (π=0.9) : 0.998
+		time passed: 11 seconds
+	(Ci: 8) - Train and validation (eval) RBF SVM (gamma=1e-03)  (C=1e+05 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.411
+		min DCF (π=0.1) : 0.887
+		min DCF (π=0.9) : 0.924
+		time passed: 53 seconds
+	(Ci: 8) - Train and validation (eval) RBF SVM (gamma=1e-02)  (C=1e+05 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.524
+		min DCF (π=0.1) : 0.916
+		min DCF (π=0.9) : 0.958
+		time passed: 33 seconds
+	(Ci: 8) - Train and validation (eval) RBF SVM (gamma=1e-01)  (C=1e+05 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.566
+		min DCF (π=0.1) : 0.999
+		min DCF (π=0.9) : 0.967
+		time passed: 15 seconds
+	(Ci: 8) - Train and validation (eval) RBF SVM (gamma=1e+00)  (C=1e+05 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.612
+		min DCF (π=0.1) : 0.984
+		min DCF (π=0.9) : 0.971
+		time passed: 14 seconds
+	(Ci: 8) - Train and validation (eval) RBF SVM (gamma=1e+01)  (C=1e+05 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.868
+		min DCF (π=0.1) : 0.981
+		min DCF (π=0.9) : 0.982
+		time passed: 12 seconds
+	(Ci: 8) - Train and validation (eval) RBF SVM (gamma=1e+02)  (C=1e+05 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.986
+		min DCF (π=0.1) : 0.986
+		min DCF (π=0.9) : 0.992
+		time passed: 10 seconds
+	(Ci: 8) - Train and validation (eval) RBF SVM (gamma=1e+03)  (C=1e+05 - K=1.0) - Preprocessing: [  ]
+		min DCF (π=0.5) : 0.992
+		min DCF (π=0.1) : 0.992
+		min DCF (π=0.9) : 0.998
+		time passed: 10 seconds
+Plot saved in C:\Users\rugge\Documents\development\university\machine_learning\ml_repo\wine_project\utility\..\graphs\svm\rbf\eval\eval_full_rbf_svm_graph_K-1-0__target-pi1-05_.
+Plot saved in C:\Users\rugge\Documents\development\university\machine_learning\ml_repo\wine_project\utility\..\graphs\svm\rbf\eval\eval_full_rbf_svm_graph_K-1-0__target-pi1-01_.
+Plot saved in C:\Users\rugge\Documents\development\university\machine_learning\ml_repo\wine_project\utility\..\graphs\svm\rbf\eval\eval_full_rbf_svm_graph_K-1-0__target-pi1-09_.
+Grid search iteration ended in 944 seconds
+Grid search iteration 2 / 4
+	(Ci: 0) - Train and validation (eval) RBF SVM (gamma=1e-03)  (C=1e-03 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.491
+		min DCF (π=0.1) : 0.955
+		min DCF (π=0.9) : 0.835
+		time passed: 15 seconds
+	(Ci: 0) - Train and validation (eval) RBF SVM (gamma=1e-02)  (C=1e-03 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.486
+		min DCF (π=0.1) : 0.949
+		min DCF (π=0.9) : 0.829
+		time passed: 14 seconds
+	(Ci: 0) - Train and validation (eval) RBF SVM (gamma=1e-01)  (C=1e-03 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.467
+		min DCF (π=0.1) : 0.819
+		min DCF (π=0.9) : 0.786
+		time passed: 14 seconds
+	(Ci: 0) - Train and validation (eval) RBF SVM (gamma=1e+00)  (C=1e-03 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.320
+		min DCF (π=0.1) : 0.724
+		min DCF (π=0.9) : 0.822
+		time passed: 14 seconds
+	(Ci: 0) - Train and validation (eval) RBF SVM (gamma=1e+01)  (C=1e-03 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.381
+		min DCF (π=0.1) : 0.877
+		min DCF (π=0.9) : 0.929
+		time passed: 14 seconds
+	(Ci: 0) - Train and validation (eval) RBF SVM (gamma=1e+02)  (C=1e-03 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.926
+		min DCF (π=0.1) : 0.941
+		min DCF (π=0.9) : 0.938
+		time passed: 14 seconds
+	(Ci: 0) - Train and validation (eval) RBF SVM (gamma=1e+03)  (C=1e-03 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.991
+		min DCF (π=0.1) : 0.992
+		min DCF (π=0.9) : 0.991
+		time passed: 14 seconds
+	(Ci: 1) - Train and validation (eval) RBF SVM (gamma=1e-03)  (C=1e-02 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.340
+		min DCF (π=0.1) : 0.818
+		min DCF (π=0.9) : 0.955
+		time passed: 14 seconds
+	(Ci: 1) - Train and validation (eval) RBF SVM (gamma=1e-02)  (C=1e-02 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.343
+		min DCF (π=0.1) : 0.764
+		min DCF (π=0.9) : 0.966
+		time passed: 15 seconds
+	(Ci: 1) - Train and validation (eval) RBF SVM (gamma=1e-01)  (C=1e-02 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.330
+		min DCF (π=0.1) : 0.674
+		min DCF (π=0.9) : 0.758
+		time passed: 14 seconds
+	(Ci: 1) - Train and validation (eval) RBF SVM (gamma=1e+00)  (C=1e-02 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.286
+		min DCF (π=0.1) : 0.757
+		min DCF (π=0.9) : 0.728
+		time passed: 15 seconds
+	(Ci: 1) - Train and validation (eval) RBF SVM (gamma=1e+01)  (C=1e-02 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.381
+		min DCF (π=0.1) : 0.889
+		min DCF (π=0.9) : 0.933
+		time passed: 14 seconds
+	(Ci: 1) - Train and validation (eval) RBF SVM (gamma=1e+02)  (C=1e-02 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.928
+		min DCF (π=0.1) : 0.937
+		min DCF (π=0.9) : 0.940
+		time passed: 16 seconds
+	(Ci: 1) - Train and validation (eval) RBF SVM (gamma=1e+03)  (C=1e-02 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.991
+		min DCF (π=0.1) : 0.992
+		min DCF (π=0.9) : 0.991
+		time passed: 14 seconds
+	(Ci: 2) - Train and validation (eval) RBF SVM (gamma=1e-03)  (C=1e-01 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.333
+		min DCF (π=0.1) : 0.764
+		min DCF (π=0.9) : 0.954
+		time passed: 15 seconds
+	(Ci: 2) - Train and validation (eval) RBF SVM (gamma=1e-02)  (C=1e-01 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.321
+		min DCF (π=0.1) : 0.750
+		min DCF (π=0.9) : 0.946
+		time passed: 15 seconds
+	(Ci: 2) - Train and validation (eval) RBF SVM (gamma=1e-01)  (C=1e-01 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.291
+		min DCF (π=0.1) : 0.646
+		min DCF (π=0.9) : 0.540
+		time passed: 15 seconds
+	(Ci: 2) - Train and validation (eval) RBF SVM (gamma=1e+00)  (C=1e-01 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.282
+		min DCF (π=0.1) : 0.753
+		min DCF (π=0.9) : 0.718
+		time passed: 16 seconds
+	(Ci: 2) - Train and validation (eval) RBF SVM (gamma=1e+01)  (C=1e-01 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.368
+		min DCF (π=0.1) : 0.889
+		min DCF (π=0.9) : 0.933
+		time passed: 14 seconds
+	(Ci: 2) - Train and validation (eval) RBF SVM (gamma=1e+02)  (C=1e-01 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.924
+		min DCF (π=0.1) : 0.934
+		min DCF (π=0.9) : 0.936
+		time passed: 14 seconds
+	(Ci: 2) - Train and validation (eval) RBF SVM (gamma=1e+03)  (C=1e-01 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.991
+		min DCF (π=0.1) : 0.992
+		min DCF (π=0.9) : 0.991
+		time passed: 14 seconds
+	(Ci: 3) - Train and validation (eval) RBF SVM (gamma=1e-03)  (C=1e+00 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.323
+		min DCF (π=0.1) : 0.767
+		min DCF (π=0.9) : 0.949
+		time passed: 16 seconds
+	(Ci: 3) - Train and validation (eval) RBF SVM (gamma=1e-02)  (C=1e+00 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.308
+		min DCF (π=0.1) : 0.670
+		min DCF (π=0.9) : 0.743
+		time passed: 17 seconds
+	(Ci: 3) - Train and validation (eval) RBF SVM (gamma=1e-01)  (C=1e+00 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.253
+		min DCF (π=0.1) : 0.642
+		min DCF (π=0.9) : 0.517
+		time passed: 15 seconds
+	(Ci: 3) - Train and validation (eval) RBF SVM (gamma=1e+00)  (C=1e+00 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.271
+		min DCF (π=0.1) : 0.796
+		min DCF (π=0.9) : 0.748
+		time passed: 17 seconds
+	(Ci: 3) - Train and validation (eval) RBF SVM (gamma=1e+01)  (C=1e+00 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.369
+		min DCF (π=0.1) : 0.890
+		min DCF (π=0.9) : 0.933
+		time passed: 14 seconds
+	(Ci: 3) - Train and validation (eval) RBF SVM (gamma=1e+02)  (C=1e+00 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.926
+		min DCF (π=0.1) : 0.934
+		min DCF (π=0.9) : 0.938
+		time passed: 14 seconds
+	(Ci: 3) - Train and validation (eval) RBF SVM (gamma=1e+03)  (C=1e+00 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.991
+		min DCF (π=0.1) : 0.992
+		min DCF (π=0.9) : 0.991
+		time passed: 15 seconds
+	(Ci: 4) - Train and validation (eval) RBF SVM (gamma=1e-03)  (C=1e+01 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.299
+		min DCF (π=0.1) : 0.701
+		min DCF (π=0.9) : 0.839
+		time passed: 21 seconds
+	(Ci: 4) - Train and validation (eval) RBF SVM (gamma=1e-02)  (C=1e+01 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.290
+		min DCF (π=0.1) : 0.618
+		min DCF (π=0.9) : 0.563
+		time passed: 23 seconds
+	(Ci: 4) - Train and validation (eval) RBF SVM (gamma=1e-01)  (C=1e+01 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.276
+		min DCF (π=0.1) : 0.700
+		min DCF (π=0.9) : 0.635
+		time passed: 16 seconds
+	(Ci: 4) - Train and validation (eval) RBF SVM (gamma=1e+00)  (C=1e+01 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.292
+		min DCF (π=0.1) : 0.810
+		min DCF (π=0.9) : 0.781
+		time passed: 17 seconds
+	(Ci: 4) - Train and validation (eval) RBF SVM (gamma=1e+01)  (C=1e+01 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.369
+		min DCF (π=0.1) : 0.893
+		min DCF (π=0.9) : 0.933
+		time passed: 15 seconds
+	(Ci: 4) - Train and validation (eval) RBF SVM (gamma=1e+02)  (C=1e+01 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.923
+		min DCF (π=0.1) : 0.937
+		min DCF (π=0.9) : 0.935
+		time passed: 18 seconds
+	(Ci: 4) - Train and validation (eval) RBF SVM (gamma=1e+03)  (C=1e+01 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.991
+		min DCF (π=0.1) : 0.992
+		min DCF (π=0.9) : 0.991
+		time passed: 16 seconds
+	(Ci: 5) - Train and validation (eval) RBF SVM (gamma=1e-03)  (C=1e+02 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.309
+		min DCF (π=0.1) : 0.668
+		min DCF (π=0.9) : 0.732
+		time passed: 31 seconds
+	(Ci: 5) - Train and validation (eval) RBF SVM (gamma=1e-02)  (C=1e+02 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.267
+		min DCF (π=0.1) : 0.616
+		min DCF (π=0.9) : 0.632
+		time passed: 35 seconds
+	(Ci: 5) - Train and validation (eval) RBF SVM (gamma=1e-01)  (C=1e+02 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.337
+		min DCF (π=0.1) : 0.802
+		min DCF (π=0.9) : 0.714
+		time passed: 22 seconds
+	(Ci: 5) - Train and validation (eval) RBF SVM (gamma=1e+00)  (C=1e+02 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.292
+		min DCF (π=0.1) : 0.810
+		min DCF (π=0.9) : 0.781
+		time passed: 18 seconds
+	(Ci: 5) - Train and validation (eval) RBF SVM (gamma=1e+01)  (C=1e+02 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.369
+		min DCF (π=0.1) : 0.893
+		min DCF (π=0.9) : 0.933
+		time passed: 15 seconds
+	(Ci: 5) - Train and validation (eval) RBF SVM (gamma=1e+02)  (C=1e+02 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.923
+		min DCF (π=0.1) : 0.937
+		min DCF (π=0.9) : 0.935
+		time passed: 15 seconds
+	(Ci: 5) - Train and validation (eval) RBF SVM (gamma=1e+03)  (C=1e+02 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.991
+		min DCF (π=0.1) : 0.992
+		min DCF (π=0.9) : 0.991
+		time passed: 15 seconds
+	(Ci: 6) - Train and validation (eval) RBF SVM (gamma=1e-03)  (C=1e+03 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.290
+		min DCF (π=0.1) : 0.621
+		min DCF (π=0.9) : 0.579
+		time passed: 34 seconds
+	(Ci: 6) - Train and validation (eval) RBF SVM (gamma=1e-02)  (C=1e+03 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.278
+		min DCF (π=0.1) : 0.680
+		min DCF (π=0.9) : 0.604
+		time passed: 49 seconds
+	(Ci: 6) - Train and validation (eval) RBF SVM (gamma=1e-01)  (C=1e+03 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.370
+		min DCF (π=0.1) : 0.865
+		min DCF (π=0.9) : 0.809
+		time passed: 23 seconds
+	(Ci: 6) - Train and validation (eval) RBF SVM (gamma=1e+00)  (C=1e+03 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.292
+		min DCF (π=0.1) : 0.810
+		min DCF (π=0.9) : 0.781
+		time passed: 18 seconds
+	(Ci: 6) - Train and validation (eval) RBF SVM (gamma=1e+01)  (C=1e+03 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.369
+		min DCF (π=0.1) : 0.893
+		min DCF (π=0.9) : 0.933
+		time passed: 15 seconds
+	(Ci: 6) - Train and validation (eval) RBF SVM (gamma=1e+02)  (C=1e+03 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.923
+		min DCF (π=0.1) : 0.937
+		min DCF (π=0.9) : 0.935
+		time passed: 15 seconds
+	(Ci: 6) - Train and validation (eval) RBF SVM (gamma=1e+03)  (C=1e+03 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.991
+		min DCF (π=0.1) : 0.992
+		min DCF (π=0.9) : 0.991
+		time passed: 15 seconds
+	(Ci: 7) - Train and validation (eval) RBF SVM (gamma=1e-03)  (C=1e+04 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.292
+		min DCF (π=0.1) : 0.637
+		min DCF (π=0.9) : 0.624
+		time passed: 60 seconds
+	(Ci: 7) - Train and validation (eval) RBF SVM (gamma=1e-02)  (C=1e+04 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.286
+		min DCF (π=0.1) : 0.780
+		min DCF (π=0.9) : 0.644
+		time passed: 60 seconds
+	(Ci: 7) - Train and validation (eval) RBF SVM (gamma=1e-01)  (C=1e+04 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.370
+		min DCF (π=0.1) : 0.865
+		min DCF (π=0.9) : 0.809
+		time passed: 23 seconds
+	(Ci: 7) - Train and validation (eval) RBF SVM (gamma=1e+00)  (C=1e+04 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.292
+		min DCF (π=0.1) : 0.810
+		min DCF (π=0.9) : 0.781
+		time passed: 18 seconds
+	(Ci: 7) - Train and validation (eval) RBF SVM (gamma=1e+01)  (C=1e+04 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.369
+		min DCF (π=0.1) : 0.893
+		min DCF (π=0.9) : 0.933
+		time passed: 15 seconds
+	(Ci: 7) - Train and validation (eval) RBF SVM (gamma=1e+02)  (C=1e+04 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.923
+		min DCF (π=0.1) : 0.937
+		min DCF (π=0.9) : 0.935
+		time passed: 14 seconds
+	(Ci: 7) - Train and validation (eval) RBF SVM (gamma=1e+03)  (C=1e+04 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.991
+		min DCF (π=0.1) : 0.992
+		min DCF (π=0.9) : 0.991
+		time passed: 15 seconds
+	(Ci: 8) - Train and validation (eval) RBF SVM (gamma=1e-03)  (C=1e+05 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.414
+		min DCF (π=0.1) : 0.826
+		min DCF (π=0.9) : 0.854
+		time passed: 60 seconds
+	(Ci: 8) - Train and validation (eval) RBF SVM (gamma=1e-02)  (C=1e+05 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.371
+		min DCF (π=0.1) : 0.957
+		min DCF (π=0.9) : 0.834
+		time passed: 61 seconds
+	(Ci: 8) - Train and validation (eval) RBF SVM (gamma=1e-01)  (C=1e+05 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.370
+		min DCF (π=0.1) : 0.865
+		min DCF (π=0.9) : 0.809
+		time passed: 23 seconds
+	(Ci: 8) - Train and validation (eval) RBF SVM (gamma=1e+00)  (C=1e+05 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.292
+		min DCF (π=0.1) : 0.810
+		min DCF (π=0.9) : 0.781
+		time passed: 18 seconds
+	(Ci: 8) - Train and validation (eval) RBF SVM (gamma=1e+01)  (C=1e+05 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.369
+		min DCF (π=0.1) : 0.893
+		min DCF (π=0.9) : 0.933
+		time passed: 15 seconds
+	(Ci: 8) - Train and validation (eval) RBF SVM (gamma=1e+02)  (C=1e+05 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.923
+		min DCF (π=0.1) : 0.937
+		min DCF (π=0.9) : 0.935
+		time passed: 15 seconds
+	(Ci: 8) - Train and validation (eval) RBF SVM (gamma=1e+03)  (C=1e+05 - K=1.0) - Preprocessing: [ Gaussianization ]
+		min DCF (π=0.5) : 0.991
+		min DCF (π=0.1) : 0.992
+		min DCF (π=0.9) : 0.991
+		time passed: 17 seconds
+Plot saved in C:\Users\rugge\Documents\development\university\machine_learning\ml_repo\wine_project\utility\..\graphs\svm\rbf\eval\eval_full_rbf_svm_graph_K-1-0_gau_target-pi1-05_.
+Plot saved in C:\Users\rugge\Documents\development\university\machine_learning\ml_repo\wine_project\utility\..\graphs\svm\rbf\eval\eval_full_rbf_svm_graph_K-1-0_gau_target-pi1-01_.
+Plot saved in C:\Users\rugge\Documents\development\university\machine_learning\ml_repo\wine_project\utility\..\graphs\svm\rbf\eval\eval_full_rbf_svm_graph_K-1-0_gau_target-pi1-09_.
+Grid search iteration ended in 1301 seconds
+Grid search iteration 3 / 4
+	(Ci: 0) - Train and validation (eval) RBF SVM (gamma=1e-03)  (C=1e-03 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.326
+		min DCF (π=0.1) : 0.713
+		min DCF (π=0.9) : 0.916
+		time passed: 11 seconds
+	(Ci: 0) - Train and validation (eval) RBF SVM (gamma=1e-02)  (C=1e-03 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.326
+		min DCF (π=0.1) : 0.699
+		min DCF (π=0.9) : 0.902
+		time passed: 11 seconds
+	(Ci: 0) - Train and validation (eval) RBF SVM (gamma=1e-01)  (C=1e-03 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.326
+		min DCF (π=0.1) : 0.700
+		min DCF (π=0.9) : 0.888
+		time passed: 11 seconds
+	(Ci: 0) - Train and validation (eval) RBF SVM (gamma=1e+00)  (C=1e-03 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.309
+		min DCF (π=0.1) : 0.669
+		min DCF (π=0.9) : 0.789
+		time passed: 10 seconds
+	(Ci: 0) - Train and validation (eval) RBF SVM (gamma=1e+01)  (C=1e-03 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.296
+		min DCF (π=0.1) : 0.646
+		min DCF (π=0.9) : 0.759
+		time passed: 11 seconds
+	(Ci: 0) - Train and validation (eval) RBF SVM (gamma=1e+02)  (C=1e-03 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.381
+		min DCF (π=0.1) : 0.884
+		min DCF (π=0.9) : 0.852
+		time passed: 10 seconds
+	(Ci: 0) - Train and validation (eval) RBF SVM (gamma=1e+03)  (C=1e-03 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.942
+		min DCF (π=0.1) : 0.959
+		min DCF (π=0.9) : 0.942
+		time passed: 10 seconds
+	(Ci: 1) - Train and validation (eval) RBF SVM (gamma=1e-03)  (C=1e-02 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.326
+		min DCF (π=0.1) : 0.709
+		min DCF (π=0.9) : 0.933
+		time passed: 11 seconds
+	(Ci: 1) - Train and validation (eval) RBF SVM (gamma=1e-02)  (C=1e-02 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.327
+		min DCF (π=0.1) : 0.707
+		min DCF (π=0.9) : 0.937
+		time passed: 12 seconds
+	(Ci: 1) - Train and validation (eval) RBF SVM (gamma=1e-01)  (C=1e-02 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.326
+		min DCF (π=0.1) : 0.702
+		min DCF (π=0.9) : 0.926
+		time passed: 10 seconds
+	(Ci: 1) - Train and validation (eval) RBF SVM (gamma=1e+00)  (C=1e-02 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.306
+		min DCF (π=0.1) : 0.664
+		min DCF (π=0.9) : 0.783
+		time passed: 10 seconds
+	(Ci: 1) - Train and validation (eval) RBF SVM (gamma=1e+01)  (C=1e-02 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.288
+		min DCF (π=0.1) : 0.631
+		min DCF (π=0.9) : 0.723
+		time passed: 10 seconds
+	(Ci: 1) - Train and validation (eval) RBF SVM (gamma=1e+02)  (C=1e-02 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.364
+		min DCF (π=0.1) : 0.884
+		min DCF (π=0.9) : 0.855
+		time passed: 10 seconds
+	(Ci: 1) - Train and validation (eval) RBF SVM (gamma=1e+03)  (C=1e-02 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.944
+		min DCF (π=0.1) : 0.958
+		min DCF (π=0.9) : 0.944
+		time passed: 10 seconds
+	(Ci: 2) - Train and validation (eval) RBF SVM (gamma=1e-03)  (C=1e-01 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.329
+		min DCF (π=0.1) : 0.706
+		min DCF (π=0.9) : 0.936
+		time passed: 11 seconds
+	(Ci: 2) - Train and validation (eval) RBF SVM (gamma=1e-02)  (C=1e-01 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.327
+		min DCF (π=0.1) : 0.707
+		min DCF (π=0.9) : 0.927
+		time passed: 12 seconds
+	(Ci: 2) - Train and validation (eval) RBF SVM (gamma=1e-01)  (C=1e-01 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.323
+		min DCF (π=0.1) : 0.684
+		min DCF (π=0.9) : 0.891
+		time passed: 10 seconds
+	(Ci: 2) - Train and validation (eval) RBF SVM (gamma=1e+00)  (C=1e-01 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.302
+		min DCF (π=0.1) : 0.603
+		min DCF (π=0.9) : 0.579
+		time passed: 13 seconds
+	(Ci: 2) - Train and validation (eval) RBF SVM (gamma=1e+01)  (C=1e-01 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.280
+		min DCF (π=0.1) : 0.642
+		min DCF (π=0.9) : 0.724
+		time passed: 14 seconds
+	(Ci: 2) - Train and validation (eval) RBF SVM (gamma=1e+02)  (C=1e-01 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.359
+		min DCF (π=0.1) : 0.884
+		min DCF (π=0.9) : 0.855
+		time passed: 11 seconds
+	(Ci: 2) - Train and validation (eval) RBF SVM (gamma=1e+03)  (C=1e-01 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.940
+		min DCF (π=0.1) : 0.956
+		min DCF (π=0.9) : 0.940
+		time passed: 11 seconds
+	(Ci: 3) - Train and validation (eval) RBF SVM (gamma=1e-03)  (C=1e+00 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.327
+		min DCF (π=0.1) : 0.709
+		min DCF (π=0.9) : 0.927
+		time passed: 15 seconds
+	(Ci: 3) - Train and validation (eval) RBF SVM (gamma=1e-02)  (C=1e+00 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.325
+		min DCF (π=0.1) : 0.679
+		min DCF (π=0.9) : 0.886
+		time passed: 13 seconds
+	(Ci: 3) - Train and validation (eval) RBF SVM (gamma=1e-01)  (C=1e+00 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.301
+		min DCF (π=0.1) : 0.627
+		min DCF (π=0.9) : 0.744
+		time passed: 13 seconds
+	(Ci: 3) - Train and validation (eval) RBF SVM (gamma=1e+00)  (C=1e+00 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.272
+		min DCF (π=0.1) : 0.602
+		min DCF (π=0.9) : 0.495
+		time passed: 12 seconds
+	(Ci: 3) - Train and validation (eval) RBF SVM (gamma=1e+01)  (C=1e+00 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.285
+		min DCF (π=0.1) : 0.675
+		min DCF (π=0.9) : 0.738
+		time passed: 12 seconds
+	(Ci: 3) - Train and validation (eval) RBF SVM (gamma=1e+02)  (C=1e+00 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.354
+		min DCF (π=0.1) : 0.892
+		min DCF (π=0.9) : 0.856
+		time passed: 11 seconds
+	(Ci: 3) - Train and validation (eval) RBF SVM (gamma=1e+03)  (C=1e+00 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.939
+		min DCF (π=0.1) : 0.958
+		min DCF (π=0.9) : 0.939
+		time passed: 11 seconds
+	(Ci: 4) - Train and validation (eval) RBF SVM (gamma=1e-03)  (C=1e+01 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.325
+		min DCF (π=0.1) : 0.680
+		min DCF (π=0.9) : 0.886
+		time passed: 13 seconds
+	(Ci: 4) - Train and validation (eval) RBF SVM (gamma=1e-02)  (C=1e+01 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.310
+		min DCF (π=0.1) : 0.652
+		min DCF (π=0.9) : 0.782
+		time passed: 17 seconds
+	(Ci: 4) - Train and validation (eval) RBF SVM (gamma=1e-01)  (C=1e+01 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.279
+		min DCF (π=0.1) : 0.614
+		min DCF (π=0.9) : 0.584
+		time passed: 16 seconds
+	(Ci: 4) - Train and validation (eval) RBF SVM (gamma=1e+00)  (C=1e+01 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.262
+		min DCF (π=0.1) : 0.706
+		min DCF (π=0.9) : 0.584
+		time passed: 13 seconds
+	(Ci: 4) - Train and validation (eval) RBF SVM (gamma=1e+01)  (C=1e+01 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.288
+		min DCF (π=0.1) : 0.690
+		min DCF (π=0.9) : 0.756
+		time passed: 12 seconds
+	(Ci: 4) - Train and validation (eval) RBF SVM (gamma=1e+02)  (C=1e+01 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.362
+		min DCF (π=0.1) : 0.892
+		min DCF (π=0.9) : 0.856
+		time passed: 10 seconds
+	(Ci: 4) - Train and validation (eval) RBF SVM (gamma=1e+03)  (C=1e+01 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.938
+		min DCF (π=0.1) : 0.956
+		min DCF (π=0.9) : 0.938
+		time passed: 13 seconds
+	(Ci: 5) - Train and validation (eval) RBF SVM (gamma=1e-03)  (C=1e+02 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.310
+		min DCF (π=0.1) : 0.652
+		min DCF (π=0.9) : 0.787
+		time passed: 26 seconds
+	(Ci: 5) - Train and validation (eval) RBF SVM (gamma=1e-02)  (C=1e+02 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.294
+		min DCF (π=0.1) : 0.643
+		min DCF (π=0.9) : 0.695
+		time passed: 28 seconds
+	(Ci: 5) - Train and validation (eval) RBF SVM (gamma=1e-01)  (C=1e+02 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.278
+		min DCF (π=0.1) : 0.634
+		min DCF (π=0.9) : 0.578
+		time passed: 28 seconds
+	(Ci: 5) - Train and validation (eval) RBF SVM (gamma=1e+00)  (C=1e+02 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.293
+		min DCF (π=0.1) : 0.806
+		min DCF (π=0.9) : 0.695
+		time passed: 15 seconds
+	(Ci: 5) - Train and validation (eval) RBF SVM (gamma=1e+01)  (C=1e+02 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.288
+		min DCF (π=0.1) : 0.690
+		min DCF (π=0.9) : 0.756
+		time passed: 12 seconds
+	(Ci: 5) - Train and validation (eval) RBF SVM (gamma=1e+02)  (C=1e+02 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.362
+		min DCF (π=0.1) : 0.892
+		min DCF (π=0.9) : 0.856
+		time passed: 10 seconds
+	(Ci: 5) - Train and validation (eval) RBF SVM (gamma=1e+03)  (C=1e+02 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.938
+		min DCF (π=0.1) : 0.956
+		min DCF (π=0.9) : 0.938
+		time passed: 10 seconds
+	(Ci: 6) - Train and validation (eval) RBF SVM (gamma=1e-03)  (C=1e+03 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.308
+		min DCF (π=0.1) : 0.656
+		min DCF (π=0.9) : 0.768
+		time passed: 30 seconds
+	(Ci: 6) - Train and validation (eval) RBF SVM (gamma=1e-02)  (C=1e+03 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.279
+		min DCF (π=0.1) : 0.617
+		min DCF (π=0.9) : 0.589
+		time passed: 48 seconds
+	(Ci: 6) - Train and validation (eval) RBF SVM (gamma=1e-01)  (C=1e+03 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.268
+		min DCF (π=0.1) : 0.678
+		min DCF (π=0.9) : 0.494
+		time passed: 44 seconds
+	(Ci: 6) - Train and validation (eval) RBF SVM (gamma=1e+00)  (C=1e+03 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.293
+		min DCF (π=0.1) : 0.811
+		min DCF (π=0.9) : 0.713
+		time passed: 15 seconds
+	(Ci: 6) - Train and validation (eval) RBF SVM (gamma=1e+01)  (C=1e+03 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.288
+		min DCF (π=0.1) : 0.690
+		min DCF (π=0.9) : 0.756
+		time passed: 13 seconds
+	(Ci: 6) - Train and validation (eval) RBF SVM (gamma=1e+02)  (C=1e+03 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.362
+		min DCF (π=0.1) : 0.892
+		min DCF (π=0.9) : 0.856
+		time passed: 11 seconds
+	(Ci: 6) - Train and validation (eval) RBF SVM (gamma=1e+03)  (C=1e+03 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.938
+		min DCF (π=0.1) : 0.956
+		min DCF (π=0.9) : 0.938
+		time passed: 11 seconds
+	(Ci: 7) - Train and validation (eval) RBF SVM (gamma=1e-03)  (C=1e+04 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.310
+		min DCF (π=0.1) : 0.621
+		min DCF (π=0.9) : 0.727
+		time passed: 54 seconds
+	(Ci: 7) - Train and validation (eval) RBF SVM (gamma=1e-02)  (C=1e+04 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.293
+		min DCF (π=0.1) : 0.662
+		min DCF (π=0.9) : 0.614
+		time passed: 59 seconds
+	(Ci: 7) - Train and validation (eval) RBF SVM (gamma=1e-01)  (C=1e+04 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.302
+		min DCF (π=0.1) : 0.777
+		min DCF (π=0.9) : 0.558
+		time passed: 58 seconds
+	(Ci: 7) - Train and validation (eval) RBF SVM (gamma=1e+00)  (C=1e+04 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.293
+		min DCF (π=0.1) : 0.811
+		min DCF (π=0.9) : 0.713
+		time passed: 15 seconds
+	(Ci: 7) - Train and validation (eval) RBF SVM (gamma=1e+01)  (C=1e+04 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.288
+		min DCF (π=0.1) : 0.690
+		min DCF (π=0.9) : 0.756
+		time passed: 12 seconds
+	(Ci: 7) - Train and validation (eval) RBF SVM (gamma=1e+02)  (C=1e+04 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.362
+		min DCF (π=0.1) : 0.892
+		min DCF (π=0.9) : 0.856
+		time passed: 11 seconds
+	(Ci: 7) - Train and validation (eval) RBF SVM (gamma=1e+03)  (C=1e+04 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.938
+		min DCF (π=0.1) : 0.956
+		min DCF (π=0.9) : 0.938
+		time passed: 11 seconds
+	(Ci: 8) - Train and validation (eval) RBF SVM (gamma=1e-03)  (C=1e+05 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.341
+		min DCF (π=0.1) : 0.638
+		min DCF (π=0.9) : 0.751
+		time passed: 41 seconds
+	(Ci: 8) - Train and validation (eval) RBF SVM (gamma=1e-02)  (C=1e+05 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.365
+		min DCF (π=0.1) : 0.774
+		min DCF (π=0.9) : 0.758
+		time passed: 62 seconds
+	(Ci: 8) - Train and validation (eval) RBF SVM (gamma=1e-01)  (C=1e+05 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.429
+		min DCF (π=0.1) : 0.948
+		min DCF (π=0.9) : 0.722
+		time passed: 59 seconds
+	(Ci: 8) - Train and validation (eval) RBF SVM (gamma=1e+00)  (C=1e+05 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.293
+		min DCF (π=0.1) : 0.811
+		min DCF (π=0.9) : 0.713
+		time passed: 14 seconds
+	(Ci: 8) - Train and validation (eval) RBF SVM (gamma=1e+01)  (C=1e+05 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.288
+		min DCF (π=0.1) : 0.690
+		min DCF (π=0.9) : 0.756
+		time passed: 12 seconds
+	(Ci: 8) - Train and validation (eval) RBF SVM (gamma=1e+02)  (C=1e+05 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.362
+		min DCF (π=0.1) : 0.892
+		min DCF (π=0.9) : 0.856
+		time passed: 10 seconds
+	(Ci: 8) - Train and validation (eval) RBF SVM (gamma=1e+03)  (C=1e+05 - K=1.0) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.938
+		min DCF (π=0.1) : 0.956
+		min DCF (π=0.9) : 0.938
+		time passed: 10 seconds
+Plot saved in C:\Users\rugge\Documents\development\university\machine_learning\ml_repo\wine_project\utility\..\graphs\svm\rbf\eval\eval_full_rbf_svm_graph_K-1-0_center_whitec_l2norm_target-pi1-05_.
+Plot saved in C:\Users\rugge\Documents\development\university\machine_learning\ml_repo\wine_project\utility\..\graphs\svm\rbf\eval\eval_full_rbf_svm_graph_K-1-0_center_whitec_l2norm_target-pi1-01_.
+Plot saved in C:\Users\rugge\Documents\development\university\machine_learning\ml_repo\wine_project\utility\..\graphs\svm\rbf\eval\eval_full_rbf_svm_graph_K-1-0_center_whitec_l2norm_target-pi1-09_.
+Grid search iteration ended in 1172 seconds
+Grid search iteration 4 / 4
+	(Ci: 0) - Train and validation (eval) RBF SVM (gamma=1e-03)  (C=1e-03 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.321
+		min DCF (π=0.1) : 0.695
+		min DCF (π=0.9) : 0.874
+		time passed: 11 seconds
+	(Ci: 0) - Train and validation (eval) RBF SVM (gamma=1e-02)  (C=1e-03 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.321
+		min DCF (π=0.1) : 0.698
+		min DCF (π=0.9) : 0.875
+		time passed: 11 seconds
+	(Ci: 0) - Train and validation (eval) RBF SVM (gamma=1e-01)  (C=1e-03 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.319
+		min DCF (π=0.1) : 0.692
+		min DCF (π=0.9) : 0.870
+		time passed: 11 seconds
+	(Ci: 0) - Train and validation (eval) RBF SVM (gamma=1e+00)  (C=1e-03 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.307
+		min DCF (π=0.1) : 0.666
+		min DCF (π=0.9) : 0.775
+		time passed: 12 seconds
+	(Ci: 0) - Train and validation (eval) RBF SVM (gamma=1e+01)  (C=1e-03 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.286
+		min DCF (π=0.1) : 0.616
+		min DCF (π=0.9) : 0.711
+		time passed: 10 seconds
+	(Ci: 0) - Train and validation (eval) RBF SVM (gamma=1e+02)  (C=1e-03 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.352
+		min DCF (π=0.1) : 0.829
+		min DCF (π=0.9) : 0.863
+		time passed: 12 seconds
+	(Ci: 0) - Train and validation (eval) RBF SVM (gamma=1e+03)  (C=1e-03 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.942
+		min DCF (π=0.1) : 0.956
+		min DCF (π=0.9) : 0.942
+		time passed: 11 seconds
+	(Ci: 1) - Train and validation (eval) RBF SVM (gamma=1e-03)  (C=1e-02 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.328
+		min DCF (π=0.1) : 0.711
+		min DCF (π=0.9) : 0.915
+		time passed: 11 seconds
+	(Ci: 1) - Train and validation (eval) RBF SVM (gamma=1e-02)  (C=1e-02 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.324
+		min DCF (π=0.1) : 0.707
+		min DCF (π=0.9) : 0.899
+		time passed: 10 seconds
+	(Ci: 1) - Train and validation (eval) RBF SVM (gamma=1e-01)  (C=1e-02 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.325
+		min DCF (π=0.1) : 0.697
+		min DCF (π=0.9) : 0.896
+		time passed: 10 seconds
+	(Ci: 1) - Train and validation (eval) RBF SVM (gamma=1e+00)  (C=1e-02 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.313
+		min DCF (π=0.1) : 0.669
+		min DCF (π=0.9) : 0.763
+		time passed: 10 seconds
+	(Ci: 1) - Train and validation (eval) RBF SVM (gamma=1e+01)  (C=1e-02 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.274
+		min DCF (π=0.1) : 0.619
+		min DCF (π=0.9) : 0.668
+		time passed: 11 seconds
+	(Ci: 1) - Train and validation (eval) RBF SVM (gamma=1e+02)  (C=1e-02 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.349
+		min DCF (π=0.1) : 0.829
+		min DCF (π=0.9) : 0.856
+		time passed: 10 seconds
+	(Ci: 1) - Train and validation (eval) RBF SVM (gamma=1e+03)  (C=1e-02 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.942
+		min DCF (π=0.1) : 0.956
+		min DCF (π=0.9) : 0.942
+		time passed: 10 seconds
+	(Ci: 2) - Train and validation (eval) RBF SVM (gamma=1e-03)  (C=1e-01 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.321
+		min DCF (π=0.1) : 0.702
+		min DCF (π=0.9) : 0.895
+		time passed: 12 seconds
+	(Ci: 2) - Train and validation (eval) RBF SVM (gamma=1e-02)  (C=1e-01 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.321
+		min DCF (π=0.1) : 0.702
+		min DCF (π=0.9) : 0.895
+		time passed: 11 seconds
+	(Ci: 2) - Train and validation (eval) RBF SVM (gamma=1e-01)  (C=1e-01 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.321
+		min DCF (π=0.1) : 0.679
+		min DCF (π=0.9) : 0.851
+		time passed: 12 seconds
+	(Ci: 2) - Train and validation (eval) RBF SVM (gamma=1e+00)  (C=1e-01 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.300
+		min DCF (π=0.1) : 0.613
+		min DCF (π=0.9) : 0.547
+		time passed: 12 seconds
+	(Ci: 2) - Train and validation (eval) RBF SVM (gamma=1e+01)  (C=1e-01 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.273
+		min DCF (π=0.1) : 0.613
+		min DCF (π=0.9) : 0.679
+		time passed: 14 seconds
+	(Ci: 2) - Train and validation (eval) RBF SVM (gamma=1e+02)  (C=1e-01 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.347
+		min DCF (π=0.1) : 0.829
+		min DCF (π=0.9) : 0.856
+		time passed: 13 seconds
+	(Ci: 2) - Train and validation (eval) RBF SVM (gamma=1e+03)  (C=1e-01 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.939
+		min DCF (π=0.1) : 0.956
+		min DCF (π=0.9) : 0.939
+		time passed: 12 seconds
+	(Ci: 3) - Train and validation (eval) RBF SVM (gamma=1e-03)  (C=1e+00 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.323
+		min DCF (π=0.1) : 0.701
+		min DCF (π=0.9) : 0.881
+		time passed: 13 seconds
+	(Ci: 3) - Train and validation (eval) RBF SVM (gamma=1e-02)  (C=1e+00 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.321
+		min DCF (π=0.1) : 0.677
+		min DCF (π=0.9) : 0.843
+		time passed: 14 seconds
+	(Ci: 3) - Train and validation (eval) RBF SVM (gamma=1e-01)  (C=1e+00 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.297
+		min DCF (π=0.1) : 0.638
+		min DCF (π=0.9) : 0.701
+		time passed: 15 seconds
+	(Ci: 3) - Train and validation (eval) RBF SVM (gamma=1e+00)  (C=1e+00 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.271
+		min DCF (π=0.1) : 0.613
+		min DCF (π=0.9) : 0.504
+		time passed: 15 seconds
+	(Ci: 3) - Train and validation (eval) RBF SVM (gamma=1e+01)  (C=1e+00 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.276
+		min DCF (π=0.1) : 0.642
+		min DCF (π=0.9) : 0.718
+		time passed: 14 seconds
+	(Ci: 3) - Train and validation (eval) RBF SVM (gamma=1e+02)  (C=1e+00 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.337
+		min DCF (π=0.1) : 0.834
+		min DCF (π=0.9) : 0.857
+		time passed: 10 seconds
+	(Ci: 3) - Train and validation (eval) RBF SVM (gamma=1e+03)  (C=1e+00 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.939
+		min DCF (π=0.1) : 0.956
+		min DCF (π=0.9) : 0.939
+		time passed: 13 seconds
+	(Ci: 4) - Train and validation (eval) RBF SVM (gamma=1e-03)  (C=1e+01 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.322
+		min DCF (π=0.1) : 0.677
+		min DCF (π=0.9) : 0.842
+		time passed: 15 seconds
+	(Ci: 4) - Train and validation (eval) RBF SVM (gamma=1e-02)  (C=1e+01 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.308
+		min DCF (π=0.1) : 0.650
+		min DCF (π=0.9) : 0.768
+		time passed: 18 seconds
+	(Ci: 4) - Train and validation (eval) RBF SVM (gamma=1e-01)  (C=1e+01 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.276
+		min DCF (π=0.1) : 0.597
+		min DCF (π=0.9) : 0.595
+		time passed: 18 seconds
+	(Ci: 4) - Train and validation (eval) RBF SVM (gamma=1e+00)  (C=1e+01 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.260
+		min DCF (π=0.1) : 0.708
+		min DCF (π=0.9) : 0.604
+		time passed: 13 seconds
+	(Ci: 4) - Train and validation (eval) RBF SVM (gamma=1e+01)  (C=1e+01 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.278
+		min DCF (π=0.1) : 0.651
+		min DCF (π=0.9) : 0.739
+		time passed: 12 seconds
+	(Ci: 4) - Train and validation (eval) RBF SVM (gamma=1e+02)  (C=1e+01 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.337
+		min DCF (π=0.1) : 0.838
+		min DCF (π=0.9) : 0.857
+		time passed: 11 seconds
+	(Ci: 4) - Train and validation (eval) RBF SVM (gamma=1e+03)  (C=1e+01 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.939
+		min DCF (π=0.1) : 0.955
+		min DCF (π=0.9) : 0.939
+		time passed: 11 seconds
+	(Ci: 5) - Train and validation (eval) RBF SVM (gamma=1e-03)  (C=1e+02 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.309
+		min DCF (π=0.1) : 0.644
+		min DCF (π=0.9) : 0.778
+		time passed: 24 seconds
+	(Ci: 5) - Train and validation (eval) RBF SVM (gamma=1e-02)  (C=1e+02 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.293
+		min DCF (π=0.1) : 0.639
+		min DCF (π=0.9) : 0.683
+		time passed: 27 seconds
+	(Ci: 5) - Train and validation (eval) RBF SVM (gamma=1e-01)  (C=1e+02 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.278
+		min DCF (π=0.1) : 0.627
+		min DCF (π=0.9) : 0.577
+		time passed: 30 seconds
+	(Ci: 5) - Train and validation (eval) RBF SVM (gamma=1e+00)  (C=1e+02 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.300
+		min DCF (π=0.1) : 0.831
+		min DCF (π=0.9) : 0.687
+		time passed: 14 seconds
+	(Ci: 5) - Train and validation (eval) RBF SVM (gamma=1e+01)  (C=1e+02 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.278
+		min DCF (π=0.1) : 0.651
+		min DCF (π=0.9) : 0.739
+		time passed: 12 seconds
+	(Ci: 5) - Train and validation (eval) RBF SVM (gamma=1e+02)  (C=1e+02 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.337
+		min DCF (π=0.1) : 0.838
+		min DCF (π=0.9) : 0.857
+		time passed: 10 seconds
+	(Ci: 5) - Train and validation (eval) RBF SVM (gamma=1e+03)  (C=1e+02 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.939
+		min DCF (π=0.1) : 0.955
+		min DCF (π=0.9) : 0.939
+		time passed: 11 seconds
+	(Ci: 6) - Train and validation (eval) RBF SVM (gamma=1e-03)  (C=1e+03 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.309
+		min DCF (π=0.1) : 0.650
+		min DCF (π=0.9) : 0.803
+		time passed: 28 seconds
+	(Ci: 6) - Train and validation (eval) RBF SVM (gamma=1e-02)  (C=1e+03 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.272
+		min DCF (π=0.1) : 0.618
+		min DCF (π=0.9) : 0.609
+		time passed: 26 seconds
+	(Ci: 6) - Train and validation (eval) RBF SVM (gamma=1e-01)  (C=1e+03 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.262
+		min DCF (π=0.1) : 0.668
+		min DCF (π=0.9) : 0.554
+		time passed: 34 seconds
+	(Ci: 6) - Train and validation (eval) RBF SVM (gamma=1e+00)  (C=1e+03 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.305
+		min DCF (π=0.1) : 0.832
+		min DCF (π=0.9) : 0.695
+		time passed: 12 seconds
+	(Ci: 6) - Train and validation (eval) RBF SVM (gamma=1e+01)  (C=1e+03 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.278
+		min DCF (π=0.1) : 0.651
+		min DCF (π=0.9) : 0.739
+		time passed: 10 seconds
+	(Ci: 6) - Train and validation (eval) RBF SVM (gamma=1e+02)  (C=1e+03 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.337
+		min DCF (π=0.1) : 0.838
+		min DCF (π=0.9) : 0.857
+		time passed: 9 seconds
+	(Ci: 6) - Train and validation (eval) RBF SVM (gamma=1e+03)  (C=1e+03 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.939
+		min DCF (π=0.1) : 0.955
+		min DCF (π=0.9) : 0.939
+		time passed: 9 seconds
+	(Ci: 7) - Train and validation (eval) RBF SVM (gamma=1e-03)  (C=1e+04 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.300
+		min DCF (π=0.1) : 0.641
+		min DCF (π=0.9) : 0.692
+		time passed: 45 seconds
+	(Ci: 7) - Train and validation (eval) RBF SVM (gamma=1e-02)  (C=1e+04 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.278
+		min DCF (π=0.1) : 0.625
+		min DCF (π=0.9) : 0.669
+		time passed: 45 seconds
+	(Ci: 7) - Train and validation (eval) RBF SVM (gamma=1e-01)  (C=1e+04 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.281
+		min DCF (π=0.1) : 0.782
+		min DCF (π=0.9) : 0.564
+		time passed: 45 seconds
+	(Ci: 7) - Train and validation (eval) RBF SVM (gamma=1e+00)  (C=1e+04 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.305
+		min DCF (π=0.1) : 0.832
+		min DCF (π=0.9) : 0.695
+		time passed: 12 seconds
+	(Ci: 7) - Train and validation (eval) RBF SVM (gamma=1e+01)  (C=1e+04 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.278
+		min DCF (π=0.1) : 0.651
+		min DCF (π=0.9) : 0.739
+		time passed: 10 seconds
+	(Ci: 7) - Train and validation (eval) RBF SVM (gamma=1e+02)  (C=1e+04 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.337
+		min DCF (π=0.1) : 0.838
+		min DCF (π=0.9) : 0.857
+		time passed: 9 seconds
+	(Ci: 7) - Train and validation (eval) RBF SVM (gamma=1e+03)  (C=1e+04 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.939
+		min DCF (π=0.1) : 0.955
+		min DCF (π=0.9) : 0.939
+		time passed: 9 seconds
+	(Ci: 8) - Train and validation (eval) RBF SVM (gamma=1e-03)  (C=1e+05 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.336
+		min DCF (π=0.1) : 0.686
+		min DCF (π=0.9) : 0.729
+		time passed: 31 seconds
+	(Ci: 8) - Train and validation (eval) RBF SVM (gamma=1e-02)  (C=1e+05 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.807
+		min DCF (π=0.1) : 0.994
+		min DCF (π=0.9) : 0.963
+		time passed: 46 seconds
+	(Ci: 8) - Train and validation (eval) RBF SVM (gamma=1e-01)  (C=1e+05 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.400
+		min DCF (π=0.1) : 0.942
+		min DCF (π=0.9) : 0.788
+		time passed: 46 seconds
+	(Ci: 8) - Train and validation (eval) RBF SVM (gamma=1e+00)  (C=1e+05 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.305
+		min DCF (π=0.1) : 0.832
+		min DCF (π=0.9) : 0.695
+		time passed: 12 seconds
+	(Ci: 8) - Train and validation (eval) RBF SVM (gamma=1e+01)  (C=1e+05 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.278
+		min DCF (π=0.1) : 0.651
+		min DCF (π=0.9) : 0.739
+		time passed: 10 seconds
+	(Ci: 8) - Train and validation (eval) RBF SVM (gamma=1e+02)  (C=1e+05 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.337
+		min DCF (π=0.1) : 0.838
+		min DCF (π=0.9) : 0.857
+		time passed: 9 seconds
+	(Ci: 8) - Train and validation (eval) RBF SVM (gamma=1e+03)  (C=1e+05 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.939
+		min DCF (π=0.1) : 0.955
+		min DCF (π=0.9) : 0.939
+		time passed: 9 seconds
+Plot saved in C:\Users\rugge\Documents\development\university\machine_learning\ml_repo\wine_project\utility\..\graphs\svm\rbf\eval\eval_full_rbf_svm_graph_K-1-0_center_whitewc_l2norm_target-pi1-05_.
+Plot saved in C:\Users\rugge\Documents\development\university\machine_learning\ml_repo\wine_project\utility\..\graphs\svm\rbf\eval\eval_full_rbf_svm_graph_K-1-0_center_whitewc_l2norm_target-pi1-01_.
+Plot saved in C:\Users\rugge\Documents\development\university\machine_learning\ml_repo\wine_project\utility\..\graphs\svm\rbf\eval\eval_full_rbf_svm_graph_K-1-0_center_whitewc_l2norm_target-pi1-09_.
+Grid search iteration ended in 1055 seconds
+Grid search on RBF SVM without class balancing ended in 4473 seconds

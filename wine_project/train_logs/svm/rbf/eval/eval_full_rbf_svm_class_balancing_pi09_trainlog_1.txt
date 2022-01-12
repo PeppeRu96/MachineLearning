@@ -1,0 +1,18 @@
+Training on the full train dataset and evaluating on the eval dataset for RBF SVM class-balancing with a prior (best model for the third target application)
+Trying the best hyperparameters but class-balancing w.r.t target applications..
+RBF SVM training on the train dataset and evaluating on the eval dataset with class-balancing for the target application with π=0.5 (gamma=1e+01) (C=1e+00 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.275
+		min DCF (π=0.1) : 0.629
+		min DCF (π=0.9) : 0.693
+Target application (π=0.5) specific training cross-validation ended in 10 seconds
+RBF SVM training on the train dataset and evaluating on the eval dataset with class-balancing for the target application with π=0.1 (gamma=1e+01) (C=1e+00 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.280
+		min DCF (π=0.1) : 0.624
+		min DCF (π=0.9) : 0.685
+Target application (π=0.1) specific training cross-validation ended in 10 seconds
+RBF SVM training on the train dataset and evaluating on the eval dataset with class-balancing for the target application with π=0.9 (gamma=1e+01) (C=1e+00 - K=1.0) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		min DCF (π=0.5) : 0.278
+		min DCF (π=0.1) : 0.647
+		min DCF (π=0.9) : 0.654
+Target application (π=0.9) specific training cross-validation ended in 10 seconds
+Operation finished
