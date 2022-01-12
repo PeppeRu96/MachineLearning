@@ -26,9 +26,9 @@ def get_args():
     parser = argparse.ArgumentParser(description="Script to launch dataset preprocessing",
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
-    parser.add_argument("--hist_raw", type=bool, default=False, help="Visualize and save a histogram for the raw features")
-    parser.add_argument("--hist_gau", type=bool, default=False, help="Visualize and save a histogram for the Gaussianized features")
-    parser.add_argument("--show_correlations", type=bool, default=False, help="Visualize and save correlation matrices")
+    parser.add_argument("--hist_raw", default=False, action="store_true", help="Visualize and save a histogram for the raw features")
+    parser.add_argument("--hist_gau", default=False, action="store_true", help="Visualize and save a histogram for the Gaussianized features")
+    parser.add_argument("--show_correlations", default=False, action="store_true", help="Visualize and save correlation matrices")
 
     return parser.parse_args()
 

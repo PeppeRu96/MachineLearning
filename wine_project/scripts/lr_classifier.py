@@ -44,30 +44,30 @@ def get_args():
     parser = argparse.ArgumentParser(description="Script to launch Logistic Regression classificator building",
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
-    parser.add_argument("--linear", type=bool, default=False,
+    parser.add_argument("--linear", default=False, action="store_true",
                         help="Start cross-validation for the linear regularized logistic regression model")
-    parser.add_argument("--quadratic", type=bool, default=False,
+    parser.add_argument("--quadratic", default=False, action="store_true",
                         help="Start cross-validation for the quadratic regularized logistic regression model")
-    parser.add_argument("--linear_app_specific", type=bool, default=False,
+    parser.add_argument("--linear_app_specific", default=False, action="store_true",
                         help="Start cross-validation for the linear regularized logistic regression model trained for the specific target applications")
-    parser.add_argument("--quadratic_app_specific", type=bool, default=False,
+    parser.add_argument("--quadratic_app_specific", default=False, action="store_true",
                         help="Start cross-validation for the quadratic regularized logistic regression model trained for the specific target applications")
 
-    parser.add_argument("--eval_partial_linear", type=bool, default=False,
+    parser.add_argument("--eval_partial_linear", default=False, action="store_true",
                         help="Start evaluation gridsearch using partial training dataset for the linear regularized logistic regression model")
-    parser.add_argument("--eval_partial_quadratic", type=bool, default=False,
+    parser.add_argument("--eval_partial_quadratic", default=False, action="store_true",
                         help="Start evaluation gridsearch using partial training dataset for the quadratic regularized logistic regression model")
-    parser.add_argument("--eval_full_linear", type=bool, default=False,
+    parser.add_argument("--eval_full_linear", default=False, action="store_true",
                         help="Start evaluation gridsearch using full training dataset for the linear regularized logistic regression model")
-    parser.add_argument("--eval_full_quadratic", type=bool, default=False,
+    parser.add_argument("--eval_full_quadratic", default=False, action="store_true",
                         help="Start evaluation gridsearch using full training dataset for the quadratic regularized logistic regression model")
-    parser.add_argument("--eval_partial_linear_app_specific", type=bool, default=False,
+    parser.add_argument("--eval_partial_linear_app_specific", default=False, action="store_true",
                         help="Start evaluation using partial training dataset for the linear regularized logistic regression model trained for the specific target applications")
-    parser.add_argument("--eval_partial_quadratic_app_specific", type=bool, default=False,
+    parser.add_argument("--eval_partial_quadratic_app_specific", default=False, action="store_true",
                         help="Start evaluation using partial training dataset for the quadratic regularized logistic regression model trained for the specific target applications")
-    parser.add_argument("--eval_full_linear_app_specific", type=bool, default=False,
+    parser.add_argument("--eval_full_linear_app_specific", default=False, action="store_true",
                         help="Start evaluation using full training dataset for the linear regularized logistic regression model trained for the specific target applications")
-    parser.add_argument("--eval_full_quadratic_app_specific", type=bool, default=False,
+    parser.add_argument("--eval_full_quadratic_app_specific", default=False, action="store_true",
                         help="Start evaluation using full training dataset for the quadratic regularized logistic regression model trained for the specific target applications")
 
     return parser.parse_args()

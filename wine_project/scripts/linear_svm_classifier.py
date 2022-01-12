@@ -40,19 +40,19 @@ def get_args():
     parser = argparse.ArgumentParser(description="Script to launch Logistic Regression classificator building",
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
-    parser.add_argument("--gridsearch", type=bool, default=False,
+    parser.add_argument("--gridsearch", default=False, action="store_true",
                         help="Start a cross-validation grid search to select the best preprocess configuration and the best C")
-    parser.add_argument("--class_balancing", type=bool, default=False,
+    parser.add_argument("--class_balancing", default=False, action="store_true",
                         help="Start a cross-validation for a linear svm model rebalancing the classes to embed a specific prior")
 
-    parser.add_argument("--eval_partial_gridsearch", type=bool, default=False,
+    parser.add_argument("--eval_partial_gridsearch", default=False, action="store_true",
                         help="Start a gridsearch, training on partial training dataset and validating on the evaluation dataset to select the best preprocess configuration and the best C")
-    parser.add_argument("--eval_partial_class_balancing", type=bool, default=False,
+    parser.add_argument("--eval_partial_class_balancing", default=False, action="store_true",
                         help="Start a training on partial training dataset and validating on the evaluation dataset for a linear svm model rebalancing the classes to embed a specific prior")
 
-    parser.add_argument("--eval_full_gridsearch", type=bool, default=False,
+    parser.add_argument("--eval_full_gridsearch", default=False, action="store_true",
                         help="Start a gridsearch, training on the full training dataset and validating on the evaluation dataset to select the best preprocess configuration and the best C")
-    parser.add_argument("--eval_full_class_balancing", type=bool, default=False,
+    parser.add_argument("--eval_full_class_balancing", default=False, action="store_true",
                         help="Start a training on the full training dataset and validating on the evaluation dataset for a linear svm model rebalancing the classes to embed a specific prior")
 
     return parser.parse_args()

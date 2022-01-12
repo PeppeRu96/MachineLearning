@@ -5,7 +5,7 @@ def get_args():
     parser = argparse.ArgumentParser(description="Script to launch dataset preprocessing",
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
-    parser.add_argument("--load", type=bool, default=True, help="Load already splitted dataset")
+    parser.add_argument("--load", default=True, action="store_true", help="Load already splitted dataset")
 
     return parser.parse_args()
 

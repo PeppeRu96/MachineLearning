@@ -22,11 +22,11 @@ def get_args():
     parser = argparse.ArgumentParser(description="Script to launch Logistic Regression classificator building",
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
-    parser.add_argument("--gridsearch", type=bool, default=False,
+    parser.add_argument("--gridsearch", default=False, action="store_true",
                         help="Start gridsearch cross-validation on the training dataset for the mvg models")
-    parser.add_argument("--eval_partial_gridsearch", type=bool, default=False,
+    parser.add_argument("--eval_partial_gridsearch", default=False, action="store_true",
                         help="Start gridsearch on the evaluation dataset for the mvg models using 4/5 of the training dataset")
-    parser.add_argument("--eval_full_gridsearch", type=bool, default=False,
+    parser.add_argument("--eval_full_gridsearch", default=False, action="store_true",
                         help="Start gridsearch on the evaluation dataset for the mvg models using the full training dataset")
 
     return parser.parse_args()

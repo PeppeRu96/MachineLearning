@@ -1,0 +1,640 @@
+Grid search training on the full train dataset and evaluating on eval dataset for GMM
+Grid search on GMM started.
+Total grid search iterations required  16
+Grid search iteration 1 / 16
+	Training on train dataset and evaluating on eval dataset   GMM (components from 1 to 256) - Preprocessing: [  ]
+		GMM with 1 components min DCF (π=0.5) : 0.341
+		GMM with 1 components min DCF (π=0.1) : 0.710
+		GMM with 1 components min DCF (π=0.9) : 0.720
+
+		GMM with 2 components min DCF (π=0.5) : 0.321
+		GMM with 2 components min DCF (π=0.1) : 0.689
+		GMM with 2 components min DCF (π=0.9) : 0.753
+
+		GMM with 4 components min DCF (π=0.5) : 0.295
+		GMM with 4 components min DCF (π=0.1) : 0.740
+		GMM with 4 components min DCF (π=0.9) : 0.701
+
+		GMM with 8 components min DCF (π=0.5) : 0.281
+		GMM with 8 components min DCF (π=0.1) : 0.695
+		GMM with 8 components min DCF (π=0.9) : 0.662
+
+		GMM with 16 components min DCF (π=0.5) : 0.314
+		GMM with 16 components min DCF (π=0.1) : 0.798
+		GMM with 16 components min DCF (π=0.9) : 0.817
+
+		GMM with 32 components min DCF (π=0.5) : 0.394
+		GMM with 32 components min DCF (π=0.1) : 0.857
+		GMM with 32 components min DCF (π=0.9) : 0.968
+
+		GMM with 64 components min DCF (π=0.5) : 0.452
+		GMM with 64 components min DCF (π=0.1) : 0.892
+		GMM with 64 components min DCF (π=0.9) : 0.984
+
+		GMM with 128 components min DCF (π=0.5) : 0.473
+		GMM with 128 components min DCF (π=0.1) : 0.859
+		GMM with 128 components min DCF (π=0.9) : 0.992
+
+		GMM with 256 components min DCF (π=0.5) : 0.531
+		GMM with 256 components min DCF (π=0.1) : 0.911
+		GMM with 256 components min DCF (π=0.9) : 0.998
+
+Grid search iteration ended in 301 seconds
+Grid search iteration 2 / 16
+	Training on train dataset and evaluating on eval dataset  Tied GMM (components from 1 to 256) - Preprocessing: [  ]
+		GMM with 1 components min DCF (π=0.5) : 0.341
+		GMM with 1 components min DCF (π=0.1) : 0.710
+		GMM with 1 components min DCF (π=0.9) : 0.720
+
+		GMM with 2 components min DCF (π=0.5) : 0.341
+		GMM with 2 components min DCF (π=0.1) : 0.710
+		GMM with 2 components min DCF (π=0.9) : 0.720
+
+		GMM with 4 components min DCF (π=0.5) : 0.345
+		GMM with 4 components min DCF (π=0.1) : 0.789
+		GMM with 4 components min DCF (π=0.9) : 0.672
+
+		GMM with 8 components min DCF (π=0.5) : 0.326
+		GMM with 8 components min DCF (π=0.1) : 0.675
+		GMM with 8 components min DCF (π=0.9) : 0.613
+
+		GMM with 16 components min DCF (π=0.5) : 0.297
+		GMM with 16 components min DCF (π=0.1) : 0.753
+		GMM with 16 components min DCF (π=0.9) : 0.613
+
+		GMM with 32 components min DCF (π=0.5) : 0.288
+		GMM with 32 components min DCF (π=0.1) : 0.767
+		GMM with 32 components min DCF (π=0.9) : 0.673
+
+		GMM with 64 components min DCF (π=0.5) : 0.323
+		GMM with 64 components min DCF (π=0.1) : 0.810
+		GMM with 64 components min DCF (π=0.9) : 0.762
+
+		GMM with 128 components min DCF (π=0.5) : 0.329
+		GMM with 128 components min DCF (π=0.1) : 0.769
+		GMM with 128 components min DCF (π=0.9) : 0.774
+
+		GMM with 256 components min DCF (π=0.5) : 0.355
+		GMM with 256 components min DCF (π=0.1) : 0.861
+		GMM with 256 components min DCF (π=0.9) : 0.871
+
+Grid search iteration ended in 683 seconds
+Grid search iteration 3 / 16
+	Training on train dataset and evaluating on eval dataset Diagonal  GMM (components from 1 to 256) - Preprocessing: [  ]
+		GMM with 1 components min DCF (π=0.5) : 0.367
+		GMM with 1 components min DCF (π=0.1) : 0.752
+		GMM with 1 components min DCF (π=0.9) : 0.901
+
+		GMM with 2 components min DCF (π=0.5) : 0.370
+		GMM with 2 components min DCF (π=0.1) : 0.767
+		GMM with 2 components min DCF (π=0.9) : 0.919
+
+		GMM with 4 components min DCF (π=0.5) : 0.345
+		GMM with 4 components min DCF (π=0.1) : 0.873
+		GMM with 4 components min DCF (π=0.9) : 0.744
+
+		GMM with 8 components min DCF (π=0.5) : 0.339
+		GMM with 8 components min DCF (π=0.1) : 0.825
+		GMM with 8 components min DCF (π=0.9) : 0.720
+
+		GMM with 16 components min DCF (π=0.5) : 0.319
+		GMM with 16 components min DCF (π=0.1) : 0.753
+		GMM with 16 components min DCF (π=0.9) : 0.745
+
+		GMM with 32 components min DCF (π=0.5) : 0.323
+		GMM with 32 components min DCF (π=0.1) : 0.790
+		GMM with 32 components min DCF (π=0.9) : 0.762
+
+		GMM with 64 components min DCF (π=0.5) : 0.379
+		GMM with 64 components min DCF (π=0.1) : 0.821
+		GMM with 64 components min DCF (π=0.9) : 0.935
+
+		GMM with 128 components min DCF (π=0.5) : 0.417
+		GMM with 128 components min DCF (π=0.1) : 0.847
+		GMM with 128 components min DCF (π=0.9) : 0.997
+
+		GMM with 256 components min DCF (π=0.5) : 0.461
+		GMM with 256 components min DCF (π=0.1) : 0.846
+		GMM with 256 components min DCF (π=0.9) : 0.970
+
+Grid search iteration ended in 475 seconds
+Grid search iteration 4 / 16
+	Training on train dataset and evaluating on eval dataset Diagonal Tied GMM (components from 1 to 256) - Preprocessing: [  ]
+		GMM with 1 components min DCF (π=0.5) : 0.367
+		GMM with 1 components min DCF (π=0.1) : 0.752
+		GMM with 1 components min DCF (π=0.9) : 0.901
+
+		GMM with 2 components min DCF (π=0.5) : 0.388
+		GMM with 2 components min DCF (π=0.1) : 0.821
+		GMM with 2 components min DCF (π=0.9) : 0.935
+
+		GMM with 4 components min DCF (π=0.5) : 0.357
+		GMM with 4 components min DCF (π=0.1) : 0.851
+		GMM with 4 components min DCF (π=0.9) : 0.835
+
+		GMM with 8 components min DCF (π=0.5) : 0.332
+		GMM with 8 components min DCF (π=0.1) : 0.774
+		GMM with 8 components min DCF (π=0.9) : 0.622
+
+		GMM with 16 components min DCF (π=0.5) : 0.329
+		GMM with 16 components min DCF (π=0.1) : 0.740
+		GMM with 16 components min DCF (π=0.9) : 0.586
+
+		GMM with 32 components min DCF (π=0.5) : 0.342
+		GMM with 32 components min DCF (π=0.1) : 0.796
+		GMM with 32 components min DCF (π=0.9) : 0.571
+
+		GMM with 64 components min DCF (π=0.5) : 0.334
+		GMM with 64 components min DCF (π=0.1) : 0.856
+		GMM with 64 components min DCF (π=0.9) : 0.710
+
+		GMM with 128 components min DCF (π=0.5) : 0.364
+		GMM with 128 components min DCF (π=0.1) : 0.864
+		GMM with 128 components min DCF (π=0.9) : 0.746
+
+		GMM with 256 components min DCF (π=0.5) : 0.384
+		GMM with 256 components min DCF (π=0.1) : 0.861
+		GMM with 256 components min DCF (π=0.9) : 0.821
+
+Grid search iteration ended in 519 seconds
+Grid search iteration 5 / 16
+	Training on train dataset and evaluating on eval dataset   GMM (components from 1 to 256) - Preprocessing: [ Gaussianization ]
+		GMM with 1 components min DCF (π=0.5) : 0.334
+		GMM with 1 components min DCF (π=0.1) : 0.675
+		GMM with 1 components min DCF (π=0.9) : 0.724
+
+		GMM with 2 components min DCF (π=0.5) : 0.310
+		GMM with 2 components min DCF (π=0.1) : 0.729
+		GMM with 2 components min DCF (π=0.9) : 0.608
+
+		GMM with 4 components min DCF (π=0.5) : 0.316
+		GMM with 4 components min DCF (π=0.1) : 0.664
+		GMM with 4 components min DCF (π=0.9) : 0.768
+
+		GMM with 8 components min DCF (π=0.5) : 0.326
+		GMM with 8 components min DCF (π=0.1) : 0.713
+		GMM with 8 components min DCF (π=0.9) : 0.793
+
+		GMM with 16 components min DCF (π=0.5) : 0.387
+		GMM with 16 components min DCF (π=0.1) : 0.783
+		GMM with 16 components min DCF (π=0.9) : 0.838
+
+		GMM with 32 components min DCF (π=0.5) : 0.383
+		GMM with 32 components min DCF (π=0.1) : 0.807
+		GMM with 32 components min DCF (π=0.9) : 0.852
+
+		GMM with 64 components min DCF (π=0.5) : 0.402
+		GMM with 64 components min DCF (π=0.1) : 0.820
+		GMM with 64 components min DCF (π=0.9) : 0.863
+
+		GMM with 128 components min DCF (π=0.5) : 0.404
+		GMM with 128 components min DCF (π=0.1) : 0.784
+		GMM with 128 components min DCF (π=0.9) : 0.914
+
+		GMM with 256 components min DCF (π=0.5) : 0.367
+		GMM with 256 components min DCF (π=0.1) : 0.866
+		GMM with 256 components min DCF (π=0.9) : 0.784
+
+Grid search iteration ended in 252 seconds
+Grid search iteration 6 / 16
+	Training on train dataset and evaluating on eval dataset  Tied GMM (components from 1 to 256) - Preprocessing: [ Gaussianization ]
+		GMM with 1 components min DCF (π=0.5) : 0.334
+		GMM with 1 components min DCF (π=0.1) : 0.675
+		GMM with 1 components min DCF (π=0.9) : 0.724
+
+		GMM with 2 components min DCF (π=0.5) : 0.334
+		GMM with 2 components min DCF (π=0.1) : 0.675
+		GMM with 2 components min DCF (π=0.9) : 0.724
+
+		GMM with 4 components min DCF (π=0.5) : 0.287
+		GMM with 4 components min DCF (π=0.1) : 0.682
+		GMM with 4 components min DCF (π=0.9) : 0.676
+
+		GMM with 8 components min DCF (π=0.5) : 0.282
+		GMM with 8 components min DCF (π=0.1) : 0.710
+		GMM with 8 components min DCF (π=0.9) : 0.615
+
+		GMM with 16 components min DCF (π=0.5) : 0.286
+		GMM with 16 components min DCF (π=0.1) : 0.744
+		GMM with 16 components min DCF (π=0.9) : 0.637
+
+		GMM with 32 components min DCF (π=0.5) : 0.294
+		GMM with 32 components min DCF (π=0.1) : 0.739
+		GMM with 32 components min DCF (π=0.9) : 0.659
+
+		GMM with 64 components min DCF (π=0.5) : 0.296
+		GMM with 64 components min DCF (π=0.1) : 0.746
+		GMM with 64 components min DCF (π=0.9) : 0.735
+
+		GMM with 128 components min DCF (π=0.5) : 0.332
+		GMM with 128 components min DCF (π=0.1) : 0.814
+		GMM with 128 components min DCF (π=0.9) : 0.723
+
+		GMM with 256 components min DCF (π=0.5) : 0.357
+		GMM with 256 components min DCF (π=0.1) : 0.809
+		GMM with 256 components min DCF (π=0.9) : 0.722
+
+Grid search iteration ended in 543 seconds
+Grid search iteration 7 / 16
+	Training on train dataset and evaluating on eval dataset Diagonal  GMM (components from 1 to 256) - Preprocessing: [ Gaussianization ]
+		GMM with 1 components min DCF (π=0.5) : 0.377
+		GMM with 1 components min DCF (π=0.1) : 0.760
+		GMM with 1 components min DCF (π=0.9) : 0.913
+
+		GMM with 2 components min DCF (π=0.5) : 0.332
+		GMM with 2 components min DCF (π=0.1) : 0.714
+		GMM with 2 components min DCF (π=0.9) : 0.915
+
+		GMM with 4 components min DCF (π=0.5) : 0.290
+		GMM with 4 components min DCF (π=0.1) : 0.724
+		GMM with 4 components min DCF (π=0.9) : 0.660
+
+		GMM with 8 components min DCF (π=0.5) : 0.323
+		GMM with 8 components min DCF (π=0.1) : 0.714
+		GMM with 8 components min DCF (π=0.9) : 0.763
+
+		GMM with 16 components min DCF (π=0.5) : 0.310
+		GMM with 16 components min DCF (π=0.1) : 0.733
+		GMM with 16 components min DCF (π=0.9) : 0.755
+
+		GMM with 32 components min DCF (π=0.5) : 0.352
+		GMM with 32 components min DCF (π=0.1) : 0.788
+		GMM with 32 components min DCF (π=0.9) : 0.764
+
+		GMM with 64 components min DCF (π=0.5) : 0.364
+		GMM with 64 components min DCF (π=0.1) : 0.783
+		GMM with 64 components min DCF (π=0.9) : 0.890
+
+		GMM with 128 components min DCF (π=0.5) : 0.399
+		GMM with 128 components min DCF (π=0.1) : 0.864
+		GMM with 128 components min DCF (π=0.9) : 0.988
+
+		GMM with 256 components min DCF (π=0.5) : 0.453
+		GMM with 256 components min DCF (π=0.1) : 0.940
+		GMM with 256 components min DCF (π=0.9) : 0.968
+
+Grid search iteration ended in 399 seconds
+Grid search iteration 8 / 16
+	Training on train dataset and evaluating on eval dataset Diagonal Tied GMM (components from 1 to 256) - Preprocessing: [ Gaussianization ]
+		GMM with 1 components min DCF (π=0.5) : 0.377
+		GMM with 1 components min DCF (π=0.1) : 0.760
+		GMM with 1 components min DCF (π=0.9) : 0.913
+
+		GMM with 2 components min DCF (π=0.5) : 0.409
+		GMM with 2 components min DCF (π=0.1) : 0.774
+		GMM with 2 components min DCF (π=0.9) : 0.959
+
+		GMM with 4 components min DCF (π=0.5) : 0.304
+		GMM with 4 components min DCF (π=0.1) : 0.735
+		GMM with 4 components min DCF (π=0.9) : 0.753
+
+		GMM with 8 components min DCF (π=0.5) : 0.280
+		GMM with 8 components min DCF (π=0.1) : 0.740
+		GMM with 8 components min DCF (π=0.9) : 0.713
+
+		GMM with 16 components min DCF (π=0.5) : 0.289
+		GMM with 16 components min DCF (π=0.1) : 0.707
+		GMM with 16 components min DCF (π=0.9) : 0.674
+
+		GMM with 32 components min DCF (π=0.5) : 0.303
+		GMM with 32 components min DCF (π=0.1) : 0.777
+		GMM with 32 components min DCF (π=0.9) : 0.677
+
+		GMM with 64 components min DCF (π=0.5) : 0.303
+		GMM with 64 components min DCF (π=0.1) : 0.824
+		GMM with 64 components min DCF (π=0.9) : 0.706
+
+		GMM with 128 components min DCF (π=0.5) : 0.311
+		GMM with 128 components min DCF (π=0.1) : 0.773
+		GMM with 128 components min DCF (π=0.9) : 0.691
+
+		GMM with 256 components min DCF (π=0.5) : 0.351
+		GMM with 256 components min DCF (π=0.1) : 0.722
+		GMM with 256 components min DCF (π=0.9) : 0.710
+
+Grid search iteration ended in 294 seconds
+Grid search iteration 9 / 16
+	Training on train dataset and evaluating on eval dataset   GMM (components from 1 to 256) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		GMM with 1 components min DCF (π=0.5) : 0.342
+		GMM with 1 components min DCF (π=0.1) : 0.586
+		GMM with 1 components min DCF (π=0.9) : 0.665
+
+		GMM with 2 components min DCF (π=0.5) : 0.302
+		GMM with 2 components min DCF (π=0.1) : 0.601
+		GMM with 2 components min DCF (π=0.9) : 0.588
+
+		GMM with 4 components min DCF (π=0.5) : 0.262
+		GMM with 4 components min DCF (π=0.1) : 0.637
+		GMM with 4 components min DCF (π=0.9) : 0.591
+
+		GMM with 8 components min DCF (π=0.5) : 0.294
+		GMM with 8 components min DCF (π=0.1) : 0.656
+		GMM with 8 components min DCF (π=0.9) : 0.611
+
+		GMM with 16 components min DCF (π=0.5) : 0.294
+		GMM with 16 components min DCF (π=0.1) : 0.750
+		GMM with 16 components min DCF (π=0.9) : 0.628
+
+		GMM with 32 components min DCF (π=0.5) : 0.317
+		GMM with 32 components min DCF (π=0.1) : 0.832
+		GMM with 32 components min DCF (π=0.9) : 0.668
+
+		GMM with 64 components min DCF (π=0.5) : 0.318
+		GMM with 64 components min DCF (π=0.1) : 0.769
+		GMM with 64 components min DCF (π=0.9) : 0.641
+
+		GMM with 128 components min DCF (π=0.5) : 0.340
+		GMM with 128 components min DCF (π=0.1) : 0.752
+		GMM with 128 components min DCF (π=0.9) : 0.630
+
+		GMM with 256 components min DCF (π=0.5) : 0.330
+		GMM with 256 components min DCF (π=0.1) : 0.734
+		GMM with 256 components min DCF (π=0.9) : 0.611
+
+Grid search iteration ended in 216 seconds
+Grid search iteration 10 / 16
+	Training on train dataset and evaluating on eval dataset  Tied GMM (components from 1 to 256) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		GMM with 1 components min DCF (π=0.5) : 0.342
+		GMM with 1 components min DCF (π=0.1) : 0.586
+		GMM with 1 components min DCF (π=0.9) : 0.665
+
+		GMM with 2 components min DCF (π=0.5) : 0.342
+		GMM with 2 components min DCF (π=0.1) : 0.586
+		GMM with 2 components min DCF (π=0.9) : 0.665
+
+		GMM with 4 components min DCF (π=0.5) : 0.316
+		GMM with 4 components min DCF (π=0.1) : 0.633
+		GMM with 4 components min DCF (π=0.9) : 0.679
+
+		GMM with 8 components min DCF (π=0.5) : 0.320
+		GMM with 8 components min DCF (π=0.1) : 0.676
+		GMM with 8 components min DCF (π=0.9) : 0.630
+
+		GMM with 16 components min DCF (π=0.5) : 0.332
+		GMM with 16 components min DCF (π=0.1) : 0.806
+		GMM with 16 components min DCF (π=0.9) : 0.615
+
+		GMM with 32 components min DCF (π=0.5) : 0.330
+		GMM with 32 components min DCF (π=0.1) : 0.774
+		GMM with 32 components min DCF (π=0.9) : 0.625
+
+		GMM with 64 components min DCF (π=0.5) : 0.337
+		GMM with 64 components min DCF (π=0.1) : 0.734
+		GMM with 64 components min DCF (π=0.9) : 0.643
+
+		GMM with 128 components min DCF (π=0.5) : 0.319
+		GMM with 128 components min DCF (π=0.1) : 0.745
+		GMM with 128 components min DCF (π=0.9) : 0.617
+
+		GMM with 256 components min DCF (π=0.5) : 0.329
+		GMM with 256 components min DCF (π=0.1) : 0.781
+		GMM with 256 components min DCF (π=0.9) : 0.682
+
+Grid search iteration ended in 290 seconds
+Grid search iteration 11 / 16
+	Training on train dataset and evaluating on eval dataset Diagonal  GMM (components from 1 to 256) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		GMM with 1 components min DCF (π=0.5) : 0.326
+		GMM with 1 components min DCF (π=0.1) : 0.678
+		GMM with 1 components min DCF (π=0.9) : 0.867
+
+		GMM with 2 components min DCF (π=0.5) : 0.324
+		GMM with 2 components min DCF (π=0.1) : 0.663
+		GMM with 2 components min DCF (π=0.9) : 0.906
+
+		GMM with 4 components min DCF (π=0.5) : 0.310
+		GMM with 4 components min DCF (π=0.1) : 0.747
+		GMM with 4 components min DCF (π=0.9) : 0.696
+
+		GMM with 8 components min DCF (π=0.5) : 0.299
+		GMM with 8 components min DCF (π=0.1) : 0.688
+		GMM with 8 components min DCF (π=0.9) : 0.607
+
+		GMM with 16 components min DCF (π=0.5) : 0.354
+		GMM with 16 components min DCF (π=0.1) : 0.694
+		GMM with 16 components min DCF (π=0.9) : 0.690
+
+		GMM with 32 components min DCF (π=0.5) : 0.339
+		GMM with 32 components min DCF (π=0.1) : 0.723
+		GMM with 32 components min DCF (π=0.9) : 0.686
+
+		GMM with 64 components min DCF (π=0.5) : 0.342
+		GMM with 64 components min DCF (π=0.1) : 0.765
+		GMM with 64 components min DCF (π=0.9) : 0.699
+
+		GMM with 128 components min DCF (π=0.5) : 0.348
+		GMM with 128 components min DCF (π=0.1) : 0.820
+		GMM with 128 components min DCF (π=0.9) : 0.716
+
+		GMM with 256 components min DCF (π=0.5) : 0.384
+		GMM with 256 components min DCF (π=0.1) : 0.839
+		GMM with 256 components min DCF (π=0.9) : 0.714
+
+Grid search iteration ended in 290 seconds
+Grid search iteration 12 / 16
+	Training on train dataset and evaluating on eval dataset Diagonal Tied GMM (components from 1 to 256) - Preprocessing: [ Centering, Whitening_Covariance, L2_Normalization ]
+		GMM with 1 components min DCF (π=0.5) : 0.326
+		GMM with 1 components min DCF (π=0.1) : 0.678
+		GMM with 1 components min DCF (π=0.9) : 0.867
+
+		GMM with 2 components min DCF (π=0.5) : 0.340
+		GMM with 2 components min DCF (π=0.1) : 0.659
+		GMM with 2 components min DCF (π=0.9) : 0.827
+
+		GMM with 4 components min DCF (π=0.5) : 0.363
+		GMM with 4 components min DCF (π=0.1) : 0.638
+		GMM with 4 components min DCF (π=0.9) : 0.669
+
+		GMM with 8 components min DCF (π=0.5) : 0.291
+		GMM with 8 components min DCF (π=0.1) : 0.782
+		GMM with 8 components min DCF (π=0.9) : 0.600
+
+		GMM with 16 components min DCF (π=0.5) : 0.322
+		GMM with 16 components min DCF (π=0.1) : 0.731
+		GMM with 16 components min DCF (π=0.9) : 0.650
+
+		GMM with 32 components min DCF (π=0.5) : 0.284
+		GMM with 32 components min DCF (π=0.1) : 0.775
+		GMM with 32 components min DCF (π=0.9) : 0.680
+
+		GMM with 64 components min DCF (π=0.5) : 0.320
+		GMM with 64 components min DCF (π=0.1) : 0.724
+		GMM with 64 components min DCF (π=0.9) : 0.650
+
+		GMM with 128 components min DCF (π=0.5) : 0.339
+		GMM with 128 components min DCF (π=0.1) : 0.785
+		GMM with 128 components min DCF (π=0.9) : 0.698
+
+		GMM with 256 components min DCF (π=0.5) : 0.342
+		GMM with 256 components min DCF (π=0.1) : 0.747
+		GMM with 256 components min DCF (π=0.9) : 0.659
+
+Grid search iteration ended in 272 seconds
+Grid search iteration 13 / 16
+	Training on train dataset and evaluating on eval dataset   GMM (components from 1 to 256) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		GMM with 1 components min DCF (π=0.5) : 0.338
+		GMM with 1 components min DCF (π=0.1) : 0.583
+		GMM with 1 components min DCF (π=0.9) : 0.658
+
+		GMM with 2 components min DCF (π=0.5) : 0.294
+		GMM with 2 components min DCF (π=0.1) : 0.623
+		GMM with 2 components min DCF (π=0.9) : 0.613
+
+		GMM with 4 components min DCF (π=0.5) : 0.282
+		GMM with 4 components min DCF (π=0.1) : 0.627
+		GMM with 4 components min DCF (π=0.9) : 0.643
+
+		GMM with 8 components min DCF (π=0.5) : 0.308
+		GMM with 8 components min DCF (π=0.1) : 0.686
+		GMM with 8 components min DCF (π=0.9) : 0.597
+
+		GMM with 16 components min DCF (π=0.5) : 0.323
+		GMM with 16 components min DCF (π=0.1) : 0.783
+		GMM with 16 components min DCF (π=0.9) : 0.632
+
+		GMM with 32 components min DCF (π=0.5) : 0.315
+		GMM with 32 components min DCF (π=0.1) : 0.755
+		GMM with 32 components min DCF (π=0.9) : 0.658
+
+		GMM with 64 components min DCF (π=0.5) : 0.299
+		GMM with 64 components min DCF (π=0.1) : 0.780
+		GMM with 64 components min DCF (π=0.9) : 0.576
+
+		GMM with 128 components min DCF (π=0.5) : 0.334
+		GMM with 128 components min DCF (π=0.1) : 0.775
+		GMM with 128 components min DCF (π=0.9) : 0.643
+
+		GMM with 256 components min DCF (π=0.5) : 0.328
+		GMM with 256 components min DCF (π=0.1) : 0.790
+		GMM with 256 components min DCF (π=0.9) : 0.597
+
+Grid search iteration ended in 228 seconds
+Grid search iteration 14 / 16
+	Training on train dataset and evaluating on eval dataset  Tied GMM (components from 1 to 256) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		GMM with 1 components min DCF (π=0.5) : 0.338
+		GMM with 1 components min DCF (π=0.1) : 0.583
+		GMM with 1 components min DCF (π=0.9) : 0.658
+
+		GMM with 2 components min DCF (π=0.5) : 0.338
+		GMM with 2 components min DCF (π=0.1) : 0.583
+		GMM with 2 components min DCF (π=0.9) : 0.658
+
+		GMM with 4 components min DCF (π=0.5) : 0.297
+		GMM with 4 components min DCF (π=0.1) : 0.662
+		GMM with 4 components min DCF (π=0.9) : 0.672
+
+		GMM with 8 components min DCF (π=0.5) : 0.290
+		GMM with 8 components min DCF (π=0.1) : 0.685
+		GMM with 8 components min DCF (π=0.9) : 0.588
+
+		GMM with 16 components min DCF (π=0.5) : 0.337
+		GMM with 16 components min DCF (π=0.1) : 0.777
+		GMM with 16 components min DCF (π=0.9) : 0.645
+
+		GMM with 32 components min DCF (π=0.5) : 0.323
+		GMM with 32 components min DCF (π=0.1) : 0.766
+		GMM with 32 components min DCF (π=0.9) : 0.649
+
+		GMM with 64 components min DCF (π=0.5) : 0.327
+		GMM with 64 components min DCF (π=0.1) : 0.784
+		GMM with 64 components min DCF (π=0.9) : 0.649
+
+		GMM with 128 components min DCF (π=0.5) : 0.321
+		GMM with 128 components min DCF (π=0.1) : 0.818
+		GMM with 128 components min DCF (π=0.9) : 0.641
+
+		GMM with 256 components min DCF (π=0.5) : 0.320
+		GMM with 256 components min DCF (π=0.1) : 0.760
+		GMM with 256 components min DCF (π=0.9) : 0.597
+
+Grid search iteration ended in 452 seconds
+Grid search iteration 15 / 16
+	Training on train dataset and evaluating on eval dataset Diagonal  GMM (components from 1 to 256) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		GMM with 1 components min DCF (π=0.5) : 0.326
+		GMM with 1 components min DCF (π=0.1) : 0.677
+		GMM with 1 components min DCF (π=0.9) : 0.787
+
+		GMM with 2 components min DCF (π=0.5) : 0.330
+		GMM with 2 components min DCF (π=0.1) : 0.673
+		GMM with 2 components min DCF (π=0.9) : 0.676
+
+		GMM with 4 components min DCF (π=0.5) : 0.301
+		GMM with 4 components min DCF (π=0.1) : 0.701
+		GMM with 4 components min DCF (π=0.9) : 0.583
+
+		GMM with 8 components min DCF (π=0.5) : 0.306
+		GMM with 8 components min DCF (π=0.1) : 0.676
+		GMM with 8 components min DCF (π=0.9) : 0.602
+
+		GMM with 16 components min DCF (π=0.5) : 0.336
+		GMM with 16 components min DCF (π=0.1) : 0.661
+		GMM with 16 components min DCF (π=0.9) : 0.594
+
+		GMM with 32 components min DCF (π=0.5) : 0.340
+		GMM with 32 components min DCF (π=0.1) : 0.692
+		GMM with 32 components min DCF (π=0.9) : 0.609
+
+		GMM with 64 components min DCF (π=0.5) : 0.377
+		GMM with 64 components min DCF (π=0.1) : 0.748
+		GMM with 64 components min DCF (π=0.9) : 0.650
+
+		GMM with 128 components min DCF (π=0.5) : 0.379
+		GMM with 128 components min DCF (π=0.1) : 0.843
+		GMM with 128 components min DCF (π=0.9) : 0.701
+
+		GMM with 256 components min DCF (π=0.5) : 0.358
+		GMM with 256 components min DCF (π=0.1) : 0.812
+		GMM with 256 components min DCF (π=0.9) : 0.673
+
+Grid search iteration ended in 336 seconds
+Grid search iteration 16 / 16
+	Training on train dataset and evaluating on eval dataset Diagonal Tied GMM (components from 1 to 256) - Preprocessing: [ Centering, Whitening_Within_Covariance, L2_Normalization ]
+		GMM with 1 components min DCF (π=0.5) : 0.326
+		GMM with 1 components min DCF (π=0.1) : 0.677
+		GMM with 1 components min DCF (π=0.9) : 0.787
+
+		GMM with 2 components min DCF (π=0.5) : 0.325
+		GMM with 2 components min DCF (π=0.1) : 0.693
+		GMM with 2 components min DCF (π=0.9) : 0.602
+
+		GMM with 4 components min DCF (π=0.5) : 0.303
+		GMM with 4 components min DCF (π=0.1) : 0.633
+		GMM with 4 components min DCF (π=0.9) : 0.666
+
+		GMM with 8 components min DCF (π=0.5) : 0.318
+		GMM with 8 components min DCF (π=0.1) : 0.755
+		GMM with 8 components min DCF (π=0.9) : 0.654
+
+		GMM with 16 components min DCF (π=0.5) : 0.322
+		GMM with 16 components min DCF (π=0.1) : 0.778
+		GMM with 16 components min DCF (π=0.9) : 0.597
+
+		GMM with 32 components min DCF (π=0.5) : 0.296
+		GMM with 32 components min DCF (π=0.1) : 0.705
+		GMM with 32 components min DCF (π=0.9) : 0.644
+
+		GMM with 64 components min DCF (π=0.5) : 0.311
+		GMM with 64 components min DCF (π=0.1) : 0.761
+		GMM with 64 components min DCF (π=0.9) : 0.646
+
+		GMM with 128 components min DCF (π=0.5) : 0.349
+		GMM with 128 components min DCF (π=0.1) : 0.754
+		GMM with 128 components min DCF (π=0.9) : 0.661
+
+		GMM with 256 components min DCF (π=0.5) : 0.343
+		GMM with 256 components min DCF (π=0.1) : 0.789
+		GMM with 256 components min DCF (π=0.9) : 0.620
+
+Grid search iteration ended in 294 seconds
+Grid search on GMM without ended in 5851 seconds
+Plot saved in C:\Users\rugge\Documents\development\university\machine_learning\ml_repo\wine_project\utility\..\graphs\gmm\eval\eval_full_gmm_graph_pi1-05.
+Plot saved in C:\Users\rugge\Documents\development\university\machine_learning\ml_repo\wine_project\utility\..\graphs\gmm\eval\eval_full_gmm_graph_pi1-05_tied.
+Plot saved in C:\Users\rugge\Documents\development\university\machine_learning\ml_repo\wine_project\utility\..\graphs\gmm\eval\eval_full_gmm_graph_pi1-05_diag.
+Plot saved in C:\Users\rugge\Documents\development\university\machine_learning\ml_repo\wine_project\utility\..\graphs\gmm\eval\eval_full_gmm_graph_pi1-05_diag_tied.
+Plot saved in C:\Users\rugge\Documents\development\university\machine_learning\ml_repo\wine_project\utility\..\graphs\gmm\eval\eval_full_gmm_graph_pi1-01.
+Plot saved in C:\Users\rugge\Documents\development\university\machine_learning\ml_repo\wine_project\utility\..\graphs\gmm\eval\eval_full_gmm_graph_pi1-01_tied.
+Plot saved in C:\Users\rugge\Documents\development\university\machine_learning\ml_repo\wine_project\utility\..\graphs\gmm\eval\eval_full_gmm_graph_pi1-01_diag.
+Plot saved in C:\Users\rugge\Documents\development\university\machine_learning\ml_repo\wine_project\utility\..\graphs\gmm\eval\eval_full_gmm_graph_pi1-01_diag_tied.
+Plot saved in C:\Users\rugge\Documents\development\university\machine_learning\ml_repo\wine_project\utility\..\graphs\gmm\eval\eval_full_gmm_graph_pi1-09.
+Plot saved in C:\Users\rugge\Documents\development\university\machine_learning\ml_repo\wine_project\utility\..\graphs\gmm\eval\eval_full_gmm_graph_pi1-09_tied.
+Plot saved in C:\Users\rugge\Documents\development\university\machine_learning\ml_repo\wine_project\utility\..\graphs\gmm\eval\eval_full_gmm_graph_pi1-09_diag.
+Plot saved in C:\Users\rugge\Documents\development\university\machine_learning\ml_repo\wine_project\utility\..\graphs\gmm\eval\eval_full_gmm_graph_pi1-09_diag_tied.

@@ -41,19 +41,19 @@ def get_args():
     parser = argparse.ArgumentParser(description="Script to launch GMM classificator building",
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
-    parser.add_argument("--gridsearch", type=bool, default=False,
+    parser.add_argument("--gridsearch", default=False, action="store_true",
                         help="Start a gridsearch cross-validation to optimize with respect to the number of components, the preprocess configuration and the model type")
-    parser.add_argument("--actual_dcf", type=bool, default=False,
+    parser.add_argument("--actual_dcf", default=False, action="store_true",
                         help="Calculate actual DCF for the different target application using the best model")
 
-    parser.add_argument("--eval_partial_gridsearch", type=bool, default=False,
+    parser.add_argument("--eval_partial_gridsearch", default=False, action="store_true",
                         help="Start a gridsearch cross-validation to optimize with respect to the number of components, the preprocess configuration and the model type")
-    parser.add_argument("--eval_partial_actual_dcf", type=bool, default=False,
+    parser.add_argument("--eval_partial_actual_dcf", default=False, action="store_true",
                         help="Calculate actual DCF for the different target application using the best model")
 
-    parser.add_argument("--eval_full_gridsearch", type=bool, default=False,
+    parser.add_argument("--eval_full_gridsearch", default=False, action="store_true",
                         help="Start a gridsearch cross-validation to optimize with respect to the number of components, the preprocess configuration and the model type")
-    parser.add_argument("--eval_full_actual_dcf", type=bool, default=False,
+    parser.add_argument("--eval_full_actual_dcf", default=False, action="store_true",
                         help="Calculate actual DCF for the different target application using the best model")
 
     return parser.parse_args()

@@ -81,14 +81,14 @@ def get_args():
     parser = argparse.ArgumentParser(description="Script to launch RBF SVM classificator building",
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
-    parser.add_argument("--bayes_error_plot", type=bool, default=False,
+    parser.add_argument("--bayes_error_plot", default=False, action="store_true",
                         help="Display a bayes error plot for the best svm and gmm model")
-    parser.add_argument("--lr_recalibration", type=bool, default=False,
+    parser.add_argument("--lr_recalibration", default=False, action="store_true",
                         help="Recalibrate the scores using a linear LR for the best svm and gmm model and fuse them")
 
-    parser.add_argument("--eval_partial_bayes_error_plot", type=bool, default=False,
+    parser.add_argument("--eval_partial_bayes_error_plot", default=False, action="store_true",
                         help="Display a bayes error plot for the best svm and gmm model")
-    parser.add_argument("--eval_partial_lr_recalibration", type=bool, default=False,
+    parser.add_argument("--eval_partial_lr_recalibration", default=False, action="store_true",
                         help="Recalibrate the scores using a linear LR for the best svm and gmm model and fuse them")
 
     return parser.parse_args()

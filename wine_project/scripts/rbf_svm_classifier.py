@@ -56,31 +56,31 @@ def get_args():
     parser = argparse.ArgumentParser(description="Script to launch RBF SVM classificator building",
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
-    parser.add_argument("--gridsearch", type=bool, default=False,
+    parser.add_argument("--gridsearch", default=False, action="store_true",
                         help="Start a coarse-level gridsearch cross-validation to jointly optimize C and gamma for different preprocess configurations")
-    parser.add_argument("--gridsearch_fine_grained", type=bool, default=False,
+    parser.add_argument("--gridsearch_fine_grained", default=False, action="store_true",
                         help="Start a fine-grained gridsearch cross-validation to jointly optimize C and gamma for different preprocess configurations")
-    parser.add_argument("--class_balancing", type=bool, default=False,
+    parser.add_argument("--class_balancing", default=False, action="store_true",
                         help="Start cross-validation to try class-balancing with the best hyperparameters")
-    parser.add_argument("--actual_dcf", type=bool, default=False,
+    parser.add_argument("--actual_dcf", default=False, action="store_true",
                         help="Calculate actual DCF for the different target application using the best model")
 
-    parser.add_argument("--eval_partial_gridsearch", type=bool, default=False,
+    parser.add_argument("--eval_partial_gridsearch", default=False, action="store_true",
                         help="Start a coarse-level gridsearch cross-validation to jointly optimize C and gamma for different preprocess configurations")
-    parser.add_argument("--eval_partial_gridsearch_fine_grained", type=bool, default=False,
+    parser.add_argument("--eval_partial_gridsearch_fine_grained", default=False, action="store_true",
                         help="Start a fine-grained gridsearch cross-validation to jointly optimize C and gamma for different preprocess configurations")
-    parser.add_argument("--eval_partial_class_balancing", type=bool, default=False,
+    parser.add_argument("--eval_partial_class_balancing", default=False, action="store_true",
                         help="Start cross-validation to try class-balancing with the best hyperparameters")
-    parser.add_argument("--eval_partial_actual_dcf", type=bool, default=False,
+    parser.add_argument("--eval_partial_actual_dcf", default=False, action="store_true",
                         help="Calculate actual DCF for the different target application using the best model")
 
-    parser.add_argument("--eval_full_gridsearch", type=bool, default=False,
+    parser.add_argument("--eval_full_gridsearch", default=False, action="store_true",
                         help="Start a coarse-level gridsearch cross-validation to jointly optimize C and gamma for different preprocess configurations")
-    parser.add_argument("--eval_full_gridsearch_fine_grained", type=bool, default=False,
+    parser.add_argument("--eval_full_gridsearch_fine_grained", default=False, action="store_true",
                         help="Start a fine-grained gridsearch cross-validation to jointly optimize C and gamma for different preprocess configurations")
-    parser.add_argument("--eval_full_class_balancing", type=bool, default=False,
+    parser.add_argument("--eval_full_class_balancing", default=False, action="store_true",
                         help="Start cross-validation to try class-balancing with the best hyperparameters")
-    parser.add_argument("--eval_full_actual_dcf", type=bool, default=False,
+    parser.add_argument("--eval_full_actual_dcf", default=False, action="store_true",
                         help="Calculate actual DCF for the different target application using the best model")
 
     return parser.parse_args()
