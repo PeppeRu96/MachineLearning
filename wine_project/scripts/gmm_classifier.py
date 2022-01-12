@@ -113,8 +113,9 @@ if __name__ == "__main__":
                 for t_i, tied in enumerate(tieds):
                     print("Grid search iteration %d / %d" % (grid_search_iterations, tot_gs_iterations_required))
                     time_start = time.perf_counter()
-                    scores, labels = cross_validate_gmm(conf, ALPHA, PSI, diag, tied, max_comps, X_train=X_train,
-                                                        y_train=y_train, X_test=X_test, y_test=y_test, verbose=True)
+                    scores, labels, _, _ = cross_validate_gmm(conf, ALPHA, PSI, diag, tied, max_comps, X_train=X_train,
+                                                        y_train=y_train, X_test=X_test, y_test=y_test,
+                                                        X_val=None, y_val=None, verbose=True)
                     for ci, c in enumerate(comps):
                         for app_i, (pi1, Cfn, Cfp) in enumerate(applications):
                             minDCF, _ = eval.bayes_min_dcf(scores[ci], labels[ci], pi1, Cfn, Cfp)
@@ -195,8 +196,9 @@ if __name__ == "__main__":
     if args.actual_dcf:
         with LoggingPrinter(incremental_path(TRAINLOGS_BASEPATH, GMM_ACTUAL_DCF_TRAINLOG_FNAME)):
             print("Actual DCF for the different target application calculated after cross-validating on the training dataset")
-            scores, labels = cross_validate_gmm(best_preproc_conf, ALPHA, PSI, best_diag, best_tied, best_num_components,
-                                                X_train=folds_data, y_train=folds_labels, X_test=None, y_test=None, verbose=True)
+            scores, labels, _, _ = cross_validate_gmm(best_preproc_conf, ALPHA, PSI, best_diag, best_tied, best_num_components,
+                                                X_train=folds_data, y_train=folds_labels, X_test=None, y_test=None,
+                                                      X_val=None, y_val=None, verbose=True)
             for app_i, (pi1, Cfn, Cfp) in enumerate(applications):
                 minDCF, _ = eval.bayes_min_dcf(scores[-1], labels[-1], pi1, Cfn, Cfp)
                 actDCF = eval.bayes_binary_dcf(scores[-1], labels[-1], pi1, Cfn, Cfp)
@@ -209,8 +211,9 @@ if __name__ == "__main__":
         with LoggingPrinter(incremental_path(EVAL_TRAINLOGS_BASEPATH, EVAL_PARTIAL_GMM_ACTUAL_DCF_TRAINLOG_FNAME)):
             print("Actual DCF for the different target application calculated training on a partial train dataset and validating on the eval dataset")
             X_train, y_train = concat_kfolds(folds_data[:-1], folds_labels[:-1])
-            scores, labels = cross_validate_gmm(best_preproc_conf, ALPHA, PSI, best_diag, best_tied, best_num_components,
-                                                X_train=X_train, y_train=y_train, X_test=X_test, y_test=y_test, verbose=True)
+            scores, labels, _, _ = cross_validate_gmm(best_preproc_conf, ALPHA, PSI, best_diag, best_tied, best_num_components,
+                                                X_train=X_train, y_train=y_train, X_test=X_test, y_test=y_test,
+                                                X_val=None, y_val=None, verbose=True)
             for app_i, (pi1, Cfn, Cfp) in enumerate(applications):
                 minDCF, _ = eval.bayes_min_dcf(scores[-1], labels[-1], pi1, Cfn, Cfp)
                 actDCF = eval.bayes_binary_dcf(scores[-1], labels[-1], pi1, Cfn, Cfp)
@@ -222,8 +225,9 @@ if __name__ == "__main__":
         with LoggingPrinter(incremental_path(EVAL_TRAINLOGS_BASEPATH, EVAL_FULL_GMM_ACTUAL_DCF_TRAINLOG_FNAME)):
             print("Actual DCF for the different target application calculated training on a the full train dataset and validating on the eval dataset")
             X_train, y_train = concat_kfolds(folds_data, folds_labels)
-            scores, labels = cross_validate_gmm(best_preproc_conf, ALPHA, PSI, best_diag, best_tied, best_num_components,
-                                                X_train=X_train, y_train=y_train, X_test=X_test, y_test=y_test, verbose=True)
+            scores, labels, _, _ = cross_validate_gmm(best_preproc_conf, ALPHA, PSI, best_diag, best_tied, best_num_components,
+                                                X_train=X_train, y_train=y_train, X_test=X_test, y_test=y_test,
+                                                      X_val=None, y_val=None, verbose=True)
             for app_i, (pi1, Cfn, Cfp) in enumerate(applications):
                 minDCF, _ = eval.bayes_min_dcf(scores[-1], labels[-1], pi1, Cfn, Cfp)
                 actDCF = eval.bayes_binary_dcf(scores[-1], labels[-1], pi1, Cfn, Cfp)

@@ -78,8 +78,8 @@ if __name__ == "__main__":
                         Ci, pi1_str, C, K, conf))
 
             time_start = time.perf_counter()
-            scores, labels = cross_validate_svm(conf, C, K, X_train=X_train, y_train=y_train, X_test=X_test, y_test=y_test,
-                                                specific_pi1=specific_pi1)
+            scores, labels, _, _ = cross_validate_svm(conf, C, K, X_train=X_train, y_train=y_train, X_test=X_test, y_test=y_test,
+                                                X_val=None, y_val=None, specific_pi1=specific_pi1)
             for app_i, (pi1, Cfn, Cfp) in enumerate(applications):
                 minDCF, _ = eval.bayes_min_dcf(scores, labels, pi1, Cfn, Cfp)
                 print("\t\tmin DCF (π=%.1f) : %.3f" % (pi1, minDCF))

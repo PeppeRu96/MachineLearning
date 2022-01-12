@@ -108,8 +108,8 @@ if __name__ == "__main__":
                     print("\t(Ci: {}) - Train and validation (eval) RBF SVM (gamma={:.0e}) {} (C={:.0e} - K={:.1f}) - Preprocessing: {}".format(
                             Ci, g, pi1_str, C, K, conf))
                 time_start = time.perf_counter()
-                scores, labels = cross_validate_svm(conf, C, K, X_train=X_train, y_train=y_train, X_test=X_test,
-                                                    y_test=y_test, specific_pi1=specific_pi1, kernel=kernel)
+                scores, labels, _, _ = cross_validate_svm(conf, C, K, X_train=X_train, y_train=y_train, X_test=X_test,
+                                                    y_test=y_test, X_val=None, y_val=None, specific_pi1=specific_pi1, kernel=kernel)
                 for app_i, (pi1, Cfn, Cfp) in enumerate(applications):
                     minDCF, _ = eval.bayes_min_dcf(scores, labels, pi1, Cfn, Cfp)
                     print("\t\tmin DCF (π=%.1f) : %.3f" % (pi1, minDCF))
@@ -205,8 +205,8 @@ if __name__ == "__main__":
             else:
                 print(f"RBF SVM training on the train dataset and evaluating on the eval dataset with class-balancing for the target application with π={train_pi1:.1f} (gamma={g:.0e}) (C={C:.0e} - K={K:.1f}) - Preprocessing: {preproc_conf}")
             time_start = time.perf_counter()
-            scores, labels = cross_validate_svm(preproc_conf, C, K, X_train=X_train, y_train=y_train, X_test=X_test,
-                                                y_test=y_test, specific_pi1=train_pi1, kernel=kernel)
+            scores, labels, _, _ = cross_validate_svm(preproc_conf, C, K, X_train=X_train, y_train=y_train, X_test=X_test,
+                                                y_test=y_test, X_val=None, y_val=None, specific_pi1=train_pi1, kernel=kernel)
             for app_i, (pi1, Cfn, Cfp) in enumerate(applications):
                 minDCF, _ = eval.bayes_min_dcf(scores, labels, pi1, Cfn, Cfp)
                 print("\t\tmin DCF (π=%.1f) : %.3f" % (pi1, minDCF))
@@ -395,8 +395,8 @@ if __name__ == "__main__":
     if args.actual_dcf:
         with LoggingPrinter(incremental_path(TRAINLOGS_BASEPATH, RBF_SVM_ACTUAL_DCF_TRAINLOG_FNAME)):
             print("Actual DCF for the different target application calculated after cross-validating on the training dataset")
-            scores, labels = cross_validate_svm(best_preproc_conf, best_C, best_K, X_train=folds_data, y_train=folds_labels, X_test=None,
-                                                y_test=None, specific_pi1=None, kernel=kernel)
+            scores, labels, _, _ = cross_validate_svm(best_preproc_conf, best_C, best_K, X_train=folds_data, y_train=folds_labels, X_test=None,
+                                                y_test=None, X_val=None, y_val=None, specific_pi1=None, kernel=kernel)
             for app_i, (pi1, Cfn, Cfp) in enumerate(applications):
                 minDCF, _ = eval.bayes_min_dcf(scores, labels, pi1, Cfn, Cfp)
                 actDCF = eval.bayes_binary_dcf(scores, labels, pi1, Cfn, Cfp)
@@ -408,8 +408,8 @@ if __name__ == "__main__":
         with LoggingPrinter(incremental_path(EVAL_TRAINLOGS_BASEPATH, EVAL_PARTIAL_RBF_SVM_ACTUAL_DCF_TRAINLOG_FNAME)):
             print("Actual DCF for the different target application calculated training on a partial train dataset and validating on the eval dataset")
             X_train, y_train = concat_kfolds(folds_data[:-1], folds_labels[:-1])
-            scores, labels = cross_validate_svm(best_preproc_conf, best_C, best_K, X_train=X_train, y_train=y_train, X_test=X_test,
-                                                y_test=y_test, specific_pi1=None, kernel=kernel)
+            scores, labels, _, _ = cross_validate_svm(best_preproc_conf, best_C, best_K, X_train=X_train, y_train=y_train, X_test=X_test,
+                                                y_test=y_test, X_val=None, y_val=None, specific_pi1=None, kernel=kernel)
             for app_i, (pi1, Cfn, Cfp) in enumerate(applications):
                 minDCF, _ = eval.bayes_min_dcf(scores, labels, pi1, Cfn, Cfp)
                 actDCF = eval.bayes_binary_dcf(scores, labels, pi1, Cfn, Cfp)
@@ -421,8 +421,8 @@ if __name__ == "__main__":
         with LoggingPrinter(incremental_path(EVAL_TRAINLOGS_BASEPATH, EVAL_FULL_RBF_SVM_ACTUAL_DCF_TRAINLOG_FNAME)):
             print("Actual DCF for the different target application calculated training on a the full train dataset and validating on the eval dataset")
             X_train, y_train = concat_kfolds(folds_data, folds_labels)
-            scores, labels = cross_validate_svm(best_preproc_conf, best_C, best_K, X_train=X_train, y_train=y_train, X_test=X_test,
-                                                y_test=y_test, specific_pi1=None, kernel=kernel)
+            scores, labels, _, _ = cross_validate_svm(best_preproc_conf, best_C, best_K, X_train=X_train, y_train=y_train, X_test=X_test,
+                                                y_test=y_test, X_val=None, y_val=None, specific_pi1=None, kernel=kernel)
             for app_i, (pi1, Cfn, Cfp) in enumerate(applications):
                 minDCF, _ = eval.bayes_min_dcf(scores, labels, pi1, Cfn, Cfp)
                 actDCF = eval.bayes_binary_dcf(scores, labels, pi1, Cfn, Cfp)

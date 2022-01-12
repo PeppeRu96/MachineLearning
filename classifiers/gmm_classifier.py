@@ -33,7 +33,8 @@ class GMM_Classifier:
     def compute_binary_llr(self, D):
         return (gau.logpdf_GMM(D, self.gmms[1]) - gau.logpdf_GMM(D, self.gmms[0])).flatten()
 
-def cross_validate_gmm(preproc_conf, alpha, psi, diag_cov, tied_cov, max_components, X_train, y_train, X_test=None, y_test=None, verbose=False):
+def cross_validate_gmm(preproc_conf, alpha, psi, diag_cov, tied_cov, max_components, X_train, y_train, X_test=None, y_test=None,
+                       X_val=None, y_val=None, verbose=False):
     """
     Cross-validate log2(max_components) different GMM classifiers (1 comp, 2 comps, 4 comps, 8 comps, etc..) using
     LBG estimation and a K-fold cross-validation for a given preprocess configuration
@@ -51,7 +52,9 @@ def cross_validate_gmm(preproc_conf, alpha, psi, diag_cov, tied_cov, max_compone
             print("\tTraining on train dataset and evaluating on eval dataset {} {} GMM (components from 1 to {}) - Preprocessing: {}".format(
                 diag_cov_str, tied_cov_str, max_components, preproc_conf))
 
+    gmm_classifiers = None
     def train_and_validate(DTR, LTR, DTE, LTE):
+        global gmm_classifiers
         # Preprocess data
         DTR, DTE = preproc_conf.apply_preproc_pipeline(DTR, LTR, DTE)
 
@@ -68,6 +71,19 @@ def cross_validate_gmm(preproc_conf, alpha, psi, diag_cov, tied_cov, max_compone
             gmm_classifiers.append(GMM_Classifier(gmms))
 
         # Now gmm_classifiers contains log2(max_components) + 1 gmm classifiers
+        # Validate
+        scores = []
+        for gmm_classifier in gmm_classifiers:
+            s = gmm_classifier.compute_binary_llr(DTE)
+            scores.append(s)
+
+        return scores
+
+    def validate(DTR, LTR, DTV, LTV):
+        global gmm_classifiers
+        # Preprocess data
+        DTR, DTV = preproc_conf.apply_preproc_pipeline(DTR, LTR, DTV)
+
         # Validate
         scores = []
         for gmm_classifier in gmm_classifiers:
@@ -96,10 +112,21 @@ def cross_validate_gmm(preproc_conf, alpha, psi, diag_cov, tied_cov, max_compone
 
             k += 1
             iterations += 1
+
+        scores_val = None
+        labels_val = None
     else:
         scores = train_and_validate(X_train, y_train, X_test, y_test)
-        np.expand_dims()
+        scores = np.array(scores)
         labels = np.zeros(scores.shape)
         labels = labels + y_test
+        if X_val is not None:
+            scores_val = validate(X_train, y_train, X_val, y_val)
+            scores_val = np.array(scores_val)
+            labels_val = np.zeros(scores_val.shape)
+            labels_val = labels_val + y_val
+        else:
+            scores_val = None
+            labels_val = None
 
-    return scores, labels
+    return scores, labels, scores_val, labels_val

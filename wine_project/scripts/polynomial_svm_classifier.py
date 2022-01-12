@@ -80,8 +80,8 @@ if __name__ == "__main__":
                 print("\t(Ci: {}) - Train and validation (eval) Polynomial SVM (d={} - c={}) {} (C={:.0e} - K={:.1f}) - Preprocessing: {}".format(
                         Ci, d, c, pi1_str, C, K, conf))
             time_start = time.perf_counter()
-            scores, labels = cross_validate_svm(conf, C, K, X_train=X_train, y_train=y_train, X_test=X_test, y_test=y_test,
-                                                specific_pi1=specific_pi1, kernel=kernel)
+            scores, labels, _, _ = cross_validate_svm(conf, C, K, X_train=X_train, y_train=y_train, X_test=X_test, y_test=y_test,
+                                                X_val=None, y_val=None, specific_pi1=specific_pi1, kernel=kernel)
             for app_i, (pi1, Cfn, Cfp) in enumerate(applications):
                 minDCF, _ = eval.bayes_min_dcf(scores, labels, pi1, Cfn, Cfp)
                 print("\t\tmin DCF (π=%.1f) : %.3f" % (pi1, minDCF))
@@ -194,8 +194,8 @@ if __name__ == "__main__":
                 print(f"Polynomial SVM training on the train dataset and evaluating on the eval dataset with class-balancing for the target application with π={train_pi1:.1f} (d={d} - c={1}) (C={C:.0e} - K={K:.1f}) - Preprocessing: {preproc_conf}")
 
             time_start = time.perf_counter()
-            scores, labels = cross_validate_svm(preproc_conf, C, K, X_train=X_train, y_train=y_train, X_test=X_test,
-                                                y_test=y_test, specific_pi1=train_pi1, kernel=kernel)
+            scores, labels, _, _ = cross_validate_svm(preproc_conf, C, K, X_train=X_train, y_train=y_train, X_test=X_test,
+                                                y_test=y_test, X_val=None, y_val=None, specific_pi1=train_pi1, kernel=kernel)
             for app_i, (pi1, Cfn, Cfp) in enumerate(applications):
                 minDCF, _ = eval.bayes_min_dcf(scores, labels, pi1, Cfn, Cfp)
                 print("\t\tmin DCF (π=%.1f) : %.3f" % (pi1, minDCF))
